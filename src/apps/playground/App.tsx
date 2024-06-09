@@ -34,6 +34,14 @@ function App() {
           </h3>
           <Button>dolor sit amet</Button>
         </div>
+        <div className="flex flex-col items-start space-y-1 p-2 border border-gray-600 m-2">
+          <Button>default (primary)</Button>
+          <Button color="primary">primary</Button>
+          <Button color="neutral">neutral</Button>
+          <Button color="danger">danger</Button>
+          <Button color="success">success</Button>
+          <Button color="warning">warning</Button>
+        </div>
       </div>
     </>
   );
