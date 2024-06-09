@@ -2,7 +2,21 @@
   "private": true,
   "name": "playground",
   "version": "0.0.0",
-  "author": "Hyeonjong <nianelo4@gmail.com>",
   "license": "MIT",
-  "scripts": {}
+  "author": "Hyeonjong <nianelo4@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25",
+    "@vitejs/plugin-react": "4.3.0",
+    "typescript": "4.9.5",
+    "vite": "5.0.11"
+  }
 }
