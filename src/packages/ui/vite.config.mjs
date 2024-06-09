@@ -8,6 +8,7 @@ export default defineConfig({
     lib: {
       entry: [
         resolve(__dirname, './index.ts'),
+        resolve(__dirname, './colors.ts'),
         resolve(__dirname, './components.ts'),
       ],
       formats: ['cjs', 'es'],
