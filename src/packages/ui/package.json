@@ -16,7 +16,27 @@
   },
   "license": "MIT",
   "author": "Hyeonjong <nianelo4@gmail.com>",
-  "main": "",
-  "files": [],
-  "scripts": {}
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/demo-lib.js",
+      "require": "./dist/demo-lib.umd.cjs"
+    }
+  },
+  "main": "./dist/demo-lib.umd.cjs",
+  "module": "./dist/demo-lib.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch --minify=false"
+  },
+  "devDependencies": {
+    "typescript": "4.9.5",
+    "vite": "5.0.11",
+    "vite-plugin-dts": "3.7.0"
+  },
+  "packageManager": "pnpm@8.5.1"
 }
