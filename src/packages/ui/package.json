@@ -30,6 +30,10 @@
     "./components": {
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
+    },
+    "./icons": {
+      "import": "./dist/icons.js",
+      "require": "./dist/icons.cjs"
     }
   },
   "scripts": {
@@ -48,7 +52,8 @@
     "tailwindcss": "3.4.4",
     "typescript": "4.9.5",
     "vite": "5.0.11",
-    "vite-plugin-dts": "3.7.0"
+    "vite-plugin-dts": "3.7.0",
+    "vite-plugin-svgr": "4.2.0"
   },
   "packageManager": "pnpm@8.5.1"
 }

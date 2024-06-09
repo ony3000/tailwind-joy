@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   build: {
@@ -10,6 +11,7 @@ export default defineConfig({
         resolve(__dirname, './index.ts'),
         resolve(__dirname, './colors.ts'),
         resolve(__dirname, './components.ts'),
+        resolve(__dirname, './icons.ts'),
       ],
       formats: ['cjs', 'es'],
     },
@@ -22,6 +24,7 @@ export default defineConfig({
       include: ['./**'],
     }),
     react(),
+    svgr(),
   ],
   resolve: {
     alias: {
