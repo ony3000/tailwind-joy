@@ -1,6 +1,6 @@
-This is a [Vite](https://vitejs.dev/) project bootstrapped with [`create-vite`](https://github.com/vitejs/vite/tree/main/packages/create-vite).
+[Joy UI](https://mui.com/joy-ui/getting-started/)의 component를 Tailwind CSS 방식으로 구현한 React component library
 
-## Required Environment
+## 개발 환경
 
 - Node.js 18
 - [pnpm 8.5.1](https://pnpm.io/)
