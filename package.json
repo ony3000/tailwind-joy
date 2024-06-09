@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Hyeonjong <nianelo4@gmail.com>",
   "scripts": {
+    "dev": "turbo dev",
     "lint": "biome lint"
   },
   "devDependencies": {
