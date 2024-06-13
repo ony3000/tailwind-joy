@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react';
 import { components } from 'tailwind-joy';
 import { Button } from 'tailwind-joy/components';
-import { Add, FavoriteBorder } from 'tailwind-joy/icons';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,9 +17,7 @@ function App() {
       <p>
         console에 HMR 실패 에러가 뜨면 화면 새로고침 해보기
         <br />
-        <Add className="inline-block" />
         새로고침 해도 변경사항이 반영되지 않으면 개발서버 재시작하기
-        <FavoriteBorder className="inline-block" />
       </p>
       <div>
         <h2>import test</h2>
