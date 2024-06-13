@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss';
-import { tailwindExtendableColors } from './colors';
+import { tailwindExtendableColors } from './src/colors';
 
 export default {
-  content: ['./components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: tailwindExtendableColors,

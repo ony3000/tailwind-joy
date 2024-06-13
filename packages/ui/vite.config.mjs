@@ -7,9 +7,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: [
-        resolve(__dirname, './index.ts'),
-        resolve(__dirname, './colors.ts'),
-        resolve(__dirname, './components.ts'),
+        resolve(__dirname, 'src/index.ts'),
+        resolve(__dirname, 'src/colors.ts'),
+        resolve(__dirname, 'src/components.ts'),
       ],
       formats: ['cjs', 'es'],
     },
@@ -19,13 +19,13 @@ export default defineConfig({
   },
   plugins: [
     dts({
-      include: ['./**'],
+      include: ['src/**'],
     }),
     react(),
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, '.'),
+      '@': resolve(__dirname, 'src'),
     },
   },
 });
