@@ -1,8 +1,8 @@
 import './App.css';
 import { useState } from 'react';
-import { components } from '@ony3000/experimental-ui';
-import { Button } from '@ony3000/experimental-ui/components';
-import { Add, FavoriteBorder } from '@ony3000/experimental-ui/icons';
+import { components } from 'tailwind-joy';
+import { Button } from 'tailwind-joy/components';
+import { Add, FavoriteBorder } from 'tailwind-joy/icons';
 
 function App() {
   const [count, setCount] = useState(0);

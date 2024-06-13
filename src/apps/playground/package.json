@@ -9,9 +9,9 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@ony3000/experimental-ui": "workspace:*",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwind-joy": "workspace:*"
   },
   "devDependencies": {
     "@thedutchcoder/postcss-rem-to-px": "0.0.2",

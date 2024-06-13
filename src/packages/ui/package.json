@@ -1,5 +1,5 @@
 {
-  "name": "@ony3000/experimental-ui",
+  "name": "tailwind-joy",
   "version": "0.0.0",
   "description": "Joy UI의 component를 Tailwind CSS 방식으로 구현한 React component library",
   "keywords": [
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ony3000/experimental-ui.git"
+    "url": "git+https://github.com/ony3000/tailwind-joy.git"
   },
   "license": "MIT",
   "author": "Hyeonjong <nianelo4@gmail.com>",
