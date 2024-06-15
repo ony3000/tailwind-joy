@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Hyeonjong <nianelo4@gmail.com>",
   "scripts": {
+    "clean": "pnpm -r exec rm -rf node_modules/",
     "dev": "turbo dev",
     "lint": "biome lint"
   },
