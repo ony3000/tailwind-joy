@@ -4,8 +4,8 @@ import {
   Card as JCard,
   Typography as JTypography,
 } from '@mui/joy';
-import Add from '@mui/icons-material/Add';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import AddIcon from '@mui/icons-material/Add';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function SectionHeader() {
   return (
@@ -103,13 +103,13 @@ const customs: { title: string; props: Record<string, any> }[] = [
   {
     title: 'start decorator',
     props: {
-      startDecorator: <Add />,
+      startDecorator: <AddIcon />,
     },
   },
   {
     title: 'end decorator',
     props: {
-      endDecorator: <KeyboardArrowRight />,
+      endDecorator: <KeyboardArrowRightIcon />,
     },
   },
 ];
