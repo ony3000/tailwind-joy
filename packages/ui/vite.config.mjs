@@ -7,9 +7,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: [
-        resolve(__dirname, 'src/index.ts'),
-        resolve(__dirname, 'src/colors.ts'),
         resolve(__dirname, 'src/components.ts'),
+        resolve(__dirname, 'src/index.ts'),
+        resolve(__dirname, 'src/theme.ts'),
       ],
       formats: ['cjs', 'es'],
     },

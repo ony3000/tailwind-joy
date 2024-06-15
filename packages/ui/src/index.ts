@@ -1,3 +1,1 @@
-export * as components from './components';
-
-export { tailwindExtendableColors as joyColors } from './colors';
+export { version } from '../package.json';

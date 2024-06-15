@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { joyColors } from 'tailwind-joy';
+import { joyColors } from 'tailwind-joy/theme';
 
 export default {
   content: [

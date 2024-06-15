@@ -1,7 +1,7 @@
 /**
  * 배열과 reduce의 조합을 사용하려 했으나, VSCode 확장에서 클래스명을 인식하지 못해서 다 작성함.
  */
-export const tailwindExtendableColors = {
+export const joyColors = {
   joy: {
     primary: {
       '50': '#edf5fd',

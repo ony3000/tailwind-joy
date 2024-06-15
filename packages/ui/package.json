@@ -30,6 +30,10 @@
     "./components": {
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
+    },
+    "./theme": {
+      "import": "./dist/theme.js",
+      "require": "./dist/theme.cjs"
     }
   },
   "scripts": {

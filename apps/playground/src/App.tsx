@@ -1,6 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-import { components } from 'tailwind-joy';
 import { Button } from 'tailwind-joy/components';
 
 function App() {
@@ -21,10 +20,6 @@ function App() {
       </p>
       <div>
         <h2>import test</h2>
-        <div>
-          <h3>root entry point에서 가져오기</h3>
-          <components.Button>Lorem ipsum</components.Button>
-        </div>
         <div>
           <h3>
             <code>/components</code> entry point에서 가져오기
