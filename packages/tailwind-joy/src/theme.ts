@@ -3,6 +3,10 @@
  */
 export const joyColors = {
   joy: {
+    common: {
+      black: '#000',
+      white: '#fff',
+    },
     primary: {
       '50': '#edf5fd',
       '100': '#e3effb',
