@@ -19,6 +19,7 @@ export default defineConfig({
   },
   plugins: [
     dts({
+      entryRoot: 'src',
       include: ['src/**'],
     }),
     react(),
