@@ -4,8 +4,8 @@ import { cva } from 'class-variance-authority';
 
 const buttonVariants = cva(
   [
-    'rounded-md font-semibold leading-normal select-none inline-flex items-center justify-center relative no-underline',
-    'disabled:pointer-events-none disabled:text-joy-neutral-400 dark:disabled:text-joy-neutral-500',
+    'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline',
+    'disabled:text-joy-neutral-400 dark:disabled:text-joy-neutral-500 disabled:pointer-events-none',
   ],
   {
     variants: {
@@ -17,9 +17,9 @@ const buttonVariants = cva(
         warning: '',
       },
       size: {
-        sm: 'px-3 py-1 min-h-[2rem] text-[0.875rem]',
-        md: 'px-4 py-1.5 min-h-[2.25rem] text-[0.875rem]',
-        lg: 'px-6 py-2 min-h-[2.75rem] text-[1rem]',
+        sm: 'min-h-[2rem] px-3 py-1 text-[0.875rem]',
+        md: 'min-h-[2.25rem] px-4 py-1.5 text-[0.875rem]',
+        lg: 'min-h-[2.75rem] px-6 py-2 text-[1rem]',
       },
       variant: {
         solid: [

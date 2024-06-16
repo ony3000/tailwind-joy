@@ -122,7 +122,7 @@ export default function ButtonSection() {
         {customs.map(({ title, props }) => (
           <div
             key={title}
-            className="grid grid-cols-[4fr_1fr_4fr] text-center h-12 items-center"
+            className="grid h-12 grid-cols-[4fr_1fr_4fr] items-center text-center"
           >
             <div className="grid grid-cols-4">
               <div>
