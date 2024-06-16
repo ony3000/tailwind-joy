@@ -1,10 +1,40 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
+import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 
+const buttonDecoratorVariants = cva('[display:inherit]', {
+  variants: {
+    position: {
+      start: [
+        '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+        'mr-[var(--Button-gap)]',
+      ],
+      end: [
+        '[--Icon-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+        'ml-[var(--Button-gap)]',
+      ],
+    },
+  },
+});
+
+interface ButtonDecoratorVariants
+  extends VariantProps<typeof buttonDecoratorVariants> {
+  position: 'start' | 'end';
+  node: ReactNode;
+}
+
+type ButtonDecoratorProps = ButtonDecoratorVariants;
+
+function ButtonDecorator({ position, node }: ButtonDecoratorProps) {
+  return <span className={buttonDecoratorVariants({ position })}>{node}</span>;
+}
+
 const buttonVariants = cva(
   [
+    '[--Icon-color:currentColor]',
     'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline',
+    'focus-visible:outline-joy-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
     'disabled:text-joy-neutral-400 dark:disabled:text-joy-neutral-500 disabled:pointer-events-none',
   ],
   {
@@ -16,10 +46,26 @@ const buttonVariants = cva(
         success: '',
         warning: '',
       },
+      fullWidth: {
+        false: '',
+        true: 'w-full',
+      },
       size: {
-        sm: 'min-h-[2rem] px-3 py-1 text-[0.875rem]',
-        md: 'min-h-[2.25rem] px-4 py-1.5 text-[0.875rem]',
-        lg: 'min-h-[2.75rem] px-6 py-2 text-[1rem]',
+        sm: [
+          '[--Icon-fontSize:1.125rem]',
+          '[--Button-gap:0.375rem]',
+          'min-h-[2rem] px-3 py-1 text-[0.875rem]',
+        ],
+        md: [
+          '[--Icon-fontSize:1.25rem]',
+          '[--Button-gap:0.5rem]',
+          'min-h-[2.25rem] px-4 py-1.5 text-[0.875rem]',
+        ],
+        lg: [
+          '[--Icon-fontSize:1.5rem]',
+          '[--Button-gap:0.75rem]',
+          'min-h-[2.75rem] px-6 py-2 text-[1rem]',
+        ],
       },
       variant: {
         solid: [
@@ -226,31 +272,48 @@ const buttonVariants = cva(
     ],
     defaultVariants: {
       color: 'primary',
+      fullWidth: false,
       size: 'md',
       variant: 'solid',
     },
   },
 );
 
-interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
+interface ButtonVariants extends VariantProps<typeof buttonVariants> {
+  startDecorator?: ReactNode;
+  endDecorator?: ReactNode;
+}
 
 type ButtonProps = Omit<ComponentProps<'button'>, keyof ButtonVariants> &
   ButtonVariants;
 
-export function Button({
-  children,
-  color,
-  size,
-  variant,
-  ...otherProps
-}: ButtonProps) {
-  return (
-    <button
-      type="button"
-      className={buttonVariants({ color, size, variant })}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      children,
+      color,
+      fullWidth,
+      size,
+      variant,
+      startDecorator,
+      endDecorator,
+      ...otherProps
+    },
+    ref,
+  ) {
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={buttonVariants({ color, fullWidth, size, variant })}
+        {...otherProps}
+      >
+        {startDecorator && (
+          <ButtonDecorator position="start" node={startDecorator} />
+        )}
+        {children}
+        {endDecorator && <ButtonDecorator position="end" node={endDecorator} />}
+      </button>
+    );
+  },
+);

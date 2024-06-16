@@ -112,6 +112,26 @@ const customs: { title: string; props: Record<string, any> }[] = [
       endDecorator: <KeyboardArrowRightIcon />,
     },
   },
+  {
+    title: 'end decorator (sm)',
+    props: {
+      size: 'sm',
+      endDecorator: <KeyboardArrowRightIcon />,
+    },
+  },
+  {
+    title: 'end decorator (lg)',
+    props: {
+      size: 'lg',
+      endDecorator: <KeyboardArrowRightIcon />,
+    },
+  },
+  {
+    title: 'full width',
+    props: {
+      fullWidth: true,
+    },
+  },
 ];
 
 export default function ButtonSection() {
