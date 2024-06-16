@@ -3,7 +3,7 @@ import { Box as JBox, IconButton as JIconButton } from '@mui/joy';
 import { useColorScheme } from '@mui/joy/styles';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { ButtonSection } from './sections';
+import { ButtonSection, CircularProgressSection } from './sections';
 
 function App() {
   const { colorScheme, setMode, setColorScheme } = useColorScheme();
@@ -28,7 +28,8 @@ function App() {
           {colorScheme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
         </JIconButton>
       </JBox>
-      <ButtonSection />
+      {/* <ButtonSection /> */}
+      <CircularProgressSection />
     </JBox>
   );
 }
