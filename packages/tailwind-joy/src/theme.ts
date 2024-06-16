@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin';
+
 export const joyPreset = {
   theme: {
     extend: {
@@ -71,5 +73,13 @@ export const joyPreset = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addBase }) => {
+      addBase({
+        ':root': {
+          '--pi': '3.1415926535',
+        },
+      });
+    }),
+  ],
 };
