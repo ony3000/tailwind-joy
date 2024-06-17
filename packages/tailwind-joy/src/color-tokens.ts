@@ -171,4 +171,4 @@ export const token = {
       'disabled:bg-joy-neutral-100 dark:disabled:bg-joy-neutral-800',
   },
   focusVisible: 'focus-visible:outline-joy-primary-500',
-};
+} as const;

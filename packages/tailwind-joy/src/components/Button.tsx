@@ -2,6 +2,9 @@ import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
+import { token } from '../color-tokens';
+
+const { primary, neutral, danger, success, warning } = token;
 
 const buttonDecoratorVariants = cva('[display:inherit]', {
   variants: {
@@ -34,8 +37,11 @@ const buttonVariants = cva(
   [
     '[--Icon-color:currentColor]',
     'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline',
-    'focus-visible:outline-joy-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
-    'disabled:text-joy-neutral-400 dark:disabled:text-joy-neutral-500 disabled:pointer-events-none',
+    [
+      token.focusVisible,
+      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+    ],
+    'disabled:pointer-events-none',
   ],
   {
     variants: {
@@ -68,15 +74,9 @@ const buttonVariants = cva(
         ],
       },
       variant: {
-        solid: [
-          'text-joy-common-white',
-          'disabled:bg-joy-neutral-100 dark:disabled:bg-joy-neutral-800',
-        ],
-        soft: 'disabled:bg-joy-neutral-50 dark:disabled:bg-joy-neutral-800',
-        outlined: [
-          'border border-solid',
-          'disabled:border-joy-neutral-200 dark:disabled:border-joy-neutral-800',
-        ],
+        solid: '',
+        soft: '',
+        outlined: 'border border-solid',
         plain: '',
       },
     },
@@ -85,189 +85,201 @@ const buttonVariants = cva(
         color: 'primary',
         variant: 'solid',
         className: [
-          'bg-joy-primary-500',
-          'hover:bg-joy-primary-600',
-          'active:bg-joy-primary-700',
+          [primary.solidColor, primary.solidBg],
+          primary.solidHoverBg,
+          primary.solidActiveBg,
+          [primary.solidDisabledColor, primary.solidDisabledBg],
         ],
       },
       {
         color: 'primary',
         variant: 'soft',
         className: [
-          'bg-joy-primary-100 text-joy-primary-700 dark:bg-joy-primary-800 dark:text-joy-primary-200',
-          'hover:bg-joy-primary-200 dark:hover:bg-joy-primary-700',
-          'active:bg-joy-primary-300 active:text-joy-primary-800 dark:active:bg-joy-primary-600 dark:active:text-joy-primary-100',
-        ],
-      },
-      {
-        color: 'primary',
-        variant: ['outlined', 'plain'],
-        className: [
-          'hover:bg-joy-primary-100 dark:hover:bg-joy-primary-800',
-          'active:bg-joy-primary-200 dark:active:bg-joy-primary-700',
+          [primary.softColor, primary.softBg],
+          primary.softHoverBg,
+          [primary.softActiveColor, primary.softActiveBg],
+          [primary.softDisabledColor, primary.softDisabledBg],
         ],
       },
       {
         color: 'primary',
         variant: 'outlined',
-        className:
-          'text-joy-primary-500 border-joy-primary-300 dark:text-joy-primary-200 dark:border-joy-primary-700',
+        className: [
+          [primary.outlinedColor, primary.outlinedBorder],
+          primary.outlinedHoverBg,
+          primary.outlinedActiveBg,
+          [primary.outlinedDisabledColor, primary.outlinedDisabledBorder],
+        ],
       },
       {
         color: 'primary',
         variant: 'plain',
-        className: 'text-joy-primary-500 dark:text-joy-primary-300',
+        className: [
+          primary.plainColor,
+          primary.plainHoverBg,
+          primary.plainActiveBg,
+          primary.plainDisabledColor,
+        ],
       },
       {
         color: 'neutral',
         variant: 'solid',
         className: [
-          'bg-joy-neutral-500',
-          'hover:bg-joy-neutral-600',
-          'active:bg-joy-neutral-700',
+          [neutral.solidColor, neutral.solidBg],
+          neutral.solidHoverBg,
+          neutral.solidActiveBg,
+          [neutral.solidDisabledColor, neutral.solidDisabledBg],
         ],
       },
       {
         color: 'neutral',
         variant: 'soft',
         className: [
-          'bg-joy-neutral-100 text-joy-neutral-700 dark:bg-joy-neutral-800 dark:text-joy-neutral-200',
-          'hover:bg-joy-neutral-200 dark:hover:bg-joy-neutral-700',
-          'active:bg-joy-neutral-300 active:text-joy-neutral-800 dark:active:bg-joy-neutral-600 dark:active:text-joy-neutral-100',
-        ],
-      },
-      {
-        color: 'neutral',
-        variant: ['outlined', 'plain'],
-        className: [
-          'hover:bg-joy-neutral-100 dark:hover:bg-joy-neutral-800',
-          'active:bg-joy-neutral-200 dark:active:bg-joy-neutral-700',
+          [neutral.softColor, neutral.softBg],
+          neutral.softHoverBg,
+          [neutral.softActiveColor, neutral.softActiveBg],
+          [neutral.softDisabledColor, neutral.softDisabledBg],
         ],
       },
       {
         color: 'neutral',
         variant: 'outlined',
-        className:
-          'text-joy-neutral-700 border-joy-neutral-300 dark:text-joy-neutral-200 dark:border-joy-neutral-700',
+        className: [
+          [neutral.outlinedColor, neutral.outlinedBorder],
+          neutral.outlinedHoverBg,
+          neutral.outlinedActiveBg,
+          [neutral.outlinedDisabledColor, neutral.outlinedDisabledBorder],
+        ],
       },
       {
         color: 'neutral',
         variant: 'plain',
         className: [
-          'text-joy-neutral-700 dark:text-joy-neutral-300',
-          'hover:text-joy-neutral-900 dark:hover:text-joy-neutral-300',
+          neutral.plainColor,
+          [neutral.plainHoverColor, neutral.plainHoverBg],
+          neutral.plainActiveBg,
+          neutral.plainDisabledColor,
         ],
       },
       {
         color: 'danger',
         variant: 'solid',
         className: [
-          'bg-joy-danger-500',
-          'hover:bg-joy-danger-600',
-          'active:bg-joy-danger-700',
+          [danger.solidColor, danger.solidBg],
+          danger.solidHoverBg,
+          danger.solidActiveBg,
+          [danger.solidDisabledColor, danger.solidDisabledBg],
         ],
       },
       {
         color: 'danger',
         variant: 'soft',
         className: [
-          'bg-joy-danger-100 text-joy-danger-700 dark:bg-joy-danger-800 dark:text-joy-danger-200',
-          'hover:bg-joy-danger-200 dark:hover:bg-joy-danger-700',
-          'active:bg-joy-danger-300 active:text-joy-danger-800 dark:active:bg-joy-danger-600 dark:active:text-joy-danger-100',
-        ],
-      },
-      {
-        color: 'danger',
-        variant: ['outlined', 'plain'],
-        className: [
-          'hover:bg-joy-danger-100 dark:hover:bg-joy-danger-800',
-          'active:bg-joy-danger-200 dark:active:bg-joy-danger-700',
+          [danger.softColor, danger.softBg],
+          danger.softHoverBg,
+          [danger.softActiveColor, danger.softActiveBg],
+          [danger.softDisabledColor, danger.softDisabledBg],
         ],
       },
       {
         color: 'danger',
         variant: 'outlined',
-        className:
-          'text-joy-danger-500 border-joy-danger-300 dark:text-joy-danger-200 dark:border-joy-danger-700',
+        className: [
+          [danger.outlinedColor, danger.outlinedBorder],
+          danger.outlinedHoverBg,
+          danger.outlinedActiveBg,
+          [danger.outlinedDisabledColor, danger.outlinedDisabledBorder],
+        ],
       },
       {
         color: 'danger',
         variant: 'plain',
-        className: 'text-joy-danger-500 dark:text-joy-danger-300',
+        className: [
+          danger.plainColor,
+          danger.plainHoverBg,
+          danger.plainActiveBg,
+          danger.plainDisabledColor,
+        ],
       },
       {
         color: 'success',
         variant: 'solid',
         className: [
-          'bg-joy-success-500',
-          'hover:bg-joy-success-600',
-          'active:bg-joy-success-700',
+          [success.solidColor, success.solidBg],
+          success.solidHoverBg,
+          success.solidActiveBg,
+          [success.solidDisabledColor, success.solidDisabledBg],
         ],
       },
       {
         color: 'success',
         variant: 'soft',
         className: [
-          'bg-joy-success-100 text-joy-success-700 dark:bg-joy-success-800 dark:text-joy-success-200',
-          'hover:bg-joy-success-200 dark:hover:bg-joy-success-700',
-          'active:bg-joy-success-300 active:text-joy-success-800 dark:active:bg-joy-success-600 dark:active:text-joy-success-100',
-        ],
-      },
-      {
-        color: 'success',
-        variant: ['outlined', 'plain'],
-        className: [
-          'hover:bg-joy-success-100 dark:hover:bg-joy-success-800',
-          'active:bg-joy-success-200 dark:active:bg-joy-success-700',
+          [success.softColor, success.softBg],
+          success.softHoverBg,
+          [success.softActiveColor, success.softActiveBg],
+          [success.softDisabledColor, success.softDisabledBg],
         ],
       },
       {
         color: 'success',
         variant: 'outlined',
-        className:
-          'text-joy-success-500 border-joy-success-300 dark:text-joy-success-200 dark:border-joy-success-700',
+        className: [
+          [success.outlinedColor, success.outlinedBorder],
+          success.outlinedHoverBg,
+          success.outlinedActiveBg,
+          [success.outlinedDisabledColor, success.outlinedDisabledBorder],
+        ],
       },
       {
         color: 'success',
         variant: 'plain',
-        className: 'text-joy-success-500 dark:text-joy-success-300',
+        className: [
+          success.plainColor,
+          success.plainHoverBg,
+          success.plainActiveBg,
+          success.plainDisabledColor,
+        ],
       },
       {
         color: 'warning',
         variant: 'solid',
         className: [
-          'bg-joy-warning-500',
-          'hover:bg-joy-warning-600',
-          'active:bg-joy-warning-700',
+          [warning.solidColor, warning.solidBg],
+          warning.solidHoverBg,
+          warning.solidActiveBg,
+          [warning.solidDisabledColor, warning.solidDisabledBg],
         ],
       },
       {
         color: 'warning',
         variant: 'soft',
         className: [
-          'bg-joy-warning-100 text-joy-warning-700 dark:bg-joy-warning-800 dark:text-joy-warning-200',
-          'hover:bg-joy-warning-200 dark:hover:bg-joy-warning-700',
-          'active:bg-joy-warning-300 active:text-joy-warning-800 dark:active:bg-joy-warning-600 dark:active:text-joy-warning-100',
-        ],
-      },
-      {
-        color: 'warning',
-        variant: ['outlined', 'plain'],
-        className: [
-          'hover:bg-joy-warning-100 dark:hover:bg-joy-warning-800',
-          'active:bg-joy-warning-200 dark:active:bg-joy-warning-700',
+          [warning.softColor, warning.softBg],
+          warning.softHoverBg,
+          [warning.softActiveColor, warning.softActiveBg],
+          [warning.softDisabledColor, warning.softDisabledBg],
         ],
       },
       {
         color: 'warning',
         variant: 'outlined',
-        className:
-          'text-joy-warning-500 border-joy-warning-300 dark:text-joy-warning-200 dark:border-joy-warning-700',
+        className: [
+          [warning.outlinedColor, warning.outlinedBorder],
+          warning.outlinedHoverBg,
+          warning.outlinedActiveBg,
+          [warning.outlinedDisabledColor, warning.outlinedDisabledBorder],
+        ],
       },
       {
         color: 'warning',
         variant: 'plain',
-        className: 'text-joy-warning-500 dark:text-joy-warning-300',
+        className: [
+          warning.plainColor,
+          warning.plainHoverBg,
+          warning.plainActiveBg,
+          warning.plainDisabledColor,
+        ],
       },
     ],
     defaultVariants: {
