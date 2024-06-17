@@ -2,6 +2,9 @@ import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
+import { token } from '../color-tokens';
+
+const { primary, neutral, danger, success, warning } = token;
 
 const circularProgressSvgVariants = cva(
   ['absolute h-[inherit] w-[inherit] [box-sizing:inherit] [display:inherit]'],
@@ -43,7 +46,7 @@ function CircularProgressSvg({ children, variant }: CircularProgressSvgProps) {
 
 const circularProgressTrackVariants = cva(
   [
-    'fill-transparent [cx:50%] [cy:50%] [r:calc(var(--tj-outer-radius)-var(--tj-thickness)/2)] [stroke-width:var(--tj-thickness)]',
+    'fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)]',
   ],
   {
     variants: {
@@ -61,7 +64,10 @@ const circularProgressTrackVariants = cva(
       },
       variant: {
         solid: '',
-        soft: '',
+        soft: [
+          // same as neutral.softBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-neutral-100 dark:stroke-joy-neutral-800',
+        ],
         outlined: '',
         plain: '',
       },
@@ -70,22 +76,42 @@ const circularProgressTrackVariants = cva(
       {
         color: 'primary',
         variant: 'solid',
-        className: 'stroke-joy-primary-200 dark:stroke-joy-primary-700',
+        className: [
+          // same as primary.softHoverBg.replace(/hover:bg-/g, 'stroke-')
+          'stroke-joy-primary-200 dark:stroke-joy-primary-700',
+        ],
       },
       {
-        color: 'primary',
-        variant: 'soft',
-        className: 'stroke-joy-neutral-100 dark:stroke-joy-neutral-800',
+        color: 'neutral',
+        variant: 'solid',
+        className: [
+          // same as neutral.softHoverBg.replace(/hover:bg-/g, 'stroke-')
+          'stroke-joy-neutral-200 dark:stroke-joy-neutral-700',
+        ],
       },
       {
-        color: 'primary',
-        variant: 'outlined',
-        className: '',
+        color: 'danger',
+        variant: 'solid',
+        className: [
+          // same as danger.softHoverBg.replace(/hover:bg-/g, 'stroke-')
+          'stroke-joy-danger-200 dark:stroke-joy-danger-700',
+        ],
       },
       {
-        color: 'primary',
-        variant: 'plain',
-        className: '',
+        color: 'success',
+        variant: 'solid',
+        className: [
+          // same as success.softHoverBg.replace(/hover:bg-/g, 'stroke-')
+          'stroke-joy-success-200 dark:stroke-joy-success-700',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'solid',
+        className: [
+          // same as warning.softHoverBg.replace(/hover:bg-/g, 'stroke-')
+          'stroke-joy-warning-200 dark:stroke-joy-warning-700',
+        ],
       },
     ],
     defaultVariants: {
@@ -115,14 +141,13 @@ function CircularProgressTrack({
 
 const circularProgressProgressVariants = cva(
   [
-    '[--tj-progress-radius:calc(var(--tj-outer-radius)-var(--tj-thickness)/2)]',
     '[--tj-progress-length:calc(2*var(--pi)*var(--tj-progress-radius))]',
-    'origin-center -rotate-90 [cx:50%] [cy:50%] [stroke-width:var(--tj-thickness)] [r:var(--tj-progress-radius)] [stroke-dasharray:var(--tj-progress-length)] [stroke-dashoffset:calc(var(--tj-progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-linecap:round]',
+    'origin-center -rotate-90 fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)] [stroke-dasharray:var(--tj-progress-length)] [stroke-dashoffset:calc(var(--tj-progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-linecap:round]',
   ],
   {
     variants: {
       color: {
-        primary: 'stroke-joy-primary-500 fill-transparent',
+        primary: '',
         neutral: '',
         danger: '',
         success: '',
@@ -144,22 +169,162 @@ const circularProgressProgressVariants = cva(
       {
         color: 'primary',
         variant: 'solid',
-        className: '',
+        className: [
+          // same as primary.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-primary-500',
+        ],
       },
       {
         color: 'primary',
         variant: 'soft',
-        className: '',
+        className: [
+          // same as primary.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-primary-500',
+        ],
       },
       {
         color: 'primary',
         variant: 'outlined',
-        className: '',
+        className: [
+          // same as primary.outlinedColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-primary-500 dark:stroke-joy-primary-200',
+        ],
       },
       {
         color: 'primary',
         variant: 'plain',
-        className: '',
+        className: [
+          // same as primary.plainColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-primary-500 dark:stroke-joy-primary-300',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'solid',
+        className: [
+          // same as neutral.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'soft',
+        className: [
+          // same as neutral.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'outlined',
+        className: [
+          // same as neutral.outlinedColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-neutral-700 dark:stroke-joy-neutral-200',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'plain',
+        className: [
+          // same as neutral.plainColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-neutral-700 dark:stroke-joy-neutral-300',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'solid',
+        className: [
+          // same as danger.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-danger-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'soft',
+        className: [
+          // same as danger.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-danger-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'outlined',
+        className: [
+          // same as danger.outlinedColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-danger-500 dark:stroke-joy-danger-200',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'plain',
+        className: [
+          // same as danger.plainColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-danger-500 dark:stroke-joy-danger-300',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'solid',
+        className: [
+          // same as success.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-success-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'soft',
+        className: [
+          // same as success.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-success-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'outlined',
+        className: [
+          // same as success.outlinedColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-success-500 dark:stroke-joy-success-200',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'plain',
+        className: [
+          // same as success.plainColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-success-500 dark:stroke-joy-success-300',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'solid',
+        className: [
+          // same as warning.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-warning-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'soft',
+        className: [
+          // same as warning.solidBg.replace(/bg-/g, 'stroke-')
+          'stroke-joy-warning-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'outlined',
+        className: [
+          // same as warning.outlinedColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-warning-500 dark:stroke-joy-warning-200',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'plain',
+        className: [
+          // same as warning.plainColor.replace(/text-/g, 'stroke-')
+          'stroke-joy-warning-500 dark:stroke-joy-warning-300',
+        ],
       },
     ],
     defaultVariants: {
@@ -188,64 +353,170 @@ function CircularProgressProgress({
 }
 
 const circularProgressVariants = cva(
-  ['relative inline-flex shrink-0 items-center justify-center rounded-full'],
+  [
+    '[--tj-progress-radius:calc(var(--tj-outer-radius)-var(--variant-borderWidth)-var(--tj-thickness)/2)]',
+    'relative inline-flex shrink-0 items-center justify-center rounded-full font-medium',
+  ],
   {
     variants: {
       color: {
-        primary: 'text-joy-primary-700 dark:text-joy-primary-200',
-        neutral: 'text-joy-neutral-700 dark:text-joy-neutral-200',
-        danger: 'text-joy-danger-700 dark:text-joy-danger-200',
-        success: 'text-joy-success-700 dark:text-joy-success-200',
-        warning: 'text-joy-warning-700 dark:text-joy-warning-200',
+        primary: '',
+        neutral: '',
+        danger: '',
+        success: '',
+        warning: '',
       },
       size: {
         sm: [
           '[--Icon-fontSize:9.6px]',
           '[--tj-outer-radius:12px]',
           '[--tj-thickness:3px]',
-          'h-6 w-6',
+          'h-6 w-6 text-[4.8px]',
         ],
         md: [
           '[--Icon-fontSize:16px]',
           '[--tj-outer-radius:20px]',
           '[--tj-thickness:6px]',
-          'h-10 w-10',
+          'h-10 w-10 text-[8px]',
         ],
         lg: [
           '[--Icon-fontSize:25.6px]',
           '[--tj-outer-radius:32px]',
           '[--tj-thickness:8px]',
-          'h-16 w-16',
+          'h-16 w-16 text-[12.8px]',
         ],
       },
       variant: {
-        solid: '',
-        soft: '',
-        outlined:
-          'border-joy-primary-300 dark:border-joy-primary-700 border border-solid',
-        plain: '',
+        solid: '[--variant-borderWidth:0px]',
+        soft: '[--variant-borderWidth:0px]',
+        outlined: [
+          '[--variant-borderWidth:1px]',
+          'border border-solid',
+          'before:absolute before:inset-[var(--tj-thickness)] before:block before:border before:border-solid before:content-[""] before:[border-radius:inherit]',
+        ],
+        plain: '[--variant-borderWidth:0px]',
       },
     },
     compoundVariants: [
       {
         color: 'primary',
         variant: 'solid',
-        className: '',
+        className: [primary.solidColor],
       },
       {
         color: 'primary',
         variant: 'soft',
-        className: '',
+        className: [primary.softColor],
       },
       {
         color: 'primary',
         variant: 'outlined',
-        className: '',
+        className: [
+          [primary.outlinedColor, primary.outlinedBorder],
+          // same as primary.outlinedBorder.replace(/border-/g, 'before:border-')
+          'before:border-joy-primary-300 dark:before:border-joy-primary-700',
+        ],
       },
       {
         color: 'primary',
         variant: 'plain',
-        className: '',
+        className: [primary.plainColor],
+      },
+      {
+        color: 'neutral',
+        variant: 'solid',
+        className: [neutral.solidColor],
+      },
+      {
+        color: 'neutral',
+        variant: 'soft',
+        className: [neutral.softColor],
+      },
+      {
+        color: 'neutral',
+        variant: 'outlined',
+        className: [
+          [neutral.outlinedColor, neutral.outlinedBorder],
+          // same as neutral.outlinedBorder.replace(/border-/g, 'before:border-')
+          'before:border-joy-neutral-300 dark:before:border-joy-neutral-700',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'plain',
+        className: [neutral.plainColor],
+      },
+      {
+        color: 'danger',
+        variant: 'solid',
+        className: [danger.solidColor],
+      },
+      {
+        color: 'danger',
+        variant: 'soft',
+        className: [danger.softColor],
+      },
+      {
+        color: 'danger',
+        variant: 'outlined',
+        className: [
+          [danger.outlinedColor, danger.outlinedBorder],
+          // same as danger.outlinedBorder.replace(/border-/g, 'before:border-')
+          'before:border-joy-danger-300 dark:before:border-joy-danger-700',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'plain',
+        className: [danger.plainColor],
+      },
+      {
+        color: 'success',
+        variant: 'solid',
+        className: [success.solidColor],
+      },
+      {
+        color: 'success',
+        variant: 'soft',
+        className: [success.softColor],
+      },
+      {
+        color: 'success',
+        variant: 'outlined',
+        className: [
+          [success.outlinedColor, success.outlinedBorder],
+          // same as success.outlinedBorder.replace(/border-/g, 'before:border-')
+          'before:border-joy-success-300 dark:before:border-joy-success-700',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'plain',
+        className: [success.plainColor],
+      },
+      {
+        color: 'warning',
+        variant: 'solid',
+        className: [warning.solidColor],
+      },
+      {
+        color: 'warning',
+        variant: 'soft',
+        className: [warning.softColor],
+      },
+      {
+        color: 'warning',
+        variant: 'outlined',
+        className: [
+          [warning.outlinedColor, warning.outlinedBorder],
+          // same as warning.outlinedBorder.replace(/border-/g, 'before:border-')
+          'before:border-joy-warning-300 dark:before:border-joy-warning-700',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'plain',
+        className: [warning.plainColor],
       },
     ],
     defaultVariants: {
