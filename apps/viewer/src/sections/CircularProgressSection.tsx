@@ -12,7 +12,7 @@ function SectionHeader() {
     <>
       <JTypography level="h1">Circular Progress</JTypography>
       <div className="space-y-2">
-        <div className="grid grid-cols-[4fr_1fr_4fr]">
+        <div className="grid grid-cols-[2fr_1fr_2fr]">
           <JTypography level="h2" fontSize="xl">
             tailwind-joy
           </JTypography>
@@ -21,7 +21,7 @@ function SectionHeader() {
             @mui/joy
           </JTypography>
         </div>
-        <div className="grid grid-cols-[4fr_1fr_4fr] text-center">
+        <div className="grid grid-cols-[2fr_1fr_2fr] text-center">
           <div className="grid grid-cols-1">
             <JTypography level="title-lg">&nbsp;</JTypography>
           </div>
@@ -107,28 +107,28 @@ const customs: { title: string; props: Record<string, any> }[] = [
     },
   },
   {
-    title: 'determinate (25)',
+    title: 'determinate (value: 25)',
     props: {
       determinate: true,
       value: 25,
     },
   },
   {
-    title: 'determinate (50)',
+    title: 'determinate (value: 50)',
     props: {
       determinate: true,
       value: 50,
     },
   },
   {
-    title: 'determinate (75)',
+    title: 'determinate (value: 75)',
     props: {
       determinate: true,
       value: 75,
     },
   },
   {
-    title: 'determinate (100)',
+    title: 'determinate (value: 100)',
     props: {
       determinate: true,
       value: 100,
@@ -169,7 +169,7 @@ export default function CircularProgressSection() {
         {customs.map(({ title, props }) => (
           <div
             key={title}
-            className="min-h-12 grid grid-cols-[4fr_1fr_4fr] items-center text-center"
+            className="min-h-12 grid grid-cols-[2fr_1fr_2fr] items-center text-center"
           >
             <div className="grid grid-cols-1">
               <div>
@@ -184,7 +184,7 @@ export default function CircularProgressSection() {
             </div>
           </div>
         ))}
-        {/* <div className="min-h-12 grid grid-cols-[4fr_1fr_4fr] items-center text-center">
+        {/* <div className="min-h-12 grid grid-cols-[2fr_1fr_2fr] items-center text-center">
           <div className="grid grid-cols-1">
             <div>
               <CircularProgress color="danger" cx="h-20 w-20">

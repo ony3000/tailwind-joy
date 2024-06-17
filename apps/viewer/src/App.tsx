@@ -1,5 +1,12 @@
 import './App.css';
-import { Box as JBox, IconButton as JIconButton } from '@mui/joy';
+import {
+  Box as JBox,
+  IconButton as JIconButton,
+  Tabs as JTabs,
+  TabList as JTabList,
+  Tab as JTab,
+  TabPanel as JTabPanel,
+} from '@mui/joy';
 import { useColorScheme } from '@mui/joy/styles';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -28,8 +35,18 @@ function App() {
           {colorScheme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
         </JIconButton>
       </JBox>
-      {/* <ButtonSection /> */}
-      <CircularProgressSection />
+      <JTabs aria-label="Component tabs" defaultValue={0}>
+        <JTabList>
+          <JTab>Button</JTab>
+          <JTab>CircularProgress</JTab>
+        </JTabList>
+        <JTabPanel value={0}>
+          <ButtonSection />
+        </JTabPanel>
+        <JTabPanel value={1}>
+          <CircularProgressSection />
+        </JTabPanel>
+      </JTabs>
     </JBox>
   );
 }

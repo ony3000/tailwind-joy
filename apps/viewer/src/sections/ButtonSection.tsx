@@ -12,7 +12,7 @@ function SectionHeader() {
     <>
       <JTypography level="h1">Button</JTypography>
       <div className="space-y-2">
-        <div className="grid grid-cols-[4fr_1fr_4fr]">
+        <div className="grid grid-cols-[2fr_1fr_2fr]">
           <JTypography level="h2" fontSize="xl">
             tailwind-joy
           </JTypography>
@@ -21,18 +21,14 @@ function SectionHeader() {
             @mui/joy
           </JTypography>
         </div>
-        <div className="grid grid-cols-[4fr_1fr_4fr] text-center">
-          <div className="grid grid-cols-4">
+        <div className="grid grid-cols-[2fr_1fr_2fr] text-center">
+          <div className="grid grid-cols-2">
             <JTypography level="title-lg">Enabled</JTypography>
-            <JTypography level="title-lg">Hover</JTypography>
-            <JTypography level="title-lg">Active</JTypography>
             <JTypography level="title-lg">Disabled</JTypography>
           </div>
           <div />
-          <div className="grid grid-cols-4">
+          <div className="grid grid-cols-2">
             <JTypography level="title-lg">Enabled</JTypography>
-            <JTypography level="title-lg">Hover</JTypography>
-            <JTypography level="title-lg">Active</JTypography>
             <JTypography level="title-lg">Disabled</JTypography>
           </div>
         </div>
@@ -113,14 +109,14 @@ const customs: { title: string; props: Record<string, any> }[] = [
     },
   },
   {
-    title: 'end decorator (sm)',
+    title: 'end decorator (size: sm)',
     props: {
       size: 'sm',
       endDecorator: <KeyboardArrowRightIcon />,
     },
   },
   {
-    title: 'end decorator (lg)',
+    title: 'end decorator (size: lg)',
     props: {
       size: 'lg',
       endDecorator: <KeyboardArrowRightIcon />,
@@ -142,15 +138,9 @@ export default function ButtonSection() {
         {customs.map(({ title, props }) => (
           <div
             key={title}
-            className="min-h-12 grid grid-cols-[4fr_1fr_4fr] items-center text-center"
+            className="min-h-12 grid grid-cols-[2fr_1fr_2fr] items-center text-center"
           >
-            <div className="grid grid-cols-4">
-              <div>
-                <Button {...props}>Button</Button>
-              </div>
-              <div>
-                <Button {...props}>Button</Button>
-              </div>
+            <div className="grid grid-cols-2">
               <div>
                 <Button {...props}>Button</Button>
               </div>
@@ -161,13 +151,7 @@ export default function ButtonSection() {
               </div>
             </div>
             <JTypography level="body-sm">{title}</JTypography>
-            <div className="grid grid-cols-4">
-              <div>
-                <JButton {...props}>Button</JButton>
-              </div>
-              <div>
-                <JButton {...props}>Button</JButton>
-              </div>
+            <div className="grid grid-cols-2">
               <div>
                 <JButton {...props}>Button</JButton>
               </div>
