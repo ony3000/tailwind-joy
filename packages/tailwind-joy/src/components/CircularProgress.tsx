@@ -7,7 +7,9 @@ import { token } from '../color-tokens';
 const { primary, neutral, danger, success, warning } = token;
 
 const circularProgressSvgVariants = cva(
-  ['absolute h-[inherit] w-[inherit] [box-sizing:inherit] [display:inherit]'],
+  [
+    'absolute h-[inherit] w-[inherit] origin-center -rotate-90 [box-sizing:inherit] [display:inherit]',
+  ],
   {
     variants: {
       variant: {
@@ -17,32 +19,11 @@ const circularProgressSvgVariants = cva(
         plain: 'left-0 top-0',
       },
     },
-    compoundVariants: [
-      {
-        variant: 'solid',
-        className: '',
-      },
-    ],
     defaultVariants: {
       variant: 'soft',
     },
   },
 );
-
-interface CircularProgressSvgVariants
-  extends VariantProps<typeof circularProgressSvgVariants> {}
-
-type CircularProgressSvgProps = Omit<
-  ComponentProps<'svg'>,
-  keyof CircularProgressSvgVariants
-> &
-  CircularProgressSvgVariants;
-
-function CircularProgressSvg({ children, variant }: CircularProgressSvgProps) {
-  return (
-    <svg className={circularProgressSvgVariants({ variant })}>{children}</svg>
-  );
-}
 
 const circularProgressTrackVariants = cva(
   [
@@ -122,27 +103,10 @@ const circularProgressTrackVariants = cva(
   },
 );
 
-interface CircularProgressTrackVariants
-  extends VariantProps<typeof circularProgressTrackVariants> {}
-
-type CircularProgressTrackProps = CircularProgressTrackVariants;
-
-function CircularProgressTrack({
-  color,
-  size,
-  variant,
-}: CircularProgressTrackProps) {
-  return (
-    <circle
-      className={circularProgressTrackVariants({ color, size, variant })}
-    />
-  );
-}
-
 const circularProgressProgressVariants = cva(
   [
     '[--tj-progress-length:calc(2*var(--pi)*var(--tj-progress-radius))]',
-    'origin-center -rotate-90 fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)] [stroke-dasharray:var(--tj-progress-length)] [stroke-dashoffset:calc(var(--tj-progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-linecap:round]',
+    'origin-center fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)] [stroke-dasharray:var(--tj-progress-length)] [stroke-dashoffset:calc(var(--tj-progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-linecap:round]',
   ],
   {
     variants: {
@@ -163,6 +127,10 @@ const circularProgressProgressVariants = cva(
         soft: '',
         outlined: '',
         plain: '',
+      },
+      determinate: {
+        false: 'animate-spin [animation-duration:0.8s]',
+        true: '',
       },
     },
     compoundVariants: [
@@ -331,26 +299,10 @@ const circularProgressProgressVariants = cva(
       color: 'primary',
       size: 'md',
       variant: 'soft',
+      determinate: false,
     },
   },
 );
-
-interface CircularProgressProgressVariants
-  extends VariantProps<typeof circularProgressProgressVariants> {}
-
-type CircularProgressProgressProps = CircularProgressProgressVariants;
-
-function CircularProgressProgress({
-  color,
-  size,
-  variant,
-}: CircularProgressProgressProps) {
-  return (
-    <circle
-      className={circularProgressProgressVariants({ color, size, variant })}
-    />
-  );
-}
 
 const circularProgressVariants = cva(
   [
@@ -568,10 +520,19 @@ export const CircularProgress = forwardRef<
         '--CircularProgress-percent': refinedValue,
       }}
     >
-      <CircularProgressSvg {...{ variant }}>
-        <CircularProgressTrack {...{ color, size, variant }} />
-        <CircularProgressProgress {...{ color, size, variant }} />
-      </CircularProgressSvg>
+      <svg className={circularProgressSvgVariants({ variant })}>
+        <circle
+          className={circularProgressTrackVariants({ color, size, variant })}
+        />
+        <circle
+          className={circularProgressProgressVariants({
+            color,
+            size,
+            variant,
+            determinate,
+          })}
+        />
+      </svg>
       {children}
     </span>
   );
