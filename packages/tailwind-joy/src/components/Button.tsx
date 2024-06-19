@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
+import { CircularProgress } from './CircularProgress';
 import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
@@ -10,33 +11,27 @@ const buttonDecoratorVariants = cva('[display:inherit]', {
   variants: {
     position: {
       start: [
-        '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+        [
+          '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+          '[--CircularProgress-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+        ],
         'mr-[var(--Button-gap)]',
       ],
       end: [
-        '[--Icon-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+        [
+          '[--Icon-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+          '[--CircularProgress-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+        ],
         'ml-[var(--Button-gap)]',
       ],
     },
   },
 });
 
-interface ButtonDecoratorVariants
-  extends VariantProps<typeof buttonDecoratorVariants> {
-  position: 'start' | 'end';
-  node: ReactNode;
-}
-
-type ButtonDecoratorProps = ButtonDecoratorVariants;
-
-function ButtonDecorator({ position, node }: ButtonDecoratorProps) {
-  return <span className={buttonDecoratorVariants({ position })}>{node}</span>;
-}
-
 const buttonVariants = cva(
   [
     '[--Icon-color:currentColor]',
-    'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline',
+    'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline [-webkit-tap-highlight-color:transparent]',
     [
       token.focusVisible,
       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -58,18 +53,30 @@ const buttonVariants = cva(
       },
       size: {
         sm: [
-          '[--Icon-fontSize:1.125rem]',
-          '[--Button-gap:0.375rem]',
+          [
+            '[--Icon-fontSize:1.125rem]',
+            '[--CircularProgress-size:20px]',
+            '[--CircularProgress-thickness:2px]',
+            '[--Button-gap:0.375rem]',
+          ],
           'min-h-[2rem] px-3 py-1 text-[0.875rem]',
         ],
         md: [
-          '[--Icon-fontSize:1.25rem]',
-          '[--Button-gap:0.5rem]',
+          [
+            '[--Icon-fontSize:1.25rem]',
+            '[--CircularProgress-size:20px]',
+            '[--CircularProgress-thickness:3px]',
+            '[--Button-gap:0.5rem]',
+          ],
           'min-h-[2.25rem] px-4 py-1.5 text-[0.875rem]',
         ],
         lg: [
-          '[--Icon-fontSize:1.5rem]',
-          '[--Button-gap:0.75rem]',
+          [
+            '[--Icon-fontSize:1.5rem]',
+            '[--CircularProgress-size:28px]',
+            '[--CircularProgress-thickness:4px]',
+            '[--Button-gap:0.75rem]',
+          ],
           'min-h-[2.75rem] px-6 py-2 text-[1rem]',
         ],
       },
@@ -79,85 +86,139 @@ const buttonVariants = cva(
         outlined: 'border border-solid',
         plain: '',
       },
+      loading: {
+        false: '',
+        true: 'text-transparent',
+      },
     },
     compoundVariants: [
       {
         color: 'primary',
         variant: 'solid',
         className: [
-          [primary.solidColor, primary.solidBg],
+          primary.solidBg,
           primary.solidHoverBg,
           primary.solidActiveBg,
-          [primary.solidDisabledColor, primary.solidDisabledBg],
+          primary.solidDisabledBg,
         ],
+      },
+      {
+        color: 'primary',
+        variant: 'solid',
+        loading: false,
+        className: [primary.solidColor, primary.solidDisabledColor],
       },
       {
         color: 'primary',
         variant: 'soft',
         className: [
-          [primary.softColor, primary.softBg],
+          primary.softBg,
           primary.softHoverBg,
-          [primary.softActiveColor, primary.softActiveBg],
-          [primary.softDisabledColor, primary.softDisabledBg],
+          primary.softActiveBg,
+          primary.softDisabledBg,
+        ],
+      },
+      {
+        color: 'primary',
+        variant: 'soft',
+        loading: false,
+        className: [
+          primary.softColor,
+          primary.softActiveColor,
+          primary.softDisabledColor,
         ],
       },
       {
         color: 'primary',
         variant: 'outlined',
         className: [
-          [primary.outlinedColor, primary.outlinedBorder],
+          primary.outlinedBorder,
           primary.outlinedHoverBg,
           primary.outlinedActiveBg,
-          [primary.outlinedDisabledColor, primary.outlinedDisabledBorder],
+          primary.outlinedDisabledBorder,
         ],
       },
       {
         color: 'primary',
+        variant: 'outlined',
+        loading: false,
+        className: [primary.outlinedColor, primary.outlinedDisabledColor],
+      },
+      {
+        color: 'primary',
         variant: 'plain',
-        className: [
-          primary.plainColor,
-          primary.plainHoverBg,
-          primary.plainActiveBg,
-          primary.plainDisabledColor,
-        ],
+        className: [primary.plainHoverBg, primary.plainActiveBg],
+      },
+      {
+        color: 'primary',
+        variant: 'plain',
+        loading: false,
+        className: [primary.plainColor, primary.plainDisabledColor],
       },
       {
         color: 'neutral',
         variant: 'solid',
         className: [
-          [neutral.solidColor, neutral.solidBg],
+          neutral.solidBg,
           neutral.solidHoverBg,
           neutral.solidActiveBg,
-          [neutral.solidDisabledColor, neutral.solidDisabledBg],
+          neutral.solidDisabledBg,
         ],
+      },
+      {
+        color: 'neutral',
+        variant: 'solid',
+        loading: false,
+        className: [neutral.solidColor, neutral.solidDisabledColor],
       },
       {
         color: 'neutral',
         variant: 'soft',
         className: [
-          [neutral.softColor, neutral.softBg],
+          neutral.softBg,
           neutral.softHoverBg,
-          [neutral.softActiveColor, neutral.softActiveBg],
-          [neutral.softDisabledColor, neutral.softDisabledBg],
+          neutral.softActiveBg,
+          neutral.softDisabledBg,
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'soft',
+        loading: false,
+        className: [
+          neutral.softColor,
+          neutral.softActiveColor,
+          neutral.softDisabledColor,
         ],
       },
       {
         color: 'neutral',
         variant: 'outlined',
         className: [
-          [neutral.outlinedColor, neutral.outlinedBorder],
+          neutral.outlinedBorder,
           neutral.outlinedHoverBg,
           neutral.outlinedActiveBg,
-          [neutral.outlinedDisabledColor, neutral.outlinedDisabledBorder],
+          neutral.outlinedDisabledBorder,
         ],
       },
       {
         color: 'neutral',
+        variant: 'outlined',
+        loading: false,
+        className: [neutral.outlinedColor, neutral.outlinedDisabledColor],
+      },
+      {
+        color: 'neutral',
         variant: 'plain',
+        className: [neutral.plainHoverBg, neutral.plainActiveBg],
+      },
+      {
+        color: 'neutral',
+        variant: 'plain',
+        loading: false,
         className: [
           neutral.plainColor,
-          [neutral.plainHoverColor, neutral.plainHoverBg],
-          neutral.plainActiveBg,
+          neutral.plainHoverColor,
           neutral.plainDisabledColor,
         ],
       },
@@ -165,121 +226,190 @@ const buttonVariants = cva(
         color: 'danger',
         variant: 'solid',
         className: [
-          [danger.solidColor, danger.solidBg],
+          danger.solidBg,
           danger.solidHoverBg,
           danger.solidActiveBg,
-          [danger.solidDisabledColor, danger.solidDisabledBg],
+          danger.solidDisabledBg,
         ],
+      },
+      {
+        color: 'danger',
+        variant: 'solid',
+        loading: false,
+        className: [danger.solidColor, danger.solidDisabledColor],
       },
       {
         color: 'danger',
         variant: 'soft',
         className: [
-          [danger.softColor, danger.softBg],
+          danger.softBg,
           danger.softHoverBg,
-          [danger.softActiveColor, danger.softActiveBg],
-          [danger.softDisabledColor, danger.softDisabledBg],
+          danger.softActiveBg,
+          danger.softDisabledBg,
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'soft',
+        loading: false,
+        className: [
+          danger.softColor,
+          danger.softActiveColor,
+          danger.softDisabledColor,
         ],
       },
       {
         color: 'danger',
         variant: 'outlined',
         className: [
-          [danger.outlinedColor, danger.outlinedBorder],
+          danger.outlinedBorder,
           danger.outlinedHoverBg,
           danger.outlinedActiveBg,
-          [danger.outlinedDisabledColor, danger.outlinedDisabledBorder],
+          danger.outlinedDisabledBorder,
         ],
       },
       {
         color: 'danger',
+        variant: 'outlined',
+        loading: false,
+        className: [danger.outlinedColor, danger.outlinedDisabledColor],
+      },
+      {
+        color: 'danger',
         variant: 'plain',
-        className: [
-          danger.plainColor,
-          danger.plainHoverBg,
-          danger.plainActiveBg,
-          danger.plainDisabledColor,
-        ],
+        className: [danger.plainHoverBg, danger.plainActiveBg],
+      },
+      {
+        color: 'danger',
+        variant: 'plain',
+        loading: false,
+        className: [danger.plainColor, danger.plainDisabledColor],
       },
       {
         color: 'success',
         variant: 'solid',
         className: [
-          [success.solidColor, success.solidBg],
+          success.solidBg,
           success.solidHoverBg,
           success.solidActiveBg,
-          [success.solidDisabledColor, success.solidDisabledBg],
+          success.solidDisabledBg,
         ],
+      },
+      {
+        color: 'success',
+        variant: 'solid',
+        loading: false,
+        className: [success.solidColor, success.solidDisabledColor],
       },
       {
         color: 'success',
         variant: 'soft',
         className: [
-          [success.softColor, success.softBg],
+          success.softBg,
           success.softHoverBg,
-          [success.softActiveColor, success.softActiveBg],
-          [success.softDisabledColor, success.softDisabledBg],
+          success.softActiveBg,
+          success.softDisabledBg,
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'soft',
+        loading: false,
+        className: [
+          success.softColor,
+          success.softActiveColor,
+          success.softDisabledColor,
         ],
       },
       {
         color: 'success',
         variant: 'outlined',
         className: [
-          [success.outlinedColor, success.outlinedBorder],
+          success.outlinedBorder,
           success.outlinedHoverBg,
           success.outlinedActiveBg,
-          [success.outlinedDisabledColor, success.outlinedDisabledBorder],
+          success.outlinedDisabledBorder,
         ],
       },
       {
         color: 'success',
+        variant: 'outlined',
+        loading: false,
+        className: [success.outlinedColor, success.outlinedDisabledColor],
+      },
+      {
+        color: 'success',
         variant: 'plain',
-        className: [
-          success.plainColor,
-          success.plainHoverBg,
-          success.plainActiveBg,
-          success.plainDisabledColor,
-        ],
+        className: [success.plainHoverBg, success.plainActiveBg],
+      },
+      {
+        color: 'success',
+        variant: 'plain',
+        loading: false,
+        className: [success.plainColor, success.plainDisabledColor],
       },
       {
         color: 'warning',
         variant: 'solid',
         className: [
-          [warning.solidColor, warning.solidBg],
+          warning.solidBg,
           warning.solidHoverBg,
           warning.solidActiveBg,
-          [warning.solidDisabledColor, warning.solidDisabledBg],
+          warning.solidDisabledBg,
         ],
+      },
+      {
+        color: 'warning',
+        variant: 'solid',
+        loading: false,
+        className: [warning.solidColor, warning.solidDisabledColor],
       },
       {
         color: 'warning',
         variant: 'soft',
         className: [
-          [warning.softColor, warning.softBg],
+          warning.softBg,
           warning.softHoverBg,
-          [warning.softActiveColor, warning.softActiveBg],
-          [warning.softDisabledColor, warning.softDisabledBg],
+          warning.softActiveBg,
+          warning.softDisabledBg,
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'soft',
+        loading: false,
+        className: [
+          warning.softColor,
+          warning.softActiveColor,
+          warning.softDisabledColor,
         ],
       },
       {
         color: 'warning',
         variant: 'outlined',
         className: [
-          [warning.outlinedColor, warning.outlinedBorder],
+          warning.outlinedBorder,
           warning.outlinedHoverBg,
           warning.outlinedActiveBg,
-          [warning.outlinedDisabledColor, warning.outlinedDisabledBorder],
+          warning.outlinedDisabledBorder,
         ],
       },
       {
         color: 'warning',
+        variant: 'outlined',
+        loading: false,
+        className: [warning.outlinedColor, warning.outlinedDisabledColor],
+      },
+      {
+        color: 'warning',
         variant: 'plain',
-        className: [
-          warning.plainColor,
-          warning.plainHoverBg,
-          warning.plainActiveBg,
-          warning.plainDisabledColor,
-        ],
+        className: [warning.plainHoverBg, warning.plainActiveBg],
+      },
+      {
+        color: 'warning',
+        variant: 'plain',
+        loading: false,
+        className: [warning.plainColor, warning.plainDisabledColor],
       },
     ],
     defaultVariants: {
@@ -287,6 +417,7 @@ const buttonVariants = cva(
       fullWidth: false,
       size: 'md',
       variant: 'solid',
+      loading: false,
     },
   },
 );
@@ -294,6 +425,9 @@ const buttonVariants = cva(
 interface ButtonVariants extends VariantProps<typeof buttonVariants> {
   startDecorator?: ReactNode;
   endDecorator?: ReactNode;
+  loading?: boolean;
+  loadingIndicator?: ReactNode;
+  loadingPosition?: 'center' | 'start' | 'end';
 }
 
 type ButtonProps = Omit<ComponentProps<'button'>, keyof ButtonVariants> &
@@ -303,12 +437,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       children,
+      disabled,
       color,
       fullWidth,
       size,
       variant,
       startDecorator,
       endDecorator,
+      loading,
+      loadingIndicator,
+      loadingPosition,
       ...otherProps
     },
     ref,
@@ -317,14 +455,26 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type="button"
-        className={buttonVariants({ color, fullWidth, size, variant })}
+        className={buttonVariants({ color, fullWidth, size, variant, loading })}
+        disabled={disabled || loading}
         {...otherProps}
       >
         {startDecorator && (
-          <ButtonDecorator position="start" node={startDecorator} />
+          <span className={buttonDecoratorVariants({ position: 'start' })}>
+            {startDecorator}
+          </span>
         )}
         {children}
-        {endDecorator && <ButtonDecorator position="end" node={endDecorator} />}
+        {loading && (
+          <span className="absolute left-1/2 -translate-x-1/2 [display:inherit]">
+            <CircularProgress color={color} />
+          </span>
+        )}
+        {endDecorator && (
+          <span className={buttonDecoratorVariants({ position: 'end' })}>
+            {endDecorator}
+          </span>
+        )}
       </button>
     );
   },
