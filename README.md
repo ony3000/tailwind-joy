@@ -42,7 +42,7 @@
 ### FEEDBACK
 
 - [ ] Alert
-- [ ] Circular Progress
+- [x] Circular Progress
 - [ ] Linear Progress
 - [ ] Modal
 - [ ] Skeleton
