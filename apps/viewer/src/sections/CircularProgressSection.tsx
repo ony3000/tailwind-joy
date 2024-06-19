@@ -150,15 +150,6 @@ const customs: { title: string; props: Record<string, any> }[] = [
       children: '2 / 3',
     },
   },
-  // {
-  //   title: 'children (icon w/sx)',
-  //   props: {
-  //     color: 'danger',
-  //     // @ts-ignore
-  //     children: <ReportIcon color="danger" />,
-  //     className: '[--CircularProgress-size:80px] w-20 h-20',
-  //   },
-  // },
 ];
 
 export default function CircularProgressSection() {
@@ -184,26 +175,31 @@ export default function CircularProgressSection() {
             </div>
           </div>
         ))}
-        {/* <div className="min-h-12 grid grid-cols-[2fr_1fr_2fr] items-center text-center">
+        <div className="min-h-12 grid grid-cols-[2fr_1fr_2fr] items-center text-center">
           <div className="grid grid-cols-1">
             <div>
-              <CircularProgress color="danger" cx="h-20 w-20">
+              <CircularProgress
+                color="danger"
+                className="[--CircularProgress-size:80px]"
+              >
+                {/* @ts-ignore */}
                 <ReportIcon color="danger" />
               </CircularProgress>
             </div>
           </div>
-          <JTypography level="body-sm">children (icon w/sx)</JTypography>
+          <JTypography level="body-sm">variable customization</JTypography>
           <div className="grid grid-cols-1">
             <div>
               <JCircularProgress
                 color="danger"
                 sx={{ '--CircularProgress-size': '80px' }}
               >
+                {/* @ts-ignore */}
                 <ReportIcon color="danger" />
               </JCircularProgress>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </JCard>
   );

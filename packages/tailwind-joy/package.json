@@ -42,7 +42,8 @@
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
-    "react": "18.2.0"
+    "react": "18.2.0",
+    "tailwind-merge": "2.3.0"
   },
   "devDependencies": {
     "@types/react": "18.2.79",

@@ -2,6 +2,7 @@ import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
 import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
@@ -505,6 +506,7 @@ export const CircularProgress = forwardRef<
 >(function CircularProgress(
   {
     children,
+    className,
     color,
     size,
     variant,
@@ -518,15 +520,23 @@ export const CircularProgress = forwardRef<
   return (
     <span
       ref={ref}
-      className={circularProgressVariants({
-        color,
-        size,
-        variant,
-        determinate,
-      })}
+      className={twMerge(
+        circularProgressVariants({
+          color,
+          size,
+          variant,
+          determinate,
+        }),
+        className,
+      )}
       {...otherProps}
       // @ts-ignore
       style={{
+        ...(thickness === undefined
+          ? {}
+          : {
+              '--CircularProgress-thickness': `${thickness}px`,
+            }),
         ...(value === undefined
           ? {}
           : {
