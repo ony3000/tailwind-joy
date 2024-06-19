@@ -27,7 +27,8 @@ const circularProgressSvgVariants = cva(
 
 const circularProgressTrackVariants = cva(
   [
-    'fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)]',
+    'fill-transparent [cx:50%] [cy:50%]',
+    String.raw`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))] [stroke-width:var(--\_track-thickness)]`,
   ],
   {
     variants: {
@@ -37,11 +38,6 @@ const circularProgressTrackVariants = cva(
         danger: '',
         success: '',
         warning: '',
-      },
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
       },
       variant: {
         solid: '',
@@ -97,7 +93,6 @@ const circularProgressTrackVariants = cva(
     ],
     defaultVariants: {
       color: 'primary',
-      size: 'md',
       variant: 'soft',
     },
   },
@@ -105,8 +100,12 @@ const circularProgressTrackVariants = cva(
 
 const circularProgressProgressVariants = cva(
   [
-    '[--tj-progress-length:calc(2*var(--pi)*var(--tj-progress-radius))]',
-    'origin-center fill-transparent [cx:50%] [cy:50%] [r:var(--tj-progress-radius)] [stroke-width:var(--tj-thickness)] [stroke-dasharray:var(--tj-progress-length)] [stroke-dashoffset:calc(var(--tj-progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-linecap:round]',
+    [
+      String.raw`[--_progress-radius:calc(var(--\_inner-size)/2-var(--\_progress-thickness)/2-max(0px,var(--\_thickness-diff)/2))]`,
+      String.raw`[--_progress-length:calc(2*var(--pi)*var(--\_progress-radius))]`,
+    ],
+    'origin-center fill-transparent [cx:50%] [cy:50%] [stroke-linecap:round]',
+    String.raw`[r:var(--\_progress-radius)] [stroke-dasharray:var(--\_progress-length)] [stroke-dashoffset:calc(var(--\_progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-width:var(--\_progress-thickness)]`,
   ],
   {
     variants: {
@@ -116,11 +115,6 @@ const circularProgressProgressVariants = cva(
         danger: '',
         success: '',
         warning: '',
-      },
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
       },
       variant: {
         solid: '',
@@ -297,7 +291,6 @@ const circularProgressProgressVariants = cva(
     ],
     defaultVariants: {
       color: 'primary',
-      size: 'md',
       variant: 'soft',
       determinate: false,
     },
@@ -306,8 +299,14 @@ const circularProgressProgressVariants = cva(
 
 const circularProgressVariants = cva(
   [
-    '[--tj-progress-radius:calc(var(--tj-outer-radius)-var(--variant-borderWidth)-var(--tj-thickness)/2)]',
-    'relative inline-flex shrink-0 items-center justify-center rounded-full font-medium',
+    [
+      String.raw`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
+      String.raw`[--_thickness-diff:calc(var(--\_track-thickness)-var(--\_progress-thickness))]`,
+      String.raw`[--_inner-size:calc(var(--\_root-size)-2*var(--variant-borderWidth,0px))]`,
+      String.raw`[--_outlined-inset:max(var(--\_track-thickness),var(--\_progress-thickness))]`,
+    ],
+    'relative inline-flex shrink-0 items-center justify-center font-medium',
+    String.raw`h-[var(--\_root-size)] w-[var(--\_root-size)] rounded-[var(--\_root-size)] text-[calc(0.2*var(--\_root-size))]`,
   ],
   {
     variants: {
@@ -320,36 +319,44 @@ const circularProgressVariants = cva(
       },
       size: {
         sm: [
-          '[--Icon-fontSize:9.6px]',
-          '[--tj-outer-radius:12px]',
-          '[--tj-thickness:3px]',
-          'h-6 w-6 text-[4.8px]',
+          '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,3px))]',
+          '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,3px))]',
+          '[--_root-size:var(--CircularProgress-size,24px)]',
+          '[--CircularProgress-size:24px]',
         ],
         md: [
-          '[--Icon-fontSize:16px]',
-          '[--tj-outer-radius:20px]',
-          '[--tj-thickness:6px]',
-          'h-10 w-10 text-[8px]',
+          '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,6px))]',
+          '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,6px))]',
+          '[--_root-size:var(--CircularProgress-size,40px)]',
         ],
         lg: [
-          '[--Icon-fontSize:25.6px]',
-          '[--tj-outer-radius:32px]',
-          '[--tj-thickness:8px]',
-          'h-16 w-16 text-[12.8px]',
+          '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,8px))]',
+          '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,8px))]',
+          '[--_root-size:var(--CircularProgress-size,64px)]',
+          '[--CircularProgress-size:64px]',
         ],
       },
       variant: {
-        solid: '[--variant-borderWidth:0px]',
-        soft: '[--variant-borderWidth:0px]',
+        solid: '',
+        soft: '',
         outlined: [
           '[--variant-borderWidth:1px]',
-          'border border-solid',
-          'before:absolute before:inset-[var(--tj-thickness)] before:block before:border before:border-solid before:content-[""] before:[border-radius:inherit]',
+          'border-solid [border-width:var(--variant-borderWidth)]',
+          'before:absolute before:block before:border-solid before:content-[""] before:[border-radius:inherit] before:[border-width:var(--variant-borderWidth)]',
+          String.raw`before:inset-[var(--\_outlined-inset)]`,
         ],
-        plain: '[--variant-borderWidth:0px]',
+        plain: '',
+      },
+      determinate: {
+        false: '[--CircularProgress-percent:25]',
+        true: '[--CircularProgress-percent:0]',
       },
     },
     compoundVariants: [
+      {
+        variant: ['solid', 'soft', 'plain'],
+        className: '[--variant-borderWidth:0px]',
+      },
       {
         color: 'primary',
         variant: 'solid',
@@ -475,6 +482,7 @@ const circularProgressVariants = cva(
       color: 'primary',
       size: 'md',
       variant: 'soft',
+      determinate: false,
     },
   },
 );
@@ -482,7 +490,6 @@ const circularProgressVariants = cva(
 interface CircularProgressVariants
   extends VariantProps<typeof circularProgressVariants> {
   thickness?: number;
-  determinate?: boolean;
   value?: number;
 }
 
@@ -508,26 +515,30 @@ export const CircularProgress = forwardRef<
   },
   ref,
 ) {
-  const refinedValue = value ?? (determinate ? 0 : 25);
-
   return (
     <span
       ref={ref}
-      className={circularProgressVariants({ color, size, variant })}
+      className={circularProgressVariants({
+        color,
+        size,
+        variant,
+        determinate,
+      })}
       {...otherProps}
+      // @ts-ignore
       style={{
-        // @ts-ignore
-        '--CircularProgress-percent': refinedValue,
+        ...(value === undefined
+          ? {}
+          : {
+              '--CircularProgress-percent': value,
+            }),
       }}
     >
       <svg className={circularProgressSvgVariants({ variant })}>
-        <circle
-          className={circularProgressTrackVariants({ color, size, variant })}
-        />
+        <circle className={circularProgressTrackVariants({ color, variant })} />
         <circle
           className={circularProgressProgressVariants({
             color,
-            size,
             variant,
             determinate,
           })}
