@@ -123,9 +123,100 @@ const customs: { title: string; props: Record<string, any> }[] = [
     },
   },
   {
-    title: 'full width',
+    title: 'fullWidth: true',
     props: {
       fullWidth: true,
+    },
+  },
+  {
+    title: 'loading: true',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    title: 'loading: true (size: sm)',
+    props: {
+      loading: true,
+      size: 'sm',
+    },
+  },
+  {
+    title: 'loading: true (size: lg)',
+    props: {
+      loading: true,
+      size: 'lg',
+    },
+  },
+  {
+    title: 'loading: true (variant: soft)',
+    props: {
+      loading: true,
+      variant: 'soft',
+    },
+  },
+  {
+    title: 'loading: true (variant: outlined)',
+    props: {
+      loading: true,
+      variant: 'outlined',
+    },
+  },
+  {
+    title: 'loading: true (variant: plain)',
+    props: {
+      loading: true,
+      variant: 'plain',
+    },
+  },
+  {
+    title: 'loading: true (color: neutral)',
+    props: {
+      loading: true,
+      color: 'neutral',
+    },
+  },
+  {
+    title: 'loading: true (color: danger)',
+    props: {
+      loading: true,
+      color: 'danger',
+    },
+  },
+  {
+    title: 'loading: true (color: success)',
+    props: {
+      loading: true,
+      color: 'success',
+    },
+  },
+  {
+    title: 'loading: true (color: warning)',
+    props: {
+      loading: true,
+      color: 'warning',
+    },
+  },
+  {
+    title: 'loadingIndicator: "Loading..."',
+    props: {
+      loading: true,
+      loadingIndicator: 'Loading...',
+    },
+  },
+  {
+    title: 'loadingPosition: start',
+    props: {
+      loading: true,
+      loadingPosition: 'start',
+    },
+  },
+  {
+    title: 'loadingPosition: end (w/ decorator)',
+    props: {
+      loading: true,
+      loadingPosition: 'end',
+      endDecorator: <KeyboardArrowRightIcon />,
     },
   },
 ];
