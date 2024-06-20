@@ -1,10 +1,14 @@
-// import { IconButton } from 'tailwind-joy/components';
+import {
+  CircularProgress,
+  // IconButton
+} from 'tailwind-joy/components';
 import {
   Card as JCard,
   IconButton as JIconButton,
   Typography as JTypography,
 } from '@mui/joy';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
 
 function SectionHeader() {
   return (
@@ -47,6 +51,8 @@ const customs: { title: string; props: Record<string, any> }[] = [
       size: 'md',
       variant: 'plain',
       color: 'neutral',
+      loading: false,
+      loadingIndicator: <CircularProgress />,
     },
   },
   {
@@ -101,6 +107,82 @@ const customs: { title: string; props: Record<string, any> }[] = [
     title: 'color: warning',
     props: {
       color: 'warning',
+    },
+  },
+  {
+    title: 'loading: true',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    title: 'loading: true (size: sm)',
+    props: {
+      loading: true,
+      size: 'sm',
+    },
+  },
+  {
+    title: 'loading: true (size: lg)',
+    props: {
+      loading: true,
+      size: 'lg',
+    },
+  },
+  {
+    title: 'loading: true (variant: solid)',
+    props: {
+      loading: true,
+      variant: 'solid',
+    },
+  },
+  {
+    title: 'loading: true (variant: soft)',
+    props: {
+      loading: true,
+      variant: 'soft',
+    },
+  },
+  {
+    title: 'loading: true (variant: outlined)',
+    props: {
+      loading: true,
+      variant: 'outlined',
+    },
+  },
+  {
+    title: 'loading: true (color: primary)',
+    props: {
+      loading: true,
+      color: 'primary',
+    },
+  },
+  {
+    title: 'loading: true (color: danger)',
+    props: {
+      loading: true,
+      color: 'danger',
+    },
+  },
+  {
+    title: 'loading: true (color: success)',
+    props: {
+      loading: true,
+      color: 'success',
+    },
+  },
+  {
+    title: 'loading: true (color: warning)',
+    props: {
+      loading: true,
+      color: 'warning',
+    },
+  },
+  {
+    title: 'loadingIndicator (icon)',
+    props: {
+      loading: true,
+      loadingIndicator: <PendingOutlinedIcon />,
     },
   },
 ];
