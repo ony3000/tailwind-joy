@@ -307,7 +307,7 @@ const circularProgressVariants = cva(
       String.raw`[--_outlined-inset:max(var(--\_track-thickness),var(--\_progress-thickness))]`,
     ],
     'relative inline-flex shrink-0 items-center justify-center font-medium',
-    String.raw`h-[var(--\_root-size)] w-[var(--\_root-size)] rounded-[var(--\_root-size)] text-[calc(0.2*var(--\_root-size))]`,
+    String.raw`m-[var(--CircularProgress-margin)] h-[var(--\_root-size)] w-[var(--\_root-size)] rounded-[var(--\_root-size)] text-[calc(0.2*var(--\_root-size))]`,
   ],
   {
     variants: {

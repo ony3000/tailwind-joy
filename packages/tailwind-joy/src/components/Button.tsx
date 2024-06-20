@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
+import { twMerge } from 'tailwind-merge';
 import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
@@ -27,6 +28,193 @@ const buttonDecoratorVariants = cva('[display:inherit]', {
     },
   },
 });
+
+const buttonLoadingIndicatorCenterVariants = cva(
+  'absolute left-1/2 -translate-x-1/2 [display:inherit]',
+  {
+    variants: {
+      color: {
+        primary: '',
+        neutral: '',
+        danger: '',
+        success: '',
+        warning: '',
+      },
+      variant: {
+        solid: '',
+        soft: '',
+        outlined: '',
+        plain: '',
+      },
+    },
+    compoundVariants: [
+      {
+        color: 'primary',
+        variant: 'solid',
+        className: [
+          // same as primary.solidDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'primary',
+        variant: 'soft',
+        className: [
+          // same as primary.softDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'primary',
+        variant: 'outlined',
+        className: [
+          // same as primary.outlinedDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'primary',
+        variant: 'plain',
+        className: [
+          // same as primary.plainDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'solid',
+        className: [
+          // same as neutral.solidDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'soft',
+        className: [
+          // same as neutral.softDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'outlined',
+        className: [
+          // same as neutral.outlinedDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'neutral',
+        variant: 'plain',
+        className: [
+          // same as neutral.plainDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'solid',
+        className: [
+          // same as danger.solidDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'soft',
+        className: [
+          // same as danger.softDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'outlined',
+        className: [
+          // same as danger.outlinedDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'danger',
+        variant: 'plain',
+        className: [
+          // same as danger.plainDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'solid',
+        className: [
+          // same as success.solidDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'soft',
+        className: [
+          // same as success.softDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'outlined',
+        className: [
+          // same as success.outlinedDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'success',
+        variant: 'plain',
+        className: [
+          // same as success.plainDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'solid',
+        className: [
+          // same as warning.solidDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'soft',
+        className: [
+          // same as warning.softDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'outlined',
+        className: [
+          // same as warning.outlinedDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+      {
+        color: 'warning',
+        variant: 'plain',
+        className: [
+          // same as warning.plainDisabledColor.replace(/disabled:/g, '')
+          'text-joy-neutral-400 dark:text-joy-neutral-500',
+        ],
+      },
+    ],
+    defaultVariants: {
+      color: 'primary',
+      variant: 'solid',
+    },
+  },
+);
 
 const buttonVariants = cva(
   [
@@ -86,7 +274,7 @@ const buttonVariants = cva(
         outlined: 'border border-solid',
         plain: '',
       },
-      loading: {
+      invisibleChildren: {
         false: '',
         true: 'text-transparent',
       },
@@ -105,7 +293,7 @@ const buttonVariants = cva(
       {
         color: 'primary',
         variant: 'solid',
-        loading: false,
+        invisibleChildren: false,
         className: [primary.solidColor, primary.solidDisabledColor],
       },
       {
@@ -121,7 +309,7 @@ const buttonVariants = cva(
       {
         color: 'primary',
         variant: 'soft',
-        loading: false,
+        invisibleChildren: false,
         className: [
           primary.softColor,
           primary.softActiveColor,
@@ -141,7 +329,7 @@ const buttonVariants = cva(
       {
         color: 'primary',
         variant: 'outlined',
-        loading: false,
+        invisibleChildren: false,
         className: [primary.outlinedColor, primary.outlinedDisabledColor],
       },
       {
@@ -152,7 +340,7 @@ const buttonVariants = cva(
       {
         color: 'primary',
         variant: 'plain',
-        loading: false,
+        invisibleChildren: false,
         className: [primary.plainColor, primary.plainDisabledColor],
       },
       {
@@ -168,7 +356,7 @@ const buttonVariants = cva(
       {
         color: 'neutral',
         variant: 'solid',
-        loading: false,
+        invisibleChildren: false,
         className: [neutral.solidColor, neutral.solidDisabledColor],
       },
       {
@@ -184,7 +372,7 @@ const buttonVariants = cva(
       {
         color: 'neutral',
         variant: 'soft',
-        loading: false,
+        invisibleChildren: false,
         className: [
           neutral.softColor,
           neutral.softActiveColor,
@@ -204,7 +392,7 @@ const buttonVariants = cva(
       {
         color: 'neutral',
         variant: 'outlined',
-        loading: false,
+        invisibleChildren: false,
         className: [neutral.outlinedColor, neutral.outlinedDisabledColor],
       },
       {
@@ -215,7 +403,7 @@ const buttonVariants = cva(
       {
         color: 'neutral',
         variant: 'plain',
-        loading: false,
+        invisibleChildren: false,
         className: [
           neutral.plainColor,
           neutral.plainHoverColor,
@@ -235,7 +423,7 @@ const buttonVariants = cva(
       {
         color: 'danger',
         variant: 'solid',
-        loading: false,
+        invisibleChildren: false,
         className: [danger.solidColor, danger.solidDisabledColor],
       },
       {
@@ -251,7 +439,7 @@ const buttonVariants = cva(
       {
         color: 'danger',
         variant: 'soft',
-        loading: false,
+        invisibleChildren: false,
         className: [
           danger.softColor,
           danger.softActiveColor,
@@ -271,7 +459,7 @@ const buttonVariants = cva(
       {
         color: 'danger',
         variant: 'outlined',
-        loading: false,
+        invisibleChildren: false,
         className: [danger.outlinedColor, danger.outlinedDisabledColor],
       },
       {
@@ -282,7 +470,7 @@ const buttonVariants = cva(
       {
         color: 'danger',
         variant: 'plain',
-        loading: false,
+        invisibleChildren: false,
         className: [danger.plainColor, danger.plainDisabledColor],
       },
       {
@@ -298,7 +486,7 @@ const buttonVariants = cva(
       {
         color: 'success',
         variant: 'solid',
-        loading: false,
+        invisibleChildren: false,
         className: [success.solidColor, success.solidDisabledColor],
       },
       {
@@ -314,7 +502,7 @@ const buttonVariants = cva(
       {
         color: 'success',
         variant: 'soft',
-        loading: false,
+        invisibleChildren: false,
         className: [
           success.softColor,
           success.softActiveColor,
@@ -334,7 +522,7 @@ const buttonVariants = cva(
       {
         color: 'success',
         variant: 'outlined',
-        loading: false,
+        invisibleChildren: false,
         className: [success.outlinedColor, success.outlinedDisabledColor],
       },
       {
@@ -345,7 +533,7 @@ const buttonVariants = cva(
       {
         color: 'success',
         variant: 'plain',
-        loading: false,
+        invisibleChildren: false,
         className: [success.plainColor, success.plainDisabledColor],
       },
       {
@@ -361,7 +549,7 @@ const buttonVariants = cva(
       {
         color: 'warning',
         variant: 'solid',
-        loading: false,
+        invisibleChildren: false,
         className: [warning.solidColor, warning.solidDisabledColor],
       },
       {
@@ -377,7 +565,7 @@ const buttonVariants = cva(
       {
         color: 'warning',
         variant: 'soft',
-        loading: false,
+        invisibleChildren: false,
         className: [
           warning.softColor,
           warning.softActiveColor,
@@ -397,7 +585,7 @@ const buttonVariants = cva(
       {
         color: 'warning',
         variant: 'outlined',
-        loading: false,
+        invisibleChildren: false,
         className: [warning.outlinedColor, warning.outlinedDisabledColor],
       },
       {
@@ -408,7 +596,7 @@ const buttonVariants = cva(
       {
         color: 'warning',
         variant: 'plain',
-        loading: false,
+        invisibleChildren: false,
         className: [warning.plainColor, warning.plainDisabledColor],
       },
     ],
@@ -417,7 +605,7 @@ const buttonVariants = cva(
       fullWidth: false,
       size: 'md',
       variant: 'solid',
-      loading: false,
+      invisibleChildren: false,
     },
   },
 );
@@ -437,6 +625,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       children,
+      className,
       disabled,
       color,
       fullWidth,
@@ -446,7 +635,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       endDecorator,
       loading,
       loadingIndicator,
-      loadingPosition,
+      loadingPosition = 'center',
       ...otherProps
     },
     ref,
@@ -455,24 +644,42 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type="button"
-        className={buttonVariants({ color, fullWidth, size, variant, loading })}
+        className={twMerge(
+          buttonVariants({
+            color,
+            fullWidth,
+            size,
+            variant,
+            invisibleChildren: loading && loadingPosition === 'center',
+          }),
+          className,
+        )}
         disabled={disabled || loading}
         {...otherProps}
       >
-        {startDecorator && (
+        {(startDecorator || (loading && loadingPosition === 'start')) && (
           <span className={buttonDecoratorVariants({ position: 'start' })}>
-            {startDecorator}
+            {loading
+              ? loadingIndicator ?? <CircularProgress color={color} />
+              : startDecorator}
           </span>
         )}
         {children}
-        {loading && (
-          <span className="absolute left-1/2 -translate-x-1/2 [display:inherit]">
-            <CircularProgress color={color} />
+        {loading && loadingPosition === 'center' && (
+          <span
+            className={buttonLoadingIndicatorCenterVariants({
+              color,
+              variant,
+            })}
+          >
+            {loadingIndicator ?? <CircularProgress color={color} />}
           </span>
         )}
-        {endDecorator && (
+        {(endDecorator || (loading && loadingPosition === 'end')) && (
           <span className={buttonDecoratorVariants({ position: 'end' })}>
-            {endDecorator}
+            {loading
+              ? loadingIndicator ?? <CircularProgress color={color} />
+              : endDecorator}
           </span>
         )}
       </button>
