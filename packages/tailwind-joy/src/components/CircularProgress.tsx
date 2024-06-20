@@ -521,6 +521,7 @@ export const CircularProgress = forwardRef<
   return (
     <span
       ref={ref}
+      role="progressbar"
       className={twMerge(
         circularProgressVariants({
           color,
