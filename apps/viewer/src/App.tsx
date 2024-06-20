@@ -10,7 +10,11 @@ import {
 import { useColorScheme } from '@mui/joy/styles';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { ButtonSection, CircularProgressSection } from './sections';
+import {
+  ButtonSection,
+  CircularProgressSection,
+  IconButtonSection,
+} from './sections';
 
 function App() {
   const { colorScheme, setMode, setColorScheme } = useColorScheme();
@@ -35,15 +39,19 @@ function App() {
           {colorScheme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
         </JIconButton>
       </JBox>
-      <JTabs aria-label="Component tabs" defaultValue={0}>
+      <JTabs aria-label="Component tabs" defaultValue={1}>
         <JTabList>
           <JTab>Button</JTab>
+          <JTab>Icon Button</JTab>
           <JTab>CircularProgress</JTab>
         </JTabList>
         <JTabPanel value={0}>
           <ButtonSection />
         </JTabPanel>
         <JTabPanel value={1}>
+          <IconButtonSection />
+        </JTabPanel>
+        <JTabPanel value={2}>
           <CircularProgressSection />
         </JTabPanel>
       </JTabs>
