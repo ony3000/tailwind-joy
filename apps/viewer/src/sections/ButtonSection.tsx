@@ -1,4 +1,4 @@
-import { Button } from 'tailwind-joy/components';
+import { Button, CircularProgress } from 'tailwind-joy/components';
 import {
   Button as JButton,
   Card as JCard,
@@ -41,6 +41,20 @@ const customs: { title: string; props: Record<string, any> }[] = [
   {
     title: 'default',
     props: {},
+  },
+  {
+    title: 'default with props',
+    props: {
+      size: 'md',
+      variant: 'solid',
+      color: 'primary',
+      startDecorator: undefined,
+      endDecorator: undefined,
+      fullWidth: false,
+      loading: false,
+      loadingIndicator: <CircularProgress />,
+      loadingPosition: 'center',
+    },
   },
   {
     title: 'size: sm',

@@ -41,6 +41,17 @@ const customs: { title: string; props: Record<string, any> }[] = [
     props: {},
   },
   {
+    title: 'default with props',
+    props: {
+      size: 'md',
+      variant: 'soft',
+      color: 'primary',
+      thickness: undefined,
+      determinate: false,
+      value: 25,
+    },
+  },
+  {
     title: 'size: sm',
     props: {
       size: 'sm',
