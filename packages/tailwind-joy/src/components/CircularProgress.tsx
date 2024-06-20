@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
+import { r } from '../alias';
 import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
@@ -29,7 +30,7 @@ const circularProgressSvgVariants = cva(
 const circularProgressTrackVariants = cva(
   [
     'fill-transparent [cx:50%] [cy:50%]',
-    String.raw`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))] [stroke-width:var(--\_track-thickness)]`,
+    r`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))] [stroke-width:var(--\_track-thickness)]`,
   ],
   {
     variants: {
@@ -102,11 +103,11 @@ const circularProgressTrackVariants = cva(
 const circularProgressProgressVariants = cva(
   [
     [
-      String.raw`[--_progress-radius:calc(var(--\_inner-size)/2-var(--\_progress-thickness)/2-max(0px,var(--\_thickness-diff)/2))]`,
-      String.raw`[--_progress-length:calc(2*var(--pi)*var(--\_progress-radius))]`,
+      r`[--_progress-radius:calc(var(--\_inner-size)/2-var(--\_progress-thickness)/2-max(0px,var(--\_thickness-diff)/2))]`,
+      r`[--_progress-length:calc(2*var(--pi)*var(--\_progress-radius))]`,
     ],
     'origin-center fill-transparent [cx:50%] [cy:50%] [stroke-linecap:round]',
-    String.raw`[r:var(--\_progress-radius)] [stroke-dasharray:var(--\_progress-length)] [stroke-dashoffset:calc(var(--\_progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-width:var(--\_progress-thickness)]`,
+    r`[r:var(--\_progress-radius)] [stroke-dasharray:var(--\_progress-length)] [stroke-dashoffset:calc(var(--\_progress-length)*(1-var(--CircularProgress-percent)/100))] [stroke-width:var(--\_progress-thickness)]`,
   ],
   {
     variants: {
@@ -301,13 +302,13 @@ const circularProgressProgressVariants = cva(
 const circularProgressVariants = cva(
   [
     [
-      String.raw`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
-      String.raw`[--_thickness-diff:calc(var(--\_track-thickness)-var(--\_progress-thickness))]`,
-      String.raw`[--_inner-size:calc(var(--\_root-size)-2*var(--variant-borderWidth,0px))]`,
-      String.raw`[--_outlined-inset:max(var(--\_track-thickness),var(--\_progress-thickness))]`,
+      r`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
+      r`[--_thickness-diff:calc(var(--\_track-thickness)-var(--\_progress-thickness))]`,
+      r`[--_inner-size:calc(var(--\_root-size)-2*var(--variant-borderWidth,0px))]`,
+      r`[--_outlined-inset:max(var(--\_track-thickness),var(--\_progress-thickness))]`,
     ],
     'relative inline-flex shrink-0 items-center justify-center font-medium',
-    String.raw`m-[var(--CircularProgress-margin)] h-[var(--\_root-size)] w-[var(--\_root-size)] rounded-[var(--\_root-size)] text-[calc(0.2*var(--\_root-size))]`,
+    r`m-[var(--CircularProgress-margin)] h-[var(--\_root-size)] w-[var(--\_root-size)] rounded-[var(--\_root-size)] text-[calc(0.2*var(--\_root-size))]`,
   ],
   {
     variants: {
@@ -344,7 +345,7 @@ const circularProgressVariants = cva(
           '[--variant-borderWidth:1px]',
           'border-solid [border-width:var(--variant-borderWidth)]',
           'before:absolute before:block before:border-solid before:content-[""] before:[border-radius:inherit] before:[border-width:var(--variant-borderWidth)]',
-          String.raw`before:inset-[var(--\_outlined-inset)]`,
+          r`before:inset-[var(--\_outlined-inset)]`,
         ],
         plain: '',
       },
