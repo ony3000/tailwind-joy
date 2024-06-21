@@ -508,9 +508,9 @@ export const CircularProgress = forwardRef<
   {
     children,
     className,
-    color,
-    size,
-    variant,
+    color = 'primary',
+    size = 'md',
+    variant = 'soft',
     thickness,
     determinate,
     value,
