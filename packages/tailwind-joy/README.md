@@ -1,4 +1,4 @@
-[Joy UI](https://mui.com/joy-ui/getting-started/)의 component를 Tailwind CSS 방식으로 구현한 React component library
+React component library that styles the components of [Joy UI](https://mui.com/joy-ui/getting-started/) in the Tailwind CSS way.
 
 ## 개발 환경
 

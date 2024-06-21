@@ -1,7 +1,7 @@
 {
   "name": "tailwind-joy",
   "version": "0.0.0",
-  "description": "Joy UI의 component를 Tailwind CSS 방식으로 구현한 React component library",
+  "description": "React component library that styles the components of Joy UI in the Tailwind CSS way.",
   "keywords": [
     "react",
     "react-component",
