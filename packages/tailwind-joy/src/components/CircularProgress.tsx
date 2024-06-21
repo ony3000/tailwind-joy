@@ -299,7 +299,7 @@ const circularProgressProgressVariants = cva(
   },
 );
 
-const circularProgressVariants = cva(
+const circularProgressRootVariants = cva(
   [
     [
       r`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
@@ -489,22 +489,22 @@ const circularProgressVariants = cva(
   },
 );
 
-interface CircularProgressVariants
-  extends VariantProps<typeof circularProgressVariants> {
+interface CircularProgressRootVariants
+  extends VariantProps<typeof circularProgressRootVariants> {
   thickness?: number;
   value?: number;
 }
 
-type CircularProgressProps = Omit<
+type CircularProgressRootProps = Omit<
   ComponentProps<'span'>,
-  keyof CircularProgressVariants
+  keyof CircularProgressRootVariants
 > &
-  CircularProgressVariants;
+  CircularProgressRootVariants;
 
 export const CircularProgress = forwardRef<
   HTMLSpanElement,
-  CircularProgressProps
->(function CircularProgress(
+  CircularProgressRootProps
+>(function CircularProgressRoot(
   {
     children,
     className,
@@ -523,7 +523,7 @@ export const CircularProgress = forwardRef<
       ref={ref}
       role="progressbar"
       className={twMerge(
-        circularProgressVariants({
+        circularProgressRootVariants({
           color,
           size,
           variant,

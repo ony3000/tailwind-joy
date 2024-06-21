@@ -216,7 +216,7 @@ const buttonLoadingIndicatorCenterVariants = cva(
   },
 );
 
-const buttonVariants = cva(
+const buttonRootVariants = cva(
   [
     '[--Icon-color:currentColor]',
     'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline [-webkit-tap-highlight-color:transparent]',
@@ -610,7 +610,7 @@ const buttonVariants = cva(
   },
 );
 
-interface ButtonVariants extends VariantProps<typeof buttonVariants> {
+interface ButtonRootVariants extends VariantProps<typeof buttonRootVariants> {
   startDecorator?: ReactNode;
   endDecorator?: ReactNode;
   loading?: boolean;
@@ -618,11 +618,14 @@ interface ButtonVariants extends VariantProps<typeof buttonVariants> {
   loadingPosition?: 'center' | 'start' | 'end';
 }
 
-type ButtonProps = Omit<ComponentProps<'button'>, keyof ButtonVariants> &
-  ButtonVariants;
+type ButtonRootProps = Omit<
+  ComponentProps<'button'>,
+  keyof ButtonRootVariants
+> &
+  ButtonRootVariants;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
+export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
+  function ButtonRoot(
     {
       children,
       className,
@@ -645,7 +648,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type="button"
         className={twMerge(
-          buttonVariants({
+          buttonRootVariants({
             color,
             fullWidth,
             size,
