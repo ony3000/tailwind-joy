@@ -1,7 +1,4 @@
-import {
-  CircularProgress,
-  // IconButton
-} from 'tailwind-joy/components';
+import { CircularProgress, IconButton } from 'tailwind-joy/components';
 import {
   Card as JCard,
   IconButton as JIconButton,
@@ -199,14 +196,14 @@ export default function IconButtonSection() {
           >
             <div className="grid grid-cols-2">
               <div>
-                <JIconButton {...props}>
+                <IconButton {...props}>
                   <FavoriteBorderIcon />
-                </JIconButton>
+                </IconButton>
               </div>
               <div>
-                <JIconButton {...props} disabled>
+                <IconButton {...props} disabled>
                   <FavoriteBorderIcon />
-                </JIconButton>
+                </IconButton>
               </div>
             </div>
             <JTypography level="body-sm">{title}</JTypography>
