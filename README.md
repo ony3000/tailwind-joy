@@ -15,7 +15,9 @@
 ### INPUTS
 
 - [ ] Autocomplete
-- [ ] Button
+- Button
+  - [x] Button
+  - [x] Icon Button
 - [ ] Button Group
 - [ ] Checkbox
 - [ ] Input
