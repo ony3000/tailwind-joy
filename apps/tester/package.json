@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "tester",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Hyeonjong <nianelo4@gmail.com>",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@playwright/test": "1.44.1",
+    "@types/node": "20.14.8"
+  }
+}
