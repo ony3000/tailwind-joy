@@ -70,57 +70,72 @@ export default function JoyButtonPage() {
         Button
       </Typography>
       <div className="grid grid-cols-1 gap-4 min-[920px]:grid-cols-2 min-[1380px]:grid-cols-3 min-[1840px]:grid-cols-4">
-        {customs.map(({ title, props }) => (
-          <Fragment key={title}>
-            {colors.map((color) => (
-              <Fragment key={color}>
-                <Card variant="outlined">
-                  {variants.map((variant) => (
-                    <div key={variant} className="grid grid-cols-3 gap-4">
-                      {sizes.map((size) => (
-                        <div
-                          key={size}
-                          className="flex items-center justify-center"
-                        >
-                          <Button
-                            size={size}
-                            variant={variant}
-                            color={color}
-                            {...props}
+        {customs.map(({ title, props }) => {
+          const testIdSuffix = Object.keys(props).join('-');
+
+          return (
+            <Fragment key={title}>
+              {colors.map((color) => (
+                <Fragment key={color}>
+                  <Card variant="outlined">
+                    {variants.map((variant) => (
+                      <div key={variant} className="grid grid-cols-3 gap-4">
+                        {sizes.map((size) => {
+                          const testIdBase = `${color}-${variant}-${size}`;
+
+                          return (
+                            <div
+                              key={size}
+                              data-testid={`container-${testIdBase}${
+                                testIdSuffix ? `-${testIdSuffix}` : ''
+                              }`}
+                              tabIndex={0}
+                              className="flex items-center justify-center py-1"
+                            >
+                              <Button
+                                data-testid={`element-${testIdBase}${
+                                  testIdSuffix ? `-${testIdSuffix}` : ''
+                                }`}
+                                size={size}
+                                variant={variant}
+                                color={color}
+                                {...props}
+                              >
+                                Button
+                              </Button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </Card>
+                  <Card variant="outlined">
+                    {variants.map((variant) => (
+                      <div key={variant} className="grid grid-cols-3 gap-4">
+                        {sizes.map((size) => (
+                          <div
+                            key={size}
+                            className="flex items-center justify-center"
                           >
-                            Button
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </Card>
-                <Card variant="outlined">
-                  {variants.map((variant) => (
-                    <div key={variant} className="grid grid-cols-3 gap-4">
-                      {sizes.map((size) => (
-                        <div
-                          key={size}
-                          className="flex items-center justify-center"
-                        >
-                          <Button
-                            size={size}
-                            variant={variant}
-                            color={color}
-                            {...props}
-                            disabled
-                          >
-                            Button
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </Card>
-              </Fragment>
-            ))}
-          </Fragment>
-        ))}
+                            <Button
+                              size={size}
+                              variant={variant}
+                              color={color}
+                              {...props}
+                              disabled
+                            >
+                              Button
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </Card>
+                </Fragment>
+              ))}
+            </Fragment>
+          );
+        })}
       </div>
     </Box>
   );
