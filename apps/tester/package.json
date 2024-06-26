@@ -5,10 +5,16 @@
   "license": "MIT",
   "author": "Hyeonjong <nianelo4@gmail.com>",
   "type": "module",
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "test-ct": "playwright test -c playwright-ct.config.ts"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {
-    "@playwright/test": "1.44.1",
-    "@types/node": "20.14.8"
+    "@playwright/experimental-ct-react": "1.45.0",
+    "@types/node": "20.14.8",
+    "@types/react": "18.2.79"
   }
 }
