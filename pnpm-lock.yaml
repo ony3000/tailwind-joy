@@ -19,22 +19,55 @@ importers:
 
   apps/tester:
     dependencies:
+      '@emotion/react':
+        specifier: 11.11.4
+        version: 11.11.4(@types/react@18.2.79)(react@18.2.0)
+      '@emotion/styled':
+        specifier: 11.11.5
+        version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.79)(react@18.2.0)
+      '@mui/icons-material':
+        specifier: 5.15.20
+        version: 5.15.20(@mui/material@5.15.20)(@types/react@18.2.79)(react@18.2.0)
+      '@mui/joy':
+        specifier: 5.0.0-beta.36
+        version: 5.0.0-beta.36(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      tailwind-joy:
+        specifier: workspace:*
+        version: link:../../packages/tailwind-joy
     devDependencies:
       '@playwright/experimental-ct-react':
         specifier: 1.45.0
         version: 1.45.0(@types/node@20.14.8)(vite@5.0.11)
+      '@thedutchcoder/postcss-rem-to-px':
+        specifier: 0.0.2
+        version: 0.0.2(postcss@8.4.38)
       '@types/node':
         specifier: 20.14.8
         version: 20.14.8
       '@types/react':
         specifier: 18.2.79
         version: 18.2.79
+      '@types/react-dom':
+        specifier: 18.2.25
+        version: 18.2.25
+      autoprefixer:
+        specifier: 10.4.19
+        version: 10.4.19(postcss@8.4.38)
+      postcss:
+        specifier: 8.4.38
+        version: 8.4.38
+      tailwindcss:
+        specifier: 3.4.4
+        version: 3.4.4
+      typescript:
+        specifier: 4.9.5
+        version: 4.9.5
 
   apps/viewer:
     dependencies:
