@@ -11,6 +11,6 @@
     "rules": {
       "recommended": true
     },
-    "ignore": ["dist/**"]
+    "ignore": [".cache/**", ".next/**", "dist/**"]
   }
 }
