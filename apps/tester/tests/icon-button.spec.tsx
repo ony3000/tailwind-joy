@@ -3,10 +3,10 @@ import pathPosix from 'node:path/posix';
 import pathWin32 from 'node:path/win32';
 import { test, expect } from '@playwright/experimental-ct-react';
 
-import AddIcon from '@mui/icons-material/Add';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { Button as JoyButton } from '@mui/joy';
-import { Button as TJButton } from 'tailwind-joy/components';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
+import { IconButton as JoyIconButton } from '@mui/joy';
+import { IconButton as TJIconButton } from 'tailwind-joy/components';
 
 import { App } from '@/App';
 import { sleep } from '@/utils';
@@ -18,7 +18,7 @@ const screenshotPath = resolve(__dirname, `../__screenshots__/${filename}`);
 test.use({ viewport: { width: 500, height: 500 } });
 
 const containerClassName =
-  'flex h-[100px] w-[200px] items-center justify-center p-2';
+  'flex h-[100px] w-[100px] items-center justify-center p-2';
 
 const sizes = ['sm', 'md', 'lg'] as const;
 const variants = ['solid', 'soft', 'outlined', 'plain'] as const;
@@ -35,24 +35,6 @@ const customs: { title: string; props: Record<string, any> }[] = [
     props: {},
   },
   {
-    title: 'startDecorator',
-    props: {
-      startDecorator: <AddIcon />,
-    },
-  },
-  {
-    title: 'endDecorator',
-    props: {
-      endDecorator: <KeyboardArrowRightIcon />,
-    },
-  },
-  {
-    title: 'fullWidth',
-    props: {
-      fullWidth: true,
-    },
-  },
-  {
     title: 'loading',
     props: {
       loading: true,
@@ -62,22 +44,7 @@ const customs: { title: string; props: Record<string, any> }[] = [
     title: 'loadingIndicator',
     props: {
       loading: true,
-      loadingIndicator: 'Loading...',
-    },
-  },
-  {
-    title: 'loadingPosition: start',
-    props: {
-      loading: true,
-      loadingPosition: 'start',
-    },
-  },
-  {
-    title: 'loadingPosition: end',
-    props: {
-      loading: true,
-      loadingPosition: 'end',
-      endDecorator: <KeyboardArrowRightIcon />,
+      loadingIndicator: <PendingOutlinedIcon />,
     },
   },
 ];
@@ -102,15 +69,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <JoyButton
+                <JoyIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </JoyButton>
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
               </div>
             </App>,
           );
@@ -127,15 +94,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <TJButton
+                <TJIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </TJButton>
+                  <FavoriteBorderIcon />
+                </TJIconButton>
               </div>
             </App>,
           );
@@ -158,15 +125,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <JoyButton
+                <JoyIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </JoyButton>
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
               </div>
             </App>,
           );
@@ -184,15 +151,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <TJButton
+                <TJIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </TJButton>
+                  <FavoriteBorderIcon />
+                </TJIconButton>
               </div>
             </App>,
           );
@@ -216,15 +183,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <JoyButton
+                <JoyIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </JoyButton>
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
               </div>
             </App>,
           );
@@ -242,15 +209,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <TJButton
+                <TJIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </TJButton>
+                  <FavoriteBorderIcon />
+                </TJIconButton>
               </div>
             </App>,
           );
@@ -274,15 +241,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <JoyButton
+                <JoyIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </JoyButton>
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
               </div>
             </App>,
           );
@@ -303,15 +270,15 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <TJButton
+                <TJIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
                   color={color}
                   {...props}
                 >
-                  Button
-                </TJButton>
+                  <FavoriteBorderIcon />
+                </TJIconButton>
               </div>
             </App>,
           );
@@ -338,7 +305,7 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <JoyButton
+                <JoyIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
@@ -346,8 +313,8 @@ customs.forEach(({ title, props }) => {
                   {...props}
                   disabled
                 >
-                  Button
-                </JoyButton>
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
               </div>
             </App>,
           );
@@ -364,7 +331,7 @@ customs.forEach(({ title, props }) => {
                 tabIndex={0}
                 className={containerClassName}
               >
-                <TJButton
+                <TJIconButton
                   data-testid={elementTestId}
                   size={size}
                   variant={variant}
@@ -372,8 +339,8 @@ customs.forEach(({ title, props }) => {
                   {...props}
                   disabled
                 >
-                  Button
-                </TJButton>
+                  <FavoriteBorderIcon />
+                </TJIconButton>
               </div>
             </App>,
           );
