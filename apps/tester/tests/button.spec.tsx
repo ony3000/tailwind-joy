@@ -86,11 +86,12 @@ customs.forEach(({ title, props }) => {
 
   test.describe(title, () => {
     cartesianProduct.forEach(({ color, variant, size }) => {
-      const testIdBase = `${color}-${variant}-${size}`;
-      const containerTestId = `container-${testIdBase}${testIdSuffix}`;
-      const elementTestId = `element-${testIdBase}${testIdSuffix}`;
+      const hyphenatedVariants = `${color}-${variant}-${size}`;
+      const testIdBase = `${hyphenatedVariants}${testIdSuffix}`;
+      const containerTestId = `container-${testIdBase}`;
+      const elementTestId = `element-${testIdBase}`;
 
-      test.describe(testIdBase, () => {
+      test.describe(hyphenatedVariants, () => {
         test('default', async ({ page, mount }) => {
           const joyComponent = await mount(
             <App>
@@ -113,10 +114,7 @@ customs.forEach(({ title, props }) => {
           );
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(
-              screenshotPath,
-              `${testIdBase}${testIdSuffix}-default.png`,
-            ),
+            path: resolve(screenshotPath, `${testIdBase}-default.png`),
           });
           await joyComponent.unmount();
 
@@ -141,7 +139,7 @@ customs.forEach(({ title, props }) => {
           );
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}${testIdSuffix}-default.png`);
+          ).toHaveScreenshot(`${testIdBase}-default.png`);
           await tjComponent.unmount();
         });
 
@@ -173,10 +171,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(elementTestId).hover();
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(
-              screenshotPath,
-              `${testIdBase}${testIdSuffix}-hover.png`,
-            ),
+            path: resolve(screenshotPath, `${testIdBase}-hover.png`),
           });
           await joyComponent.unmount();
 
@@ -202,7 +197,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(elementTestId).hover();
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}${testIdSuffix}-hover.png`);
+          ).toHaveScreenshot(`${testIdBase}-hover.png`);
           await tjComponent.unmount();
         });
 
@@ -234,10 +229,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(containerTestId).press('Tab');
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(
-              screenshotPath,
-              `${testIdBase}${testIdSuffix}-focus-visible.png`,
-            ),
+            path: resolve(screenshotPath, `${testIdBase}-focus-visible.png`),
           });
           await joyComponent.unmount();
 
@@ -263,7 +255,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(containerTestId).press('Tab');
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}${testIdSuffix}-focus-visible.png`);
+          ).toHaveScreenshot(`${testIdBase}-focus-visible.png`);
           await tjComponent.unmount();
         });
 
@@ -297,10 +289,7 @@ customs.forEach(({ title, props }) => {
           });
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(
-              screenshotPath,
-              `${testIdBase}${testIdSuffix}-active.png`,
-            ),
+            path: resolve(screenshotPath, `${testIdBase}-active.png`),
           });
           await sleep(100);
           await joyComponent.unmount();
@@ -329,7 +318,7 @@ customs.forEach(({ title, props }) => {
           });
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}${testIdSuffix}-active.png`);
+          ).toHaveScreenshot(`${testIdBase}-active.png`);
           await sleep(100);
           await tjComponent.unmount();
         });
@@ -362,10 +351,7 @@ customs.forEach(({ title, props }) => {
           );
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(
-              screenshotPath,
-              `${testIdBase}${testIdSuffix}-disabled.png`,
-            ),
+            path: resolve(screenshotPath, `${testIdBase}-disabled.png`),
           });
           await joyComponent.unmount();
 
@@ -391,7 +377,7 @@ customs.forEach(({ title, props }) => {
           );
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}${testIdSuffix}-disabled.png`);
+          ).toHaveScreenshot(`${testIdBase}-disabled.png`);
           await tjComponent.unmount();
         });
       });
