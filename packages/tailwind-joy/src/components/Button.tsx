@@ -8,26 +8,17 @@ import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
 
-const buttonDecoratorVariants = cva('[display:inherit]', {
-  variants: {
-    position: {
-      start: [
-        [
-          '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
-          '[--CircularProgress-margin:0_0_0_calc(var(--Button-gap)/-2)]',
-        ],
-        'mr-[var(--Button-gap)]',
-      ],
-      end: [
-        [
-          '[--Icon-margin:0_calc(var(--Button-gap)/-2)_0_0]',
-          '[--CircularProgress-margin:0_calc(var(--Button-gap)/-2)_0_0]',
-        ],
-        'ml-[var(--Button-gap)]',
-      ],
-    },
-  },
-});
+const buttonStartDecoratorVariants = cva([
+  '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+  '[--CircularProgress-margin:0_0_0_calc(var(--Button-gap)/-2)]',
+  'mr-[var(--Button-gap)] [display:inherit]',
+]);
+
+const buttonEndDecoratorVariants = cva([
+  '[--Icon-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+  '[--CircularProgress-margin:0_calc(var(--Button-gap)/-2)_0_0]',
+  'ml-[var(--Button-gap)] [display:inherit]',
+]);
 
 const buttonLoadingIndicatorCenterVariants = cva(
   'absolute left-1/2 -translate-x-1/2 [display:inherit]',
@@ -218,8 +209,8 @@ const buttonLoadingIndicatorCenterVariants = cva(
 
 const buttonRootVariants = cva(
   [
-    '[--Icon-color:currentColor]',
-    'relative inline-flex select-none items-center justify-center rounded-md font-semibold leading-normal no-underline [-webkit-tap-highlight-color:transparent]',
+    '[--Icon-margin:initial]',
+    'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold leading-normal no-underline no-underline [-webkit-tap-highlight-color:transparent]',
     [
       token.focusVisible,
       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -247,16 +238,16 @@ const buttonRootVariants = cva(
             '[--CircularProgress-thickness:2px]',
             '[--Button-gap:0.375rem]',
           ],
-          'min-h-[2rem] px-3 py-1 text-[0.875rem]',
+          'min-h-[var(--Button-minHeight,2rem)] px-3 py-[var(--Button-paddingBlock,0.25rem)] text-[0.875rem]',
         ],
         md: [
           [
             '[--Icon-fontSize:1.25rem]',
             '[--CircularProgress-size:20px]',
-            '[--CircularProgress-thickness:3px]',
+            '[--CircularProgress-thickness:2px]',
             '[--Button-gap:0.5rem]',
           ],
-          'min-h-[2.25rem] px-4 py-1.5 text-[0.875rem]',
+          'min-h-[var(--Button-minHeight,2.25rem)] px-4 py-[var(--Button-paddingBlock,0.375rem)] text-[0.875rem]',
         ],
         lg: [
           [
@@ -265,7 +256,7 @@ const buttonRootVariants = cva(
             '[--CircularProgress-thickness:4px]',
             '[--Button-gap:0.75rem]',
           ],
-          'min-h-[2.75rem] px-6 py-2 text-[1rem]',
+          'min-h-[var(--Button-minHeight,2.75rem)] px-6 py-[var(--Button-paddingBlock,0.5rem)] text-[1rem]',
         ],
       },
       variant: {
@@ -280,6 +271,10 @@ const buttonRootVariants = cva(
       },
     },
     compoundVariants: [
+      {
+        color: ['primary', 'danger', 'success', 'warning'],
+        className: '[--Icon-color:currentColor]',
+      },
       {
         color: 'primary',
         variant: 'solid',
@@ -345,8 +340,18 @@ const buttonRootVariants = cva(
       },
       {
         color: 'neutral',
+        variant: ['soft', 'outlined', 'plain'],
+        className: [
+          // joy-neutral-500 dark:joy-neutral-400
+          '[--Icon-color:#636b74] dark:[--Icon-color:#9fa6ad]',
+          'disabled:[--Icon-color:currentColor]',
+        ],
+      },
+      {
+        color: 'neutral',
         variant: 'solid',
         className: [
+          '[--Icon-color:currentColor]',
           neutral.solidBg,
           neutral.solidHoverBg,
           neutral.solidActiveBg,
@@ -643,6 +648,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
     },
     ref,
   ) {
+    const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+
     return (
       <button
         ref={ref}
@@ -661,9 +668,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
         {...otherProps}
       >
         {(startDecorator || (loading && loadingPosition === 'start')) && (
-          <span className={buttonDecoratorVariants({ position: 'start' })}>
+          <span className={buttonStartDecoratorVariants()}>
             {loading
-              ? loadingIndicator ?? <CircularProgress color={color} />
+              ? loadingIndicator ?? (
+                  <CircularProgress color={color} thickness={thickness} />
+                )
               : startDecorator}
           </span>
         )}
@@ -675,13 +684,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
               variant,
             })}
           >
-            {loadingIndicator ?? <CircularProgress color={color} />}
+            {loadingIndicator ?? (
+              <CircularProgress color={color} thickness={thickness} />
+            )}
           </span>
         )}
         {(endDecorator || (loading && loadingPosition === 'end')) && (
-          <span className={buttonDecoratorVariants({ position: 'end' })}>
+          <span className={buttonEndDecoratorVariants()}>
             {loading
-              ? loadingIndicator ?? <CircularProgress color={color} />
+              ? loadingIndicator ?? (
+                  <CircularProgress color={color} thickness={thickness} />
+                )
               : endDecorator}
           </span>
         )}
