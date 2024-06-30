@@ -316,8 +316,7 @@ const iconButtonRootVariants = cva(
         color: 'neutral',
         variant: ['soft', 'outlined', 'plain'],
         className: [
-          // joy-neutral-500 dark:joy-neutral-400
-          '[--Icon-color:#636b74] dark:[--Icon-color:#9fa6ad]',
+          '[--Icon-color:var(--joy-neutral-500)] dark:[--Icon-color:var(--joy-neutral-400)]',
           'hover:[--Icon-color:currentColor]',
           'active:[--Icon-color:currentColor]',
           'disabled:[--Icon-color:currentColor]',
