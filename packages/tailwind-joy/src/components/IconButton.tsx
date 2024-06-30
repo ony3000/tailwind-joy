@@ -200,11 +200,11 @@ const iconButtonLoadingIndicatorVariants = cva(
 
 const iconButtonRootVariants = cva(
   [
-    ['[--Icon-fontSize:calc(var(--IconButton-size,2.25rem)/1.5)]'],
-    'relative m-[var(--IconButton-margin)] inline-flex items-center justify-center rounded-md py-0 font-medium [-webkit-tap-highlight-color:transparent]',
+    '[--Icon-margin:initial]',
+    'relative m-[var(--IconButton-margin)] box-border inline-flex cursor-pointer items-center justify-center rounded-[var(--IconButton-radius,6px)] border-none bg-transparent py-0 font-medium [-webkit-tap-highlight-color:transparent]',
     [
       token.focusVisible,
-      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[--Icon-color:currentColor]',
     ],
     'disabled:pointer-events-none',
   ],
@@ -221,21 +221,25 @@ const iconButtonRootVariants = cva(
         sm: [
           [
             '[--IconButton-size:2rem]',
+            '[--Icon-fontSize:calc(var(--IconButton-size,2rem)/1.6)]',
             '[--CircularProgress-size:20px]',
             '[--CircularProgress-thickness:2px]',
           ],
-          'min-h-[var(--IconButton-size,2rem)] min-w-[var(--IconButton-size,2rem)] px-0.5 text-[0.875rem]',
+          'min-h-[var(--IconButton-size,2rem)] min-w-[var(--IconButton-size,2rem)] px-[2px] text-[0.875rem]',
         ],
         md: [
           [
+            '[--IconButton-size:2.25rem]',
+            '[--Icon-fontSize:calc(var(--IconButton-size,2.25rem)/1.5)]',
             '[--CircularProgress-size:20px]',
-            '[--CircularProgress-thickness:3px]',
+            '[--CircularProgress-thickness:2px]',
           ],
           'min-h-[var(--IconButton-size,2.25rem)] min-w-[var(--IconButton-size,2.25rem)] px-1 text-[1rem]',
         ],
         lg: [
           [
             '[--IconButton-size:2.75rem]',
+            '[--Icon-fontSize:calc(var(--IconButton-size,2.75rem)/1.571)]',
             '[--CircularProgress-size:28px]',
             '[--CircularProgress-thickness:4px]',
           ],
@@ -545,6 +549,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
     },
     ref,
   ) {
+    const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+
     return (
       <button
         ref={ref}
@@ -567,7 +573,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
               variant,
             })}
           >
-            {loadingIndicator ?? <CircularProgress color={color} />}
+            {loadingIndicator ?? (
+              <CircularProgress color={color} thickness={thickness} />
+            )}
           </span>
         ) : (
           children
