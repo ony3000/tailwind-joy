@@ -4,6 +4,13 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "preview": {
+      "cache": false
+    },
+    "test": {
+      "cache": false,
+      "dependsOn": ["tailwind-joy#preview"]
     }
   }
 }

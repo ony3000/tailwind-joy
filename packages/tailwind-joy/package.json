@@ -38,7 +38,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch --minify=false"
+    "dev": "vite build --watch --minify=false",
+    "preview": "vite build --minify=false"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
