@@ -94,6 +94,20 @@ export const joyPreset = {
       colors: {
         joy: joyColors,
       },
+      keyframes: {
+        'joy-circulate': {
+          '0%': {
+            transform: 'rotate(-90deg)',
+          },
+          '100%': {
+            transform: 'rotate(270deg)',
+          },
+        },
+      },
+      animation: {
+        'joy-circulate':
+          'joy-circulate 0.8s linear 0s infinite normal none running',
+      },
     },
   },
   plugins: [
