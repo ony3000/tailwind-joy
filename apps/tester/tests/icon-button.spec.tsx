@@ -8,7 +8,7 @@ import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
 import { IconButton as JoyIconButton } from '@mui/joy';
 import { IconButton as TJIconButton } from 'tailwind-joy/components';
 
-import { App } from '@/App';
+import { App, DarkModeApp } from '@/App';
 import { sleep } from '@/utils';
 
 const basename = sep === '/' ? pathPosix.basename : pathWin32.basename;
@@ -60,7 +60,7 @@ customs.forEach(({ title, props }) => {
       const containerTestId = `container-${testIdBase}`;
       const elementTestId = `element-${testIdBase}`;
 
-      test.describe(hyphenatedVariants, () => {
+      test.describe(`light:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
           const joyComponent = await mount(
             <App>
@@ -83,7 +83,7 @@ customs.forEach(({ title, props }) => {
           );
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-default.png`),
+            path: resolve(screenshotPath, `light-${testIdBase}-default.png`),
           });
           await joyComponent.unmount();
 
@@ -108,7 +108,7 @@ customs.forEach(({ title, props }) => {
           );
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-default.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-default.png`);
           await tjComponent.unmount();
         });
 
@@ -140,7 +140,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(elementTestId).hover();
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-hover.png`),
+            path: resolve(screenshotPath, `light-${testIdBase}-hover.png`),
           });
           await joyComponent.unmount();
 
@@ -166,7 +166,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(elementTestId).hover();
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-hover.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-hover.png`);
           await tjComponent.unmount();
         });
 
@@ -198,7 +198,10 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(containerTestId).press('Tab');
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-focus-visible.png`),
+            path: resolve(
+              screenshotPath,
+              `light-${testIdBase}-focus-visible.png`,
+            ),
           });
           await joyComponent.unmount();
 
@@ -224,7 +227,7 @@ customs.forEach(({ title, props }) => {
           await page.getByTestId(containerTestId).press('Tab');
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-focus-visible.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-focus-visible.png`);
           await tjComponent.unmount();
         });
 
@@ -258,7 +261,7 @@ customs.forEach(({ title, props }) => {
           });
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-active.png`),
+            path: resolve(screenshotPath, `light-${testIdBase}-active.png`),
           });
           await sleep(100);
           await joyComponent.unmount();
@@ -287,7 +290,7 @@ customs.forEach(({ title, props }) => {
           });
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-active.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-active.png`);
           await sleep(100);
           await tjComponent.unmount();
         });
@@ -320,7 +323,7 @@ customs.forEach(({ title, props }) => {
           );
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-disabled.png`),
+            path: resolve(screenshotPath, `light-${testIdBase}-disabled.png`),
           });
           await joyComponent.unmount();
 
@@ -346,7 +349,301 @@ customs.forEach(({ title, props }) => {
           );
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-disabled.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-disabled.png`);
+          await tjComponent.unmount();
+        });
+      });
+
+      test.describe(`dark:${hyphenatedVariants}`, () => {
+        test('default', async ({ page, mount }) => {
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(screenshotPath, `dark-${testIdBase}-default.png`),
+          });
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </TJIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-default.png`);
+          await tjComponent.unmount();
+        });
+
+        test('hover', async ({ page, mount }) => {
+          test.skip(
+            props.loading,
+            'The button is disabled in the loading state',
+          );
+
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(elementTestId).hover();
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(screenshotPath, `dark-${testIdBase}-hover.png`),
+          });
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </TJIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(elementTestId).hover();
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-hover.png`);
+          await tjComponent.unmount();
+        });
+
+        test('focus-visible', async ({ page, mount }) => {
+          test.skip(
+            props.loading,
+            'The button is disabled in the loading state',
+          );
+
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(containerTestId).press('Tab');
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(
+              screenshotPath,
+              `dark-${testIdBase}-focus-visible.png`,
+            ),
+          });
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </TJIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(containerTestId).press('Tab');
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-focus-visible.png`);
+          await tjComponent.unmount();
+        });
+
+        test('active', async ({ page, mount }) => {
+          test.skip(
+            props.loading,
+            'The button is disabled in the loading state',
+          );
+
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          page.getByTestId(elementTestId).click({
+            delay: 100,
+          });
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(screenshotPath, `dark-${testIdBase}-active.png`),
+          });
+          await sleep(100);
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                >
+                  <FavoriteBorderIcon />
+                </TJIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          page.getByTestId(elementTestId).click({
+            delay: 100,
+          });
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-active.png`);
+          await sleep(100);
+          await tjComponent.unmount();
+        });
+
+        test('disabled', async ({ page, mount }) => {
+          test.skip(
+            props.loading,
+            'The button is disabled in the loading state',
+          );
+
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                  disabled
+                >
+                  <FavoriteBorderIcon />
+                </JoyIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(screenshotPath, `dark-${testIdBase}-disabled.png`),
+          });
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJIconButton
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                  disabled
+                >
+                  <FavoriteBorderIcon />
+                </TJIconButton>
+              </div>
+            </DarkModeApp>,
+          );
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-disabled.png`);
           await tjComponent.unmount();
         });
       });

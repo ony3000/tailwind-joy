@@ -8,7 +8,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { CircularProgress as JoyCircularProgress } from '@mui/joy';
 import { CircularProgress as TJCircularProgress } from 'tailwind-joy/components';
 
-import { App } from '@/App';
+import { App, DarkModeApp } from '@/App';
 
 const basename = sep === '/' ? pathPosix.basename : pathWin32.basename;
 const filename = basename(__filename);
@@ -121,7 +121,7 @@ customs.forEach(({ title, props, joyProps, tjProps }) => {
       const containerTestId = `container-${testIdBase}`;
       const elementTestId = `element-${testIdBase}`;
 
-      test.describe(hyphenatedVariants, () => {
+      test.describe(`light:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
           const joyComponent = await mount(
             <App>
@@ -143,7 +143,7 @@ customs.forEach(({ title, props, joyProps, tjProps }) => {
           );
           await page.getByTestId(containerTestId).screenshot({
             animations: 'disabled',
-            path: resolve(screenshotPath, `${testIdBase}-default.png`),
+            path: resolve(screenshotPath, `light-${testIdBase}-default.png`),
           });
           await joyComponent.unmount();
 
@@ -167,7 +167,58 @@ customs.forEach(({ title, props, joyProps, tjProps }) => {
           );
           await expect(
             await page.getByTestId(containerTestId),
-          ).toHaveScreenshot(`${testIdBase}-default.png`);
+          ).toHaveScreenshot(`light-${testIdBase}-default.png`);
+          await tjComponent.unmount();
+        });
+      });
+
+      test.describe(`dark:${hyphenatedVariants}`, () => {
+        test('default', async ({ page, mount }) => {
+          const joyComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <JoyCircularProgress
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                  {...joyProps}
+                />
+              </div>
+            </DarkModeApp>,
+          );
+          await page.getByTestId(containerTestId).screenshot({
+            animations: 'disabled',
+            path: resolve(screenshotPath, `dark-${testIdBase}-default.png`),
+          });
+          await joyComponent.unmount();
+
+          const tjComponent = await mount(
+            <DarkModeApp>
+              <div
+                data-testid={containerTestId}
+                tabIndex={0}
+                className={containerClassName}
+              >
+                <TJCircularProgress
+                  data-testid={elementTestId}
+                  size={size}
+                  variant={variant}
+                  color={color}
+                  {...props}
+                  {...tjProps}
+                />
+              </div>
+            </DarkModeApp>,
+          );
+          await expect(
+            await page.getByTestId(containerTestId),
+          ).toHaveScreenshot(`dark-${testIdBase}-default.png`);
           await tjComponent.unmount();
         });
       });

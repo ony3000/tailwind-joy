@@ -1,14 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  html.dark {
-    color-scheme: dark;
-  }
-
-  html.dark body {
-    background-color: theme('colors.slate.900');
-    color: theme('colors.white');
-  }
-}
