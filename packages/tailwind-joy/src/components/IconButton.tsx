@@ -220,7 +220,6 @@ const iconButtonRootVariants = cva(
       size: {
         sm: [
           [
-            '[--IconButton-size:2rem]',
             '[--Icon-fontSize:calc(var(--IconButton-size,2rem)/1.6)]',
             '[--CircularProgress-size:20px]',
             '[--CircularProgress-thickness:2px]',
@@ -229,7 +228,6 @@ const iconButtonRootVariants = cva(
         ],
         md: [
           [
-            '[--IconButton-size:2.25rem]',
             '[--Icon-fontSize:calc(var(--IconButton-size,2.25rem)/1.5)]',
             '[--CircularProgress-size:20px]',
             '[--CircularProgress-thickness:2px]',
@@ -238,13 +236,20 @@ const iconButtonRootVariants = cva(
         ],
         lg: [
           [
-            '[--IconButton-size:2.75rem]',
             '[--Icon-fontSize:calc(var(--IconButton-size,2.75rem)/1.571)]',
             '[--CircularProgress-size:28px]',
             '[--CircularProgress-thickness:4px]',
           ],
           'min-h-[var(--IconButton-size,2.75rem)] min-w-[var(--IconButton-size,2.75rem)] px-1.5 text-[1.125rem]',
         ],
+      },
+      /**
+       * The explicit `size` provided to the component.
+       */
+      instanceSize: {
+        sm: '[--IconButton-size:2rem]',
+        md: '[--IconButton-size:2.25rem]',
+        lg: '[--IconButton-size:2.75rem]',
       },
       variant: {
         solid: '',
@@ -540,7 +545,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
       className,
       disabled,
       color = 'neutral',
-      size = 'md',
+      size,
       variant = 'plain',
       loading,
       loadingIndicator,
@@ -557,7 +562,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
         className={twMerge(
           iconButtonRootVariants({
             color,
-            size,
+            size: size ?? 'md',
+            instanceSize: size,
             variant,
           }),
           className,

@@ -64,20 +64,25 @@ const circularProgressRootVariants = cva(
           '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,3px))]',
           '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,3px))]',
           '[--_root-size:var(--CircularProgress-size,24px)]',
-          '[--CircularProgress-size:24px]',
         ],
         md: [
           '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,6px))]',
           '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,6px))]',
           '[--_root-size:var(--CircularProgress-size,40px)]',
-          '[--CircularProgress-size:40px]',
         ],
         lg: [
           '[--_track-thickness:var(--CircularProgress-trackThickness,var(--CircularProgress-thickness,8px))]',
           '[--_progress-thickness:var(--CircularProgress-progressThickness,var(--CircularProgress-thickness,8px))]',
           '[--_root-size:var(--CircularProgress-size,64px)]',
-          '[--CircularProgress-size:64px]',
         ],
+      },
+      /**
+       * The explicit `size` provided to the component.
+       */
+      instanceSize: {
+        sm: '[--CircularProgress-size:24px]',
+        md: '[--CircularProgress-size:40px]',
+        lg: '[--CircularProgress-size:64px]',
       },
       variant: {
         solid: '',
@@ -312,7 +317,7 @@ export const CircularProgress = forwardRef<
     children,
     className,
     color = 'primary',
-    size = 'md',
+    size,
     variant = 'soft',
     thickness,
     determinate,
@@ -328,7 +333,8 @@ export const CircularProgress = forwardRef<
       className={twMerge(
         circularProgressRootVariants({
           color,
-          size,
+          size: size ?? 'md',
+          instanceSize: size,
           variant,
           determinate,
         }),
