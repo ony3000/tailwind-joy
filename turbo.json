@@ -11,6 +11,10 @@
     "test": {
       "cache": false,
       "dependsOn": ["tailwind-joy#preview"]
+    },
+    "build": {
+      "cache": false,
+      "dependsOn": ["^build"]
     }
   }
 }
