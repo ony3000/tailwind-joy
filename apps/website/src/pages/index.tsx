@@ -5,6 +5,8 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
+import { Button } from 'tailwind-joy/components';
+
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -17,10 +19,15 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+          <Link to="/docs/intro">
+            <Button
+              size="lg"
+              color="neutral"
+              variant="soft"
+              className="font-[inherit]"
+            >
+              Docusaurus Tutorial - 5min ⏱️
+            </Button>
           </Link>
         </div>
       </div>

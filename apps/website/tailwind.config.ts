@@ -1,13 +1,17 @@
 import type { Config } from 'tailwindcss';
+import { joyPreset } from 'tailwind-joy/theme';
 
 export default {
   corePlugins: {
     preflight: false,
   },
+  presets: [joyPreset],
+  darkMode: ['selector', '[data-theme="dark"]'],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './docs/**/*.{js,ts,jsx,tsx}',
     './blog/**/*.{js,ts,jsx,tsx}',
+    './node_modules/tailwind-joy/**',
   ],
   theme: {
     screens: {
