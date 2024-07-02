@@ -1,6 +1,5 @@
 import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef } from 'react';
-import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
@@ -614,7 +613,11 @@ const buttonRootVariants = cva(
   },
 );
 
-interface ButtonRootVariants extends VariantProps<typeof buttonRootVariants> {
+interface ButtonRootVariants {
+  color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
+  fullWidth?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'solid' | 'soft' | 'outlined' | 'plain';
   startDecorator?: ReactNode;
   endDecorator?: ReactNode;
   loading?: boolean;

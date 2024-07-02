@@ -1,6 +1,5 @@
 import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
-import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import { r } from '../alias';
@@ -297,8 +296,11 @@ const circularProgressRootVariants = cva(
   },
 );
 
-interface CircularProgressRootVariants
-  extends VariantProps<typeof circularProgressRootVariants> {
+interface CircularProgressRootVariants {
+  color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'solid' | 'soft' | 'outlined' | 'plain';
+  determinate?: boolean;
   thickness?: number;
   value?: number;
 }
