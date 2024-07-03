@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+# Overview
+
+## Introduction
+
+Tailwind-Joy is an open-source React component library that styles the components of Joy UI (an alternative to Material UI) in the Tailwind CSS way.
+
+## Why use Tailwind-Joy
+
+Visually equivalent to Joy UI, but does not depend on Emotion. Of course, it does not depend on styled-components either.
+
+For example, comparing the button components:
+
+import { Button as JoyButton } from '@mui/joy';
+import { Button as TJButton } from 'tailwind-joy/components';
+
+export function GridItem({ children }) {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex-1 rounded-lg border border-solid p-4">
+      {children}
+    </div>
+  );
+}
+
+<div className="grid grid-cols-1 gap-4 min-[375px]:grid-cols-2">
+  <GridItem>
+    <h3>Joy UI</h3>
+    <div>
+      <JoyButton
+        color="primary"
+        size="md"
+        variant="solid"
+        className="!font-[inherit]"
+      >
+        <span>Button</span>
+      </JoyButton>
+    </div>
+  </GridItem>
+  <GridItem>
+    <h3>Tailwind-Joy</h3>
+    <div>
+      <TJButton
+        color="primary"
+        size="md"
+        variant="solid"
+        className="font-[inherit]"
+      >
+        <span>Button</span>
+      </TJButton>
+    </div>
+  </GridItem>
+</div>

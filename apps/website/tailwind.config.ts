@@ -9,7 +9,7 @@ export default {
   darkMode: ['selector', '[data-theme="dark"]'],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './docs/**/*.{js,ts,jsx,tsx}',
+    './docs/**/*.{js,ts,md,jsx,tsx,mdx}',
     './blog/**/*.{js,ts,jsx,tsx}',
     './node_modules/tailwind-joy/**',
   ],
