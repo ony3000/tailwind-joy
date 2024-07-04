@@ -210,7 +210,7 @@ const buttonLoadingIndicatorCenterVariants = cva(
 const buttonRootVariants = cva(
   [
     '[--Icon-margin:initial]',
-    'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold leading-normal no-underline [-webkit-tap-highlight-color:transparent]',
+    'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold no-underline [-webkit-tap-highlight-color:transparent]',
     [
       token.focusVisible,
       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -238,7 +238,7 @@ const buttonRootVariants = cva(
             '[--CircularProgress-thickness:2px]',
             '[--Button-gap:0.375rem]',
           ],
-          'min-h-[var(--Button-minHeight,2rem)] px-3 py-[var(--Button-paddingBlock,0.25rem)] text-[0.875rem]',
+          'min-h-[var(--Button-minHeight,2rem)] px-3 py-[var(--Button-paddingBlock,0.25rem)] text-[0.875rem] leading-normal',
         ],
         md: [
           [
@@ -247,7 +247,7 @@ const buttonRootVariants = cva(
             '[--CircularProgress-thickness:2px]',
             '[--Button-gap:0.5rem]',
           ],
-          'min-h-[var(--Button-minHeight,2.25rem)] px-4 py-[var(--Button-paddingBlock,0.375rem)] text-[0.875rem]',
+          'min-h-[var(--Button-minHeight,2.25rem)] px-4 py-[var(--Button-paddingBlock,0.375rem)] text-[0.875rem] leading-normal',
         ],
         lg: [
           [
@@ -256,7 +256,7 @@ const buttonRootVariants = cva(
             '[--CircularProgress-thickness:4px]',
             '[--Button-gap:0.75rem]',
           ],
-          'min-h-[var(--Button-minHeight,2.75rem)] px-6 py-[var(--Button-paddingBlock,0.5rem)] text-[1rem]',
+          'min-h-[var(--Button-minHeight,2.75rem)] px-6 py-[var(--Button-paddingBlock,0.5rem)] text-[1rem] leading-normal',
         ],
       },
       variant: {
