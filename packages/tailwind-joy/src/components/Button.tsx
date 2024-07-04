@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
+import type { BaseVariants } from '../base';
 import { token } from '../color-tokens';
 
 const { primary, neutral, danger, success, warning } = token;
@@ -613,11 +614,8 @@ const buttonRootVariants = cva(
   },
 );
 
-interface ButtonRootVariants {
-  color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
+interface ButtonRootVariants extends BaseVariants {
   fullWidth?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'solid' | 'soft' | 'outlined' | 'plain';
   startDecorator?: ReactNode;
   endDecorator?: ReactNode;
   loading?: boolean;
