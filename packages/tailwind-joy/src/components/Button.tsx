@@ -210,7 +210,7 @@ const buttonLoadingIndicatorCenterVariants = cva(
 const buttonRootVariants = cva(
   [
     '[--Icon-margin:initial]',
-    'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold leading-normal no-underline no-underline [-webkit-tap-highlight-color:transparent]',
+    'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold leading-normal no-underline [-webkit-tap-highlight-color:transparent]',
     [
       token.focusVisible,
       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
