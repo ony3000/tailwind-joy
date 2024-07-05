@@ -94,6 +94,9 @@ export const joyPreset = {
       colors: {
         joy: joyColors,
       },
+      screens: {
+        'non-touchscreen': { raw: '(hover: hover) and (pointer: fine)' },
+      },
       keyframes: {
         'joy-circulate': {
           '0%': {
