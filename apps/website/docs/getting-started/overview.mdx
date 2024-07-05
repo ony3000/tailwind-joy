@@ -14,6 +14,7 @@ Visually equivalent to Joy UI, but does not depend on Emotion. Of course, it doe
 
 For example, comparing the button components:
 
+import { CssVarsProvider } from '@mui/joy/styles';
 import { Button as JoyButton } from '@mui/joy';
 import { Button as TJButton } from 'tailwind-joy/components';
 
@@ -27,17 +28,19 @@ export function GridItem({ children }) {
 
 <div className="grid grid-cols-1 gap-4 min-[375px]:grid-cols-2">
   <GridItem>
-    <h3>Joy UI</h3>
-    <div>
-      <JoyButton
-        color="primary"
-        size="md"
-        variant="solid"
-        className="!font-[inherit]"
-      >
-        <span>Button</span>
-      </JoyButton>
-    </div>
+    <CssVarsProvider modeStorageKey="theme">
+      <h3>Joy UI</h3>
+      <div>
+        <JoyButton
+          color="primary"
+          size="md"
+          variant="solid"
+          className="!font-[inherit]"
+        >
+          <span>Button</span>
+        </JoyButton>
+      </div>
+    </CssVarsProvider>
   </GridItem>
   <GridItem>
     <h3>Tailwind-Joy</h3>
