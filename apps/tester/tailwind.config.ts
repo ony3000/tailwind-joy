@@ -1,8 +1,7 @@
 import type { Config } from 'tailwindcss';
-import { joyPreset } from 'tailwind-joy/theme';
+import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
 
 export default {
-  presets: [joyPreset],
   darkMode: 'selector',
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
@@ -10,7 +9,11 @@ export default {
     './node_modules/tailwind-joy/**',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: joyTheme.colors,
+      keyframes: joyTheme.keyframes,
+      animation: joyTheme.animation,
+    },
   },
-  plugins: [],
+  plugins: [joyPlugin],
 } satisfies Config;

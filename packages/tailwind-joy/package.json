@@ -31,9 +31,9 @@
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
     },
-    "./theme": {
-      "import": "./dist/theme.js",
-      "require": "./dist/theme.cjs"
+    "./tw-extension": {
+      "import": "./dist/tw-extension.js",
+      "require": "./dist/tw-extension.cjs"
     }
   },
   "scripts": {

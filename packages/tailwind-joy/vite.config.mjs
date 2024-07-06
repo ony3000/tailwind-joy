@@ -9,12 +9,12 @@ export default defineConfig({
       entry: [
         resolve(__dirname, 'src/components.ts'),
         resolve(__dirname, 'src/index.ts'),
-        resolve(__dirname, 'src/theme.ts'),
+        resolve(__dirname, 'src/tw-extension.ts'),
       ],
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime'],
+      external: ['react', 'react/jsx-runtime', 'tailwindcss'],
     },
   },
   plugins: [

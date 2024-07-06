@@ -1,11 +1,10 @@
 import type { Config } from 'tailwindcss';
-import { joyPreset } from 'tailwind-joy/theme';
+import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
 
 export default {
   corePlugins: {
     preflight: false,
   },
-  presets: [joyPreset],
   darkMode: ['selector', '[data-theme="dark"]'],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
@@ -17,7 +16,11 @@ export default {
     screens: {
       // Left empty to avoid conflict with the `container` class.
     },
-    extend: {},
+    extend: {
+      colors: joyTheme.colors,
+      keyframes: joyTheme.keyframes,
+      animation: joyTheme.animation,
+    },
   },
-  plugins: [],
+  plugins: [joyPlugin],
 } satisfies Config;
