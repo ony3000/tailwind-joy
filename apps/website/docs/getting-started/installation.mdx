@@ -1,0 +1,121 @@
+---
+sidebar_position: 2
+---
+
+# Installation
+
+## Default installation
+
+Run one of the following commands to add Tailwind-Joy to your project:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="npm">
+
+```bash
+npm install tailwind-joy
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```bash
+yarn add tailwind-joy
+```
+
+</TabItem>
+<TabItem value="pnpm">
+
+```bash
+pnpm add tailwind-joy
+```
+
+</TabItem>
+</Tabs>
+
+### Peer dependencies
+
+Please note that [react](https://www.npmjs.com/package/react), [react-dom](https://www.npmjs.com/package/react-dom) and [tailwindcss](https://www.npmjs.com/package/tailwindcss) are peer dependencies, meaning you should ensure they are installed.
+
+```
+"peerDependencies": {
+  "react": "^18",
+  "react-dom": "^18",
+  "tailwindcss": "^3"
+},
+```
+
+## Extend Tailwind CSS configuration
+
+Tailwind-Joy does not export CSS; instead, the class name of the Tailwind CSS syntax is embedded in the component's `className` property.
+
+Therefore, you need to extend the Tailwind CSS configuration to make the components of Tailwind-Joy as if they were part of your project.
+
+### Import module
+
+<Tabs>
+<TabItem value="CJS">
+
+```jsx
+const { joyTheme, joyPlugin } = require('tailwind-joy/tw-extension');
+```
+
+</TabItem>
+<TabItem value="ESM">
+
+```jsx
+import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
+```
+
+</TabItem>
+</Tabs>
+
+### Extend `content`
+
+```jsx
+{
+  content: [
+    // Add this to your `content`
+    './node_modules/tailwind-joy/**',
+  ],
+}
+```
+
+### Extend `theme`
+
+```jsx
+{
+  theme: {
+    extend: {
+      // Add these to your `theme.extend`
+      colors: joyTheme.colors,
+      keyframes: joyTheme.keyframes,
+      animation: joyTheme.animation,
+
+      // Or, if you already have an extended property, use the spread syntax.
+      colors: {
+        ...joyTheme.colors,
+      },
+      keyframes: {
+        ...joyTheme.keyframes,
+      },
+      animation: {
+        ...joyTheme.animation,
+      },
+    },
+  },
+}
+```
+
+### Extend `plugins`
+
+```jsx
+{
+  plugins: [
+    // Add this to your `plugins`
+    joyPlugin,
+  ],
+}
+```
