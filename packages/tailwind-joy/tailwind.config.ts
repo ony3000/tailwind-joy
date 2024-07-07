@@ -1,11 +1,14 @@
 import type { Config } from 'tailwindcss';
-import { joyPreset } from './src/theme';
+import { joyTheme, joyPlugin } from './src/tw-extension';
 
 export default {
-  presets: [joyPreset],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: joyTheme.colors,
+      keyframes: joyTheme.keyframes,
+      animation: joyTheme.animation,
+    },
   },
-  plugins: [],
+  plugins: [joyPlugin],
 } satisfies Config;
