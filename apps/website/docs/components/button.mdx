@@ -1,0 +1,283 @@
+---
+sidebar_position: 1
+---
+
+# Button
+
+Buttons let users take actions and make choices with a single tap.
+
+## Basics
+
+import { Button } from 'tailwind-joy/components';
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+```
+
+The Tailwind-Joy Button behaves similarly to the native HTML `<button>`, so it wraps around the text displayed on its surface.
+
+The demo below shows the three basic states available to the Button: default, disabled, and loading.
+
+export function ButtonBasics() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]">Button</Button>
+      <Button className="font-[inherit]" disabled>
+        Disabled
+      </Button>
+      <Button className="font-[inherit]" loading>
+        Loading
+      </Button>
+    </div>
+  );
+}
+
+<ButtonBasics />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonBasics() {
+  return (
+    <div>
+      <Button>Button</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </div>
+  );
+}
+```
+
+### Disabled
+
+Use the `disabled` prop to disable interaction and focus:
+
+export function ButtonDisabled() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]" disabled variant="solid">
+        Solid
+      </Button>
+      <Button className="font-[inherit]" disabled variant="soft">
+        Soft
+      </Button>
+      <Button className="font-[inherit]" disabled variant="outlined">
+        Outlined
+      </Button>
+      <Button className="font-[inherit]" disabled variant="plain">
+        Plain
+      </Button>
+    </div>
+  );
+}
+
+<ButtonDisabled />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonDisabled() {
+  return (
+    <div>
+      <Button disabled variant="solid">
+        Solid
+      </Button>
+      <Button disabled variant="soft">
+        Soft
+      </Button>
+      <Button disabled variant="outlined">
+        Outlined
+      </Button>
+      <Button disabled variant="plain">
+        Plain
+      </Button>
+    </div>
+  );
+}
+```
+
+### Loading
+
+Add the `loading` prop to show the Button's loading state. The Button is [disabled](#disabled) as long as it's loading. See [Loading indicator](#) and [Loading position](#) for customization options.
+
+export function ButtonLoading() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]" loading variant="solid">
+        Solid
+      </Button>
+      <Button className="font-[inherit]" loading variant="soft">
+        Soft
+      </Button>
+      <Button className="font-[inherit]" loading variant="outlined">
+        Outlined
+      </Button>
+      <Button className="font-[inherit]" loading variant="plain">
+        Plain
+      </Button>
+    </div>
+  );
+}
+
+<ButtonLoading />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonLoading() {
+  return (
+    <div>
+      <Button loading variant="solid">
+        Solid
+      </Button>
+      <Button loading variant="soft">
+        Soft
+      </Button>
+      <Button loading variant="outlined">
+        Outlined
+      </Button>
+      <Button loading variant="plain">
+        Plain
+      </Button>
+    </div>
+  );
+}
+```
+
+## Customization
+
+### Variants
+
+The Button component supports four variants: `solid` (default), `soft`, `outlined`, and `plain`.
+
+export function ButtonVariants() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]" variant="solid">
+        Solid
+      </Button>
+      <Button className="font-[inherit]" variant="soft">
+        Soft
+      </Button>
+      <Button className="font-[inherit]" variant="outlined">
+        Outlined
+      </Button>
+      <Button className="font-[inherit]" variant="plain">
+        Plain
+      </Button>
+    </div>
+  );
+}
+
+<ButtonVariants />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonVariants() {
+  return (
+    <div>
+      <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="plain">Plain</Button>
+    </div>
+  );
+}
+```
+
+### Sizes
+
+The Button component supports three sizes: `sm`, `md` (default), and `lg`.
+
+export function ButtonSizes() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]" size="sm">
+        Small
+      </Button>
+      <Button className="font-[inherit]" size="md">
+        Medium
+      </Button>
+      <Button className="font-[inherit]" size="lg">
+        Large
+      </Button>
+    </div>
+  );
+}
+
+<ButtonSizes />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonSizes() {
+  return (
+    <div>
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </div>
+  );
+}
+```
+
+### Colors
+
+The Button component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
+
+export function ButtonColors() {
+  return (
+    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
+      <Button className="font-[inherit]" color="primary">
+        Primary
+      </Button>
+      <Button className="font-[inherit]" color="neutral">
+        Neutral
+      </Button>
+      <Button className="font-[inherit]" color="danger">
+        Danger
+      </Button>
+      <Button className="font-[inherit]" color="success">
+        Success
+      </Button>
+      <Button className="font-[inherit]" color="warning">
+        Warning
+      </Button>
+    </div>
+  );
+}
+
+<ButtonColors />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonColors() {
+  return (
+    <div>
+      <Button color="primary">Primary</Button>
+      <Button color="neutral">Neutral</Button>
+      <Button color="danger">Danger</Button>
+      <Button color="success">Success</Button>
+      <Button color="warning">Warning</Button>
+    </div>
+  );
+}
+```
+
+### Decorators
+
+### Loading indicator
+
+### Loading position
+
+### Link Button
+
+### File upload
+
+## Icon Button
+
+## Anatomy
+
+## API
