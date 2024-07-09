@@ -132,8 +132,7 @@ const circularProgressRootVariants = cva(
           '[--CircularProgress-progressColor:var(--joy-primary-500)] dark:[--CircularProgress-progressColor:var(--joy-primary-200)]',
           primary.outlinedColor,
           primary.outlinedBorder,
-          // same as primary.outlinedBorder.replace(/border-/g, 'before:border-')
-          'before:border-joy-primary-300 dark:before:border-joy-primary-700',
+          primary.outlinedBorder.replace(/border-/g, 'before:border-'),
         ],
       },
       {
@@ -168,8 +167,7 @@ const circularProgressRootVariants = cva(
           '[--CircularProgress-progressColor:var(--joy-neutral-700)] dark:[--CircularProgress-progressColor:var(--joy-neutral-200)]',
           neutral.outlinedColor,
           neutral.outlinedBorder,
-          // same as neutral.outlinedBorder.replace(/border-/g, 'before:border-')
-          'before:border-joy-neutral-300 dark:before:border-joy-neutral-700',
+          neutral.outlinedBorder.replace(/border-/g, 'before:border-'),
         ],
       },
       {
@@ -204,8 +202,7 @@ const circularProgressRootVariants = cva(
           '[--CircularProgress-progressColor:var(--joy-danger-500)] dark:[--CircularProgress-progressColor:var(--joy-danger-200)]',
           danger.outlinedColor,
           danger.outlinedBorder,
-          // same as danger.outlinedBorder.replace(/border-/g, 'before:border-')
-          'before:border-joy-danger-300 dark:before:border-joy-danger-700',
+          danger.outlinedBorder.replace(/border-/g, 'before:border-'),
         ],
       },
       {
@@ -240,8 +237,7 @@ const circularProgressRootVariants = cva(
           '[--CircularProgress-progressColor:var(--joy-success-500)] dark:[--CircularProgress-progressColor:var(--joy-success-200)]',
           success.outlinedColor,
           success.outlinedBorder,
-          // same as success.outlinedBorder.replace(/border-/g, 'before:border-')
-          'before:border-joy-success-300 dark:before:border-joy-success-700',
+          success.outlinedBorder.replace(/border-/g, 'before:border-'),
         ],
       },
       {
@@ -276,8 +272,7 @@ const circularProgressRootVariants = cva(
           '[--CircularProgress-progressColor:var(--joy-warning-500)] dark:[--CircularProgress-progressColor:var(--joy-warning-200)]',
           warning.outlinedColor,
           warning.outlinedBorder,
-          // same as warning.outlinedBorder.replace(/border-/g, 'before:border-')
-          'before:border-joy-warning-300 dark:before:border-joy-warning-700',
+          warning.outlinedBorder.replace(/border-/g, 'before:border-'),
         ],
       },
       {

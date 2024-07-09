@@ -43,162 +43,102 @@ const buttonLoadingIndicatorCenterVariants = cva(
       {
         color: 'primary',
         variant: 'solid',
-        className: [
-          // same as primary.solidDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: primary.solidDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'primary',
         variant: 'soft',
-        className: [
-          // same as primary.softDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: primary.softDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'primary',
         variant: 'outlined',
-        className: [
-          // same as primary.outlinedDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: primary.outlinedDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'primary',
         variant: 'plain',
-        className: [
-          // same as primary.plainDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: primary.plainDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'neutral',
         variant: 'solid',
-        className: [
-          // same as neutral.solidDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: neutral.solidDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'neutral',
         variant: 'soft',
-        className: [
-          // same as neutral.softDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: neutral.softDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'neutral',
         variant: 'outlined',
-        className: [
-          // same as neutral.outlinedDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: neutral.outlinedDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'neutral',
         variant: 'plain',
-        className: [
-          // same as neutral.plainDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: neutral.plainDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'danger',
         variant: 'solid',
-        className: [
-          // same as danger.solidDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: danger.solidDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'danger',
         variant: 'soft',
-        className: [
-          // same as danger.softDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: danger.softDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'danger',
         variant: 'outlined',
-        className: [
-          // same as danger.outlinedDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: danger.outlinedDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'danger',
         variant: 'plain',
-        className: [
-          // same as danger.plainDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: danger.plainDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'success',
         variant: 'solid',
-        className: [
-          // same as success.solidDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: success.solidDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'success',
         variant: 'soft',
-        className: [
-          // same as success.softDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: success.softDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'success',
         variant: 'outlined',
-        className: [
-          // same as success.outlinedDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: success.outlinedDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'success',
         variant: 'plain',
-        className: [
-          // same as success.plainDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: success.plainDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'warning',
         variant: 'solid',
-        className: [
-          // same as warning.solidDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: warning.solidDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'warning',
         variant: 'soft',
-        className: [
-          // same as warning.softDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: warning.softDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'warning',
         variant: 'outlined',
-        className: [
-          // same as warning.outlinedDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: warning.outlinedDisabledColor.replace(/disabled:/g, ''),
       },
       {
         color: 'warning',
         variant: 'plain',
-        className: [
-          // same as warning.plainDisabledColor.replace(/disabled:/g, '')
-          'text-joy-neutral-400 dark:text-joy-neutral-500',
-        ],
+        className: warning.plainDisabledColor.replace(/disabled:/g, ''),
       },
     ],
     defaultVariants: {
