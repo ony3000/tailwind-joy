@@ -2,6 +2,7 @@ import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
+import type { GeneratorInput } from '@/base/types';
 import { r } from '../alias';
 import type { BaseVariants } from '../base';
 import { token } from '../color-tokens';
@@ -364,3 +365,30 @@ export const CircularProgress = forwardRef<
     </span>
   );
 });
+
+export const generatorInputs: GeneratorInput[] = [
+  {
+    generatorFn: circularProgressSvgVariants,
+    variants: {},
+  },
+  {
+    generatorFn: circularProgressTrackVariants,
+    variants: {},
+  },
+  {
+    generatorFn: circularProgressProgressVariants,
+    variants: {
+      determinate: [false, true],
+    },
+  },
+  {
+    generatorFn: circularProgressRootVariants,
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      size: ['sm', 'md', 'lg'],
+      instanceSize: [undefined, 'sm', 'md', 'lg'],
+      variant: ['solid', 'soft', 'outlined', 'plain'],
+      determinate: [false, true],
+    },
+  },
+];

@@ -58,15 +58,17 @@ Therefore, you need to extend the Tailwind CSS configuration to make the compone
 <Tabs>
 <TabItem value="CJS">
 
+<!-- prettier-ignore -->
 ```jsx
-const { joyTheme, joyPlugin } = require('tailwind-joy/tw-extension');
+const { prebuiltContent, joyTheme, joyPlugin } = require('tailwind-joy/tw-extension');
 ```
 
 </TabItem>
 <TabItem value="ESM">
 
+<!-- prettier-ignore -->
 ```jsx
-import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
+import { prebuiltContent, joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
 ```
 
 </TabItem>
@@ -78,7 +80,7 @@ import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
 {
   content: [
     // Add this to your `content`
-    './node_modules/tailwind-joy/**',
+    { raw: prebuiltContent },
   ],
 }
 ```

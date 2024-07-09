@@ -3,6 +3,7 @@ import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
+import type { GeneratorInput } from '@/base/types';
 import type { BaseVariants } from '../base';
 import { token } from '../color-tokens';
 
@@ -588,3 +589,22 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
     );
   },
 );
+
+export const generatorInputs: GeneratorInput[] = [
+  {
+    generatorFn: iconButtonLoadingIndicatorVariants,
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      variant: ['solid', 'soft', 'outlined', 'plain'],
+    },
+  },
+  {
+    generatorFn: iconButtonRootVariants,
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      size: ['sm', 'md', 'lg'],
+      instanceSize: [undefined, 'sm', 'md', 'lg'],
+      variant: ['solid', 'soft', 'outlined', 'plain'],
+    },
+  },
+];

@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
+import { safelistGenerator } from './src/plugins/safelist-generator';
 
 export default defineConfig({
   build: {
@@ -23,6 +24,7 @@ export default defineConfig({
       include: ['src/**'],
     }),
     react(),
+    safelistGenerator(),
   ],
   resolve: {
     alias: {

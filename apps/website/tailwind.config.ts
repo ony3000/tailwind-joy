@@ -1,5 +1,9 @@
 import type { Config } from 'tailwindcss';
-import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
+import {
+  prebuiltContent,
+  joyTheme,
+  joyPlugin,
+} from 'tailwind-joy/tw-extension';
 
 export default {
   corePlugins: {
@@ -10,7 +14,7 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}',
     './docs/**/*.{js,ts,md,jsx,tsx,mdx}',
     './blog/**/*.{js,ts,jsx,tsx}',
-    './node_modules/tailwind-joy/**',
+    { raw: prebuiltContent },
   ],
   theme: {
     screens: {

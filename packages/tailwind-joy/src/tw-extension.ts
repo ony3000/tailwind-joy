@@ -4,6 +4,10 @@ import { joyColors as baseColors } from './base/colors';
 
 // ----------------------------------------------------------------
 
+export const prebuiltContent: string = '__REPLACE_ME__';
+
+// ----------------------------------------------------------------
+
 type ExtendableTheme = NonNullable<NonNullable<Config['theme']>['extend']>;
 
 export const joyTheme: Pick<
