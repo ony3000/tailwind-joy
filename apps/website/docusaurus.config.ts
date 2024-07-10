@@ -38,6 +38,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/ony3000/tailwind-joy/tree/master/apps/website/',
+          remarkPlugins: [require('@docusaurus/remark-plugin-npm2yarn')],
         },
         blog: {
           showReadingTime: true,
