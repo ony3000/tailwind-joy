@@ -16,10 +16,6 @@ Visually equivalent to Joy UI (except for the `font-family`[^1]), but does not d
 
 For example, comparing the button components:
 
-import { CssVarsProvider } from '@mui/joy/styles';
-import { Button as JoyButton } from '@mui/joy';
-import { Button as TJButton } from 'tailwind-joy/components';
-
 export function GridItem({ children }) {
   return (
     <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex-1 rounded-lg border border-solid p-4">
@@ -47,14 +43,14 @@ export function GridItem({ children }) {
   <GridItem>
     <h3>Tailwind-Joy</h3>
     <div>
-      <TJButton
+      <Button
         color="primary"
         size="md"
         variant="solid"
         className="font-[inherit]"
       >
         <span>Button</span>
-      </TJButton>
+      </Button>
     </div>
   </GridItem>
 </div>
