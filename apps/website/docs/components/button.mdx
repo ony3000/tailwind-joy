@@ -18,15 +18,11 @@ The demo below shows the three basic states available to the Button: default, di
 
 export function ButtonBasics() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]">Button</Button>
-      <Button className="font-[inherit]" disabled>
-        Disabled
-      </Button>
-      <Button className="font-[inherit]" loading>
-        Loading
-      </Button>
-    </div>
+    <DisplayStand>
+      <Button>Button</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+    </DisplayStand>
   );
 }
 
@@ -52,20 +48,20 @@ Use the `disabled` prop to disable interaction and focus:
 
 export function ButtonDisabled() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]" disabled variant="solid">
+    <DisplayStand>
+      <Button disabled variant="solid">
         Solid
       </Button>
-      <Button className="font-[inherit]" disabled variant="soft">
+      <Button disabled variant="soft">
         Soft
       </Button>
-      <Button className="font-[inherit]" disabled variant="outlined">
+      <Button disabled variant="outlined">
         Outlined
       </Button>
-      <Button className="font-[inherit]" disabled variant="plain">
+      <Button disabled variant="plain">
         Plain
       </Button>
-    </div>
+    </DisplayStand>
   );
 }
 
@@ -100,20 +96,20 @@ Add the `loading` prop to show the Button's loading state. The Button is [disabl
 
 export function ButtonLoading() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]" loading variant="solid">
+    <DisplayStand>
+      <Button loading variant="solid">
         Solid
       </Button>
-      <Button className="font-[inherit]" loading variant="soft">
+      <Button loading variant="soft">
         Soft
       </Button>
-      <Button className="font-[inherit]" loading variant="outlined">
+      <Button loading variant="outlined">
         Outlined
       </Button>
-      <Button className="font-[inherit]" loading variant="plain">
+      <Button loading variant="plain">
         Plain
       </Button>
-    </div>
+    </DisplayStand>
   );
 }
 
@@ -150,20 +146,12 @@ The Button component supports four variants: `solid` (default), `soft`, `outline
 
 export function ButtonVariants() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]" variant="solid">
-        Solid
-      </Button>
-      <Button className="font-[inherit]" variant="soft">
-        Soft
-      </Button>
-      <Button className="font-[inherit]" variant="outlined">
-        Outlined
-      </Button>
-      <Button className="font-[inherit]" variant="plain">
-        Plain
-      </Button>
-    </div>
+    <DisplayStand>
+      <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="plain">Plain</Button>
+    </DisplayStand>
   );
 }
 
@@ -190,17 +178,11 @@ The Button component supports three sizes: `sm`, `md` (default), and `lg`.
 
 export function ButtonSizes() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]" size="sm">
-        Small
-      </Button>
-      <Button className="font-[inherit]" size="md">
-        Medium
-      </Button>
-      <Button className="font-[inherit]" size="lg">
-        Large
-      </Button>
-    </div>
+    <DisplayStand>
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </DisplayStand>
   );
 }
 
@@ -226,23 +208,13 @@ The Button component supports five colors: `primary` (default), `neutral`, `dang
 
 export function ButtonColors() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex items-center justify-center gap-x-4 rounded-lg border border-solid p-4">
-      <Button className="font-[inherit]" color="primary">
-        Primary
-      </Button>
-      <Button className="font-[inherit]" color="neutral">
-        Neutral
-      </Button>
-      <Button className="font-[inherit]" color="danger">
-        Danger
-      </Button>
-      <Button className="font-[inherit]" color="success">
-        Success
-      </Button>
-      <Button className="font-[inherit]" color="warning">
-        Warning
-      </Button>
-    </div>
+    <DisplayStand>
+      <Button color="primary">Primary</Button>
+      <Button color="neutral">Neutral</Button>
+      <Button color="danger">Danger</Button>
+      <Button color="success">Success</Button>
+      <Button color="warning">Warning</Button>
+    </DisplayStand>
   );
 }
 
