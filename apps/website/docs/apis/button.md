@@ -25,7 +25,13 @@ import { Button } from 'tailwind-joy/components';
 
 ## Props
 
+:::info
+
 The `ref` is forwarded to the root element.
+
+:::
+
+By default, props available for HTML `<button>` are also available for Button component. Other props are as follows:
 
 ### `color`
 
