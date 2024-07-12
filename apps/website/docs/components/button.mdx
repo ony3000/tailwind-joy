@@ -92,7 +92,7 @@ export function ButtonDisabled() {
 
 ### Loading
 
-Add the `loading` prop to show the Button's loading state. The Button is [disabled](#disabled) as long as it's loading. See [Loading indicator](#) and [Loading position](#) for customization options.
+Add the `loading` prop to show the Button's loading state. The Button is [disabled](#disabled) as long as it's loading. See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
 
 export function ButtonLoading() {
   return (
@@ -238,16 +238,261 @@ export function ButtonColors() {
 
 ### Decorators
 
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
+
+import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
+
+export function IconReset({ children }) {
+  return (
+    <span className="contents [&_svg]:m-[var(--Icon-margin)] [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:[color:var(--Icon-color)] [&_svg]:[font-size:var(--Icon-fontSize,20px)]">
+      {children}
+    </span>
+  );
+}
+
+export function ButtonDecorators() {
+  return (
+    <DisplayStand>
+      <Button
+        color="primary"
+        startDecorator={
+          <IconReset>
+            <MdAdd />
+          </IconReset>
+        }
+      >
+        Add to cart
+      </Button>
+      <Button
+        color="success"
+        endDecorator={
+          <IconReset>
+            <MdKeyboardArrowRight />
+          </IconReset>
+        }
+      >
+        Go to checkout
+      </Button>
+    </DisplayStand>
+  );
+}
+
+<ButtonDecorators />
+
+```jsx
+import { Button, IconReset } from 'tailwind-joy/components';
+import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
+
+export function ButtonDecorators() {
+  return (
+    <div>
+      <Button
+        color="primary"
+        startDecorator={
+          <IconReset>
+            <MdAdd />
+          </IconReset>
+        }
+      >
+        Add to cart
+      </Button>
+      <Button
+        color="success"
+        endDecorator={
+          <IconReset>
+            <MdKeyboardArrowRight />
+          </IconReset>
+        }
+      >
+        Go to checkout
+      </Button>
+    </div>
+  );
+}
+```
+
 ### Loading indicator
+
+The default loading indicator uses the [Circular Progress](./circular-progress) component. Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
+
+export function ButtonLoadingIndicator() {
+  return (
+    <DisplayStand>
+      <Button loading>Default</Button>
+      <Button loading loadingIndicator="Loading...">
+        Custom
+      </Button>
+    </DisplayStand>
+  );
+}
+
+<ButtonLoadingIndicator />
+
+```jsx
+import { Button } from 'tailwind-joy/components';
+
+export function ButtonLoadingIndicator() {
+  return (
+    <div>
+      <Button loading>Default</Button>
+      <Button loading loadingIndicator="Loading...">
+        Custom
+      </Button>
+    </div>
+  );
+}
+```
 
 ### Loading position
 
-### Link Button
+The `loadingPosition` prop sets the position of the Button's loading indicator. It supports three values:
 
-### File upload
+- `center` (default): The loading indicator is nested inside the `loadingIndicatorCenter` slot and replaces the Button's contents when in the loading state.
+- `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
+- `end`: The loading indicator replaces the [ending decorator](#decorators) when the Button is in the loading state.
+
+import { MdSend } from 'react-icons/md';
+
+export function ButtonLoadingPosition() {
+  return (
+    <DisplayStand>
+      <Button loading loadingPosition="start">
+        Start
+      </Button>
+      <Button
+        loading
+        loadingPosition="end"
+        endDecorator={
+          <IconReset>
+            <MdSend />
+          </IconReset>
+        }
+      >
+        End
+      </Button>
+    </DisplayStand>
+  );
+}
+
+<ButtonLoadingPosition />
+
+```jsx
+import { Button, IconReset } from 'tailwind-joy/components';
+import { MdSend } from 'react-icons/md';
+
+export function ButtonLoadingPosition() {
+  return (
+    <div>
+      <Button loading loadingPosition="start">
+        Start
+      </Button>
+      <Button
+        loading
+        loadingPosition="end"
+        endDecorator={
+          <IconReset>
+            <MdSend />
+          </IconReset>
+        }
+      >
+        End
+      </Button>
+    </div>
+  );
+}
+```
 
 ## Icon Button
 
+```jsx
+import { IconButton } from 'tailwind-joy/components';
+```
+
+Use the Icon Button component for a square button to house an icon with no text content.
+
+import { MdFavoriteBorder } from 'react-icons/md';
+
+export function IconButtonBasics() {
+  return (
+    <DisplayStand>
+      <IconButton variant="solid">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="soft">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="outlined">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="plain">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+    </DisplayStand>
+  );
+}
+
+<IconButtonBasics />
+
+```jsx
+import { IconButton, IconReset } from 'tailwind-joy/components';
+import { MdFavoriteBorder } from 'react-icons/md';
+
+export function IconButtonBasics() {
+  return (
+    <div>
+      <IconButton variant="solid">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="soft">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="outlined">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+      <IconButton variant="plain">
+        <IconReset>
+          <MdFavoriteBorder />
+        </IconReset>
+      </IconButton>
+    </div>
+  );
+}
+```
+
+:::info
+
+`<IconReset />` is an original component of Tailwind-Joy.
+
+:::
+
 ## Anatomy
 
+The Button component is composed of a single root `<button>` element that wraps around its contents:
+
+```html
+<button type="button" class="...">
+  <!-- Button contents -->
+</button>
+```
+
 ## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- `<Button />`
+- `<IconButton />`
+- `<IconReset />`
