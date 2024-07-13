@@ -1,21 +1,21 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
-import { joyColors as baseColors } from './base/colors';
+import { joyColors } from './base/colors';
 
 // ----------------------------------------------------------------
 
-export const prebuiltContent: string = '__REPLACE_ME__';
+export const tjClassNames: string = '__REPLACE_ME__';
 
 // ----------------------------------------------------------------
 
 type ExtendableTheme = NonNullable<NonNullable<Config['theme']>['extend']>;
 
-export const joyTheme: Pick<
+export const tjTheme: Pick<
   Required<ExtendableTheme>,
   'colors' | 'keyframes' | 'animation'
 > = {
   colors: {
-    joy: baseColors,
+    joy: joyColors,
   },
   keyframes: {
     'joy-circulate': {
@@ -58,12 +58,12 @@ function reduceColors(
   }, {});
 }
 
-export const joyPlugin = plugin(
+export const tjPlugin = plugin(
   ({ addBase, addUtilities, matchUtilities, addVariant, matchVariant }) => {
     addBase({
       ':root': {
         '--pi': '3.1415926535',
-        ...reduceColors(baseColors, '--joy'),
+        ...reduceColors(joyColors, '--joy'),
       },
     });
 

@@ -40,7 +40,7 @@ Therefore, you need to extend the Tailwind CSS configuration to make the compone
 
 <!-- prettier-ignore -->
 ```jsx
-const { prebuiltContent, joyTheme, joyPlugin } = require('tailwind-joy/tw-extension');
+const { tjClassNames, tjTheme, tjPlugin } = require('tailwind-joy/tw-extension');
 ```
 
 </TabItem>
@@ -48,7 +48,7 @@ const { prebuiltContent, joyTheme, joyPlugin } = require('tailwind-joy/tw-extens
 
 <!-- prettier-ignore -->
 ```jsx
-import { prebuiltContent, joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
+import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 ```
 
 </TabItem>
@@ -60,7 +60,7 @@ import { prebuiltContent, joyTheme, joyPlugin } from 'tailwind-joy/tw-extension'
 {
   content: [
     // Add this to your `content`
-    { raw: prebuiltContent },
+    { raw: tjClassNames },
   ],
 }
 ```
@@ -72,19 +72,19 @@ import { prebuiltContent, joyTheme, joyPlugin } from 'tailwind-joy/tw-extension'
   theme: {
     extend: {
       // Add these to your `theme.extend`
-      colors: joyTheme.colors,
-      keyframes: joyTheme.keyframes,
-      animation: joyTheme.animation,
+      colors: tjTheme.colors,
+      keyframes: tjTheme.keyframes,
+      animation: tjTheme.animation,
 
       // Or, if you already have an extended property, use the spread syntax.
       colors: {
-        ...joyTheme.colors,
+        ...tjTheme.colors,
       },
       keyframes: {
-        ...joyTheme.keyframes,
+        ...tjTheme.keyframes,
       },
       animation: {
-        ...joyTheme.animation,
+        ...tjTheme.animation,
       },
     },
   },
@@ -97,7 +97,7 @@ import { prebuiltContent, joyTheme, joyPlugin } from 'tailwind-joy/tw-extension'
 {
   plugins: [
     // Add this to your `plugins`
-    joyPlugin,
+    tjPlugin,
   ],
 }
 ```

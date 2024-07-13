@@ -1,9 +1,5 @@
 import type { Config } from 'tailwindcss';
-import {
-  prebuiltContent,
-  joyTheme,
-  joyPlugin,
-} from 'tailwind-joy/tw-extension';
+import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 
 export default {
   corePlugins: {
@@ -14,17 +10,17 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}',
     './docs/**/*.{js,ts,md,jsx,tsx,mdx}',
     './blog/**/*.{js,ts,jsx,tsx}',
-    { raw: prebuiltContent },
+    { raw: tjClassNames },
   ],
   theme: {
     screens: {
       // Left empty to avoid conflict with the `container` class.
     },
     extend: {
-      colors: joyTheme.colors,
-      keyframes: joyTheme.keyframes,
-      animation: joyTheme.animation,
+      colors: tjTheme.colors,
+      keyframes: tjTheme.keyframes,
+      animation: tjTheme.animation,
     },
   },
-  plugins: [joyPlugin],
+  plugins: [tjPlugin],
 } satisfies Config;
