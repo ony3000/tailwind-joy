@@ -53,8 +53,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/tailwind-joy-social-card.jpg',
     navbar: {
       title: 'Tailwind-Joy',
       logo: {
