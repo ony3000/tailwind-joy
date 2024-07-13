@@ -3,3 +3,292 @@ sidebar_position: 3
 ---
 
 # Icon Adapter
+
+The Icon Adapter component allows you to integrate third-party icon libraries with the Tailwind-Joy component.
+
+:::info
+
+This component is an original component of Tailwind-Joy.
+
+:::
+
+## Introduction
+
+For Joy UI, you are instructed to define global styles to [integrate third-party icon libraries with Joy UI components](https://mui.com/joy-ui/integrations/icon-libraries/#third-party-icons).
+
+Some of these libraries are instructed to define styles for `<svg>`, but this can have the side effect of applying a single style to `<svg>`s that are not components of the icon library.
+
+So, I created this component to enable [&ldquo;Automatic adjustment&rdquo;](https://mui.com/joy-ui/main-features/automatic-adjustment/) feature while avoiding the side effects that can occur with global style definitions.
+
+## Basics
+
+```jsx
+import { IconAdapter } from 'tailwind-joy/components';
+```
+
+Tailwind-Joy Icon Adapter defines default styles for third-party icon components.
+
+The demo below shows the difference with or without the Icon Adapter.
+
+import { MdAdd } from 'react-icons/md';
+
+export function IconAdapterBasics() {
+  return (
+    <DisplayStand>
+      <DisplayStand className="gap-2 border-none p-0">
+        <Button
+          color="primary"
+          size="sm"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="success"
+          size="md"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="neutral"
+          size="lg"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+      </DisplayStand>
+      <DisplayStand className="gap-2 border-none p-0">
+        <Button color="primary" size="sm" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+        <Button color="success" size="md" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+        <Button color="neutral" size="lg" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+      </DisplayStand>
+    </DisplayStand>
+  );
+}
+
+<IconAdapterBasics />
+
+```jsx
+import { Button, IconAdapter } from 'tailwind-joy/components';
+import { MdAdd } from 'react-icons/md';
+
+export function IconAdapterBasics() {
+  return (
+    <div>
+      <div>
+        <Button
+          color="primary"
+          size="sm"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="success"
+          size="md"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="neutral"
+          size="lg"
+          startDecorator={
+            <IconAdapter>
+              <MdAdd />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+      </div>
+      <div>
+        <Button color="primary" size="sm" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+        <Button color="success" size="md" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+        <Button color="neutral" size="lg" startDecorator={<MdAdd />}>
+          Without
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Icon libraries
+
+### React Icons
+
+```bash npm2yarn
+npm install react-icons
+```
+
+See the [Basics](#basics) section above for a component demo display.
+
+### Heroicons
+
+```bash npm2yarn
+npm install @heroicons/react
+```
+
+import { HeartIcon } from '@heroicons/react/24/outline';
+
+export function IconAdapterHeroicons() {
+  return (
+    <DisplayStand>
+      <DisplayStand className="gap-2 border-none p-0">
+        <Button
+          color="danger"
+          size="sm"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="warning"
+          size="md"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="success"
+          size="lg"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+      </DisplayStand>
+      <DisplayStand className="gap-2 border-none p-0">
+        <Button color="danger" size="sm" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+        <Button color="warning" size="md" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+        <Button color="success" size="lg" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+      </DisplayStand>
+    </DisplayStand>
+  );
+}
+
+<IconAdapterHeroicons />
+
+```jsx
+import { Button, IconAdapter } from 'tailwind-joy/components';
+import { HeartIcon } from '@heroicons/react/24/outline';
+
+export function IconAdapterHeroicons() {
+  return (
+    <div>
+      <div>
+        <Button
+          color="danger"
+          size="sm"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="warning"
+          size="md"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+        <Button
+          color="success"
+          size="lg"
+          startDecorator={
+            <IconAdapter>
+              <HeartIcon />
+            </IconAdapter>
+          }
+        >
+          With
+        </Button>
+      </div>
+      <div>
+        <Button color="danger" size="sm" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+        <Button color="warning" size="md" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+        <Button color="success" size="lg" startDecorator={<HeartIcon />}>
+          Without
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+The Icon Adapter component is composed of a single root `<span>` element that wraps around its contents:
+
+```html
+<span class="...">
+  <!-- Icon Adapter contents -->
+</span>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Button />`](../apis/button)
+- [`<IconAdapter />`](../apis/icon-adapter)
