@@ -3,11 +3,10 @@ import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
-import type { GeneratorInput } from '@/base/types';
-import type { BaseVariants } from '../base';
-import { token } from '../color-tokens';
+import type { BaseVariants, GeneratorInput } from '@/base/types';
+import { colorTokens } from '../base/colors';
 
-const { primary, neutral, danger, success, warning } = token;
+const { primary, neutral, danger, success, warning } = colorTokens;
 
 const buttonStartDecoratorVariants = cva([
   '[--Icon-margin:0_0_0_calc(var(--Button-gap)/-2)]',
@@ -153,7 +152,7 @@ const buttonRootVariants = cva(
     '[--Icon-margin:initial]',
     'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold no-underline [-webkit-tap-highlight-color:transparent]',
     [
-      token.focusVisible,
+      colorTokens.focusVisible,
       'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
     ],
     'disabled:pointer-events-none',

@@ -2,12 +2,11 @@ import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
-import type { GeneratorInput } from '@/base/types';
-import { r } from '../alias';
-import type { BaseVariants } from '../base';
-import { token } from '../color-tokens';
+import type { BaseVariants, GeneratorInput } from '@/base/types';
+import { r } from '../base/alias';
+import { colorTokens } from '../base/colors';
 
-const { primary, neutral, danger, success, warning } = token;
+const { primary, neutral, danger, success, warning } = colorTokens;
 
 const circularProgressSvgVariants = cva(
   'absolute left-[calc(-1*var(--variant-borderWidth,0px))] top-[calc(-1*var(--variant-borderWidth,0px))] h-[inherit] w-[inherit] [box-sizing:inherit] [display:inherit]',
