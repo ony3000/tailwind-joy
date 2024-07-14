@@ -2,3 +2,7 @@
 .next
 dist
 pnpm-lock.yaml
+apps/tester/playwright-report
+apps/tester/test-results
+apps/website/.docusaurus
+apps/website/build
