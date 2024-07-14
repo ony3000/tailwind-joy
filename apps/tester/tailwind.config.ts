@@ -1,19 +1,19 @@
 import type { Config } from 'tailwindcss';
-import { joyTheme, joyPlugin } from 'tailwind-joy/tw-extension';
+import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 
 export default {
   darkMode: 'selector',
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './tests/**/*.{js,ts,jsx,tsx}',
-    './node_modules/tailwind-joy/**',
+    { raw: tjClassNames },
   ],
   theme: {
     extend: {
-      colors: joyTheme.colors,
-      keyframes: joyTheme.keyframes,
-      animation: joyTheme.animation,
+      colors: tjTheme.colors,
+      keyframes: tjTheme.keyframes,
+      animation: tjTheme.animation,
     },
   },
-  plugins: [joyPlugin],
+  plugins: [tjPlugin],
 } satisfies Config;
