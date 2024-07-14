@@ -3,6 +3,7 @@ import { generatorInputs as buttonClassNameGeneratorInputs } from '../components
 import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../components/CircularProgress';
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
+import { generatorInputs as svgIconClassNameGeneratorInputs } from '../components/SvgIcon';
 
 const SPACE = ' ';
 
@@ -11,6 +12,7 @@ const inputs: GeneratorInput[] = [
   ...circularProgressClassNameGeneratorInputs,
   ...iconAdapterClassNameGeneratorInputs,
   ...iconButtonClassNameGeneratorInputs,
+  ...svgIconClassNameGeneratorInputs,
 ];
 
 function generate() {
