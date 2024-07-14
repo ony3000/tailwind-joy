@@ -16,41 +16,39 @@ Visually equivalent to Joy UI (except for the `font-family`[^1]), but does not d
 
 For example, comparing the button components:
 
-export function GridItem({ children }) {
+export function ComponentComparison() {
   return (
-    <div className="border-joy-neutral-300 dark:border-joy-neutral-500 flex-1 rounded-lg border border-solid p-4">
-      {children}
-    </div>
+    <DisplayStand className="mb-5 grid grid-cols-1 gap-4 border-none p-0 min-[375px]:grid-cols-2">
+      <DisplayStand className="grid items-start justify-start gap-y-0">
+        <CssVarsProvider modeStorageKey="theme">
+          <h3>Joy UI</h3>
+          <div>
+            <JoyButton
+              color="primary"
+              size="md"
+              variant="solid"
+              className="!font-[inherit]"
+            >
+              Button
+            </JoyButton>
+          </div>
+        </CssVarsProvider>
+      </DisplayStand>
+      <DisplayStand className="grid items-start justify-start gap-y-0">
+        <h3>Tailwind-Joy</h3>
+        <div>
+          <Button
+            color="primary"
+            size="md"
+            variant="solid"
+            className="font-[inherit]"
+          >
+            Button
+          </Button>
+        </div>
+      </DisplayStand>
+    </DisplayStand>
   );
 }
 
-<div className="grid grid-cols-1 gap-4 min-[375px]:grid-cols-2">
-  <GridItem>
-    <CssVarsProvider modeStorageKey="theme">
-      <h3>Joy UI</h3>
-      <div>
-        <JoyButton
-          color="primary"
-          size="md"
-          variant="solid"
-          className="!font-[inherit]"
-        >
-          <span>Button</span>
-        </JoyButton>
-      </div>
-    </CssVarsProvider>
-  </GridItem>
-  <GridItem>
-    <h3>Tailwind-Joy</h3>
-    <div>
-      <Button
-        color="primary"
-        size="md"
-        variant="solid"
-        className="font-[inherit]"
-      >
-        <span>Button</span>
-      </Button>
-    </div>
-  </GridItem>
-</div>
+<ComponentComparison />
