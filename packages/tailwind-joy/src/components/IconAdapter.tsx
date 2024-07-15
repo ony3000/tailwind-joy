@@ -1,22 +1,91 @@
-import type { ReactNode } from 'react';
+import type { ComponentProps } from 'react';
+import { isValidElement } from 'react';
 import { cva } from 'class-variance-authority';
-import type { GeneratorInput } from '@/base/types';
+import { twMerge } from 'tailwind-merge';
+import type { BaseVariants, GeneratorInput } from '@/base/types';
+
+const childrenPlaceholderVariants = cva('contents');
 
 const iconAdapterRootVariants = cva(
-  'contents [&_svg]:m-[var(--Icon-margin)] [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:[color:var(--Icon-color)] [&_svg]:[font-size:var(--Icon-fontSize,20px)]',
+  'm-[var(--Icon-margin)] inline-block h-[1em] w-[1em] shrink-0 select-none',
+  {
+    variants: {
+      color: {
+        primary:
+          '[color:var(--Icon-color,var(--joy-primary-500))] dark:[color:var(--Icon-color,var(--joy-primary-400))]',
+        neutral:
+          '[color:var(--Icon-color,var(--joy-neutral-500))] dark:[color:var(--Icon-color,var(--joy-neutral-400))]',
+        danger:
+          '[color:var(--Icon-color,var(--joy-danger-500))] dark:[color:var(--Icon-color,var(--joy-danger-400))]',
+        success:
+          '[color:var(--Icon-color,var(--joy-success-500))] dark:[color:var(--Icon-color,var(--joy-success-400))]',
+        warning:
+          '[color:var(--Icon-color,var(--joy-warning-500))] dark:[color:var(--Icon-color,var(--joy-warning-400))]',
+      },
+      size: {
+        sm: '[font-size:var(--Icon-fontSize,1.25rem)]',
+        md: '[font-size:var(--Icon-fontSize,1.5rem)]',
+        lg: '[font-size:var(--Icon-fontSize,1.875rem)]',
+      },
+    },
+    defaultVariants: {
+      color: 'neutral',
+      size: 'md',
+    },
+  },
 );
 
-type IconAdapterRootProps = {
-  children?: ReactNode;
-};
+interface IconAdapterRootVariants extends Omit<BaseVariants, 'variant'> {}
 
-export function IconAdapter({ children }: IconAdapterRootProps) {
-  return <span className={iconAdapterRootVariants()}>{children}</span>;
+type IconAdapterRootProps = Pick<ComponentProps<'svg'>, 'children'> &
+  IconAdapterRootVariants;
+
+export function IconAdapter({
+  children,
+  color = 'neutral',
+  size = 'md',
+}: IconAdapterRootProps) {
+  if (!isValidElement(children)) {
+    return <span className={childrenPlaceholderVariants()}>{children}</span>;
+  }
+
+  if (
+    typeof children.type === 'symbol' &&
+    // @ts-ignore
+    children.type.toString() === 'Symbol(react.fragment)'
+  ) {
+    if (!isValidElement(children.props.children)) {
+      return <span className={childrenPlaceholderVariants()}>{children}</span>;
+    }
+
+    return (
+      <IconAdapter color={color} size={size}>
+        {children.props.children}
+      </IconAdapter>
+    );
+  }
+
+  return Object.assign({}, children, {
+    props: {
+      ...(children.props ?? {}),
+      className: twMerge(
+        iconAdapterRootVariants({ color, size }),
+        children.props.className ?? '',
+      ),
+    },
+  });
 }
 
 export const generatorInputs: GeneratorInput[] = [
   {
-    generatorFn: iconAdapterRootVariants,
+    generatorFn: childrenPlaceholderVariants,
     variants: {},
+  },
+  {
+    generatorFn: iconAdapterRootVariants,
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      size: ['sm', 'md', 'lg'],
+    },
   },
 ];
