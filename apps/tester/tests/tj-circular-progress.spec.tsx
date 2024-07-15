@@ -9,6 +9,7 @@ import { CircularProgress as JoyCircularProgress } from '@mui/joy';
 import { CircularProgress as TJCircularProgress } from 'tailwind-joy/components';
 
 import { App, DarkModeApp } from '@/App';
+import { uuid } from '@/utils';
 
 const basename = sep === '/' ? pathPosix.basename : pathWin32.basename;
 const filename = basename(__filename);
@@ -111,18 +112,18 @@ const customs: {
 ];
 
 customs.forEach(({ title, props, joyProps, tjProps }) => {
-  const hyphenatedPropName = Object.keys(props).join('-');
-  const testIdSuffix = hyphenatedPropName ? `-${hyphenatedPropName}` : '';
+  const testIdSuffix = uuid();
 
   test.describe(title, () => {
     cartesianProduct.forEach(({ color, variant, size }) => {
       const hyphenatedVariants = `${color}-${variant}-${size}`;
-      const testIdBase = `${hyphenatedVariants}${testIdSuffix}`;
-      const containerTestId = `container-${testIdBase}`;
-      const elementTestId = `element-${testIdBase}`;
+      const testIdBase = `${hyphenatedVariants}-${testIdSuffix}`;
 
       test.describe(`light:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
+          const containerTestId = `light-container-${testIdBase}-default`;
+          const elementTestId = `light-element-${testIdBase}-default`;
+
           const joyComponent = await mount(
             <App>
               <div
@@ -174,6 +175,9 @@ customs.forEach(({ title, props, joyProps, tjProps }) => {
 
       test.describe(`dark:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
+          const containerTestId = `dark-container-${testIdBase}-default`;
+          const elementTestId = `dark-element-${testIdBase}-default`;
+
           const joyComponent = await mount(
             <DarkModeApp>
               <div

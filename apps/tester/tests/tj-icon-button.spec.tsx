@@ -9,7 +9,7 @@ import { IconButton as JoyIconButton } from '@mui/joy';
 import { IconButton as TJIconButton } from 'tailwind-joy/components';
 
 import { App, DarkModeApp } from '@/App';
-import { sleep } from '@/utils';
+import { sleep, uuid } from '@/utils';
 
 const basename = sep === '/' ? pathPosix.basename : pathWin32.basename;
 const filename = basename(__filename);
@@ -50,18 +50,18 @@ const customs: { title: string; props: Record<string, any> }[] = [
 ];
 
 customs.forEach(({ title, props }) => {
-  const hyphenatedPropName = Object.keys(props).join('-');
-  const testIdSuffix = hyphenatedPropName ? `-${hyphenatedPropName}` : '';
+  const testIdSuffix = uuid();
 
   test.describe(title, () => {
     cartesianProduct.forEach(({ color, variant, size }) => {
       const hyphenatedVariants = `${color}-${variant}-${size}`;
-      const testIdBase = `${hyphenatedVariants}${testIdSuffix}`;
-      const containerTestId = `container-${testIdBase}`;
-      const elementTestId = `element-${testIdBase}`;
+      const testIdBase = `${hyphenatedVariants}-${testIdSuffix}`;
 
       test.describe(`light:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
+          const containerTestId = `light-container-${testIdBase}-default`;
+          const elementTestId = `light-element-${testIdBase}-default`;
+
           const joyComponent = await mount(
             <App>
               <div
@@ -117,6 +117,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `light-container-${testIdBase}-hover`;
+          const elementTestId = `light-element-${testIdBase}-hover`;
 
           const joyComponent = await mount(
             <App>
@@ -175,6 +178,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `light-container-${testIdBase}-focus-visible`;
+          const elementTestId = `light-element-${testIdBase}-focus-visible`;
 
           const joyComponent = await mount(
             <App>
@@ -236,6 +242,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `light-container-${testIdBase}-active`;
+          const elementTestId = `light-element-${testIdBase}-active`;
 
           const joyComponent = await mount(
             <App>
@@ -301,6 +310,9 @@ customs.forEach(({ title, props }) => {
             'The button is disabled in the loading state',
           );
 
+          const containerTestId = `light-container-${testIdBase}-disabled`;
+          const elementTestId = `light-element-${testIdBase}-disabled`;
+
           const joyComponent = await mount(
             <App>
               <div
@@ -356,6 +368,9 @@ customs.forEach(({ title, props }) => {
 
       test.describe(`dark:${hyphenatedVariants}`, () => {
         test('default', async ({ page, mount }) => {
+          const containerTestId = `dark-container-${testIdBase}-default`;
+          const elementTestId = `dark-element-${testIdBase}-default`;
+
           const joyComponent = await mount(
             <DarkModeApp>
               <div
@@ -411,6 +426,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `dark-container-${testIdBase}-hover`;
+          const elementTestId = `dark-element-${testIdBase}-hover`;
 
           const joyComponent = await mount(
             <DarkModeApp>
@@ -469,6 +487,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `dark-container-${testIdBase}-focus-visible`;
+          const elementTestId = `dark-element-${testIdBase}-focus-visible`;
 
           const joyComponent = await mount(
             <DarkModeApp>
@@ -530,6 +551,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `dark-container-${testIdBase}-active`;
+          const elementTestId = `dark-element-${testIdBase}-active`;
 
           const joyComponent = await mount(
             <DarkModeApp>
@@ -594,6 +618,9 @@ customs.forEach(({ title, props }) => {
             props.loading,
             'The button is disabled in the loading state',
           );
+
+          const containerTestId = `dark-container-${testIdBase}-disabled`;
+          const elementTestId = `dark-element-${testIdBase}-disabled`;
 
           const joyComponent = await mount(
             <DarkModeApp>
