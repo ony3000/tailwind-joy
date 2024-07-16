@@ -179,11 +179,8 @@ import { MdWarning, MdReport } from 'react-icons/md';
 export function CircularProgressChildren() {
   return (
     <DisplayStand>
-      <CircularProgress
-        color="warning"
-        className="[--Icon-color:var(--CircularProgress-progressColor)]"
-      >
-        <IconAdapter>
+      <CircularProgress color="warning">
+        <IconAdapter color="warning">
           <MdWarning />
         </IconAdapter>
       </CircularProgress>
@@ -192,9 +189,9 @@ export function CircularProgressChildren() {
       </CircularProgress>
       <CircularProgress
         color="danger"
-        className="[--Icon-color:var(--CircularProgress-progressColor)] [--CircularProgress-size:80px]"
+        className="[--CircularProgress-size:80px]"
       >
-        <IconAdapter>
+        <IconAdapter color="danger">
           <MdReport />
         </IconAdapter>
       </CircularProgress>
@@ -211,11 +208,8 @@ import { MdWarning, MdReport } from 'react-icons/md';
 export function CircularProgressChildren() {
   return (
     <div>
-      <CircularProgress
-        color="warning"
-        className="[--Icon-color:var(--CircularProgress-progressColor)]"
-      >
-        <IconAdapter>
+      <CircularProgress color="warning">
+        <IconAdapter color="warning">
           <MdWarning />
         </IconAdapter>
       </CircularProgress>
@@ -224,9 +218,9 @@ export function CircularProgressChildren() {
       </CircularProgress>
       <CircularProgress
         color="danger"
-        className="[--Icon-color:var(--CircularProgress-progressColor)] [--CircularProgress-size:80px]"
+        className="[--CircularProgress-size:80px]"
       >
-        <IconAdapter>
+        <IconAdapter color="danger">
           <MdReport />
         </IconAdapter>
       </CircularProgress>
