@@ -1,6 +1,22 @@
+# ![tailwind-joy](../../apps/website/static/img/tailwind-joy-social-card.jpg)
+
 React component library that styles the components of [Joy UI](https://mui.com/joy-ui/getting-started/) in the Tailwind CSS way.
 
-## 개발 환경
+## Documentation
 
-- Node.js 18
-- [pnpm 8.5.1](https://pnpm.io/)
+https://tailwind-joy.vercel.app
+
+## Component list
+
+### Inputs
+
+- Button
+- Icon Button
+
+### Feedback
+
+- Circular Progress
+
+### Tailwind-Joy's original
+
+- Icon Adapter
