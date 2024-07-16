@@ -1,4 +1,4 @@
-# ![tailwind-joy](../../apps/website/static/img/tailwind-joy-social-card.jpg)
+# ![tailwind-joy](https://github.com/ony3000/tailwind-joy/blob/master/.github/banner.png)
 
 React component library that styles the components of [Joy UI](https://mui.com/joy-ui/getting-started/) in the Tailwind CSS way.
 
