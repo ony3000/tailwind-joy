@@ -11,6 +11,14 @@
     "rules": {
       "recommended": true
     },
-    "ignore": [".cache/**", ".next/**", "dist/**"]
+    "ignore": [
+      ".cache/**",
+      ".docusaurus/**",
+      ".next/**",
+      "build/**",
+      "dist/**",
+      "playwright-report/**",
+      "test-results/**"
+    ]
   }
 }
