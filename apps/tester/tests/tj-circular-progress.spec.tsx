@@ -5,8 +5,12 @@ import { test, expect } from '@playwright/experimental-ct-react';
 
 import ReportIcon from '@mui/icons-material/Report';
 import WarningIcon from '@mui/icons-material/Warning';
+import { MdReport, MdWarning } from 'react-icons/md';
 import { CircularProgress as JoyCircularProgress } from '@mui/joy';
-import { CircularProgress as TJCircularProgress } from 'tailwind-joy/components';
+import {
+  CircularProgress as TJCircularProgress,
+  IconAdapter,
+} from 'tailwind-joy/components';
 
 import { App, DarkModeApp } from '@/App';
 import { uuid } from '@/utils';
@@ -83,7 +87,16 @@ const customs: {
     title: 'children (icon)',
     props: {
       color: 'warning',
+    },
+    joyProps: {
       children: <WarningIcon color="warning" />,
+    },
+    tjProps: {
+      children: (
+        <IconAdapter color="warning">
+          <MdWarning />
+        </IconAdapter>
+      ),
     },
   },
   {
@@ -99,13 +112,18 @@ const customs: {
     title: 'children (icon w/sx)',
     props: {
       color: 'danger',
-      // @ts-ignore
-      children: <ReportIcon color="danger" />,
     },
     joyProps: {
+      // @ts-ignore
+      children: <ReportIcon color="danger" />,
       sx: { '--CircularProgress-size': '80px' },
     },
     tjProps: {
+      children: (
+        <IconAdapter color="danger">
+          <MdReport />
+        </IconAdapter>
+      ),
       className: '[--CircularProgress-size:80px]',
     },
   },

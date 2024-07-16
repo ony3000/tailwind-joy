@@ -5,8 +5,12 @@ import { test, expect } from '@playwright/experimental-ct-react';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
+import { MdFavoriteBorder, MdOutlinePending } from 'react-icons/md';
 import { IconButton as JoyIconButton } from '@mui/joy';
-import { IconButton as TJIconButton } from 'tailwind-joy/components';
+import {
+  IconButton as TJIconButton,
+  IconAdapter,
+} from 'tailwind-joy/components';
 
 import { App, DarkModeApp } from '@/App';
 import { sleep, uuid } from '@/utils';
@@ -29,7 +33,12 @@ const cartesianProduct = colors.flatMap((color) =>
     .map(({ variant, size }) => ({ color, variant, size })),
 );
 
-const customs: { title: string; props: Record<string, any> }[] = [
+const customs: {
+  title: string;
+  props: Record<string, any>;
+  joyProps?: Record<string, any>;
+  tjProps?: Record<string, any>;
+}[] = [
   {
     title: 'default',
     props: {},
@@ -44,12 +53,23 @@ const customs: { title: string; props: Record<string, any> }[] = [
     title: 'loadingIndicator',
     props: {
       loading: true,
+    },
+    joyProps: {
       loadingIndicator: <PendingOutlinedIcon />,
+    },
+    tjProps: {
+      dynamic: {
+        loadingIndicatorFn: (color: (typeof colors)[number]) => (
+          <IconAdapter color={color}>
+            <MdOutlinePending />
+          </IconAdapter>
+        ),
+      },
     },
   },
 ];
 
-customs.forEach(({ title, props }) => {
+customs.forEach(({ title, props, joyProps, tjProps }) => {
   const testIdSuffix = uuid();
 
   test.describe(title, () => {
@@ -75,6 +95,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -100,8 +121,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </App>,
@@ -134,6 +162,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -160,8 +189,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </App>,
@@ -195,6 +231,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -224,8 +261,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </App>,
@@ -259,6 +303,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -288,8 +333,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </App>,
@@ -326,6 +378,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                   disabled
                 >
                   <FavoriteBorderIcon />
@@ -352,9 +405,16 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                   disabled
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </App>,
@@ -384,6 +444,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -409,8 +470,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </DarkModeApp>,
@@ -443,6 +511,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -469,8 +538,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </DarkModeApp>,
@@ -504,6 +580,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -533,8 +610,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </DarkModeApp>,
@@ -568,6 +652,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   <FavoriteBorderIcon />
                 </JoyIconButton>
@@ -597,8 +682,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </DarkModeApp>,
@@ -635,6 +727,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                   disabled
                 >
                   <FavoriteBorderIcon />
@@ -661,9 +754,16 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  loadingIndicator={
+                    tjProps?.loadingIndicator ??
+                    tjProps?.dynamic?.loadingIndicatorFn?.(color)
+                  }
                   disabled
                 >
-                  <FavoriteBorderIcon />
+                  <IconAdapter color={color}>
+                    <MdFavoriteBorder />
+                  </IconAdapter>
                 </TJIconButton>
               </div>
             </DarkModeApp>,

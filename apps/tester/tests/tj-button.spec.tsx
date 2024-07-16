@@ -5,8 +5,9 @@ import { test, expect } from '@playwright/experimental-ct-react';
 
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 import { Button as JoyButton } from '@mui/joy';
-import { Button as TJButton } from 'tailwind-joy/components';
+import { Button as TJButton, IconAdapter } from 'tailwind-joy/components';
 
 import { App, DarkModeApp } from '@/App';
 import { sleep, uuid } from '@/utils';
@@ -29,21 +30,46 @@ const cartesianProduct = colors.flatMap((color) =>
     .map(({ variant, size }) => ({ color, variant, size })),
 );
 
-const customs: { title: string; props: Record<string, any> }[] = [
+const customs: {
+  title: string;
+  props: Record<string, any>;
+  joyProps?: Record<string, any>;
+  tjProps?: Record<string, any>;
+}[] = [
   {
     title: 'default',
     props: {},
   },
   {
     title: 'startDecorator',
-    props: {
+    props: {},
+    joyProps: {
       startDecorator: <AddIcon />,
+    },
+    tjProps: {
+      dynamic: {
+        startDecoratorFn: (color: (typeof colors)[number]) => (
+          <IconAdapter color={color}>
+            <MdAdd />
+          </IconAdapter>
+        ),
+      },
     },
   },
   {
     title: 'endDecorator',
-    props: {
+    props: {},
+    joyProps: {
       endDecorator: <KeyboardArrowRightIcon />,
+    },
+    tjProps: {
+      dynamic: {
+        endDecoratorFn: (color: (typeof colors)[number]) => (
+          <IconAdapter color={color}>
+            <MdKeyboardArrowRight />
+          </IconAdapter>
+        ),
+      },
     },
   },
   {
@@ -77,12 +103,23 @@ const customs: { title: string; props: Record<string, any> }[] = [
     props: {
       loading: true,
       loadingPosition: 'end',
+    },
+    joyProps: {
       endDecorator: <KeyboardArrowRightIcon />,
+    },
+    tjProps: {
+      dynamic: {
+        endDecoratorFn: (color: (typeof colors)[number]) => (
+          <IconAdapter color={color}>
+            <MdKeyboardArrowRight />
+          </IconAdapter>
+        ),
+      },
     },
   },
 ];
 
-customs.forEach(({ title, props }) => {
+customs.forEach(({ title, props, joyProps, tjProps }) => {
   const testIdSuffix = uuid();
 
   test.describe(title, () => {
@@ -108,6 +145,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -133,6 +171,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -167,6 +214,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -193,6 +241,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -228,6 +285,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -257,6 +315,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -292,6 +359,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -321,6 +389,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -359,6 +436,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                   disabled
                 >
                   Button
@@ -385,6 +463,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                   disabled
                 >
                   Button
@@ -417,6 +504,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -442,6 +530,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -476,6 +573,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -502,6 +600,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -537,6 +644,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -566,6 +674,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -601,6 +718,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                 >
                   Button
                 </JoyButton>
@@ -630,6 +748,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                 >
                   Button
                 </TJButton>
@@ -668,6 +795,7 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...joyProps}
                   disabled
                 >
                   Button
@@ -694,6 +822,15 @@ customs.forEach(({ title, props }) => {
                   variant={variant}
                   color={color}
                   {...props}
+                  {...tjProps}
+                  startDecorator={
+                    tjProps?.startDecorator ??
+                    tjProps?.dynamic?.startDecoratorFn?.(color)
+                  }
+                  endDecorator={
+                    tjProps?.endDecorator ??
+                    tjProps?.dynamic?.endDecoratorFn?.(color)
+                  }
                   disabled
                 >
                   Button
