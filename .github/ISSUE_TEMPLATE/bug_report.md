@@ -6,7 +6,7 @@ labels: bug
 assignees: ''
 ---
 
-## Dependency information
+## Environment information
 
 ## Steps to reproduce
 
