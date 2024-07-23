@@ -26,10 +26,32 @@ export const tjTheme: Pick<
         transform: 'rotate(270deg)',
       },
     },
+    'joy-linear-circulate': {
+      '0%': {
+        left: 'var(--_LinearProgress-progressInset)',
+        width: 'var(--LinearProgress-progressMinWidth)',
+      },
+      '25%': {
+        width: 'var(--LinearProgress-progressMaxWidth)',
+      },
+      '50%': {
+        left: 'var(--_LinearProgress-progressLeft)',
+        width: 'var(--LinearProgress-progressMinWidth)',
+      },
+      '75%': {
+        width: 'var(--LinearProgress-progressMaxWidth)',
+      },
+      '100%': {
+        left: 'var(--_LinearProgress-progressInset)',
+        width: 'var(--LinearProgress-progressMinWidth)',
+      },
+    },
   },
   animation: {
     'joy-circulate':
       'joy-circulate 0.8s linear 0s infinite normal none running',
+    'joy-linear-circulate':
+      'joy-linear-circulate var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running)',
   },
 };
 
