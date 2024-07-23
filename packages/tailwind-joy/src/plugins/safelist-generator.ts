@@ -1,5 +1,6 @@
 import type { GeneratorInput } from '../base/types';
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
+import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
 import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../components/CircularProgress';
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
@@ -9,6 +10,7 @@ const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
   ...buttonClassNameGeneratorInputs,
+  ...buttonGroupClassNameGeneratorInputs,
   ...circularProgressClassNameGeneratorInputs,
   ...iconAdapterClassNameGeneratorInputs,
   ...iconButtonClassNameGeneratorInputs,
