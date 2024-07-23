@@ -6,7 +6,9 @@ import {
   CircularProgress,
   IconAdapter,
   IconButton,
+  LinearProgress,
 } from 'tailwind-joy/components';
+import { AvailableFrom } from '@site/src/components/docs/AvailableFrom';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export default {
@@ -23,8 +25,10 @@ export default {
   CircularProgress,
   IconAdapter,
   IconButton,
+  LinearProgress,
 
   // --------------------------------
 
+  AvailableFrom,
   DisplayStand,
 };
