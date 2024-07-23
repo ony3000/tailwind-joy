@@ -22,6 +22,15 @@ const sizes = ['sm', 'md', 'lg'] as const;
 const variants = ['solid', 'soft', 'outlined', 'plain'] as const;
 const colors = ['primary', 'neutral', 'danger', 'success', 'warning'] as const;
 
+/**
+ * Assume the animation is stopped at 0%.
+ *
+ * This is a workaround for the pseudo element (here `before`) not appearing when capturing a screenshot with animation disabled.
+ */
+const simulationProps = {
+  determinate: true,
+  value: 12.5,
+};
 const customs: {
   title: string;
   props: {
@@ -36,27 +45,21 @@ const customs: {
   {
     title: 'default',
     props: {
-      // Assume the animation is stopped at 0%.
-      determinate: true,
-      value: 12.5,
+      ...simulationProps,
     },
   },
   {
     title: 'thickness: 1',
     props: {
+      ...simulationProps,
       thickness: 1,
-      // Assume the animation is stopped at 0%.
-      determinate: true,
-      value: 12.5,
     },
   },
   {
     title: 'thickness: 3',
     props: {
+      ...simulationProps,
       thickness: 3,
-      // Assume the animation is stopped at 0%.
-      determinate: true,
-      value: 12.5,
     },
   },
   {
