@@ -1,0 +1,187 @@
+---
+sidebar_position: 3
+---
+
+# Linear Progress
+
+<AvailableFrom version="0.2.0" />
+
+Linear Progress indicators, commonly known as loaders, express an unspecified wait time or display the length of a process.
+
+## Basics
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+```
+
+## Customization
+
+### Variants
+
+The Linear Progress component supports four variants: `solid`, `soft` (default), `outlined`, and `plain`.
+
+export function LinearProgressVariants() {
+  return (
+    <DisplayStand className="flex-col items-stretch">
+      <LinearProgress variant="solid" />
+      <LinearProgress variant="soft" />
+      <LinearProgress variant="outlined" />
+      <LinearProgress variant="plain" />
+    </DisplayStand>
+  );
+}
+
+<LinearProgressVariants />
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+
+export function LinearProgressVariants() {
+  return (
+    <div>
+      <LinearProgress variant="solid" />
+      <LinearProgress variant="soft" />
+      <LinearProgress variant="outlined" />
+      <LinearProgress variant="plain" />
+    </div>
+  );
+}
+```
+
+### Sizes
+
+The Linear Progress component supports three sizes: `sm`, `md` (default), and `lg`.
+
+export function LinearProgressSizes() {
+  return (
+    <DisplayStand className="flex-col items-stretch">
+      <LinearProgress size="sm" />
+      <LinearProgress size="md" />
+      <LinearProgress size="lg" />
+    </DisplayStand>
+  );
+}
+
+<LinearProgressSizes />
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+
+export function LinearProgressSizes() {
+  return (
+    <div>
+      <LinearProgress size="sm" />
+      <LinearProgress size="md" />
+      <LinearProgress size="lg" />
+    </div>
+  );
+}
+```
+
+### Colors
+
+The Linear Progress component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
+
+export function LinearProgressColors() {
+  return (
+    <DisplayStand className="flex-col items-stretch">
+      <LinearProgress color="primary" />
+      <LinearProgress color="neutral" />
+      <LinearProgress color="danger" />
+      <LinearProgress color="success" />
+      <LinearProgress color="warning" />
+    </DisplayStand>
+  );
+}
+
+<LinearProgressColors />
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+
+export function LinearProgressColors() {
+  return (
+    <div>
+      <LinearProgress color="primary" />
+      <LinearProgress color="neutral" />
+      <LinearProgress color="danger" />
+      <LinearProgress color="success" />
+      <LinearProgress color="warning" />
+    </div>
+  );
+}
+```
+
+### Thickness
+
+Provides a number to `thickness` prop to control the bar's stroke width.
+
+export function LinearProgressThickness() {
+  return (
+    <DisplayStand className="flex-col items-stretch">
+      <LinearProgress thickness={1} />
+    </DisplayStand>
+  );
+}
+
+<LinearProgressThickness />
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+
+export function LinearProgressThickness() {
+  return (
+    <div>
+      <LinearProgress thickness={1} />
+    </div>
+  );
+}
+```
+
+### Determinate
+
+You can use the `determinate` prop if you want to indicate a specified wait time.
+
+export function LinearProgressDeterminate() {
+  return (
+    <DisplayStand className="flex-col items-stretch">
+      <LinearProgress determinate value={25} />
+      <LinearProgress determinate value={50} />
+      <LinearProgress determinate value={75} />
+      <LinearProgress determinate value={100} />
+    </DisplayStand>
+  );
+}
+
+<LinearProgressDeterminate />
+
+```jsx
+import { LinearProgress } from 'tailwind-joy/components';
+
+export function LinearProgressDeterminate() {
+  return (
+    <div>
+      <LinearProgress determinate value={25} />
+      <LinearProgress determinate value={50} />
+      <LinearProgress determinate value={75} />
+      <LinearProgress determinate value={100} />
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+The Linear Progress component is composed of a single root `<div>` element that wraps around its contents:
+
+```html
+<div role="progressbar" class="...">
+  <!-- Linear Progress contents -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<LinearProgress />`](../apis/linear-progress)
