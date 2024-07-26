@@ -140,6 +140,7 @@ const iconButtonLoadingIndicatorVariants = cva(
 
 const iconButtonRootVariants = cva(
   [
+    'tj-icon-button-root',
     '[--Icon-margin:initial]',
     'relative m-[var(--IconButton-margin)] box-border inline-flex cursor-pointer items-center justify-center rounded-[var(--IconButton-radius,6px)] border-none bg-transparent py-0 font-medium [-webkit-tap-highlight-color:transparent]',
     [
