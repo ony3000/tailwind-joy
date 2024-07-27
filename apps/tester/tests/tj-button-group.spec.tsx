@@ -27,7 +27,7 @@ const screenshotPath = resolve(__dirname, `../__screenshots__/${filename}`);
 test.use({ viewport: { width: 500, height: 500 } });
 
 const containerClassName =
-  'flex h-[100px] w-[300px] items-center justify-center p-2';
+  'flex h-[200px] w-[400px] items-center justify-center p-2';
 
 type UISize = 'sm' | 'md' | 'lg';
 type UIVariant = 'solid' | 'soft' | 'outlined' | 'plain';
@@ -342,7 +342,7 @@ const customs: {
         size={size}
         variant={variant}
         color={color}
-        className="[--ButtonGroup-separatorColor:#4f46e5]"
+        className="[--ButtonGroup-separatorColor:#4f46e5] dark:[--ButtonGroup-separatorColor:#4f46e5]"
       >
         <TJButton>One</TJButton>
         <TJButton>Two</TJButton>
