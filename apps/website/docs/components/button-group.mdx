@@ -1,0 +1,646 @@
+---
+sidebar_position: 2
+---
+
+# Button Group
+
+<AvailableFrom version="0.2.0" />
+
+The Button Group combines a set of related buttons.
+
+## Basics
+
+```jsx
+import { ButtonGroup } from 'tailwind-joy/components';
+```
+
+The Button Group component can wrap [`Button`](./button) and [`IconButton`](./button#icon-button).
+
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupBasics() {
+  return (
+    <DisplayStand>
+      <ButtonGroup>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupBasics />
+
+```jsx
+import {
+  Button,
+  ButtonGroup,
+  IconAdapter,
+  IconButton,
+} from 'tailwind-joy/components';
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupBasics() {
+  return (
+    <div>
+      <ButtonGroup>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+## Customization
+
+### Variants
+
+The Button Group component supports four variants: `solid`, `soft`, `outlined` (default), and `plain`.
+
+The `variant` prop is passed to the buttons, not the Button Group itself.
+
+export function ButtonGroupVariants() {
+  return (
+    <DisplayStand className="flex-col">
+      <ButtonGroup variant="solid">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="soft">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="outlined">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="plain">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupVariants />
+
+```jsx
+import { Button, ButtonGroup } from 'tailwind-joy/components';
+
+export function ButtonGroupVariants() {
+  return (
+    <div>
+      <ButtonGroup variant="solid">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="soft">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="outlined">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="plain">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Sizes
+
+The Button Group component supports three sizes: `sm`, `md` (default), and `lg`.
+
+The `size` prop is passed to the buttons, not the Button Group itself.
+
+export function ButtonGroupSizes() {
+  return (
+    <DisplayStand className="flex-col">
+      <ButtonGroup size="sm">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup size="md">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup size="lg">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupSizes />
+
+```jsx
+import { Button, ButtonGroup } from 'tailwind-joy/components';
+
+export function ButtonGroupSizes() {
+  return (
+    <div>
+      <ButtonGroup size="sm">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup size="md">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup size="lg">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Colors
+
+The Button Group component supports five colors: `primary`, `neutral` (default), `danger`, `success`, and `warning`.
+
+The `color` prop is passed to the buttons, not the Button Group itself.
+
+export function ButtonGroupColors() {
+  return (
+    <DisplayStand className="flex-col">
+      <ButtonGroup color="primary">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="neutral">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="danger">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="success">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="warning">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupColors />
+
+```jsx
+import { Button, ButtonGroup } from 'tailwind-joy/components';
+
+export function ButtonGroupColors() {
+  return (
+    <div>
+      <ButtonGroup color="primary">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="neutral">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="danger">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="success">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup color="warning">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Disabled
+
+Use the `disabled` prop to disable all the buttons.
+
+The `disabled` prop is passed to the buttons, not the Button Group itself. Note that if you explicitly specify the `disabled` prop on the buttons directly, it will override what is used in the Button Group.
+
+export function ButtonGroupDisabled() {
+  return (
+    <DisplayStand>
+      <ButtonGroup disabled>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton disabled={false}>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupDisabled />
+
+```jsx
+import {
+  Button,
+  ButtonGroup,
+  IconAdapter,
+  IconButton,
+} from 'tailwind-joy/components';
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupDisabled() {
+  return (
+    <div>
+      <ButtonGroup disabled>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton disabled={false}>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Spacing
+
+Use `spacing` prop to control the gap between buttons. If the `spacing` is set to `0` (by default), the radius of the buttons will be adjusted to form a continuous surface.
+
+export function ButtonGroupSpacing() {
+  return (
+    <DisplayStand>
+      <ButtonGroup spacing="0.5rem">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupSpacing />
+
+```jsx
+import {
+  Button,
+  ButtonGroup,
+  IconAdapter,
+  IconButton,
+} from 'tailwind-joy/components';
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupSpacing() {
+  return (
+    <div>
+      <ButtonGroup spacing="0.5rem">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Vertical group
+
+The Button Group component can be displayed vertically using the `orientation="vertical"` prop.
+
+export function ButtonGroupVertical() {
+  return (
+    <DisplayStand>
+      <ButtonGroup orientation="vertical" variant="solid">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="soft">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="outlined">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="plain">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupVertical />
+
+```jsx
+import {
+  Button,
+  ButtonGroup,
+  IconAdapter,
+  IconButton,
+} from 'tailwind-joy/components';
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupVertical() {
+  return (
+    <div>
+      <ButtonGroup orientation="vertical" variant="solid">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="soft">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="outlined">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+      <ButtonGroup orientation="vertical" variant="plain">
+        <Button>One</Button>
+        <Button disabled>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Stretching button
+
+Use the `buttonFlex` prop to make the buttons fill the available space of the Button Group component.
+
+export function ButtonGroupStretching1() {
+  return (
+    <DisplayStand>
+      <ButtonGroup buttonFlex={1} className="w-[350px] max-w-full">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupStretching1 />
+
+```jsx
+import {
+  Button,
+  ButtonGroup,
+  IconAdapter,
+  IconButton,
+} from 'tailwind-joy/components';
+import { MdSettings } from 'react-icons/md';
+
+export function ButtonGroupStretching1() {
+  return (
+    <div>
+      <ButtonGroup buttonFlex={1} className="w-[350px] max-w-full">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <IconButton>
+          <IconAdapter>
+            <MdSettings />
+          </IconAdapter>
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+For a large container, control the default width of the buttons by providing a valid [**CSS** `flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value to the `buttonFlex` prop.
+
+export function ButtonGroupStretching2() {
+  return (
+    <DisplayStand>
+      <ButtonGroup buttonFlex="0 1 200px" className="w-full justify-center">
+        <Button>One</Button>
+        <Button>Two</Button>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupStretching2 />
+
+```jsx
+import { Button, ButtonGroup } from 'tailwind-joy/components';
+
+export function ButtonGroupStretching2() {
+  return (
+    <div>
+      <ButtonGroup buttonFlex="0 1 200px" className="w-full justify-center">
+        <Button>One</Button>
+        <Button>Two</Button>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+### Separator color
+
+When the Button Group's variant is **not** `outlined`, separators are created between buttons. To control the color of the separator, override the CSS variable `--ButtonGroup-separatorColor` via the `style` prop.
+
+import { useState } from 'react';
+
+export function ButtonGroupSeparatorColor() {
+  const [hue, setHue] = useState(0);
+  return (
+    <DisplayStand className="flex-col">
+      <div className="flex items-center gap-2">
+        <span className="w-10 text-right">Hue:</span>
+        <input
+          type="range"
+          name="hue-range"
+          min="0"
+          max="360"
+          defaultValue="0"
+          onChange={(e) => setHue(e.currentTarget.value)}
+        />
+        <span className="w-10 text-left">{hue}</span>
+      </div>
+      <ButtonGroup
+        variant="soft"
+        style={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
+      >
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </DisplayStand>
+  );
+}
+
+<ButtonGroupSeparatorColor />
+
+```jsx
+import { useState } from 'react';
+import { Button, ButtonGroup } from 'tailwind-joy/components';
+
+export function ButtonGroupSeparatorColor() {
+  const [hue, setHue] = useState(0);
+
+  return (
+    <div>
+      <div className="flex items-center gap-2">
+        <span className="w-10 text-right">Hue:</span>
+        <input
+          type="range"
+          name="hue-range"
+          min="0"
+          max="360"
+          defaultValue="0"
+          onChange={(e) => setHue(e.currentTarget.value)}
+        />
+        <span className="w-10 text-left">{hue}</span>
+      </div>
+      <ButtonGroup
+        variant="soft"
+        style={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
+      >
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+The Button Group component is composed of a single root `<div>` element that wraps around its contents:
+
+```html
+<div role="group" class="...">
+  <!-- Button Group contents -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Button />`](../apis/button)
+- [`<ButtonGroup />`](../apis/button-group)
+- [`<IconAdapter />`](../apis/icon-adapter)
+- [`<IconButton />`](../apis/icon-button)
