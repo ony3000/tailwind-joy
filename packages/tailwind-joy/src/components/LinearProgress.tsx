@@ -10,6 +10,7 @@ const { primary, neutral, danger, success, warning } = colorTokens;
 
 const linearProgressRootVariants = cva(
   [
+    'tj-linear-progress-root',
     [
       '[--LinearProgress-radius:var(--LinearProgress-thickness)]',
       '[--LinearProgress-progressThickness:var(--LinearProgress-thickness)]',

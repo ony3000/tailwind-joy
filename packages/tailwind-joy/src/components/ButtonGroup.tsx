@@ -11,6 +11,7 @@ const { primary, neutral, danger, success, warning } = colorTokens;
 
 const buttonGroupRootVariants = cva(
   [
+    'tj-button-group-root',
     [
       '[--ButtonGroup-radius:6px]',
       '[--Divider-inset:0.5rem]',

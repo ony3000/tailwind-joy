@@ -41,6 +41,7 @@ const circularProgressProgressVariants = cva(
 
 const circularProgressRootVariants = cva(
   [
+    'tj-circular-progress-root',
     [
       r`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
       r`[--_thickness-diff:calc(var(--\_track-thickness)-var(--\_progress-thickness))]`,

@@ -7,7 +7,10 @@ import type { BaseVariants, GeneratorInput } from '@/base/types';
 const childrenPlaceholderVariants = cva('contents');
 
 const iconAdapterRootVariants = cva(
-  'm-[var(--Icon-margin)] inline-block h-[1em] w-[1em] shrink-0 select-none',
+  [
+    'tj-icon-adapter-root',
+    'm-[var(--Icon-margin)] inline-block h-[1em] w-[1em] shrink-0 select-none',
+  ],
   {
     variants: {
       color: {
