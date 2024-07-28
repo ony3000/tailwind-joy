@@ -88,7 +88,10 @@ const circularProgressRootVariants = cva(
       variant: {
         solid: '',
         soft: [
-          '[--CircularProgress-trackColor:var(--joy-neutral-100)] dark:[--CircularProgress-trackColor:var(--joy-neutral-800)]',
+          neutral.softBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
         ],
         outlined: [
           '[--variant-borderWidth:1px]',
@@ -112,8 +115,14 @@ const circularProgressRootVariants = cva(
         color: 'primary',
         variant: 'solid',
         className: [
-          '[--CircularProgress-trackColor:var(--joy-primary-200)] dark:[--CircularProgress-trackColor:var(--joy-primary-700)]',
-          '[--CircularProgress-progressColor:var(--joy-primary-500)]',
+          primary.softHoverBg.replace(
+            /non-touchscreen:hover:bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
+          primary.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           primary.solidColor,
         ],
       },
@@ -121,7 +130,10 @@ const circularProgressRootVariants = cva(
         color: 'primary',
         variant: 'soft',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-primary-500)]',
+          primary.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           primary.softColor,
         ],
       },
@@ -129,7 +141,10 @@ const circularProgressRootVariants = cva(
         color: 'primary',
         variant: 'outlined',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-primary-500)] dark:[--CircularProgress-progressColor:var(--joy-primary-200)]',
+          primary.outlinedColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           primary.outlinedColor,
           primary.outlinedBorder,
           primary.outlinedBorder.replace(/border-/g, 'before:border-'),
@@ -139,7 +154,10 @@ const circularProgressRootVariants = cva(
         color: 'primary',
         variant: 'plain',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-primary-500)] dark:[--CircularProgress-progressColor:var(--joy-primary-300)]',
+          primary.plainColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           primary.plainColor,
         ],
       },
@@ -147,8 +165,14 @@ const circularProgressRootVariants = cva(
         color: 'neutral',
         variant: 'solid',
         className: [
-          '[--CircularProgress-trackColor:var(--joy-neutral-200)] dark:[--CircularProgress-trackColor:var(--joy-neutral-700)]',
-          '[--CircularProgress-progressColor:var(--joy-neutral-500)]',
+          neutral.softHoverBg.replace(
+            /non-touchscreen:hover:bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
+          neutral.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           neutral.solidColor,
         ],
       },
@@ -156,7 +180,10 @@ const circularProgressRootVariants = cva(
         color: 'neutral',
         variant: 'soft',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-neutral-500)]',
+          neutral.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           neutral.softColor,
         ],
       },
@@ -164,7 +191,10 @@ const circularProgressRootVariants = cva(
         color: 'neutral',
         variant: 'outlined',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-neutral-700)] dark:[--CircularProgress-progressColor:var(--joy-neutral-200)]',
+          neutral.outlinedColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           neutral.outlinedColor,
           neutral.outlinedBorder,
           neutral.outlinedBorder.replace(/border-/g, 'before:border-'),
@@ -174,7 +204,10 @@ const circularProgressRootVariants = cva(
         color: 'neutral',
         variant: 'plain',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-neutral-700)] dark:[--CircularProgress-progressColor:var(--joy-neutral-300)]',
+          neutral.plainColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           neutral.plainColor,
         ],
       },
@@ -182,8 +215,14 @@ const circularProgressRootVariants = cva(
         color: 'danger',
         variant: 'solid',
         className: [
-          '[--CircularProgress-trackColor:var(--joy-danger-200)] dark:[--CircularProgress-trackColor:var(--joy-danger-700)]',
-          '[--CircularProgress-progressColor:var(--joy-danger-500)]',
+          danger.softHoverBg.replace(
+            /non-touchscreen:hover:bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
+          danger.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           danger.solidColor,
         ],
       },
@@ -191,7 +230,10 @@ const circularProgressRootVariants = cva(
         color: 'danger',
         variant: 'soft',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-danger-500)]',
+          danger.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           danger.softColor,
         ],
       },
@@ -199,7 +241,10 @@ const circularProgressRootVariants = cva(
         color: 'danger',
         variant: 'outlined',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-danger-500)] dark:[--CircularProgress-progressColor:var(--joy-danger-200)]',
+          danger.outlinedColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           danger.outlinedColor,
           danger.outlinedBorder,
           danger.outlinedBorder.replace(/border-/g, 'before:border-'),
@@ -209,7 +254,10 @@ const circularProgressRootVariants = cva(
         color: 'danger',
         variant: 'plain',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-danger-500)] dark:[--CircularProgress-progressColor:var(--joy-danger-300)]',
+          danger.plainColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           danger.plainColor,
         ],
       },
@@ -217,8 +265,14 @@ const circularProgressRootVariants = cva(
         color: 'success',
         variant: 'solid',
         className: [
-          '[--CircularProgress-trackColor:var(--joy-success-200)] dark:[--CircularProgress-trackColor:var(--joy-success-700)]',
-          '[--CircularProgress-progressColor:var(--joy-success-500)]',
+          success.softHoverBg.replace(
+            /non-touchscreen:hover:bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
+          success.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           success.solidColor,
         ],
       },
@@ -226,7 +280,10 @@ const circularProgressRootVariants = cva(
         color: 'success',
         variant: 'soft',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-success-500)]',
+          success.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           success.softColor,
         ],
       },
@@ -234,7 +291,10 @@ const circularProgressRootVariants = cva(
         color: 'success',
         variant: 'outlined',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-success-500)] dark:[--CircularProgress-progressColor:var(--joy-success-200)]',
+          success.outlinedColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           success.outlinedColor,
           success.outlinedBorder,
           success.outlinedBorder.replace(/border-/g, 'before:border-'),
@@ -244,7 +304,10 @@ const circularProgressRootVariants = cva(
         color: 'success',
         variant: 'plain',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-success-500)] dark:[--CircularProgress-progressColor:var(--joy-success-300)]',
+          success.plainColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           success.plainColor,
         ],
       },
@@ -252,8 +315,14 @@ const circularProgressRootVariants = cva(
         color: 'warning',
         variant: 'solid',
         className: [
-          '[--CircularProgress-trackColor:var(--joy-warning-200)] dark:[--CircularProgress-trackColor:var(--joy-warning-700)]',
-          '[--CircularProgress-progressColor:var(--joy-warning-500)]',
+          warning.softHoverBg.replace(
+            /non-touchscreen:hover:bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-trackColor:var(--$1)]',
+          ),
+          warning.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           warning.solidColor,
         ],
       },
@@ -261,7 +330,10 @@ const circularProgressRootVariants = cva(
         color: 'warning',
         variant: 'soft',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-warning-500)]',
+          warning.solidBg.replace(
+            /bg-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           warning.softColor,
         ],
       },
@@ -269,7 +341,10 @@ const circularProgressRootVariants = cva(
         color: 'warning',
         variant: 'outlined',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-warning-500)] dark:[--CircularProgress-progressColor:var(--joy-warning-200)]',
+          warning.outlinedColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           warning.outlinedColor,
           warning.outlinedBorder,
           warning.outlinedBorder.replace(/border-/g, 'before:border-'),
@@ -279,7 +354,10 @@ const circularProgressRootVariants = cva(
         color: 'warning',
         variant: 'plain',
         className: [
-          '[--CircularProgress-progressColor:var(--joy-warning-500)] dark:[--CircularProgress-progressColor:var(--joy-warning-300)]',
+          warning.plainColor.replace(
+            /text-(joy-[a-z]+-\d+)/g,
+            '[--CircularProgress-progressColor:var(--$1)]',
+          ),
           warning.plainColor,
         ],
       },
