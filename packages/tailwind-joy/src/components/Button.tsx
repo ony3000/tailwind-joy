@@ -149,6 +149,7 @@ const buttonLoadingIndicatorCenterVariants = cva(
 
 const buttonRootVariants = cva(
   [
+    'tj-button-root',
     '[--Icon-margin:initial]',
     'relative m-[var(--Button-margin)] box-border inline-flex cursor-pointer select-none items-center justify-center rounded-[var(--Button-radius,6px)] border-none bg-transparent font-semibold no-underline [-webkit-tap-highlight-color:transparent]',
     [

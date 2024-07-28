@@ -3,6 +3,7 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import { Button as JoyButton } from '@mui/joy';
 import {
   Button,
+  ButtonGroup,
   CircularProgress,
   IconAdapter,
   IconButton,
@@ -22,6 +23,7 @@ export default {
   // --------------------------------
 
   Button,
+  ButtonGroup,
   CircularProgress,
   IconAdapter,
   IconButton,
