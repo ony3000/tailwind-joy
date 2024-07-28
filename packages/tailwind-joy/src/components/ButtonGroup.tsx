@@ -191,6 +191,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
     {
       children,
       className,
+      style,
       color = 'neutral',
       size = 'md',
       variant = 'outlined',
@@ -220,6 +221,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
         {...otherProps}
         // @ts-ignore
         style={{
+          ...style,
           ...(buttonFlex === undefined
             ? {}
             : {
