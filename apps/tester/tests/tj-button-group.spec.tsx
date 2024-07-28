@@ -342,7 +342,10 @@ const customs: {
         size={size}
         variant={variant}
         color={color}
-        className="[--ButtonGroup-separatorColor:#4f46e5] dark:[--ButtonGroup-separatorColor:#4f46e5]"
+        style={{
+          // @ts-ignore
+          '--ButtonGroup-separatorColor': '#4f46e5',
+        }}
       >
         <TJButton>One</TJButton>
         <TJButton>Two</TJButton>
@@ -382,7 +385,10 @@ const customs: {
         size={size}
         variant={variant}
         color={color}
-        className="[--ButtonGroup-radius:40px]"
+        style={{
+          // @ts-ignore
+          '--ButtonGroup-radius': '40px',
+        }}
       >
         <TJButton>One</TJButton>
         <TJButton>Two</TJButton>
