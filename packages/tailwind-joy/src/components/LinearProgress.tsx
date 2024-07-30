@@ -208,6 +208,7 @@ export const LinearProgress = forwardRef<
   {
     children,
     className,
+    style,
     color = 'primary',
     size = 'md',
     variant = 'soft',
@@ -234,6 +235,7 @@ export const LinearProgress = forwardRef<
       {...otherProps}
       // @ts-ignore
       style={{
+        ...style,
         ...(thickness === undefined
           ? {}
           : {
