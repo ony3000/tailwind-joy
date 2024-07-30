@@ -390,6 +390,7 @@ export const CircularProgress = forwardRef<
   {
     children,
     className,
+    style,
     color = 'primary',
     size,
     variant = 'soft',
@@ -417,6 +418,7 @@ export const CircularProgress = forwardRef<
       {...otherProps}
       // @ts-ignore
       style={{
+        ...style,
         ...(thickness === undefined
           ? {}
           : {
