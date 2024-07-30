@@ -4,21 +4,16 @@ import type { ComponentProps } from 'react';
 import { StrictMode } from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 
-export function App({ children }: ComponentProps<'main'>) {
+export function App({
+  children,
+  mode,
+}: ComponentProps<'main'> & { mode: 'light' | 'dark' }) {
   return (
     <StrictMode>
-      <CssVarsProvider defaultMode="light">
-        <main>{children}</main>
-      </CssVarsProvider>
-    </StrictMode>
-  );
-}
-
-export function DarkModeApp({ children }: ComponentProps<'main'>) {
-  return (
-    <StrictMode>
-      <CssVarsProvider defaultMode="dark">
-        <main className="dark bg-slate-900 text-white">{children}</main>
+      <CssVarsProvider defaultMode={mode}>
+        <main className={mode === 'dark' ? 'dark bg-slate-900 text-white' : ''}>
+          {children}
+        </main>
       </CssVarsProvider>
     </StrictMode>
   );
