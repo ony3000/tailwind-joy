@@ -4,7 +4,8 @@ import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { colorTokens } from '../base/tokens';
+import { baseTokens, colorTokens } from '../base/tokens';
+import { backgroundColor, textColor } from '../base/modifier';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
@@ -68,14 +69,14 @@ const linearProgressRootVariants = cva(
         color: 'primary',
         variant: 'solid',
         className: [
-          primary.solidBg.replace(/bg-/g, 'text-'),
-          primary.softHoverBg.replace(/non-touchscreen:hover:/g, ''),
+          textColor(baseTokens.primary.solidBg),
+          backgroundColor(baseTokens.primary.softHoverBg),
         ],
       },
       {
         color: 'primary',
         variant: 'soft',
-        className: primary.solidBg.replace(/bg-/g, 'text-'),
+        className: textColor(baseTokens.primary.solidBg),
       },
       {
         color: 'primary',
@@ -91,14 +92,14 @@ const linearProgressRootVariants = cva(
         color: 'neutral',
         variant: 'solid',
         className: [
-          neutral.solidBg.replace(/bg-/g, 'text-'),
-          neutral.softHoverBg.replace(/non-touchscreen:hover:/g, ''),
+          textColor(baseTokens.neutral.solidBg),
+          backgroundColor(baseTokens.neutral.softHoverBg),
         ],
       },
       {
         color: 'neutral',
         variant: 'soft',
-        className: neutral.solidBg.replace(/bg-/g, 'text-'),
+        className: textColor(baseTokens.neutral.solidBg),
       },
       {
         color: 'neutral',
@@ -114,14 +115,14 @@ const linearProgressRootVariants = cva(
         color: 'danger',
         variant: 'solid',
         className: [
-          danger.solidBg.replace(/bg-/g, 'text-'),
-          danger.softHoverBg.replace(/non-touchscreen:hover:/g, ''),
+          textColor(baseTokens.danger.solidBg),
+          backgroundColor(baseTokens.danger.softHoverBg),
         ],
       },
       {
         color: 'danger',
         variant: 'soft',
-        className: danger.solidBg.replace(/bg-/g, 'text-'),
+        className: textColor(baseTokens.danger.solidBg),
       },
       {
         color: 'danger',
@@ -137,14 +138,14 @@ const linearProgressRootVariants = cva(
         color: 'success',
         variant: 'solid',
         className: [
-          success.solidBg.replace(/bg-/g, 'text-'),
-          success.softHoverBg.replace(/non-touchscreen:hover:/g, ''),
+          textColor(baseTokens.success.solidBg),
+          backgroundColor(baseTokens.success.softHoverBg),
         ],
       },
       {
         color: 'success',
         variant: 'soft',
-        className: success.solidBg.replace(/bg-/g, 'text-'),
+        className: textColor(baseTokens.success.solidBg),
       },
       {
         color: 'success',
@@ -160,14 +161,14 @@ const linearProgressRootVariants = cva(
         color: 'warning',
         variant: 'solid',
         className: [
-          warning.solidBg.replace(/bg-/g, 'text-'),
-          warning.softHoverBg.replace(/non-touchscreen:hover:/g, ''),
+          textColor(baseTokens.warning.solidBg),
+          backgroundColor(baseTokens.warning.softHoverBg),
         ],
       },
       {
         color: 'warning',
         variant: 'soft',
-        className: warning.solidBg.replace(/bg-/g, 'text-'),
+        className: textColor(baseTokens.warning.solidBg),
       },
       {
         color: 'warning',

@@ -4,7 +4,8 @@ import { cva } from 'class-variance-authority';
 import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
-import { colorTokens } from '../base/tokens';
+import { baseTokens, colorTokens } from '../base/tokens';
+import { textColor } from '../base/modifier';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
@@ -33,102 +34,102 @@ const iconButtonLoadingIndicatorVariants = cva(
       {
         color: 'primary',
         variant: 'solid',
-        className: primary.solidDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.primary.solidDisabledColor),
       },
       {
         color: 'primary',
         variant: 'soft',
-        className: primary.softDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.primary.softDisabledColor),
       },
       {
         color: 'primary',
         variant: 'outlined',
-        className: primary.outlinedDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.primary.outlinedDisabledColor),
       },
       {
         color: 'primary',
         variant: 'plain',
-        className: primary.plainDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.primary.plainDisabledColor),
       },
       {
         color: 'neutral',
         variant: 'solid',
-        className: neutral.solidDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.neutral.solidDisabledColor),
       },
       {
         color: 'neutral',
         variant: 'soft',
-        className: neutral.softDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.neutral.softDisabledColor),
       },
       {
         color: 'neutral',
         variant: 'outlined',
-        className: neutral.outlinedDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.neutral.outlinedDisabledColor),
       },
       {
         color: 'neutral',
         variant: 'plain',
-        className: neutral.plainDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.neutral.plainDisabledColor),
       },
       {
         color: 'danger',
         variant: 'solid',
-        className: danger.solidDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.danger.solidDisabledColor),
       },
       {
         color: 'danger',
         variant: 'soft',
-        className: danger.softDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.danger.softDisabledColor),
       },
       {
         color: 'danger',
         variant: 'outlined',
-        className: danger.outlinedDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.danger.outlinedDisabledColor),
       },
       {
         color: 'danger',
         variant: 'plain',
-        className: danger.plainDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.danger.plainDisabledColor),
       },
       {
         color: 'success',
         variant: 'solid',
-        className: success.solidDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.success.solidDisabledColor),
       },
       {
         color: 'success',
         variant: 'soft',
-        className: success.softDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.success.softDisabledColor),
       },
       {
         color: 'success',
         variant: 'outlined',
-        className: success.outlinedDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.success.outlinedDisabledColor),
       },
       {
         color: 'success',
         variant: 'plain',
-        className: success.plainDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.success.plainDisabledColor),
       },
       {
         color: 'warning',
         variant: 'solid',
-        className: warning.solidDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.warning.solidDisabledColor),
       },
       {
         color: 'warning',
         variant: 'soft',
-        className: warning.softDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.warning.softDisabledColor),
       },
       {
         color: 'warning',
         variant: 'outlined',
-        className: warning.outlinedDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.warning.outlinedDisabledColor),
       },
       {
         color: 'warning',
         variant: 'plain',
-        className: warning.plainDisabledColor.replace(/disabled:/g, ''),
+        className: textColor(baseTokens.warning.plainDisabledColor),
       },
     ],
     defaultVariants: {

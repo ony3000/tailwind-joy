@@ -5,9 +5,8 @@ import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { colorTokens } from '../base/tokens';
-
-const { primary, neutral, danger, success, warning } = colorTokens;
+import { baseTokens } from '../base/tokens';
+import { addPrefix, toVariableClass } from '../base/modifier';
 
 const buttonGroupRootVariants = cva(
   [
@@ -34,73 +33,103 @@ const buttonGroupRootVariants = cva(
     variants: {
       color: {
         primary: [
-          primary.outlinedBorder.replace(
-            /border-(joy-[a-z]+-\d+)/g,
-            '[--ButtonGroup-separatorColor:var(--$1)]',
+          toVariableClass(
+            baseTokens.primary.outlinedBorder,
+            'ButtonGroup-separatorColor',
           ),
-          primary.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.primary.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-button-root:disabled]:',
           ),
-          primary.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-icon-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.primary.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-icon-button-root:disabled]:',
           ),
         ],
         neutral: [
-          neutral.outlinedBorder.replace(
-            /border-(joy-[a-z]+-\d+)/g,
-            '[--ButtonGroup-separatorColor:var(--$1)]',
+          toVariableClass(
+            baseTokens.neutral.outlinedBorder,
+            'ButtonGroup-separatorColor',
           ),
-          neutral.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.neutral.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-button-root:disabled]:',
           ),
-          neutral.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-icon-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.neutral.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-icon-button-root:disabled]:',
           ),
         ],
         danger: [
-          danger.outlinedBorder.replace(
-            /border-(joy-[a-z]+-\d+)/g,
-            '[--ButtonGroup-separatorColor:var(--$1)]',
+          toVariableClass(
+            baseTokens.danger.outlinedBorder,
+            'ButtonGroup-separatorColor',
           ),
-          danger.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.danger.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-button-root:disabled]:',
           ),
-          danger.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-icon-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.danger.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-icon-button-root:disabled]:',
           ),
         ],
         success: [
-          success.outlinedBorder.replace(
-            /border-(joy-[a-z]+-\d+)/g,
-            '[--ButtonGroup-separatorColor:var(--$1)]',
+          toVariableClass(
+            baseTokens.success.outlinedBorder,
+            'ButtonGroup-separatorColor',
           ),
-          success.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.success.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-button-root:disabled]:',
           ),
-          success.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-icon-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.success.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-icon-button-root:disabled]:',
           ),
         ],
         warning: [
-          warning.outlinedBorder.replace(
-            /border-(joy-[a-z]+-\d+)/g,
-            '[--ButtonGroup-separatorColor:var(--$1)]',
+          toVariableClass(
+            baseTokens.warning.outlinedBorder,
+            'ButtonGroup-separatorColor',
           ),
-          warning.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.warning.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-button-root:disabled]:',
           ),
-          warning.outlinedDisabledBorder.replace(
-            /disabled:border-(joy-[a-z]+-\d+)/g,
-            '[&_.tj-icon-button-root:disabled]:[--ButtonGroup-separatorColor:var(--$1)]',
+          addPrefix(
+            toVariableClass(
+              baseTokens.warning.outlinedDisabledBorder,
+              'ButtonGroup-separatorColor',
+            ),
+            '[&_.tj-icon-button-root:disabled]:',
           ),
         ],
       },
