@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { colorTokens } from '../base/colors';
+import { colorTokens } from '../base/tokens';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
