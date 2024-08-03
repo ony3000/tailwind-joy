@@ -153,7 +153,7 @@ const fixtures: Fixture[] = [
               <MdDone />
             </IconAdapter>
           }
-          // className="???"
+          className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
         />
       );
     },
@@ -215,7 +215,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
-          // className="???"
+          className="[&>.tj-checkbox-checkbox]:relative"
         />
       );
     },
