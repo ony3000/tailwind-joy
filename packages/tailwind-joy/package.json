@@ -43,6 +43,8 @@
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",
+    "clsx": "2.1.1",
+    "react-icons": "5.2.1",
     "tailwind-merge": "2.3.0"
   },
   "devDependencies": {

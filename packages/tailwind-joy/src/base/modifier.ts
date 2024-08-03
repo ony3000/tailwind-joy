@@ -1,4 +1,4 @@
-type BaseToken = `joy-${string}` | `joy-${string} dark:joy-${string}`;
+type BaseToken = '' | `joy-${string}` | `joy-${string} dark:joy-${string}`;
 
 const SPACE = ' ';
 
@@ -15,7 +15,7 @@ export function addPrefix(classNameOrToken: string, prefix: string): string {
     .map((item) =>
       item.startsWith('dark:')
         ? item.replace(/^dark:(.+)$/, `dark:${prefix}$1`)
-        : `${prefix}${item}`,
+        : item.replace(/^(.+)$/, `${prefix}${item}`),
     )
     .join(SPACE);
 }
