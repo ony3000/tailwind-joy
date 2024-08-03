@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
+import { uuid } from '../base/alias';
 import { baseTokens, colorTokens } from '../base/tokens';
 import {
   addPrefix,
@@ -246,6 +247,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
     {
       children,
       className,
+      id,
       color,
       size = 'md',
       variant,
@@ -264,6 +266,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
     },
     ref,
   ) {
+    const [instanceId, setInstanceId] = useState(id ?? uuid());
     const [instanceChecked, setInstanceChecked] = useState(
       defaultChecked ?? checked ?? false,
     );
@@ -311,6 +314,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
             })}
           >
             <input
+              id={instanceId}
               type="checkbox"
               className={checkboxInputVariants()}
               checked={checked}
@@ -344,7 +348,10 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
             : uncheckedIcon}
         </span>
         {label && (
-          <label className={checkboxLabelVariants({ disableIcon })}>
+          <label
+            htmlFor={instanceId}
+            className={checkboxLabelVariants({ disableIcon })}
+          >
             {label}
           </label>
         )}
