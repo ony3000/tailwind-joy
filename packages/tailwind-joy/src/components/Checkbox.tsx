@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
-import { uuid } from '../base/alias';
+import { r, uuid } from '../base/alias';
 import { baseTokens, colorTokens } from '../base/tokens';
 import {
   addPrefix,
@@ -154,7 +154,7 @@ const checkboxActionVariants = (
     clsx([
       'tj-checkbox-action',
       overlay
-        ? 'rounded-[var(--Checkbox-actionRadius,var(--unstable_actionRadius,inherit))]'
+        ? r`rounded-[var(--Checkbox-actionRadius,var(--unstable\_actionRadius,inherit))]`
         : 'rounded-[var(--Checkbox-actionRadius,inherit)]',
       'text-left',
       'absolute',
@@ -219,7 +219,7 @@ const checkboxLabelVariants = (
   return twMerge(
     clsx([
       'tj-checkbox-label',
-      'flex',
+      'flex-1',
       'min-w-0',
       disableIcon && ['z-[1]', 'pointer-events-none'],
     ]),
@@ -267,9 +267,11 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
     ref,
   ) {
     const [instanceId, setInstanceId] = useState(id ?? uuid());
-    const [instanceChecked, setInstanceChecked] = useState(
-      defaultChecked ?? checked ?? false,
+    const [uncontrolledChecked, setUncontrolledChecked] = useState(
+      defaultChecked ?? false,
     );
+
+    const instanceChecked = checked ?? uncontrolledChecked;
 
     const isCheckboxActive = instanceChecked || indeterminate;
 
@@ -322,7 +324,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
               disabled={disabled}
               onChange={(e) => {
                 if (checked === undefined) {
-                  setInstanceChecked(e.currentTarget.checked);
+                  setUncontrolledChecked(e.currentTarget.checked);
                 }
                 if (onChange) {
                   onChange(e);
