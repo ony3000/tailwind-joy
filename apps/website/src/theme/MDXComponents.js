@@ -4,6 +4,7 @@ import { Button as JoyButton } from '@mui/joy';
 import {
   Button,
   ButtonGroup,
+  Checkbox,
   CircularProgress,
   IconAdapter,
   IconButton,
@@ -24,6 +25,7 @@ export default {
 
   Button,
   ButtonGroup,
+  Checkbox,
   CircularProgress,
   IconAdapter,
   IconButton,
