@@ -3,6 +3,13 @@ type BaseToken = '' | `joy-${string}` | `joy-${string} dark:joy-${string}`;
 const SPACE = ' ';
 
 /**
+ * A shortcut for the `Array.join` function.
+ */
+export function join(elements: unknown[]): string {
+  return elements.join(SPACE);
+}
+
+/**
  * Adds a prefix to each piece of a space-separated string.
  *
  * This is useful when you need to write multiple class names with prefix.
@@ -12,6 +19,7 @@ const SPACE = ' ';
 export function addPrefix(classNameOrToken: string, prefix: string): string {
   return classNameOrToken
     .split(SPACE)
+    .filter(Boolean)
     .map((item) =>
       item.startsWith('dark:')
         ? item.replace(/^dark:(.+)$/, `dark:${prefix}$1`)
