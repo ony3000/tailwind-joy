@@ -1,0 +1,290 @@
+---
+sidebar_position: 4
+---
+
+# Radio
+
+<AvailableFrom version="0.2.0" />
+
+Radio buttons enable the user to select one option from a set.
+
+## Basics
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+```
+
+The Tailwind-Joy Radio button behaves similar to the native HTML `<input type="radio">`, so it accepts props like `checked`, `value` and `onChange`.
+
+export function RadioBasics() {
+  return (
+    <DisplayStand>
+      <Radio name="radio-basics" label="One" value="one" defaultChecked />
+      <Radio name="radio-basics" label="Two" value="two" />
+    </DisplayStand>
+  );
+}
+
+<RadioBasics />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioBasics() {
+  return (
+    <div>
+      <Radio name="radio-basics" label="One" value="one" defaultChecked />
+      <Radio name="radio-basics" label="Two" value="two" />
+    </div>
+  );
+}
+```
+
+## Customization
+
+### Variants
+
+The Radio component supports four variants: `solid`, `soft`, `outlined` (default), and `plain`.
+
+export function RadioVariants() {
+  return (
+    <DisplayStand>
+      <Radio name="radio-variants" label="Solid" variant="solid" />
+      <Radio name="radio-variants" label="Soft" variant="soft" />
+      <Radio
+        name="radio-variants"
+        label="Outlined"
+        variant="outlined"
+        defaultChecked
+      />
+      <Radio name="radio-variants" label="Plain" variant="plain" />
+    </DisplayStand>
+  );
+}
+
+<RadioVariants />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioVariants() {
+  return (
+    <div>
+      <Radio name="radio-variants" label="Solid" variant="solid" />
+      <Radio name="radio-variants" label="Soft" variant="soft" />
+      <Radio
+        name="radio-variants"
+        label="Outlined"
+        variant="outlined"
+        defaultChecked
+      />
+      <Radio name="radio-variants" label="Plain" variant="plain" />
+    </div>
+  );
+}
+```
+
+### Sizes
+
+The Radio component supports three sizes: `sm`, `md` (default), and `lg`.
+
+export function RadioSizes() {
+  return (
+    <DisplayStand>
+      <Radio name="radio-sizes" label="Small" size="sm" />
+      <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
+      <Radio name="radio-sizes" label="Large" size="lg" />
+    </DisplayStand>
+  );
+}
+
+<RadioSizes />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioSizes() {
+  return (
+    <div>
+      <Radio name="radio-sizes" label="Small" size="sm" />
+      <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
+      <Radio name="radio-sizes" label="Large" size="lg" />
+    </div>
+  );
+}
+```
+
+### Colors
+
+The Radio component supports five colors: `primary`, `neutral`, `danger`, `success`, and `warning`.
+By default, when unchecked, the Radio is set to `neutral`; when checked, the color changes to `primary`.
+
+export function RadioColors() {
+  return (
+    <DisplayStand>
+      <Radio name="radio-colors" label="Primary" color="primary" />
+      <Radio name="radio-colors" label="Neutral" color="neutral" />
+      <Radio name="radio-colors" label="Danger" color="danger" />
+      <Radio name="radio-colors" label="Success" color="success" />
+      <Radio name="radio-colors" label="Warning" color="warning" />
+    </DisplayStand>
+  );
+}
+
+<RadioColors />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioColors() {
+  return (
+    <div>
+      <Radio name="radio-colors" label="Primary" color="primary" />
+      <Radio name="radio-colors" label="Neutral" color="neutral" />
+      <Radio name="radio-colors" label="Danger" color="danger" />
+      <Radio name="radio-colors" label="Success" color="success" />
+      <Radio name="radio-colors" label="Warning" color="warning" />
+    </div>
+  );
+}
+```
+
+### Position
+
+To swap the positions of a Radio and its label, use the CSS property `flex-direction: row-reverse`.
+
+export function RadioPosition() {
+  return (
+    <DisplayStand>
+      <Radio name="radio-position" label="One" className="flex-row-reverse" />
+      <Radio name="radio-position" label="Two" className="flex-row-reverse" />
+    </DisplayStand>
+  );
+}
+
+<RadioPosition />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioPosition() {
+  return (
+    <div>
+      <Radio name="radio-position" label="One" className="flex-row-reverse" />
+      <Radio name="radio-position" label="Two" className="flex-row-reverse" />
+    </div>
+  );
+}
+```
+
+### Focus outline
+
+By default, the focus outline wraps both the Radio button and its label.
+If you need to focus to omit the label, target the `tj-radio-radio` class and add `position: 'relative'`.
+
+export function RadioFocusOutline() {
+  return (
+    <DisplayStand>
+      <div>
+        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+          Select an option and use keyboard &uarr;&darr;.
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Radio name="radio-focus-outline" label="Fully wrapped" />
+          <Radio
+            name="radio-focus-outline"
+            label="Input wrapped"
+            className="[&>.tj-radio-radio]:relative"
+          />
+        </div>
+      </div>
+    </DisplayStand>
+  );
+}
+
+<RadioFocusOutline />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioFocusOutline() {
+  return (
+    <div>
+      <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+        Select an option and use keyboard &uarr;&darr;.
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <Radio name="radio-focus-outline" label="Fully wrapped" />
+        <Radio
+          name="radio-focus-outline"
+          label="Input wrapped"
+          className="[&>.tj-radio-radio]:relative"
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+### Clickable container
+
+To make the Radio button's container clickable, use the `overlay` prop.
+This works with any [positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning) wrapper element:
+
+export function RadioClickableContainer() {
+  return (
+    <DisplayStand>
+      <div>
+        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+          Try using keyboard navigation.
+        </div>
+        <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+          <Radio name="radio-clickable-container" label="Focus on me" overlay />
+        </div>
+      </div>
+    </DisplayStand>
+  );
+}
+
+<RadioClickableContainer />
+
+```jsx
+import { Radio } from 'tailwind-joy/components';
+
+export function RadioClickableContainer() {
+  return (
+    <div>
+      <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+        Try using keyboard navigation.
+      </div>
+      <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+        <Radio name="radio-clickable-container" label="Focus on me" overlay />
+      </div>
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio button, icon, action (with a nested `<input>`), and its associated `<label>`.
+
+```html
+<span class="tj-radio-root ...">
+  <span class="tj-radio-radio ...">
+    <span class="tj-radio-icon ..."></span>
+    <span class="tj-radio-action ...">
+      <input type="radio" class="tj-radio-input ..." />
+    </span>
+  </span>
+  <label class="tj-radio-label ...">
+    <!-- label text -->
+  </label>
+</span>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Radio />`](../apis/radio)
