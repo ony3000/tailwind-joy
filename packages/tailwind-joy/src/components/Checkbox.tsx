@@ -7,6 +7,7 @@ import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r, uuid } from '../base/alias';
 import { baseTokens, colorTokens } from '../base/tokens';
 import {
+  join,
   addPrefix,
   toColorClass,
   backgroundColor,
@@ -18,7 +19,6 @@ import { IconAdapter } from './IconAdapter';
 
 const checkboxRootVariants = (
   props?: BaseVariants & {
-    disabled?: boolean;
     disableIcon?: boolean;
     overlay?: boolean;
   },
@@ -27,14 +27,13 @@ const checkboxRootVariants = (
     color = 'neutral',
     size = 'md',
     variant = 'solid',
-    disabled = false,
     disableIcon = false,
     overlay = false,
   } = props ?? {};
 
   return twMerge(
     clsx([
-      'tj-checkbox-root',
+      'tj-checkbox-root group/tj-checkbox',
       '[--Icon-fontSize:var(--Checkbox-size)]',
       size === 'sm' && [
         '[--Checkbox-size:1rem]',
@@ -58,18 +57,16 @@ const checkboxRootVariants = (
       'inline-flex',
       'leading-[var(--Checkbox-size)]',
       colorTokens.text.primary,
-      disabled &&
-        addPrefix(
-          textColor(baseTokens[color].plainDisabledColor),
-          'has-[:disabled]:',
-        ),
+      addPrefix(
+        textColor(baseTokens[color].plainDisabledColor),
+        'has-[:disabled]:',
+      ),
       disableIcon && [
         colorTokens[color][`${variant}Color`],
-        disabled &&
-          addPrefix(
-            textColor(baseTokens[color][`${variant}DisabledColor`]),
-            'has-[:disabled]:',
-          ),
+        addPrefix(
+          textColor(baseTokens[color][`${variant}DisabledColor`]),
+          'has-[:disabled]:',
+        ),
       ],
     ]),
   );
@@ -77,15 +74,15 @@ const checkboxRootVariants = (
 
 const checkboxCheckboxVariants = (
   props?: BaseVariants & {
-    disabled?: boolean;
     disableIcon?: boolean;
+    instanceActive?: boolean;
   },
 ) => {
   const {
     color = 'neutral',
     variant = 'solid',
-    disabled = false,
     disableIcon = false,
+    instanceActive = false,
   } = props ?? {};
 
   return twMerge(
@@ -103,12 +100,15 @@ const checkboxCheckboxVariants = (
       'items-center',
       'shrink-0',
       disableIcon && 'contents',
-      '[&_.tj-checkbox-input:checked]:[--Icon-color:currentColor]',
-      '[&_.tj-checkbox-input:indeterminate]:[--Icon-color:currentColor]',
+      instanceActive && '[--Icon-color:currentColor]',
       !disableIcon && [
         variant === 'outlined'
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
+        addPrefix(
+          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'has-[:disabled]:',
+        ),
         colorTokens[color][`${variant}Color`],
         colorTokens[color][`${variant}Bg`] || colorTokens.background.surface,
         colorTokens[color][`${variant}Border`],
@@ -116,18 +116,12 @@ const checkboxCheckboxVariants = (
         colorTokens[color][`${variant}HoverBg`],
         colorTokens[color][`${variant}ActiveColor`],
         colorTokens[color][`${variant}ActiveBg`],
-        disabled &&
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
         addPrefix(
-          textColor(baseTokens[color][`${variant}DisabledColor`]),
-          'has-[:disabled]:',
-        ),
-        addPrefix(
-          backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-          'has-[:disabled]:',
-        ),
-        addPrefix(
-          borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+          join([
+            textColor(baseTokens[color][`${variant}DisabledColor`]),
+            backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
+            borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+          ]),
           'has-[:disabled]:',
         ),
       ],
@@ -137,7 +131,6 @@ const checkboxCheckboxVariants = (
 
 const checkboxActionVariants = (
   props?: BaseVariants & {
-    disabled?: boolean;
     disableIcon?: boolean;
     overlay?: boolean;
   },
@@ -145,7 +138,6 @@ const checkboxActionVariants = (
   const {
     color = 'neutral',
     variant = 'solid',
-    disabled = false,
     disableIcon = false,
     overlay = false,
   } = props ?? {};
@@ -160,15 +152,21 @@ const checkboxActionVariants = (
       'absolute',
       'inset-[calc(-1*var(--variant-borderWidth,0px))]',
       'z-[1]',
-      addPrefix('outline-2 outline outline-offset-2', 'has-[:focus-visible]:'),
       addPrefix(
-        toColorClass(baseTokens.focusVisible, 'outline-'),
+        join([
+          'outline-2 outline outline-offset-2',
+          toColorClass(baseTokens.focusVisible, 'outline-'),
+        ]),
         'has-[:focus-visible]:',
       ),
       disableIcon && [
         variant === 'outlined'
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
+        addPrefix(
+          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'has-[:disabled]:',
+        ),
         colorTokens[color][`${variant}Color`],
         colorTokens[color][`${variant}Bg`],
         colorTokens[color][`${variant}Border`],
@@ -176,18 +174,12 @@ const checkboxActionVariants = (
         colorTokens[color][`${variant}HoverBg`],
         colorTokens[color][`${variant}ActiveColor`],
         colorTokens[color][`${variant}ActiveBg`],
-        disabled &&
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
         addPrefix(
-          textColor(baseTokens[color][`${variant}DisabledColor`]),
-          'has-[:disabled]:',
-        ),
-        addPrefix(
-          backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-          'has-[:disabled]:',
-        ),
-        addPrefix(
-          borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+          join([
+            textColor(baseTokens[color][`${variant}DisabledColor`]),
+            backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
+            borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+          ]),
           'has-[:disabled]:',
         ),
       ],
@@ -291,7 +283,6 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
             color: instanceColor,
             size,
             variant: instanceVariant,
-            disabled,
             disableIcon,
             overlay,
           }),
@@ -302,15 +293,14 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
           className={checkboxCheckboxVariants({
             color: instanceColor,
             variant: instanceVariant,
-            disabled,
             disableIcon,
+            instanceActive: isCheckboxActive,
           })}
         >
           <span
             className={checkboxActionVariants({
               color: instanceColor,
               variant: instanceVariant,
-              disabled,
               disableIcon,
               overlay,
             })}
@@ -369,7 +359,6 @@ export const generatorInputs: GeneratorInput[] = [
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
-      disabled: [false, true],
       disableIcon: [false, true],
       overlay: [false, true],
     },
@@ -379,8 +368,8 @@ export const generatorInputs: GeneratorInput[] = [
     variants: {
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
-      disabled: [false, true],
       disableIcon: [false, true],
+      instanceActive: [false, true],
     },
   },
   {
@@ -388,7 +377,6 @@ export const generatorInputs: GeneratorInput[] = [
     variants: {
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
-      disabled: [false, true],
       disableIcon: [false, true],
       overlay: [false, true],
     },
