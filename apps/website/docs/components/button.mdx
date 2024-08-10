@@ -92,7 +92,9 @@ export function ButtonDisabled() {
 
 ### Loading
 
-Add the `loading` prop to show the Button's loading state. The Button is [disabled](#disabled) as long as it's loading. See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
+Add the `loading` prop to show the Button's loading state.
+The Button is [disabled](#disabled) as long as it's loading.
+See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
 
 export function ButtonLoading() {
   return (
@@ -305,7 +307,8 @@ export function ButtonDecorators() {
 
 ### Loading indicator
 
-The default loading indicator uses the [Circular Progress](./circular-progress) component. Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
+The default loading indicator uses the [Circular Progress](./circular-progress) component.
+Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
 
 export function ButtonLoadingIndicator() {
   return (
@@ -337,7 +340,8 @@ export function ButtonLoadingIndicator() {
 
 ### Loading position
 
-The `loadingPosition` prop sets the position of the Button's loading indicator. It supports three values:
+The `loadingPosition` prop sets the position of the Button's loading indicator.
+It supports three values:
 
 - `center` (default): The loading indicator is nested inside the `loadingIndicatorCenter` slot and replaces the Button's contents when in the loading state.
 - `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
@@ -476,7 +480,7 @@ export function IconButtonBasics() {
 The Button component is composed of a single root `<button>` element that wraps around its contents:
 
 ```html
-<button type="button" class="...">
+<button type="button" class="tj-button-root ...">
   <!-- Button contents -->
 </button>
 ```

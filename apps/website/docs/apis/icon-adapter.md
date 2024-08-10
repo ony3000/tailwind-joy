@@ -5,7 +5,8 @@ title: <IconAdapter />
 
 # IconAdapter API
 
-API reference docs for the React IconAdapter component. Learn about the props of this exported module.
+API reference docs for the React IconAdapter component.
+Learn about the props of this exported module.
 
 ## Demos
 

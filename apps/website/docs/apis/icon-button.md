@@ -5,7 +5,8 @@ title: <IconButton />
 
 # IconButton API
 
-API reference docs for the React IconButton component. Learn about the props of this exported module.
+API reference docs for the React IconButton component.
+Learn about the props of this exported module.
 
 ## Demos
 
@@ -31,7 +32,8 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<button>` are also available for IconButton component. Other props are as follows:
+By default, props available for HTML `<button>` are also available for IconButton component.
+Other props are as follows:
 
 ### `color`
 

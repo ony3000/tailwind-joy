@@ -7,7 +7,8 @@ title: <LinearProgress />
 
 <AvailableFrom version="0.2.0" />
 
-API reference docs for the React LinearProgress component. Learn about the props of this exported module.
+API reference docs for the React LinearProgress component.
+Learn about the props of this exported module.
 
 ## Demos
 
@@ -33,7 +34,8 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<div>` are also available for LinearProgress component. Other props are as follows:
+By default, props available for HTML `<div>` are also available for LinearProgress component.
+Other props are as follows:
 
 ### `color`
 
@@ -44,7 +46,8 @@ The color of the component.
 
 ### `determinate`
 
-The boolean to select a variant. Use indeterminate when there is no progress value.
+The boolean to select a variant.
+Use indeterminate when there is no progress value.
 
 - Type: `boolean`
 - Default: `false`
@@ -65,7 +68,8 @@ The thickness of the bar.
 
 ### `value`
 
-The value of the progress indicator for the determinate variant. Value between 0 and 100.
+The value of the progress indicator for the determinate variant.
+Value between 0 and 100.
 
 - Type: `number`
 - Default: `determinate ? 0 : 25`

@@ -27,6 +27,16 @@ Please note that [react](https://www.npmjs.com/package/react), [react-dom](https
 },
 ```
 
+### TypeScript support
+
+If your project uses TypeScript, you should set the `moduleResolution` property in `tsconfig.json` to one of `node16`, `nodenext`, or `bundler` to correctly detect type information.
+
+```
+"compilerOptions": {
+  "moduleResolution": "node16"
+},
+```
+
 ## Extend Tailwind CSS configuration
 
 Tailwind-Joy does not export CSS; instead, the class name of the Tailwind CSS syntax is embedded in the component's `className` property.

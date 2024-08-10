@@ -5,7 +5,8 @@ title: <CircularProgress />
 
 # CircularProgress API
 
-API reference docs for the React CircularProgress component. Learn about the props of this exported module.
+API reference docs for the React CircularProgress component.
+Learn about the props of this exported module.
 
 ## Demos
 
@@ -31,7 +32,8 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<span>` are also available for Button component. Other props are as follows:
+By default, props available for HTML `<span>` are also available for CircularProgress component.
+Other props are as follows:
 
 ### `color`
 
@@ -42,7 +44,8 @@ The color of the component.
 
 ### `determinate`
 
-The boolean to select a variant. Use indeterminate when there is no progress value.
+The boolean to select a variant.
+Use indeterminate when there is no progress value.
 
 - Type: `boolean`
 - Default: `false`
@@ -63,7 +66,8 @@ The thickness of the circle.
 
 ### `value`
 
-The value of the progress indicator for the determinate variant. Value between 0 and 100.
+The value of the progress indicator for the determinate variant.
+Value between 0 and 100.
 
 - Type: `number`
 - Default: `determinate ? 0 : 25`

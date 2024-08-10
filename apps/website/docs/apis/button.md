@@ -5,7 +5,8 @@ title: <Button />
 
 # Button API
 
-API reference docs for the React Button component. Learn about the props of this exported module.
+API reference docs for the React Button component.
+Learn about the props of this exported module.
 
 ## Demos
 
@@ -31,7 +32,8 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<button>` are also available for Button component. Other props are as follows:
+By default, props available for HTML `<button>` are also available for Button component.
+Other props are as follows:
 
 ### `color`
 

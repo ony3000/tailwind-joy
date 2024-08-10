@@ -7,7 +7,8 @@ title: <ButtonGroup />
 
 <AvailableFrom version="0.2.0" />
 
-API reference docs for the React ButtonGroup component. Learn about the props of this exported module.
+API reference docs for the React ButtonGroup component.
+Learn about the props of this exported module.
 
 ## Demos
 
@@ -33,7 +34,8 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<div>` are also available for ButtonGroup component. Other props are as follows:
+By default, props available for HTML `<div>` are also available for ButtonGroup component.
+Other props are as follows:
 
 ### `buttonFlex`
 
@@ -71,7 +73,8 @@ The size of the component.
 
 ### `spacing`
 
-Defines the space between the type `item` components. It can only be used on a type `container` component.
+Defines the space between the type `item` components.
+It can only be used on a type `container` component.
 
 - Type: `string`
 - Default: `'0'`
