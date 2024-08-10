@@ -1,207 +1,144 @@
 import type { ComponentProps } from 'react';
-import { Children, isValidElement } from 'react';
-import { forwardRef } from 'react';
-import { cva } from 'class-variance-authority';
+import { forwardRef, isValidElement, Children } from 'react';
+import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
 import { baseTokens } from '../base/tokens';
-import { addPrefix, toVariableClass } from '../base/modifier';
+import { join, addPrefix, toVariableClass } from '../base/modifier';
 
-const buttonGroupRootVariants = cva(
-  [
-    'tj-button-group-root',
-    [
+const buttonGroupRootVariants = (
+  props?: BaseVariants & {
+    orientation?: 'horizontal' | 'vertical';
+    flexibleButton?: boolean;
+    connectedButton?: boolean;
+  },
+) => {
+  const {
+    color = 'neutral',
+    variant = 'outlined',
+    orientation = 'horizontal',
+    flexibleButton = false,
+    connectedButton = false,
+  } = props ?? {};
+
+  return twMerge(
+    clsx([
+      'tj-button-group-root group/tj-button-group',
+      variant === 'outlined'
+        ? '[--ButtonGroup-separatorSize:1px]'
+        : '[--ButtonGroup-separatorSize:calc(var(--ButtonGroup-connected)*1px)]',
+      toVariableClass(
+        baseTokens[color].outlinedBorder,
+        'ButtonGroup-separatorColor',
+      ),
       '[--ButtonGroup-radius:6px]',
       '[--Divider-inset:0.5rem]',
       '[--unstable_childRadius:calc((1-var(--ButtonGroup-connected))*var(--ButtonGroup-radius)-var(--variant-borderWidth,0px))]',
-    ],
-    'flex gap-[var(--tj-gap)] rounded-[var(--ButtonGroup-radius)]',
-    r`[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[--Button-radius:var(--unstable\_childRadius)]`,
-    r`[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[--IconButton-radius:var(--unstable\_childRadius)]`,
-    r`[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:rounded-[var(--unstable\_childRadius)]`,
-    '[&>:only-child]:[--Button-radius:var(--ButtonGroup-radius)]',
-    '[&>:only-child]:[--IconButton-radius:var(--ButtonGroup-radius)]',
-    '[&_.tj-button-root:enabled]:z-[1]',
-    'non-touchscreen:[&_.tj-button-root:hover]:z-[2]',
-    '[&_.tj-button-root:focus-visible]:z-[2]',
-    '[&_.tj-icon-button-root:enabled]:z-[1]',
-    'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
-    '[&_.tj-icon-button-root:focus-visible]:z-[2]',
-  ],
-  {
-    variants: {
-      color: {
-        primary: [
-          toVariableClass(
-            baseTokens.primary.outlinedBorder,
-            'ButtonGroup-separatorColor',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.primary.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-button-root:disabled]:',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.primary.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-icon-button-root:disabled]:',
-          ),
-        ],
-        neutral: [
-          toVariableClass(
-            baseTokens.neutral.outlinedBorder,
-            'ButtonGroup-separatorColor',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.neutral.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-button-root:disabled]:',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.neutral.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-icon-button-root:disabled]:',
-          ),
-        ],
-        danger: [
-          toVariableClass(
-            baseTokens.danger.outlinedBorder,
-            'ButtonGroup-separatorColor',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.danger.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-button-root:disabled]:',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.danger.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-icon-button-root:disabled]:',
-          ),
-        ],
-        success: [
-          toVariableClass(
-            baseTokens.success.outlinedBorder,
-            'ButtonGroup-separatorColor',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.success.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-button-root:disabled]:',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.success.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-icon-button-root:disabled]:',
-          ),
-        ],
-        warning: [
-          toVariableClass(
-            baseTokens.warning.outlinedBorder,
-            'ButtonGroup-separatorColor',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.warning.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-button-root:disabled]:',
-          ),
-          addPrefix(
-            toVariableClass(
-              baseTokens.warning.outlinedDisabledBorder,
-              'ButtonGroup-separatorColor',
-            ),
-            '[&_.tj-icon-button-root:disabled]:',
-          ),
-        ],
-      },
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
-      },
-      variant: {
-        solid: '',
-        soft: '',
-        outlined: '[--ButtonGroup-separatorSize:1px]',
-        plain: '',
-      },
-      orientation: {
-        horizontal: [
-          'flex-row',
-          r`[&>[data-first-child]]:[--Button-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
-          r`[&>[data-first-child]]:[--IconButton-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
-          '[&>[data-first-child]]:[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          r`[&>[data-last-child]]:[--Button-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
-          r`[&>[data-last-child]]:[--IconButton-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
-          '[&>[data-last-child]]:[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not(:only-child)]:[--Button-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
-          '[&>:not([data-first-child]):not(:only-child)]:[--IconButton-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
-        ],
-        vertical: [
-          'flex-col',
-          r`[&>[data-first-child]]:[--Button-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
-          r`[&>[data-first-child]]:[--IconButton-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
-          '[&>[data-first-child]]:[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          r`[&>[data-last-child]]:[--Button-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
-          r`[&>[data-last-child]]:[--IconButton-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
-          '[&>[data-last-child]]:[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-          '[&>:not([data-first-child]):not(:only-child)]:[--Button-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
-          '[&>:not([data-first-child]):not(:only-child)]:[--IconButton-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
-        ],
-      },
-      flexibleButton: {
-        false: '',
-        true: [
-          '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-buttonFlex)]',
-          '[&>:not(button)>.tj-button-root]:w-full',
-        ],
-      },
-      connectedButton: {
-        false: '[--ButtonGroup-connected:0]',
-        true: '[--ButtonGroup-connected:1]',
-      },
-    },
-    compoundVariants: [
-      {
-        variant: ['solid', 'soft', 'plain'],
-        className: [
-          '[--ButtonGroup-separatorSize:calc(var(--ButtonGroup-connected)*1px)]',
-        ],
-      },
-    ],
-    defaultVariants: {
-      color: 'neutral',
-      size: 'md',
-      variant: 'outlined',
-      orientation: 'horizontal',
-      flexibleButton: false,
-      connectedButton: false,
-    },
-  },
-);
+      connectedButton
+        ? '[--ButtonGroup-connected:1]'
+        : '[--ButtonGroup-connected:0]',
+      'gap-[var(--tj-gap)]',
+      'flex',
+      'rounded-[var(--ButtonGroup-radius)]',
+      orientation === 'vertical' ? 'flex-col' : 'flex-row',
+      addPrefix(
+        join([
+          ...(orientation === 'vertical'
+            ? [
+                r`[--Button-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
+                r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
+                '[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]
+            : [
+                r`[--Button-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
+                r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
+                '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]),
+        ]),
+        '[&>[data-first-child]]:',
+      ),
+      addPrefix(
+        join([
+          r`[--Button-radius:var(--unstable\_childRadius)]`,
+          r`[--IconButton-radius:var(--unstable\_childRadius)]`,
+          r`rounded-[var(--unstable\_childRadius)]`,
+          ...(orientation === 'vertical'
+            ? [
+                '[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                '[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]
+            : [
+                '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]),
+        ]),
+        '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:',
+      ),
+      addPrefix(
+        join([
+          ...(orientation === 'vertical'
+            ? [
+                r`[--Button-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
+                r`[--IconButton-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
+                '[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]
+            : [
+                r`[--Button-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
+                r`[--IconButton-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
+                '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+              ]),
+        ]),
+        '[&>[data-last-child]]:',
+      ),
+      addPrefix(
+        join([
+          '[--Button-radius:var(--ButtonGroup-radius)]',
+          '[--IconButton-radius:var(--ButtonGroup-radius)]',
+        ]),
+        '[&>:only-child]:',
+      ),
+      addPrefix(
+        join([
+          ...(orientation === 'vertical'
+            ? [
+                '[--Button-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
+                '[--IconButton-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
+              ]
+            : [
+                '[--Button-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
+                '[--IconButton-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
+              ]),
+        ]),
+        '[&>:not([data-first-child]):not(:only-child)]:',
+      ),
+      '[&_.tj-button-root:enabled]:z-[1]',
+      addPrefix(
+        toVariableClass(
+          baseTokens[color].outlinedDisabledBorder,
+          'ButtonGroup-separatorColor',
+        ),
+        '[&_.tj-button-root:disabled]:',
+      ),
+      'non-touchscreen:[&_.tj-button-root:hover]:z-[2]',
+      '[&_.tj-button-root:focus-visible]:z-[2]',
+      '[&_.tj-icon-button-root:enabled]:z-[1]',
+      addPrefix(
+        toVariableClass(
+          baseTokens[color].outlinedDisabledBorder,
+          'ButtonGroup-separatorColor',
+        ),
+        '[&_.tj-icon-button-root:disabled]:',
+      ),
+      'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
+      '[&_.tj-icon-button-root:focus-visible]:z-[2]',
+      flexibleButton && [
+        '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-buttonFlex)]',
+        '[&>:not(button)>.tj-button-root]:w-full',
+      ],
+    ]),
+  );
+};
 
 interface ButtonGroupRootVariants extends BaseVariants {
   orientation?: 'horizontal' | 'vertical';
@@ -240,7 +177,6 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
         className={twMerge(
           buttonGroupRootVariants({
             color,
-            size,
             variant,
             orientation,
             flexibleButton: buttonFlex !== undefined,
@@ -294,7 +230,6 @@ export const generatorInputs: GeneratorInput[] = [
     generatorFn: buttonGroupRootVariants,
     variants: {
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
-      size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
       orientation: ['horizontal', 'vertical'],
       flexibleButton: [false, true],
