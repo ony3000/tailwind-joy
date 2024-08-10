@@ -11,11 +11,15 @@ https://tailwind-joy.vercel.app
 ### Inputs
 
 - Button
+- Button Group
+- Checkbox
 - Icon Button
+- Radio
 
 ### Feedback
 
 - Circular Progress
+- Linear Progress
 
 ### Tailwind-Joy's original
 
