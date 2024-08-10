@@ -9,6 +9,7 @@ import {
   IconAdapter,
   IconButton,
   LinearProgress,
+  Radio,
 } from 'tailwind-joy/components';
 import { AvailableFrom } from '@site/src/components/docs/AvailableFrom';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
@@ -30,6 +31,7 @@ export default {
   IconAdapter,
   IconButton,
   LinearProgress,
+  Radio,
 
   // --------------------------------
 

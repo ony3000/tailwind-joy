@@ -6,6 +6,7 @@ import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
+import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
 
 const SPACE = ' ';
 
@@ -17,6 +18,7 @@ const inputs: GeneratorInput[] = [
   ...iconAdapterClassNameGeneratorInputs,
   ...iconButtonClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
+  ...radioClassNameGeneratorInputs,
 ];
 
 function generate() {
