@@ -51,6 +51,7 @@ export const baseTokens = {
     solidDisabledColor: 'joy-neutral-400 dark:joy-neutral-500',
     solidDisabledBg: 'joy-neutral-100 dark:joy-neutral-800',
     solidDisabledBorder: '',
+    mainChannel: 'joy-primary-500 dark:joy-primary-400',
   },
   neutral: {
     plainColor: 'joy-neutral-700 dark:joy-neutral-300',
@@ -93,6 +94,7 @@ export const baseTokens = {
     solidDisabledColor: 'joy-neutral-400 dark:joy-neutral-500',
     solidDisabledBg: 'joy-neutral-100 dark:joy-neutral-800',
     solidDisabledBorder: '',
+    mainChannel: 'joy-neutral-500 dark:joy-neutral-400',
   },
   danger: {
     plainColor: 'joy-danger-500 dark:joy-danger-300',
@@ -135,6 +137,7 @@ export const baseTokens = {
     solidDisabledColor: 'joy-neutral-400 dark:joy-neutral-500',
     solidDisabledBg: 'joy-neutral-100 dark:joy-neutral-800',
     solidDisabledBorder: '',
+    mainChannel: 'joy-danger-500 dark:joy-danger-400',
   },
   success: {
     plainColor: 'joy-success-500 dark:joy-success-300',
@@ -177,6 +180,7 @@ export const baseTokens = {
     solidDisabledColor: 'joy-neutral-400 dark:joy-neutral-500',
     solidDisabledBg: 'joy-neutral-100 dark:joy-neutral-800',
     solidDisabledBorder: '',
+    mainChannel: 'joy-success-500 dark:joy-success-400',
   },
   warning: {
     plainColor: 'joy-warning-500 dark:joy-warning-300',
@@ -219,6 +223,7 @@ export const baseTokens = {
     solidDisabledColor: 'joy-neutral-400 dark:joy-neutral-500',
     solidDisabledBg: 'joy-neutral-100 dark:joy-neutral-800',
     solidDisabledBorder: '',
+    mainChannel: 'joy-warning-500 dark:joy-warning-400',
   },
   text: {
     primary: 'joy-neutral-800 dark:joy-neutral-100',

@@ -1,4 +1,5 @@
 import type { GeneratorInput } from '../base/types';
+import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
 import { generatorInputs as checkboxClassNameGeneratorInputs } from '../components/Checkbox';
@@ -11,6 +12,7 @@ import { generatorInputs as radioClassNameGeneratorInputs } from '../components/
 const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
+  ...adaptedIconClassNameGeneratorInputs,
   ...buttonClassNameGeneratorInputs,
   ...buttonGroupClassNameGeneratorInputs,
   ...checkboxClassNameGeneratorInputs,
