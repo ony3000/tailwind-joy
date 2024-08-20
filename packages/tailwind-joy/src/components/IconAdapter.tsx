@@ -43,6 +43,9 @@ interface IconAdapterRootVariants extends Omit<BaseVariants, 'variant'> {}
 type IconAdapterRootProps = Pick<ComponentProps<'svg'>, 'children'> &
   IconAdapterRootVariants;
 
+/**
+ * @deprecated
+ */
 export function IconAdapter({
   children,
   color = 'neutral',
