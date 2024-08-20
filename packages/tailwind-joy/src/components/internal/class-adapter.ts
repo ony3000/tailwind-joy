@@ -5,6 +5,21 @@ import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens } from '../../base/tokens';
 
+export function adaptClassName(node: ReactNode, className: string): ReactNode {
+  if (!isValidElement(node) || 'children' in node) {
+    return node;
+  }
+
+  return cloneElement(node, {
+    // @ts-expect-error
+    className: twMerge(
+      // @ts-expect-error
+      node.props.className ?? '',
+      className,
+    ),
+  });
+}
+
 const iconClassVariants = (props?: Pick<BaseVariants, 'color' | 'size'>) => {
   const { color = 'neutral', size = 'md' } = props ?? {};
 
@@ -27,33 +42,14 @@ const iconClassVariants = (props?: Pick<BaseVariants, 'color' | 'size'>) => {
   );
 };
 
+/**
+ * A shortcut for the `adaptClassName` function.
+ */
 export function adaptAsIcon(
   node: ReactNode,
   props?: Pick<BaseVariants, 'color' | 'size'>,
 ): ReactNode {
-  if (!isValidElement(node) || 'children' in node) {
-    return node;
-  }
-
-  return cloneElement(node, {
-    // @ts-expect-error
-    className: iconClassVariants(props),
-  });
-}
-
-export function adaptClassName(node: ReactNode, className: string): ReactNode {
-  if (!isValidElement(node) || 'children' in node) {
-    return node;
-  }
-
-  return cloneElement(node, {
-    // @ts-expect-error
-    className: twMerge(
-      // @ts-expect-error
-      node.props.className ?? '',
-      className,
-    ),
-  });
+  return adaptClassName(node, iconClassVariants(props));
 }
 
 export const generatorInputs: GeneratorInput[] = [
