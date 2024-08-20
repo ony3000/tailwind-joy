@@ -6,6 +6,7 @@ import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { addPrefix, toVariableClass } from '../base/modifier';
+import { adaptAsIcon } from './internal/class-adapter';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
@@ -437,7 +438,7 @@ export const CircularProgress = forwardRef<
         <circle className={circularProgressTrackVariants()} />
         <circle className={circularProgressProgressVariants({ determinate })} />
       </svg>
-      {children}
+      {adaptAsIcon(children, { color, size })}
     </span>
   );
 });

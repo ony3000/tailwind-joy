@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { textColor } from '../base/modifier';
+import { adaptAsIcon } from './internal/class-adapter';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
@@ -591,6 +592,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
     ref,
   ) {
     const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+    const instanceLoadingIndicator = loadingIndicator ? (
+      adaptAsIcon(loadingIndicator, { color, size })
+    ) : (
+      <CircularProgress color={color} thickness={thickness} />
+    );
 
     return (
       <button
@@ -612,10 +618,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
         {(startDecorator || (loading && loadingPosition === 'start')) && (
           <span className={buttonStartDecoratorVariants()}>
             {loading
-              ? loadingIndicator ?? (
-                  <CircularProgress color={color} thickness={thickness} />
-                )
-              : startDecorator}
+              ? instanceLoadingIndicator
+              : adaptAsIcon(startDecorator, { color, size })}
           </span>
         )}
         {children}
@@ -626,18 +630,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
               variant,
             })}
           >
-            {loadingIndicator ?? (
-              <CircularProgress color={color} thickness={thickness} />
-            )}
+            {instanceLoadingIndicator}
           </span>
         )}
         {(endDecorator || (loading && loadingPosition === 'end')) && (
           <span className={buttonEndDecoratorVariants()}>
             {loading
-              ? loadingIndicator ?? (
-                  <CircularProgress color={color} thickness={thickness} />
-                )
-              : endDecorator}
+              ? instanceLoadingIndicator
+              : adaptAsIcon(endDecorator, { color, size })}
           </span>
         )}
       </button>
