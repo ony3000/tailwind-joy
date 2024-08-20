@@ -180,9 +180,7 @@ export function CircularProgressChildren() {
   return (
     <DisplayStand>
       <CircularProgress color="warning">
-        <IconAdapter color="warning">
-          <MdWarning />
-        </IconAdapter>
+        <MdWarning />
       </CircularProgress>
       <CircularProgress size="lg" determinate value={66.67}>
         2 / 3
@@ -191,9 +189,7 @@ export function CircularProgressChildren() {
         color="danger"
         className="[--CircularProgress-size:80px]"
       >
-        <IconAdapter color="danger">
-          <MdReport />
-        </IconAdapter>
+        <MdReport />
       </CircularProgress>
     </DisplayStand>
   );
@@ -202,16 +198,14 @@ export function CircularProgressChildren() {
 <CircularProgressChildren />
 
 ```jsx
-import { CircularProgress, IconAdapter } from 'tailwind-joy/components';
+import { CircularProgress } from 'tailwind-joy/components';
 import { MdWarning, MdReport } from 'react-icons/md';
 
 export function CircularProgressChildren() {
   return (
     <div>
       <CircularProgress color="warning">
-        <IconAdapter color="warning">
-          <MdWarning />
-        </IconAdapter>
+        <MdWarning />
       </CircularProgress>
       <CircularProgress size="lg" determinate value={66.67}>
         2 / 3
@@ -220,9 +214,7 @@ export function CircularProgressChildren() {
         color="danger"
         className="[--CircularProgress-size:80px]"
       >
-        <IconAdapter color="danger">
-          <MdReport />
-        </IconAdapter>
+        <MdReport />
       </CircularProgress>
     </div>
   );
@@ -293,5 +285,4 @@ See the documentation below for a complete reference to all of the props availab
 
 - [`<Button />`](../apis/button)
 - [`<CircularProgress />`](../apis/circular-progress)
-- [`<IconAdapter />`](../apis/icon-adapter)
 - [`<IconButton />`](../apis/icon-button)

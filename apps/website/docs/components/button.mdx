@@ -247,24 +247,10 @@ import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 export function ButtonDecorators() {
   return (
     <DisplayStand>
-      <Button
-        color="primary"
-        startDecorator={
-          <IconAdapter>
-            <MdAdd />
-          </IconAdapter>
-        }
-      >
+      <Button color="primary" startDecorator={<MdAdd />}>
         Add to cart
       </Button>
-      <Button
-        color="success"
-        endDecorator={
-          <IconAdapter>
-            <MdKeyboardArrowRight />
-          </IconAdapter>
-        }
-      >
+      <Button color="success" endDecorator={<MdKeyboardArrowRight />}>
         Go to checkout
       </Button>
     </DisplayStand>
@@ -274,30 +260,16 @@ export function ButtonDecorators() {
 <ButtonDecorators />
 
 ```jsx
-import { Button, IconAdapter } from 'tailwind-joy/components';
+import { Button } from 'tailwind-joy/components';
 import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 
 export function ButtonDecorators() {
   return (
     <div>
-      <Button
-        color="primary"
-        startDecorator={
-          <IconAdapter>
-            <MdAdd />
-          </IconAdapter>
-        }
-      >
+      <Button color="primary" startDecorator={<MdAdd />}>
         Add to cart
       </Button>
-      <Button
-        color="success"
-        endDecorator={
-          <IconAdapter>
-            <MdKeyboardArrowRight />
-          </IconAdapter>
-        }
-      >
+      <Button color="success" endDecorator={<MdKeyboardArrowRight />}>
         Go to checkout
       </Button>
     </div>
@@ -355,15 +327,7 @@ export function ButtonLoadingPosition() {
       <Button loading loadingPosition="start">
         Start
       </Button>
-      <Button
-        loading
-        loadingPosition="end"
-        endDecorator={
-          <IconAdapter>
-            <MdSend />
-          </IconAdapter>
-        }
-      >
+      <Button loading loadingPosition="end" endDecorator={<MdSend />}>
         End
       </Button>
     </DisplayStand>
@@ -373,7 +337,7 @@ export function ButtonLoadingPosition() {
 <ButtonLoadingPosition />
 
 ```jsx
-import { Button, IconAdapter } from 'tailwind-joy/components';
+import { Button } from 'tailwind-joy/components';
 import { MdSend } from 'react-icons/md';
 
 export function ButtonLoadingPosition() {
@@ -382,15 +346,7 @@ export function ButtonLoadingPosition() {
       <Button loading loadingPosition="start">
         Start
       </Button>
-      <Button
-        loading
-        loadingPosition="end"
-        endDecorator={
-          <IconAdapter>
-            <MdSend />
-          </IconAdapter>
-        }
-      >
+      <Button loading loadingPosition="end" endDecorator={<MdSend />}>
         End
       </Button>
     </div>
@@ -412,24 +368,16 @@ export function IconButtonBasics() {
   return (
     <DisplayStand>
       <IconButton variant="solid">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="soft">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="outlined">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="plain">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
     </DisplayStand>
   );
@@ -438,42 +386,28 @@ export function IconButtonBasics() {
 <IconButtonBasics />
 
 ```jsx
-import { IconAdapter, IconButton } from 'tailwind-joy/components';
+import { IconButton } from 'tailwind-joy/components';
 import { MdFavoriteBorder } from 'react-icons/md';
 
 export function IconButtonBasics() {
   return (
     <div>
       <IconButton variant="solid">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="soft">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="outlined">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
       <IconButton variant="plain">
-        <IconAdapter>
-          <MdFavoriteBorder />
-        </IconAdapter>
+        <MdFavoriteBorder />
       </IconButton>
     </div>
   );
 }
 ```
-
-:::info
-
-[`<IconAdapter />`](./icon-adapter) is an original component of Tailwind-Joy.
-
-:::
 
 ## Anatomy
 
@@ -490,5 +424,4 @@ The Button component is composed of a single root `<button>` element that wraps 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
 - [`<Button />`](../apis/button)
-- [`<IconAdapter />`](../apis/icon-adapter)
 - [`<IconButton />`](../apis/icon-button)
