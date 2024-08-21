@@ -154,11 +154,7 @@ export function CheckboxIcons() {
     <DisplayStand>
       <Checkbox
         label="I have an icon when unchecked"
-        uncheckedIcon={
-          <IconAdapter>
-            <MdClose />
-          </IconAdapter>
-        }
+        uncheckedIcon={<MdClose />}
       />
     </DisplayStand>
   );
@@ -167,7 +163,7 @@ export function CheckboxIcons() {
 <CheckboxIcons />
 
 ```jsx
-import { Checkbox, IconAdapter } from 'tailwind-joy/components';
+import { Checkbox } from 'tailwind-joy/components';
 import { MdClose } from 'react-icons/md';
 
 export function CheckboxIcons() {
@@ -175,11 +171,7 @@ export function CheckboxIcons() {
     <div>
       <Checkbox
         label="I have an icon when unchecked"
-        uncheckedIcon={
-          <IconAdapter>
-            <MdClose />
-          </IconAdapter>
-        }
+        uncheckedIcon={<MdClose />}
       />
     </div>
   );
@@ -199,11 +191,7 @@ export function CheckboxAppearOnHover() {
     <DisplayStand>
       <Checkbox
         label="My unchecked icon appears on hover"
-        uncheckedIcon={
-          <IconAdapter>
-            <MdCheck />
-          </IconAdapter>
-        }
+        uncheckedIcon={<MdCheck />}
         className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
       />
     </DisplayStand>
@@ -213,7 +201,7 @@ export function CheckboxAppearOnHover() {
 <CheckboxAppearOnHover />
 
 ```jsx
-import { Checkbox, IconAdapter } from 'tailwind-joy/components';
+import { Checkbox } from 'tailwind-joy/components';
 import { MdCheck } from 'react-icons/md';
 
 export function CheckboxAppearOnHover() {
@@ -221,11 +209,7 @@ export function CheckboxAppearOnHover() {
     <div>
       <Checkbox
         label="My unchecked icon appears on hover"
-        uncheckedIcon={
-          <IconAdapter>
-            <MdCheck />
-          </IconAdapter>
-        }
+        uncheckedIcon={<MdCheck />}
         className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
       />
     </div>
@@ -518,4 +502,3 @@ Note that the actual `<input type="checkbox">` is doubly nested within `<span>` 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
 - [`<Checkbox />`](../apis/checkbox)
-- [`<IconAdapter />`](../apis/icon-adapter)

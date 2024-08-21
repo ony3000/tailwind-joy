@@ -5,6 +5,8 @@ title: <IconAdapter />
 
 # IconAdapter API
 
+<DeprecatedIn version="0.3.0" />
+
 API reference docs for the React IconAdapter component.
 Learn about the props of this exported module.
 

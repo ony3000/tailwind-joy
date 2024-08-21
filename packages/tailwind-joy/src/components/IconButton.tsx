@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { textColor } from '../base/modifier';
+import { adaptAsIcon } from './internal/class-adapter';
 
 const { primary, neutral, danger, success, warning } = colorTokens;
 
@@ -524,7 +525,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
             )}
           </span>
         ) : (
-          children
+          adaptAsIcon(children, { color, size })
         )}
       </button>
     );

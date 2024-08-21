@@ -42,7 +42,7 @@ Other props are as follows:
 The icon to display when the component is checked.
 
 - Type: `ReactNode`
-- Default: `<IconAdapter><MdCheck /></IconAdapter>`, where `<MdCheck />` is an icon component imported from [react-icons](https://www.npmjs.com/package/react-icons).
+- Default: `<MdCheck />`, where `<MdCheck />` is an icon component imported from [react-icons](https://www.npmjs.com/package/react-icons).
 
 ### `color`
 
@@ -71,7 +71,7 @@ This does not set the native input element to indeterminate due to inconsistent 
 The icon to display when the component is indeterminate.
 
 - Type: `ReactNode`
-- Default: `<IconAdapter><MdHorizontalRule /></IconAdapter>`, where `<MdHorizontalRule />` is an icon component imported from [react-icons](https://www.npmjs.com/package/react-icons).
+- Default: `<MdHorizontalRule />`, where `<MdHorizontalRule />` is an icon component imported from [react-icons](https://www.npmjs.com/package/react-icons).
 
 ### `label`
 
