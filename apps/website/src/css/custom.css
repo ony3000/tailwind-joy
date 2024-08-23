@@ -4,6 +4,52 @@
  * work well for content-centric websites.
  */
 
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Thin.woff2');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-ExtraLight.woff2');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Light.woff2');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Regular.woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Medium.woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-SemiBold.woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Bold.woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-ExtraBold.woff2');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/font/Pretendard-Black.woff2');
+  font-weight: 900;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #4f46e5; /* indigo-600 */
@@ -13,8 +59,18 @@
   --ifm-color-primary-light: #6860e9;
   --ifm-color-primary-lighter: #746deb;
   --ifm-color-primary-lightest: #9a95f0;
-  --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --site-font-sans: Pretendard, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --site-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  --ifm-font-family-base: var(--site-font-sans);
+  --ifm-font-family-monospace: var(--site-font-mono);
+  --joy-fontFamily-body: var(--site-font-sans) !important;
+  --joy-fontFamily-display: var(--site-font-sans) !important;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -32,3 +88,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
