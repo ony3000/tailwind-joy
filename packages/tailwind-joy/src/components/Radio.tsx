@@ -1,10 +1,9 @@
+import { clsx } from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef, useState } from 'react';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r, uuid } from '../base/alias';
-import { baseTokens, colorTokens } from '../base/tokens';
 import {
   join,
   addPrefix,
@@ -14,6 +13,7 @@ import {
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { baseTokens, colorTokens } from '../base/tokens';
 
 const radioRootVariants = (
   props?: BaseVariants & {

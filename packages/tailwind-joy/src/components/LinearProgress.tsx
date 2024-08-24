@@ -1,11 +1,11 @@
+import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { baseTokens, colorTokens } from '../base/tokens';
 import { join, addPrefix, backgroundColor, textColor } from '../base/modifier';
+import { baseTokens, colorTokens } from '../base/tokens';
 
 const linearProgressRootVariants = (
   props?: BaseVariants & {

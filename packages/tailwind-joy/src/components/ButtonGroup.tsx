@@ -1,11 +1,11 @@
+import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 import { forwardRef, isValidElement, Children } from 'react';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { baseTokens } from '../base/tokens';
 import { join, addPrefix, toVariableClass } from '../base/modifier';
+import { baseTokens } from '../base/tokens';
 
 const buttonGroupRootVariants = (
   props?: BaseVariants & {

@@ -1,11 +1,11 @@
+import { cva } from 'class-variance-authority';
 import type { ComponentProps } from 'react';
 import { forwardRef } from 'react';
-import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
-import { baseTokens, colorTokens } from '../base/tokens';
 import { addPrefix, toVariableClass } from '../base/modifier';
+import { baseTokens, colorTokens } from '../base/tokens';
 import { adaptAsIcon } from './internal/class-adapter';
 
 const { primary, neutral, danger, success, warning } = colorTokens;

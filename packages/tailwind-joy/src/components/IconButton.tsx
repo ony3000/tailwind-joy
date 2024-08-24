@@ -1,11 +1,11 @@
+import { cva } from 'class-variance-authority';
 import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef } from 'react';
-import { cva } from 'class-variance-authority';
-import { CircularProgress } from './CircularProgress';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
-import { baseTokens, colorTokens } from '../base/tokens';
 import { textColor } from '../base/modifier';
+import { baseTokens, colorTokens } from '../base/tokens';
+import { CircularProgress } from './CircularProgress';
 import { adaptAsIcon } from './internal/class-adapter';
 
 const { primary, neutral, danger, success, warning } = colorTokens;

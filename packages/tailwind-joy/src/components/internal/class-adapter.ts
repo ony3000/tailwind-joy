@@ -1,6 +1,6 @@
+import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import { cloneElement, isValidElement } from 'react';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens } from '../../base/tokens';

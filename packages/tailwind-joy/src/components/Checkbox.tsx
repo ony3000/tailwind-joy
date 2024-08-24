@@ -1,11 +1,10 @@
+import { clsx } from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
 import { forwardRef, useState } from 'react';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
+import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r, uuid } from '../base/alias';
-import { baseTokens, colorTokens } from '../base/tokens';
 import {
   join,
   addPrefix,
@@ -15,6 +14,7 @@ import {
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { baseTokens, colorTokens } from '../base/tokens';
 import { adaptAsIcon } from './internal/class-adapter';
 
 const checkboxRootVariants = (
@@ -326,17 +326,17 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
           {disableIcon
             ? null
             : indeterminate
-            ? indeterminateIcon
-              ? adaptAsIcon(indeterminateIcon, { color: instanceColor, size })
-              : adaptAsIcon(<MdHorizontalRule />, {
-                  color: instanceColor,
-                  size,
-                })
-            : instanceChecked
-            ? checkedIcon
-              ? adaptAsIcon(checkedIcon, { color: instanceColor, size })
-              : adaptAsIcon(<MdCheck />, { color: instanceColor, size })
-            : adaptAsIcon(uncheckedIcon, { color: instanceColor, size })}
+              ? indeterminateIcon
+                ? adaptAsIcon(indeterminateIcon, { color: instanceColor, size })
+                : adaptAsIcon(<MdHorizontalRule />, {
+                    color: instanceColor,
+                    size,
+                  })
+              : instanceChecked
+                ? checkedIcon
+                  ? adaptAsIcon(checkedIcon, { color: instanceColor, size })
+                  : adaptAsIcon(<MdCheck />, { color: instanceColor, size })
+                : adaptAsIcon(uncheckedIcon, { color: instanceColor, size })}
         </span>
         {label && (
           <label

@@ -1,5 +1,4 @@
 import type { GeneratorInput } from '../base/types';
-import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
 import { generatorInputs as checkboxClassNameGeneratorInputs } from '../components/Checkbox';
@@ -8,6 +7,7 @@ import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../compo
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
+import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
 const SPACE = ' ';
 
