@@ -7,12 +7,15 @@ importers:
       '@biomejs/biome':
         specifier: 1.8.0
         version: 1.8.0
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: 4.2.1
+        version: 4.2.1(prettier@3.3.3)
       prettier:
         specifier: 3.3.3
         version: 3.3.3
       prettier-plugin-tailwindcss:
         specifier: 0.5.14
-        version: 0.5.14(prettier@3.3.3)
+        version: 0.5.14(@trivago/prettier-plugin-sort-imports@4.2.1)(prettier@3.3.3)
       turbo:
         specifier: 2.0.3
         version: 2.0.3
@@ -397,6 +400,15 @@ packages:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
+
+  /@babel/generator@7.17.7:
+    resolution: {integrity: sha512-oLcVCTeIFadUoArDTwpluncplrYBmTCCZZgXCbgNGvOBBiSDDK3eWO4b/+eOTli5tKv1lg+a5/NAXg+nTcei1w==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/types': 7.24.7
+      jsesc: 2.5.2
+      source-map: 0.5.7
+    dev: true
 
   /@babel/generator@7.24.7:
     resolution: {integrity: sha512-oipXieGC3i45Y1A41t4tAqpnEZWgB/lC6Ehh6+rOviR5XWpTtMmLN+fGjz9vOiNRt0p6RtO6DtD0pdU3vpqdSA==}
@@ -1725,6 +1737,24 @@ packages:
       '@babel/parser': 7.24.7
       '@babel/types': 7.24.7
 
+  /@babel/traverse@7.23.2:
+    resolution: {integrity: sha512-azpe59SQ48qG6nu2CzcMLbxUudtN+dOM9kDbUqGq3HXUJRlo7i8fvPoxQUzYgLZ4cMVmuZgm8vvBpNeRhd6XSw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/code-frame': 7.24.7
+      '@babel/generator': 7.24.7
+      '@babel/helper-environment-visitor': 7.24.7
+      '@babel/helper-function-name': 7.24.7
+      '@babel/helper-hoist-variables': 7.24.7
+      '@babel/helper-split-export-declaration': 7.24.7
+      '@babel/parser': 7.24.7
+      '@babel/types': 7.24.7
+      debug: 4.3.4
+      globals: 11.12.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@babel/traverse@7.24.7:
     resolution: {integrity: sha512-yb65Ed5S/QAcewNPh0nZczy9JdYXkkAbIsEo+P7BE7yO3txAY30Y/oPa3QkQ5It3xVG2kpKMg9MsdxZaO31uKA==}
     engines: {node: '>=6.9.0'}
@@ -1741,6 +1771,14 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+
+  /@babel/types@7.17.0:
+    resolution: {integrity: sha512-TmKSNO4D5rzhL5bjWFcVHHLETzfQ/AmbKpKPOSjlP0WoHZ6L911fgoOKY4Alp/emzG4cHJdyN49zpgkbXFEHHw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-validator-identifier': 7.24.7
+      to-fast-properties: 2.0.0
+    dev: true
 
   /@babel/types@7.24.7:
     resolution: {integrity: sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==}
@@ -4304,6 +4342,26 @@ packages:
       postcss: ^8.3.0
     dependencies:
       postcss: 8.4.38
+    dev: true
+
+  /@trivago/prettier-plugin-sort-imports@4.2.1(prettier@3.3.3):
+    resolution: {integrity: sha512-iuy2MPVURGdxILTchHr15VAioItuYBejKfcTmQFlxIuqA7jeaT6ngr5aUIG6S6U096d6a6lJCgaOwlRrPLlOPg==}
+    peerDependencies:
+      '@vue/compiler-sfc': 3.x
+      prettier: 2.x - 3.x
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
+    dependencies:
+      '@babel/generator': 7.17.7
+      '@babel/parser': 7.24.7
+      '@babel/traverse': 7.23.2
+      '@babel/types': 7.17.0
+      javascript-natural-sort: 0.7.1
+      lodash: 4.17.21
+      prettier: 3.3.3
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@trysound/sax@0.2.0:
@@ -7473,6 +7531,10 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
+  /javascript-natural-sort@0.7.1:
+    resolution: {integrity: sha512-nO6jcEfZWQXDhOiBtG2KvKyEptz7RVbpGP4vTD2hLBdmNQSsCiicO2Ioinv6UI4y9ukqnBpy+XZ9H6uLNgJTlw==}
+    dev: true
+
   /jest-util@29.7.0:
     resolution: {integrity: sha512-z6EbKajIpqGKU56y5KBUgy1dt1ihhQJgWzUlZHArA/+X2ad7Cb5iF+AK1EWVL/Bo7Rz9uurpqw6SiBCefUbCGA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -9319,7 +9381,7 @@ packages:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  /prettier-plugin-tailwindcss@0.5.14(prettier@3.3.3):
+  /prettier-plugin-tailwindcss@0.5.14(@trivago/prettier-plugin-sort-imports@4.2.1)(prettier@3.3.3):
     resolution: {integrity: sha512-Puaz+wPUAhFp8Lo9HuciYKM2Y2XExESjeT+9NQoVFXZsPPnc9VYss2SpxdQ6vbatmt8/4+SN0oe0I1cPDABg9Q==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -9371,6 +9433,7 @@ packages:
       prettier-plugin-svelte:
         optional: true
     dependencies:
+      '@trivago/prettier-plugin-sort-imports': 4.2.1(prettier@3.3.3)
       prettier: 3.3.3
     dev: true
 
@@ -10341,7 +10404,6 @@ packages:
   /source-map@0.5.7:
     resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
