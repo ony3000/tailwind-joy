@@ -1,6 +1,19 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["cva"]
+  "overrides": [
+    {
+      "files": ["apps/**"],
+      "options": {
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+    },
+    {
+      "files": ["packages/**"],
+      "options": {
+        "plugins": ["@trivago/prettier-plugin-sort-imports"],
+        "importOrder": ["<THIRD_PARTY_MODULES>", "^@/", "^\\.\\./", "^\\./"]
+      }
+    }
+  ]
 }
