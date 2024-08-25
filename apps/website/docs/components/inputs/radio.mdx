@@ -277,31 +277,51 @@ The Radio Group component is the ideal wrapper for multiple Radio components.
 Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
 For example, the Radio buttons in the demo below update the state to reflect the selected option:
 
-import { Radio as JoyRadio, RadioGroup as JoyRadioGroup } from '@mui/joy';
 import { useState } from 'react';
 
 export function RadioGroupControlled() {
-  const [groupVariant, setGroupVariant] = useState('outlined');
+  const [variant, setVariant] = useState('outlined');
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <JoyRadioGroup
-          name="radio-group-controlled"
-          defaultValue="outlined"
-          value={groupVariant}
-          onChange={(e) => setGroupVariant(e.currentTarget.value)}
-        >
-          <JoyRadio value="solid" label="Solid" variant={groupVariant} />
-          <JoyRadio value="soft" label="Soft" variant={groupVariant} />
-          <JoyRadio value="outlined" label="Outlined" variant={groupVariant} />
-          <JoyRadio value="plain" label="Plain" variant={groupVariant} />
-        </JoyRadioGroup>
-      </CssVarsProvider>
+      <RadioGroup
+        name="radio-group-controlled"
+        value={variant}
+        onChange={(e) => setVariant(e.currentTarget.value)}
+      >
+        <Radio value="solid" label="Solid" variant={variant} />
+        <Radio value="soft" label="Soft" variant={variant} />
+        <Radio value="outlined" label="Outlined" variant={variant} />
+        <Radio value="plain" label="Plain" variant={variant} />
+      </RadioGroup>
     </DisplayStand>
   );
 }
 
 <RadioGroupControlled />
+
+```jsx
+import { useState } from 'react';
+import { Radio, RadioGroup } from 'tailwind-joy/components';
+
+export function RadioGroupControlled() {
+  const [variant, setVariant] = useState('outlined');
+
+  return (
+    <div>
+      <RadioGroup
+        name="radio-group-controlled"
+        value={variant}
+        onChange={(e) => setVariant(e.currentTarget.value)}
+      >
+        <Radio value="solid" label="Solid" variant={variant} />
+        <Radio value="soft" label="Soft" variant={variant} />
+        <Radio value="outlined" label="Outlined" variant={variant} />
+        <Radio value="plain" label="Plain" variant={variant} />
+      </RadioGroup>
+    </div>
+  );
+}
+```
 
 ### Focus outline
 
@@ -311,26 +331,46 @@ If you need to focus to omit the label, target the `tj-radio-radio` class and ad
 export function RadioGroupFocusOutline() {
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <div>
-          <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-            Select an option and use keyboard &uarr;&darr;.
-          </div>
-          <JoyRadioGroup name="radio-group-focus-outline">
-            <JoyRadio value="fully-wrapped" label="Fully wrapped" />
-            <JoyRadio
-              value="input-wrapped"
-              label="Input wrapped"
-              className="[&>.MuiRadio-radio]:relative"
-            />
-          </JoyRadioGroup>
+      <div>
+        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+          Select an option and use keyboard &uarr;&darr;.
         </div>
-      </CssVarsProvider>
+        <RadioGroup name="radio-group-focus-outline">
+          <Radio value="fully-wrapped" label="Fully wrapped" />
+          <Radio
+            value="input-wrapped"
+            label="Input wrapped"
+            className="[&>.tj-radio-radio]:relative"
+          />
+        </RadioGroup>
+      </div>
     </DisplayStand>
   );
 }
 
 <RadioGroupFocusOutline />
+
+```jsx
+import { Radio, RadioGroup } from 'tailwind-joy/components';
+
+export function RadioGroupFocusOutline() {
+  return (
+    <div>
+      <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+        Select an option and use keyboard &uarr;&darr;.
+      </div>
+      <RadioGroup name="radio-group-focus-outline">
+        <Radio value="fully-wrapped" label="Fully wrapped" />
+        <Radio
+          value="input-wrapped"
+          label="Input wrapped"
+          className="[&>.tj-radio-radio]:relative"
+        />
+      </RadioGroup>
+    </div>
+  );
+}
+```
 
 ### Clickable container
 
@@ -342,54 +382,171 @@ You can also apply this prop directly to a Radio Group when present, which will 
 export function RadioGroupClickableContainer() {
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <JoyRadioGroup
-          name="radio-group-clickable-container"
-          defaultValue="tailwind"
-          orientation="horizontal"
-          overlay
-          className="gap-4"
-        >
-          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
-            <JoyRadio value="tailwind" variant="soft" className="mb-4" />
+      <RadioGroup
+        name="radio-group-clickable-container"
+        defaultValue="tailwind"
+        orientation="horizontal"
+        overlay
+        className="gap-4"
+      >
+        {[
+          {
+            label: 'Tailwind',
+            avatar:
+              'https://www.gravatar.com/avatar/3d5b5e80591dcd7bcdbf6701438bfb27?f=y&d=retro',
+          },
+          {
+            label: 'Joy',
+            avatar:
+              'https://www.gravatar.com/avatar/06e110cd77c4955883c286d3d466eaa8?f=y&d=retro',
+          },
+          {
+            label: 'Octocat',
+            avatar: 'https://avatars.githubusercontent.com/u/583231',
+          },
+        ].map(({ label, avatar }) => (
+          <div
+            key={label}
+            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+          >
+            <Radio
+              value={label.toLowerCase()}
+              variant="soft"
+              className="mb-4"
+            />
             <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
               <img
-                src="https://www.gravatar.com/avatar/3d5b5e80591dcd7bcdbf6701438bfb27?f=y&d=retro"
+                src={avatar}
                 className="h-full w-full object-cover"
-                alt="Tailwind"
+                alt={label}
               />
             </div>
-            <div className="mt-2">Tailwind</div>
+            <div className="mt-2">{label}</div>
           </div>
-          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
-            <JoyRadio value="joy" variant="soft" className="mb-4" />
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src="https://www.gravatar.com/avatar/06e110cd77c4955883c286d3d466eaa8?f=y&d=retro"
-                className="h-full w-full object-cover"
-                alt="Joy"
-              />
-            </div>
-            <div className="mt-2">Joy</div>
-          </div>
-          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
-            <JoyRadio value="octocat" variant="soft" className="mb-4" />
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src="https://avatars.githubusercontent.com/u/583231"
-                className="h-full w-full object-cover"
-                alt="Octocat"
-              />
-            </div>
-            <div className="mt-2">Octocat</div>
-          </div>
-        </JoyRadioGroup>
-      </CssVarsProvider>
+        ))}
+      </RadioGroup>
     </DisplayStand>
   );
 }
 
 <RadioGroupClickableContainer />
+
+```jsx
+import { Radio, RadioGroup } from 'tailwind-joy/components';
+
+export function RadioGroupClickableContainer() {
+  return (
+    <div>
+      <RadioGroup
+        name="radio-group-clickable-container"
+        defaultValue="tailwind"
+        orientation="horizontal"
+        overlay
+        className="gap-4"
+      >
+        {[
+          {
+            label: 'Tailwind',
+            avatar:
+              'https://www.gravatar.com/avatar/3d5b5e80591dcd7bcdbf6701438bfb27?f=y&d=retro',
+          },
+          {
+            label: 'Joy',
+            avatar:
+              'https://www.gravatar.com/avatar/06e110cd77c4955883c286d3d466eaa8?f=y&d=retro',
+          },
+          {
+            label: 'Octocat',
+            avatar: 'https://avatars.githubusercontent.com/u/583231',
+          },
+        ].map(({ label, avatar }) => (
+          <div
+            key={label}
+            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+          >
+            <Radio
+              value={label.toLowerCase()}
+              variant="soft"
+              className="mb-4"
+            />
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
+              <img
+                src={avatar}
+                className="h-full w-full object-cover"
+                alt={label}
+              />
+            </div>
+            <div className="mt-2">{label}</div>
+          </div>
+        ))}
+      </RadioGroup>
+    </div>
+  );
+}
+```
+
+### No icons
+
+Use the `disableIcon` prop to remove the Radio button's icon.
+In this case, you'll need to use CSS properties like border and background color to communicate the state of the Radio button, as shown in the demo below:
+
+export function RadioGroupNoIcons() {
+  return (
+    <DisplayStand>
+      <RadioGroup
+        name="radio-group-no-icons"
+        defaultValue="512GB"
+        disableIcon
+        overlay
+      >
+        {['512GB', '1TB', '2TB'].map((value) => (
+          <div
+            key={value}
+            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+          >
+            <Radio
+              value={value}
+              label={`${value} SSD storage`}
+              className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
+            />
+          </div>
+        ))}
+      </RadioGroup>
+    </DisplayStand>
+  );
+}
+
+<RadioGroupNoIcons />
+
+```jsx
+import { Radio, RadioGroup } from 'tailwind-joy/components';
+
+export function RadioGroupNoIcons() {
+  return (
+    <div>
+      <RadioGroup
+        name="radio-group-no-icons"
+        defaultValue="512GB"
+        disableIcon
+        overlay
+      >
+        {['512GB', '1TB', '2TB'].map((value) => (
+          <div
+            key={value}
+            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+          >
+            <Radio
+              value={value}
+              label={`${value} SSD storage`}
+              className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
+            />
+          </div>
+        ))}
+      </RadioGroup>
+    </div>
+  );
+}
+```
 
 ## Anatomy
 
