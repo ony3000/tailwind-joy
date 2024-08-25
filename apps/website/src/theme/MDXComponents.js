@@ -10,6 +10,7 @@ import {
   IconButton,
   LinearProgress,
   Radio,
+  RadioGroup,
 } from 'tailwind-joy/components';
 import { AvailableFrom } from '@site/src/components/docs/AvailableFrom';
 import { DeprecatedIn } from '@site/src/components/docs/DeprecatedIn';
@@ -33,6 +34,7 @@ export default {
   IconButton,
   LinearProgress,
   Radio,
+  RadioGroup,
 
   // --------------------------------
 
