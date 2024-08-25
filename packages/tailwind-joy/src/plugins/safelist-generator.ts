@@ -7,6 +7,7 @@ import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../compo
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
+import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
 const SPACE = ' ';
@@ -21,6 +22,7 @@ const inputs: GeneratorInput[] = [
   ...iconButtonClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
   ...radioClassNameGeneratorInputs,
+  ...radioGroupClassNameGeneratorInputs,
 ];
 
 function generate() {
