@@ -266,7 +266,140 @@ export function RadioClickableContainer() {
 }
 ```
 
+## Usage with Radio Group
+
+<AvailableFrom version="0.3.0" />
+
+The Radio Group component is the ideal wrapper for multiple Radio components.
+
+### Controlled
+
+Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
+For example, the Radio buttons in the demo below update the state to reflect the selected option:
+
+import { Radio as JoyRadio, RadioGroup as JoyRadioGroup } from '@mui/joy';
+import { useState } from 'react';
+
+export function RadioGroupControlled() {
+  const [groupVariant, setGroupVariant] = useState('outlined');
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <JoyRadioGroup
+          name="radio-group-controlled"
+          defaultValue="outlined"
+          value={groupVariant}
+          onChange={(e) => setGroupVariant(e.currentTarget.value)}
+        >
+          <JoyRadio value="solid" label="Solid" variant={groupVariant} />
+          <JoyRadio value="soft" label="Soft" variant={groupVariant} />
+          <JoyRadio value="outlined" label="Outlined" variant={groupVariant} />
+          <JoyRadio value="plain" label="Plain" variant={groupVariant} />
+        </JoyRadioGroup>
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<RadioGroupControlled />
+
+### Focus outline
+
+By default, the focus outline wraps both the Radio button and its label.
+If you need to focus to omit the label, target the `tj-radio-radio` class and add `position: 'relative'`.
+
+export function RadioGroupFocusOutline() {
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <div>
+          <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
+            Select an option and use keyboard &uarr;&darr;.
+          </div>
+          <JoyRadioGroup name="radio-group-focus-outline">
+            <JoyRadio value="fully-wrapped" label="Fully wrapped" />
+            <JoyRadio
+              value="input-wrapped"
+              label="Input wrapped"
+              className="[&>.MuiRadio-radio]:relative"
+            />
+          </JoyRadioGroup>
+        </div>
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<RadioGroupFocusOutline />
+
+### Clickable container
+
+To make the Radio button's container clickable, use the `overlay` prop.
+This works with any [positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning) wrapper element:
+
+You can also apply this prop directly to a Radio Group when present, which will pass the prop to each individual Radio button nested within.
+
+export function RadioGroupClickableContainer() {
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <JoyRadioGroup
+          name="radio-group-clickable-container"
+          defaultValue="tailwind"
+          orientation="horizontal"
+          overlay
+          className="gap-4"
+        >
+          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+            <JoyRadio value="tailwind" variant="soft" className="mb-4" />
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
+              <img
+                src="https://www.gravatar.com/avatar/3d5b5e80591dcd7bcdbf6701438bfb27?f=y&d=retro"
+                className="h-full w-full object-cover"
+                alt="Tailwind"
+              />
+            </div>
+            <div className="mt-2">Tailwind</div>
+          </div>
+          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+            <JoyRadio value="joy" variant="soft" className="mb-4" />
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
+              <img
+                src="https://www.gravatar.com/avatar/06e110cd77c4955883c286d3d466eaa8?f=y&d=retro"
+                className="h-full w-full object-cover"
+                alt="Joy"
+              />
+            </div>
+            <div className="mt-2">Joy</div>
+          </div>
+          <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+            <JoyRadio value="octocat" variant="soft" className="mb-4" />
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
+              <img
+                src="https://avatars.githubusercontent.com/u/583231"
+                className="h-full w-full object-cover"
+                alt="Octocat"
+              />
+            </div>
+            <div className="mt-2">Octocat</div>
+          </div>
+        </JoyRadioGroup>
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<RadioGroupClickableContainer />
+
 ## Anatomy
+
+The Radio Group component is composed of a root `<div>` element that can wrap multiple Radio components.
+
+```html
+<div class="tj-radio-group-root ...">
+  <!-- Radio components here -->
+</div>
+```
 
 The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio button, icon, action (with a nested `<input>`), and its associated `<label>`.
 
@@ -289,3 +422,4 @@ The Radio component is composed of a root `<span>`, with further nested `<span>`
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
 - [`<Radio />`](../apis/radio)
+- [`<RadioGroup />`](../apis/radio-group)
