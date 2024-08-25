@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useContext, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r, uuid } from '../base/alias';
@@ -14,6 +14,7 @@ import {
   toVariableClass,
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { RadioGroupContext } from './RadioGroup';
 
 const radioRootVariants = (
   props?: BaseVariants & {
@@ -377,6 +378,8 @@ export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
       children,
       className,
       id,
+      name,
+      value,
       color,
       size,
       variant,
@@ -386,11 +389,27 @@ export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
       disableIcon,
       label,
       overlay,
+      onChange,
       ...otherProps
     },
     ref,
   ) {
+    const radioGroup = useContext(RadioGroupContext);
     const [instanceId, setInstanceId] = useState(id ?? uuid());
+
+    const instanceName = name ?? radioGroup.name;
+    const instanceSize = size ?? radioGroup.size;
+    const instanceChecked =
+      radioGroup.value === undefined ? checked : radioGroup.value === value;
+    const instanceDefaultChecked =
+      radioGroup.value === undefined
+        ? radioGroup.defaultValue === undefined
+          ? defaultChecked
+          : radioGroup.defaultValue === value
+        : undefined;
+    const instanceDisableIcon = disableIcon ?? radioGroup.disableIcon;
+    const instanceOverlay = overlay ?? radioGroup.overlay;
+    const instanceOnChange = radioGroup.onChange ?? onChange;
 
     return (
       <span
@@ -398,10 +417,10 @@ export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
         className={twMerge(
           radioRootVariants({
             color,
-            size,
+            size: instanceSize,
             variant,
-            disableIcon,
-            overlay,
+            disableIcon: instanceDisableIcon,
+            overlay: instanceOverlay,
           }),
           className,
         )}
@@ -410,25 +429,30 @@ export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
           className={radioRadioVariants({
             color,
             variant,
-            disableIcon,
+            disableIcon: instanceDisableIcon,
           })}
         >
-          {disableIcon ? null : <span className={radioIconVariants()} />}
+          {instanceDisableIcon ? null : (
+            <span className={radioIconVariants()} />
+          )}
           <span
             className={radioActionVariants({
               color,
               variant,
-              disableIcon,
-              overlay,
+              disableIcon: instanceDisableIcon,
+              overlay: instanceOverlay,
             })}
           >
             <input
               id={instanceId}
               type="radio"
+              name={instanceName}
               className={radioInputVariants()}
-              checked={checked}
-              defaultChecked={defaultChecked}
+              checked={instanceChecked}
+              defaultChecked={instanceDefaultChecked}
               disabled={disabled}
+              value={value}
+              onChange={instanceOnChange}
               {...otherProps}
             />
           </span>
@@ -436,7 +460,7 @@ export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
         {label && (
           <label
             htmlFor={instanceId}
-            className={radioLabelVariants({ disableIcon })}
+            className={radioLabelVariants({ disableIcon: instanceDisableIcon })}
           >
             {label}
           </label>
