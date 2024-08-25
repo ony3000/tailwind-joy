@@ -1,9 +1,9 @@
 import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
-import { createContext, forwardRef } from 'react';
+import { createContext, forwardRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
-import { r } from '../base/alias';
+import { r, uuid } from '../base/alias';
 import { colorTokens } from '../base/tokens';
 
 export const RadioGroupContext = createContext<
@@ -86,6 +86,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupRootProps>(
     },
     ref,
   ) {
+    const [instanceName, setInstanceName] = useState(name ?? uuid());
+
     return (
       <RadioGroupContext.Provider
         value={{
@@ -93,7 +95,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupRootProps>(
           defaultValue,
           disableIcon,
           overlay,
-          name,
+          name: instanceName,
           value,
           onChange,
         }}
