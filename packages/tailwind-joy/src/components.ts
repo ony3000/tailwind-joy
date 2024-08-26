@@ -7,3 +7,4 @@ export { IconButton } from './components/IconButton';
 export { LinearProgress } from './components/LinearProgress';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
+export { Sheet } from './components/Sheet';
