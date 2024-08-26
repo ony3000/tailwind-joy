@@ -1,0 +1,48 @@
+---
+sidebar_position: 3
+slug: /components/sheet
+---
+
+import { Sheet as JoySheet } from '@mui/joy';
+
+# Sheet
+
+<AvailableFrom version="0.3.0" />
+
+Sheet is a generic container that supports Tailwind-Joy's variants.
+
+## Basics
+
+The `Sheet` component, in addition to the variants, also has access to the `color` prop, allowing you to use every palette of the theme.
+
+export function SheetBasics() {
+  return (
+    <DisplayStand>
+      <JoySheet variant="outlined" color="neutral" className="p-8">
+        Hello world!
+      </JoySheet>
+    </DisplayStand>
+  );
+}
+
+<SheetBasics />
+
+```jsx
+import { Sheet } from 'tailwind-joy/components';
+
+export function SheetBasics() {
+  return (
+    <div>
+      <Sheet variant="outlined" color="neutral" className="p-8">
+        Hello world!
+      </Sheet>
+    </div>
+  );
+}
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Sheet />`](../apis/sheet)
