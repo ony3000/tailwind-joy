@@ -239,9 +239,9 @@ export function RadioClickableContainer() {
         <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
           Try using keyboard navigation.
         </div>
-        <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+        <Sheet variant="outlined" className="flex rounded-[8px] p-4">
           <Radio name="radio-clickable-container" label="Focus on me" overlay />
-        </div>
+        </Sheet>
       </div>
     </DisplayStand>
   );
@@ -250,7 +250,7 @@ export function RadioClickableContainer() {
 <RadioClickableContainer />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Radio, Sheet } from 'tailwind-joy/components';
 
 export function RadioClickableContainer() {
   return (
@@ -258,9 +258,9 @@ export function RadioClickableContainer() {
       <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
         Try using keyboard navigation.
       </div>
-      <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]">
+      <Sheet variant="outlined" className="flex rounded-[8px] p-4">
         <Radio name="radio-clickable-container" label="Focus on me" overlay />
-      </div>
+      </Sheet>
     </div>
   );
 }
@@ -405,9 +405,10 @@ export function RadioGroupClickableContainer() {
             avatar: 'https://avatars.githubusercontent.com/u/583231',
           },
         ].map(({ label, avatar }) => (
-          <div
+          <Sheet
             key={label}
-            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+            variant="outlined"
+            className="flex flex-col items-center rounded-[8px] p-4"
           >
             <Radio
               value={label.toLowerCase()}
@@ -422,7 +423,7 @@ export function RadioGroupClickableContainer() {
               />
             </div>
             <div className="mt-2">{label}</div>
-          </div>
+          </Sheet>
         ))}
       </RadioGroup>
     </DisplayStand>
@@ -432,7 +433,7 @@ export function RadioGroupClickableContainer() {
 <RadioGroupClickableContainer />
 
 ```jsx
-import { Radio, RadioGroup } from 'tailwind-joy/components';
+import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupClickableContainer() {
   return (
@@ -460,9 +461,10 @@ export function RadioGroupClickableContainer() {
             avatar: 'https://avatars.githubusercontent.com/u/583231',
           },
         ].map(({ label, avatar }) => (
-          <div
+          <Sheet
             key={label}
-            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex flex-col items-center rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+            variant="outlined"
+            className="flex flex-col items-center rounded-[8px] p-4"
           >
             <Radio
               value={label.toLowerCase()}
@@ -477,7 +479,7 @@ export function RadioGroupClickableContainer() {
               />
             </div>
             <div className="mt-2">{label}</div>
-          </div>
+          </Sheet>
         ))}
       </RadioGroup>
     </div>
@@ -500,16 +502,17 @@ export function RadioGroupNoIcons() {
         overlay
       >
         {['512GB', '1TB', '2TB'].map((value) => (
-          <div
+          <Sheet
             key={value}
-            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+            variant="outlined"
+            className="flex rounded-[8px] p-4"
           >
             <Radio
               value={value}
               label={`${value} SSD storage`}
               className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
             />
-          </div>
+          </Sheet>
         ))}
       </RadioGroup>
     </DisplayStand>
@@ -519,7 +522,7 @@ export function RadioGroupNoIcons() {
 <RadioGroupNoIcons />
 
 ```jsx
-import { Radio, RadioGroup } from 'tailwind-joy/components';
+import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupNoIcons() {
   return (
@@ -531,16 +534,17 @@ export function RadioGroupNoIcons() {
         overlay
       >
         {['512GB', '1TB', '2TB'].map((value) => (
-          <div
+          <Sheet
             key={value}
-            className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4 [--unstable_actionRadius:calc(8px-var(--variant-borderWidth,0px))]"
+            variant="outlined"
+            className="flex rounded-[8px] p-4"
           >
             <Radio
               value={value}
               label={`${value} SSD storage`}
               className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
             />
-          </div>
+          </Sheet>
         ))}
       </RadioGroup>
     </div>
@@ -580,3 +584,4 @@ See the documentation below for a complete reference to all of the props availab
 
 - [`<Radio />`](../apis/radio)
 - [`<RadioGroup />`](../apis/radio-group)
+- [`<Sheet />`](../apis/sheet)

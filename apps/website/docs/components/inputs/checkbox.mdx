@@ -363,9 +363,9 @@ export function CheckboxClickableContainer() {
         <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
           Try using keyboard navigation.
         </div>
-        <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4">
+        <Sheet variant="outlined" className="flex rounded-[8px] p-4">
           <Checkbox label="Focus on me" overlay />
-        </div>
+        </Sheet>
       </div>
     </DisplayStand>
   );
@@ -374,7 +374,7 @@ export function CheckboxClickableContainer() {
 <CheckboxClickableContainer />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Checkbox, Sheet } from 'tailwind-joy/components';
 
 export function CheckboxClickableContainer() {
   return (
@@ -382,9 +382,9 @@ export function CheckboxClickableContainer() {
       <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
         Try using keyboard navigation.
       </div>
-      <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4">
+      <Sheet variant="outlined" className="flex rounded-[8px] p-4">
         <Checkbox label="Focus on me" overlay />
-      </div>
+      </Sheet>
     </div>
   );
 }
@@ -503,3 +503,4 @@ Note that the actual `<input type="checkbox">` is doubly nested within `<span>` 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
 - [`<Checkbox />`](../apis/checkbox)
+- [`<Sheet />`](../apis/sheet)
