@@ -14,7 +14,6 @@ import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../compo
 const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
-  ...adaptedIconClassNameGeneratorInputs,
   ...buttonClassNameGeneratorInputs,
   ...buttonGroupClassNameGeneratorInputs,
   ...checkboxClassNameGeneratorInputs,
@@ -25,6 +24,7 @@ const inputs: GeneratorInput[] = [
   ...radioClassNameGeneratorInputs,
   ...radioGroupClassNameGeneratorInputs,
   ...sheetClassNameGeneratorInputs,
+  ...adaptedIconClassNameGeneratorInputs,
 ];
 
 function generate() {
