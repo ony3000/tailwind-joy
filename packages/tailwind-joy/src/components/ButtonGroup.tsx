@@ -38,7 +38,7 @@ const buttonGroupRootVariants = (
       connectedButton
         ? '[--ButtonGroup-connected:1]'
         : '[--ButtonGroup-connected:0]',
-      'gap-[var(--tj-gap)]',
+      'gap-[var(--tj-ButtonGroup-spacing)]',
       'flex',
       'rounded-[var(--ButtonGroup-radius)]',
       orientation === 'vertical' ? 'flex-col' : 'flex-row',
@@ -133,7 +133,7 @@ const buttonGroupRootVariants = (
       'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
       '[&_.tj-icon-button-root:focus-visible]:z-[2]',
       flexibleButton && [
-        '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-buttonFlex)]',
+        '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-ButtonGroup-buttonFlex)]',
         '[&>:not(button)>.tj-button-root]:w-full',
       ],
     ]),
@@ -191,10 +191,10 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
           ...(buttonFlex === undefined
             ? {}
             : {
-                '--tj-buttonFlex': buttonFlex,
+                '--tj-ButtonGroup-buttonFlex': buttonFlex,
               }),
           // @ts-ignore
-          '--tj-gap': spacing,
+          '--tj-ButtonGroup-spacing': spacing,
         }}
       >
         {Children.map(children, (child, index) => {
