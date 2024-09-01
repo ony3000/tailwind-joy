@@ -1,0 +1,116 @@
+---
+sidebar_position: 9
+slug: /components/switch
+---
+
+import { Switch as JoySwitch } from '@mui/joy';
+import LocalFireDepartmentRoundedIcon from '@mui/icons-material/LocalFireDepartmentRounded';
+import WavesRoundedIcon from '@mui/icons-material/WavesRounded';
+import { useState } from 'react';
+
+# Switch
+
+<AvailableFrom version="0.3.0" />
+
+Switches toggle the state of a single setting on or off.
+
+## Basics
+
+```jsx
+import { Switch } from 'tailwind-joy/components';
+```
+
+## Customization
+
+### Controlled
+
+To create a controlled switch, use the `checked` and `onChange` props.
+
+export function SwitchControlled() {
+  const [checked, setChecked] = useState(false);
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <JoySwitch
+          checked={checked}
+          onChange={(e) => setChecked(e.currentTarget.checked)}
+        />
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<SwitchControlled />
+
+### Label
+
+export function SwitchLabel() {
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
+          Turn alarm on
+          <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
+            <JoySwitch className="!ml-2" />
+          </span>
+        </label>
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<SwitchLabel />
+
+### Decorators
+
+To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
+
+export function SwitchDecorators() {
+  const [checked, setChecked] = useState(false);
+  return (
+    <DisplayStand>
+      <CssVarsProvider modeStorageKey="theme">
+        <JoySwitch
+          color={checked ? 'primary' : 'danger'}
+          startDecorator={
+            <LocalFireDepartmentRoundedIcon
+              sx={[
+                checked ? { color: 'text.tertiary' } : { color: 'danger.600' },
+              ]}
+            />
+          }
+          endDecorator={
+            <WavesRoundedIcon
+              sx={[
+                checked ? { color: 'primary.500' } : { color: 'text.tertiary' },
+              ]}
+            />
+          }
+          checked={checked}
+          onChange={(e) => setChecked(e.currentTarget.checked)}
+        />
+      </CssVarsProvider>
+    </DisplayStand>
+  );
+}
+
+<SwitchDecorators />
+
+## Anatomy
+
+```html
+<div class="tj-switch-root ...">
+  <span class="tj-switch-track ...">
+    <span class="tj-switch-thumb ..." />
+  </span>
+  <div class="tj-switch-action ...">
+    <input type="checkbox" class="tj-switch-input ..." />
+  </div>
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Switch />`](../apis/switch)
