@@ -3,6 +3,9 @@ sidebar_position: 4
 slug: /components/checkbox
 ---
 
+import { useState } from 'react';
+import { MdCheck, MdClose } from 'react-icons/md';
+
 # Checkbox
 
 <AvailableFrom version="0.2.0" />
@@ -148,8 +151,6 @@ By default, the Checkbox component is empty when unchecked.
 Use the `uncheckedIcon` prop to add a custom icon for the unchecked state.
 You can also use `checkedIcon` to customize the checked state.
 
-import { MdClose } from 'react-icons/md';
-
 export function CheckboxIcons() {
   return (
     <DisplayStand>
@@ -184,8 +185,6 @@ export function CheckboxIcons() {
 You can use the `uncheckedIcon` as a "preview" of the checked state by making it appear when the user hovers over the empty Checkbox.
 
 The demo below shows how to target the icon by using the `svg` selector and apply `opacity` for a smooth effect:
-
-import { MdCheck } from 'react-icons/md';
 
 export function CheckboxAppearOnHover() {
   return (
@@ -402,8 +401,6 @@ As such, it's usually reserved for parent Checkboxes that can control the states
 The demo below shows how to implement the `indeterminate` prop on a parent Checkbox that watches for the checked state in its children.
 If only one child is checked, then the parent displays the indeterminate state.
 Clicking on the parent Checkbox toggles selecting and deselecting all children.
-
-import { useState } from 'react';
 
 export function CheckboxIndeterminate() {
   const [checked, setChecked] = useState([true, false]);

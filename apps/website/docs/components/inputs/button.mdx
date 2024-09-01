@@ -3,6 +3,13 @@ sidebar_position: 2
 slug: /components/button
 ---
 
+import {
+  MdAdd,
+  MdFavoriteBorder,
+  MdKeyboardArrowRight,
+  MdSend,
+} from 'react-icons/md';
+
 # Button
 
 Buttons let users take actions and make choices with a single tap.
@@ -243,8 +250,6 @@ export function ButtonColors() {
 
 Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
 
-import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
-
 export function ButtonDecorators() {
   return (
     <DisplayStand>
@@ -320,8 +325,6 @@ It supports three values:
 - `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
 - `end`: The loading indicator replaces the [ending decorator](#decorators) when the Button is in the loading state.
 
-import { MdSend } from 'react-icons/md';
-
 export function ButtonLoadingPosition() {
   return (
     <DisplayStand>
@@ -362,8 +365,6 @@ import { IconButton } from 'tailwind-joy/components';
 ```
 
 Use the Icon Button component for a square button to house an icon with no text content.
-
-import { MdFavoriteBorder } from 'react-icons/md';
 
 export function IconButtonBasics() {
   return (

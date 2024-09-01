@@ -3,6 +3,9 @@ sidebar_position: 1
 slug: /components/icon-adapter
 ---
 
+import { HeartIcon } from '@heroicons/react/24/outline';
+import { MdAdd } from 'react-icons/md';
+
 # Icon Adapter
 
 <DeprecatedIn version="0.3.0" />
@@ -32,8 +35,6 @@ import { IconAdapter } from 'tailwind-joy/components';
 Tailwind-Joy Icon Adapter defines default styles for third-party icon components.
 
 The demo below shows the difference with or without the Icon Adapter.
-
-import { MdAdd } from 'react-icons/md';
 
 export function IconAdapterBasics() {
   return (
@@ -199,8 +200,6 @@ See the [Basics](#basics) section above for a component demo display.
 ```bash npm2yarn
 npm install @heroicons/react
 ```
-
-import { HeartIcon } from '@heroicons/react/24/outline';
 
 export function IconAdapterHeroicons() {
   return (

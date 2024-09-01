@@ -3,6 +3,8 @@ sidebar_position: 6
 slug: /components/radio
 ---
 
+import { useState } from 'react';
+
 # Radio
 
 <AvailableFrom version="0.2.0" />
@@ -276,8 +278,6 @@ The Radio Group component is the ideal wrapper for multiple Radio components.
 
 Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
 For example, the Radio buttons in the demo below update the state to reflect the selected option:
-
-import { useState } from 'react';
 
 export function RadioGroupControlled() {
   const [variant, setVariant] = useState('outlined');
