@@ -12,6 +12,7 @@ import {
   Radio,
   RadioGroup,
   Sheet,
+  Switch,
 } from 'tailwind-joy/components';
 import { AvailableFrom } from '@site/src/components/docs/AvailableFrom';
 import { DeprecatedIn } from '@site/src/components/docs/DeprecatedIn';
@@ -37,6 +38,7 @@ export default {
   Radio,
   RadioGroup,
   Sheet,
+  Switch,
 
   // --------------------------------
 
