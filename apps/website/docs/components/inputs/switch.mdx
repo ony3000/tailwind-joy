@@ -1,0 +1,186 @@
+---
+sidebar_position: 9
+slug: /components/switch
+---
+
+import { useState } from 'react';
+import { MdLocalFireDepartment, MdWaves } from 'react-icons/md';
+
+# Switch
+
+<AvailableFrom version="0.3.0" />
+
+Switches toggle the state of a single setting on or off.
+
+## Basics
+
+```jsx
+import { Switch } from 'tailwind-joy/components';
+```
+
+## Customization
+
+### Controlled
+
+To create a controlled switch, use the `checked` and `onChange` props.
+
+export function SwitchControlled() {
+  const [checked, setChecked] = useState(false);
+  return (
+    <DisplayStand>
+      <Switch
+        checked={checked}
+        onChange={(e) => setChecked(e.currentTarget.checked)}
+      />
+    </DisplayStand>
+  );
+}
+
+<SwitchControlled />
+
+```jsx
+import { useState } from 'react';
+import { Switch } from 'tailwind-joy/components';
+
+export function SwitchControlled() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div>
+      <Switch
+        checked={checked}
+        onChange={(e) => setChecked(e.currentTarget.checked)}
+      />
+    </div>
+  );
+}
+```
+
+### Label
+
+export function SwitchLabel() {
+  return (
+    <DisplayStand>
+      <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
+        Turn alarm on
+        <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
+          <Switch className="ml-2" />
+        </span>
+      </label>
+    </DisplayStand>
+  );
+}
+
+<SwitchLabel />
+
+```jsx
+import { Switch } from 'tailwind-joy/components';
+
+export function SwitchLabel() {
+  return (
+    <div>
+      <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
+        Turn alarm on
+        <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
+          <Switch className="ml-2" />
+        </span>
+      </label>
+    </div>
+  );
+}
+```
+
+### Decorators
+
+To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
+
+export function SwitchDecorators() {
+  const [checked, setChecked] = useState(false);
+  return (
+    <DisplayStand>
+      <Switch
+        color={checked ? 'primary' : 'danger'}
+        startDecorator={
+          <MdLocalFireDepartment
+            className={
+              checked
+                ? '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
+                : '[--Icon-color:var(--joy-danger-600)]'
+            }
+          />
+        }
+        endDecorator={
+          <MdWaves
+            className={
+              checked
+                ? '[--Icon-color:var(--joy-primary-500)]'
+                : '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
+            }
+          />
+        }
+        checked={checked}
+        onChange={(e) => setChecked(e.currentTarget.checked)}
+      />
+    </DisplayStand>
+  );
+}
+
+<SwitchDecorators />
+
+```jsx
+import { useState } from 'react';
+import { Switch } from 'tailwind-joy/components';
+
+export function SwitchDecorators() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div>
+      <Switch
+        color={checked ? 'primary' : 'danger'}
+        startDecorator={
+          <MdLocalFireDepartment
+            className={
+              checked
+                ? '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
+                : '[--Icon-color:var(--joy-danger-600)]'
+            }
+          />
+        }
+        endDecorator={
+          <MdWaves
+            className={
+              checked
+                ? '[--Icon-color:var(--joy-primary-500)]'
+                : '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
+            }
+          />
+        }
+        checked={checked}
+        onChange={(e) => setChecked(e.currentTarget.checked)}
+      />
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+```html
+<div class="tj-switch-root ...">
+  <!-- start decorator is nested here when present -->
+  <span class="tj-switch-track ...">
+    <span class="tj-switch-thumb ..." />
+  </span>
+  <div class="tj-switch-action ...">
+    <input type="checkbox" class="tj-switch-input ..." />
+  </div>
+  <!-- end decorator is nested here when present -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Switch />`](../apis/switch)

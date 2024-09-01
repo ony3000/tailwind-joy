@@ -22,6 +22,7 @@
     "@emotion/styled": "11.11.5",
     "@heroicons/react": "2.1.5",
     "@mdx-js/react": "3.0.0",
+    "@mui/icons-material": "5.15.20",
     "@mui/joy": "5.0.0-beta.36",
     "clsx": "2.1.1",
     "prism-react-renderer": "2.3.0",
