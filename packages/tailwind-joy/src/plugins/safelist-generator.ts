@@ -3,6 +3,7 @@ import { generatorInputs as buttonClassNameGeneratorInputs } from '../components
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
 import { generatorInputs as checkboxClassNameGeneratorInputs } from '../components/Checkbox';
 import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../components/CircularProgress';
+import { generatorInputs as dividerClassNameGeneratorInputs } from '../components/Divider';
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
@@ -19,6 +20,7 @@ const inputs: GeneratorInput[] = [
   ...buttonGroupClassNameGeneratorInputs,
   ...checkboxClassNameGeneratorInputs,
   ...circularProgressClassNameGeneratorInputs,
+  ...dividerClassNameGeneratorInputs,
   ...iconAdapterClassNameGeneratorInputs,
   ...iconButtonClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
