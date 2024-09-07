@@ -3,13 +3,14 @@ sidebar_position: 5
 slug: /components/divider
 ---
 
-import { Divider as JoyDivider } from '@mui/joy';
-import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import { useState } from 'react';
+import {
+  MdFormatAlignCenter,
+  MdFormatAlignLeft,
+  MdFormatAlignRight,
+  MdFormatBold,
+  MdFormatItalic,
+} from 'react-icons/md';
 
 # Divider
 
@@ -39,49 +40,97 @@ export function DividerRenderedWithContent() {
   );
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <div>
-          {content}
-          <JoyDivider>Visual indicator</JoyDivider>
-          {content}
-          <JoyDivider>
-            <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
-              <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
-                Visual indicator
-              </span>
-            </div>
-          </JoyDivider>
-          {content}
-        </div>
-      </CssVarsProvider>
+      <div>
+        {content}
+        <Divider>Visual indicator</Divider>
+        {content}
+        <Divider>
+          <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+            <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
+              Visual indicator
+            </span>
+          </div>
+        </Divider>
+        {content}
+      </div>
     </DisplayStand>
   );
 }
 
 <DividerRenderedWithContent />
 
+```jsx
+import { Divider } from 'tailwind-joy/components';
+
+export function DividerRenderedWithContent() {
+  const content = (
+    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
+      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
+      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
+    </div>
+  );
+
+  return (
+    <div>
+      {content}
+      <Divider>Visual indicator</Divider>
+      {content}
+      <Divider>
+        <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+          <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
+            Visual indicator
+          </span>
+        </div>
+      </Divider>
+      {content}
+    </div>
+  );
+}
+```
+
 ### Vertical divider
 
 Use the `orientation` prop to render a vertical divider.
 
 export function DividerVerticalDivider() {
+  const iconClassName =
+    'select-none m-[var(--Icon-margin)] w-[1em] h-[1em] inline-block shrink-0 [font-size:var(--Icon-fontSize,1.5rem)] [color:var(--Icon-color,var(--joy-neutral-500))] dark:[color:var(--Icon-color,var(--joy-neutral-400))]';
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <div className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
-          <FormatAlignLeftIcon />
-          <FormatAlignCenterIcon />
-          <FormatAlignRightIcon />
-          <JoyDivider orientation="vertical" />
-          <FormatBoldIcon />
-          <FormatItalicIcon />
-        </div>
-      </CssVarsProvider>
+      <div className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
+        <MdFormatAlignLeft className={iconClassName} />
+        <MdFormatAlignCenter className={iconClassName} />
+        <MdFormatAlignRight className={iconClassName} />
+        <Divider orientation="vertical" />
+        <MdFormatBold className={iconClassName} />
+        <MdFormatItalic className={iconClassName} />
+      </div>
     </DisplayStand>
   );
 }
 
 <DividerVerticalDivider />
+
+```jsx
+import { Divider } from 'tailwind-joy/components';
+
+export function DividerVerticalDivider() {
+  const iconClassName =
+    'select-none m-[var(--Icon-margin)] w-[1em] h-[1em] inline-block shrink-0 [font-size:var(--Icon-fontSize,1.5rem)] [color:var(--Icon-color,var(--joy-neutral-500))] dark:[color:var(--Icon-color,var(--joy-neutral-400))]';
+
+  return (
+    <div className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
+      <MdFormatAlignLeft className={iconClassName} />
+      <MdFormatAlignCenter className={iconClassName} />
+      <MdFormatAlignRight className={iconClassName} />
+      <Divider orientation="vertical" />
+      <MdFormatBold className={iconClassName} />
+      <MdFormatItalic className={iconClassName} />
+    </div>
+  );
+}
+```
 
 #### Vertical with text
 
@@ -97,18 +146,36 @@ export function DividerVerticalWithText() {
   );
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <div className="flex flex-row gap-4">
-          {content}
-          <JoyDivider orientation="vertical">Visual indicator</JoyDivider>
-          {content}
-        </div>
-      </CssVarsProvider>
+      <div className="flex flex-row gap-4">
+        {content}
+        <Divider orientation="vertical">Visual indicator</Divider>
+        {content}
+      </div>
     </DisplayStand>
   );
 }
 
 <DividerVerticalWithText />
+
+```jsx
+export function DividerVerticalWithText() {
+  const content = (
+    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
+      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
+      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
+    </div>
+  );
+
+  return (
+    <div className="flex flex-row gap-4">
+      {content}
+      <Divider orientation="vertical">Visual indicator</Divider>
+      {content}
+    </div>
+  );
+}
+```
 
 ### Child position
 
@@ -124,17 +191,17 @@ export function DividerChildPosition() {
     </div>
   );
   return (
-    <DisplayStand className="flex-col">
+    <DisplayStand>
       <div className="space-y-2">
         <div>
           {content}
-          <JoyDivider sx={{ '--Divider-childPosition': `${position}%` }}>
+          <Divider style={{ '--Divider-childPosition': `${position}%` }}>
             <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
               <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
                 Visual indicator
               </span>
             </div>
-          </JoyDivider>
+          </Divider>
           {content}
         </div>
         <div className="flex items-center justify-center gap-2">
@@ -156,7 +223,65 @@ export function DividerChildPosition() {
 
 <DividerChildPosition />
 
+```jsx
+import { useState } from 'react';
+import { Divider } from 'tailwind-joy/components';
+
+export function DividerChildPosition() {
+  const [position, setPosition] = useState(50);
+  const content = (
+    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
+      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
+      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
+    </div>
+  );
+
+  return (
+    <div className="space-y-2">
+      <div>
+        {content}
+        <Divider style={{ '--Divider-childPosition': `${position}%` }}>
+          <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+            <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
+              Visual indicator
+            </span>
+          </div>
+        </Divider>
+        {content}
+      </div>
+      <div className="flex items-center justify-center gap-2">
+        <span className="w-20 text-right">Position:</span>
+        <input
+          type="range"
+          name="position-range"
+          min="0"
+          max="100"
+          defaultValue="50"
+          onChange={(e) => setPosition(e.currentTarget.value)}
+        />
+        <span className="w-20 text-left">{position}%</span>
+      </div>
+    </div>
+  );
+}
+```
+
 ## Anatomy
+
+If a Divider component has content, it is composed of a single root `<div>` element.
+
+```html
+<div class="tj-divider-root ...">
+  <!-- Divider contents -->
+</div>
+```
+
+Otherwise, the Divider component is composed of a single root `<hr>` element.
+
+```html
+<hr class="tj-divider-root ..." />
+```
 
 ## API
 
