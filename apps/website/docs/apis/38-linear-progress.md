@@ -1,11 +1,13 @@
 ---
-sidebar_position: 4
-title: <CircularProgress />
+sidebar_position: 38
+title: <LinearProgress />
 ---
 
-# CircularProgress API
+# LinearProgress API
 
-API reference docs for the React CircularProgress component.
+<AvailableFrom version="0.2.0" />
+
+API reference docs for the React LinearProgress component.
 Learn about the props of this exported module.
 
 ## Demos
@@ -14,14 +16,14 @@ Learn about the props of this exported module.
 
 For examples and details on the usage of this React component, visit the component demo pages:
 
-- [Circular Progress](../components/circular-progress)
+- [Linear Progress](../components/linear-progress)
 
 :::
 
 ## Import
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
+import { LinearProgress } from 'tailwind-joy/components';
 ```
 
 ## Props
@@ -32,7 +34,7 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<span>` are also available for CircularProgress component.
+By default, props available for HTML `<div>` are also available for LinearProgress component.
 Other props are as follows:
 
 ### `color`
@@ -59,10 +61,10 @@ The size of the component.
 
 ### `thickness`
 
-The thickness of the circle.
+The thickness of the bar.
 
 - Type: `number`
-- Default: When the `size` is `sm`, `md`, or `lg`, it will have `3`, `6`, or `8` respectively.
+- Default: When the `size` is `sm`, `md`, or `lg`, it will have `4`, `6`, or `8` respectively.
 
 ### `value`
 

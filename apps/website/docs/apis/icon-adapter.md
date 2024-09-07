@@ -1,6 +1,6 @@
 ---
-sidebar_position: 6
 title: <IconAdapter />
+unlisted: true
 ---
 
 # IconAdapter API
@@ -36,6 +36,6 @@ The component cannot hold a `ref`.
 
 ### `children`
 
-You can wrap a node.
+The content of the component.
 
 - Type: `ReactNode`

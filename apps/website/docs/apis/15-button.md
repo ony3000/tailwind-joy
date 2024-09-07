@@ -1,11 +1,11 @@
 ---
-sidebar_position: 7
-title: <IconButton />
+sidebar_position: 15
+title: <Button />
 ---
 
-# IconButton API
+# Button API
 
-API reference docs for the React IconButton component.
+API reference docs for the React Button component.
 Learn about the props of this exported module.
 
 ## Demos
@@ -21,7 +21,7 @@ For examples and details on the usage of this React component, visit the compone
 ## Import
 
 ```jsx
-import { IconButton } from 'tailwind-joy/components';
+import { Button } from 'tailwind-joy/components';
 ```
 
 ## Props
@@ -32,7 +32,7 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<button>` are also available for IconButton component.
+By default, props available for HTML `<button>` are also available for Button component.
 Other props are as follows:
 
 ### `color`
@@ -40,7 +40,20 @@ Other props are as follows:
 The color of the component.
 
 - Type: `'primary' | 'neutral' | 'danger' | 'success' | 'warning'`
-- Default: `'neutral'`
+- Default: `'primary'`
+
+### `endDecorator`
+
+Element placed after the children.
+
+- Type: `ReactNode`
+
+### `fullWidth`
+
+If `true`, the button will take up the full width of its container.
+
+- Type: `boolean`
+- Default: `false`
 
 ### `loading`
 
@@ -56,6 +69,13 @@ Element that appears while the button is loading.
 - Type: `ReactNode`
 - Default: `<CircularProgress />`
 
+### `loadingPosition`
+
+The loading indicator can be positioned on the start, end, or the center of the button.
+
+- Type: `'start' | 'center' | 'end'`
+- Default: `'center'`
+
 ### `size`
 
 The size of the component.
@@ -63,9 +83,15 @@ The size of the component.
 - Type: `'sm' | 'md' | 'lg'`
 - Default: `'md'`
 
+### `startDecorator`
+
+Element placed before the children.
+
+- Type: `ReactNode`
+
 ### `variant`
 
 The variant of the component.
 
 - Type: `'solid' | 'soft' | 'outlined' | 'plain'`
-- Default: `'plain'`
+- Default: `'solid'`
