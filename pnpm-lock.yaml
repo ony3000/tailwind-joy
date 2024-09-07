@@ -159,9 +159,6 @@ importers:
 
   packages/tailwind-joy:
     dependencies:
-      class-variance-authority:
-        specifier: 0.7.0
-        version: 0.7.0
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -198,7 +195,7 @@ importers:
         version: 4.9.5
       vite:
         specifier: 5.0.11
-        version: 5.0.11(@types/node@20.14.8)
+        version: 5.0.11
       vite-plugin-dts:
         specifier: 3.7.0
         version: 3.7.0(typescript@4.9.5)(vite@5.0.11)
@@ -4692,7 +4689,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.24.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.0.11(@types/node@20.14.8)
+      vite: 5.0.11
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5404,12 +5401,6 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /class-variance-authority@0.7.0:
-    resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
-    dependencies:
-      clsx: 2.0.0
-    dev: false
-
   /clean-css@5.3.3:
     resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
     engines: {node: '>= 10.0'}
@@ -5443,11 +5434,6 @@ packages:
       is-plain-object: 2.0.4
       kind-of: 6.0.3
       shallow-clone: 3.0.1
-
-  /clsx@2.0.0:
-    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
-    engines: {node: '>=6'}
-    dev: false
 
   /clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -11100,7 +11086,7 @@ packages:
       debug: 4.3.4
       kolorist: 1.8.0
       typescript: 4.9.5
-      vite: 5.0.11(@types/node@20.14.8)
+      vite: 5.0.11
       vue-tsc: 1.8.27(typescript@4.9.5)
     transitivePeerDependencies:
       - '@types/node'
@@ -11108,7 +11094,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite@5.0.11(@types/node@20.14.8):
+  /vite@5.0.11:
     resolution: {integrity: sha512-XBMnDjZcNAw/G1gEiskiM1v6yzM4GE5aMGvhWTlHAYYhxb7S3/V1s3m2LDHa8Vh6yIWYYB0iJwsEaS523c4oYA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -11136,7 +11122,6 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.14.8
       esbuild: 0.19.11
       postcss: 8.4.38
       rollup: 4.9.4
