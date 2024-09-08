@@ -6,10 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
 import { MdFavoriteBorder, MdOutlinePending } from 'react-icons/md';
 import { IconButton as JoyIconButton } from '@mui/joy';
-import {
-  IconButton as TJIconButton,
-  IconAdapter,
-} from 'tailwind-joy/components';
+import { IconButton as TJIconButton } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
 import { testEach } from '@/settings';
@@ -47,9 +44,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
         >
-          <IconAdapter color={color}>
-            <MdFavoriteBorder />
-          </IconAdapter>
+          <MdFavoriteBorder />
         </TJIconButton>
       );
     },
@@ -78,9 +73,7 @@ const fixtures: Fixture[] = [
           color={color}
           loading
         >
-          <IconAdapter color={color}>
-            <MdFavoriteBorder />
-          </IconAdapter>
+          <MdFavoriteBorder />
         </TJIconButton>
       );
     },
@@ -109,15 +102,9 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           loading
-          loadingIndicator={
-            <IconAdapter color={color}>
-              <MdOutlinePending />
-            </IconAdapter>
-          }
+          loadingIndicator={<MdOutlinePending />}
         >
-          <IconAdapter color={color}>
-            <MdFavoriteBorder />
-          </IconAdapter>
+          <MdFavoriteBorder />
         </TJIconButton>
       );
     },

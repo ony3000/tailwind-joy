@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 import { Button as JoyButton } from '@mui/joy';
-import { Button as TJButton, IconAdapter } from 'tailwind-joy/components';
+import { Button as TJButton } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
 import { testEach } from '@/settings';
@@ -74,11 +74,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           disabled={state === 'disabled'}
-          startDecorator={
-            <IconAdapter color={color}>
-              <MdAdd />
-            </IconAdapter>
-          }
+          startDecorator={<MdAdd />}
         >
           Button
         </TJButton>
@@ -110,11 +106,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           disabled={state === 'disabled'}
-          endDecorator={
-            <IconAdapter color={color}>
-              <MdKeyboardArrowRight />
-            </IconAdapter>
-          }
+          endDecorator={<MdKeyboardArrowRight />}
         >
           Button
         </TJButton>
@@ -253,9 +245,9 @@ const fixtures: Fixture[] = [
           size={size}
           variant={variant}
           color={color}
-          endDecorator={<KeyboardArrowRightIcon />}
           loading
           loadingPosition="end"
+          endDecorator={<KeyboardArrowRightIcon />}
         >
           Button
         </JoyButton>
@@ -268,13 +260,9 @@ const fixtures: Fixture[] = [
           size={size}
           variant={variant}
           color={color}
-          endDecorator={
-            <IconAdapter color={color}>
-              <MdKeyboardArrowRight />
-            </IconAdapter>
-          }
           loading
           loadingPosition="end"
+          endDecorator={<MdKeyboardArrowRight />}
         >
           Button
         </TJButton>

@@ -6,10 +6,7 @@ import ReportIcon from '@mui/icons-material/Report';
 import WarningIcon from '@mui/icons-material/Warning';
 import { MdReport, MdWarning } from 'react-icons/md';
 import { CircularProgress as JoyCircularProgress } from '@mui/joy';
-import {
-  CircularProgress as TJCircularProgress,
-  IconAdapter,
-} from 'tailwind-joy/components';
+import { CircularProgress as TJCircularProgress } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
 import { testEach } from '@/settings';
@@ -229,9 +226,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
         >
-          <IconAdapter color={color}>
-            <MdWarning />
-          </IconAdapter>
+          <MdWarning />
         </TJCircularProgress>
       );
     },
@@ -299,9 +294,7 @@ const fixtures: Fixture[] = [
             '--CircularProgress-size': '80px',
           }}
         >
-          <IconAdapter color={color}>
-            <MdReport />
-          </IconAdapter>
+          <MdReport />
         </TJCircularProgress>
       );
     },
