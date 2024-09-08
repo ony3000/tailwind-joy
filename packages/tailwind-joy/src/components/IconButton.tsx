@@ -13,7 +13,6 @@ import {
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
-import { adaptAsIcon } from './internal/class-adapter';
 
 function iconButtonLoadingIndicatorVariants(props?: BaseVariants) {
   const { color = 'neutral', variant = 'plain' } = props ?? {};
@@ -188,7 +187,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonRootProps>(
             )}
           </span>
         ) : (
-          adaptAsIcon(children, { color, size })
+          children
         )}
       </button>
     );

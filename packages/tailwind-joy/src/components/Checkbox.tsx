@@ -15,7 +15,7 @@ import {
   toVariableClass,
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
-import { adaptAsIcon } from './internal/class-adapter';
+import { iconClassVariants } from './internal/class-adapter';
 
 const checkboxRootVariants = (
   props?: BaseVariants & {
@@ -326,17 +326,24 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
           {disableIcon
             ? null
             : indeterminate
-              ? indeterminateIcon
-                ? adaptAsIcon(indeterminateIcon, { color: instanceColor, size })
-                : adaptAsIcon(<MdHorizontalRule />, {
-                    color: instanceColor,
-                    size,
-                  })
+              ? (indeterminateIcon ?? (
+                  <MdHorizontalRule
+                    className={iconClassVariants({
+                      color: instanceColor,
+                      size,
+                    })}
+                  />
+                ))
               : instanceChecked
-                ? checkedIcon
-                  ? adaptAsIcon(checkedIcon, { color: instanceColor, size })
-                  : adaptAsIcon(<MdCheck />, { color: instanceColor, size })
-                : adaptAsIcon(uncheckedIcon, { color: instanceColor, size })}
+                ? (checkedIcon ?? (
+                    <MdCheck
+                      className={iconClassVariants({
+                        color: instanceColor,
+                        size,
+                      })}
+                    />
+                  ))
+                : uncheckedIcon}
         </span>
         {label && (
           <label

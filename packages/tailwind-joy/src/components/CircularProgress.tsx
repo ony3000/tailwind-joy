@@ -6,7 +6,6 @@ import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
 import { join, addPrefix, toVariableClass } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
-import { adaptAsIcon } from './internal/class-adapter';
 
 function circularProgressSvgVariants(props?: BaseVariants) {
   return twMerge(
@@ -235,7 +234,7 @@ export const CircularProgress = forwardRef<
         <circle className={circularProgressTrackVariants()} />
         <circle className={circularProgressProgressVariants({ determinate })} />
       </svg>
-      {adaptAsIcon(children, { color, size })}
+      {children}
     </span>
   );
 });

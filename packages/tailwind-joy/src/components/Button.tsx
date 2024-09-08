@@ -6,7 +6,6 @@ import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { focus, disabled, textColor, toVariableClass } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
-import { adaptAsIcon } from './internal/class-adapter';
 
 function buttonStartDecoratorVariants(props?: BaseVariants) {
   return twMerge(
@@ -179,9 +178,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
     ref,
   ) {
     const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
-    const instanceLoadingIndicator = loadingIndicator ? (
-      adaptAsIcon(loadingIndicator, { color, size })
-    ) : (
+    const instanceLoadingIndicator = loadingIndicator ?? (
       <CircularProgress color={color} thickness={thickness} />
     );
 
@@ -204,9 +201,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
       >
         {(startDecorator || (loading && loadingPosition === 'start')) && (
           <span className={buttonStartDecoratorVariants()}>
-            {loading
-              ? instanceLoadingIndicator
-              : adaptAsIcon(startDecorator, { color, size })}
+            {loading ? instanceLoadingIndicator : startDecorator}
           </span>
         )}
         {children}
@@ -222,9 +217,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
         )}
         {(endDecorator || (loading && loadingPosition === 'end')) && (
           <span className={buttonEndDecoratorVariants()}>
-            {loading
-              ? instanceLoadingIndicator
-              : adaptAsIcon(endDecorator, { color, size })}
+            {loading ? instanceLoadingIndicator : endDecorator}
           </span>
         )}
       </button>

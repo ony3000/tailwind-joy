@@ -12,7 +12,6 @@ import {
   toVariableClass,
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
-import { adaptAsIcon } from './internal/class-adapter';
 
 function switchRootVariants(props?: BaseVariants) {
   const { color = 'neutral', size = 'md', variant = 'solid' } = props ?? {};
@@ -284,7 +283,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchRootProps>(
       >
         {startDecorator && (
           <span className={switchStartDecoratorVariants()}>
-            {adaptAsIcon(startDecorator)}
+            {startDecorator}
           </span>
         )}
         <span className={switchTrackVariants({ size })}>
@@ -310,9 +309,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchRootProps>(
           />
         </div>
         {endDecorator && (
-          <span className={switchEndDecoratorVariants()}>
-            {adaptAsIcon(endDecorator)}
-          </span>
+          <span className={switchEndDecoratorVariants()}>{endDecorator}</span>
         )}
       </div>
     );
