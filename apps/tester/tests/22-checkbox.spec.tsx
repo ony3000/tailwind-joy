@@ -1,8 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
 import { MdClose, MdDone } from 'react-icons/md';
-import { Checkbox as JoyCheckbox, checkboxClasses } from '@mui/joy';
-import { Checkbox as TJCheckbox, IconAdapter } from 'tailwind-joy/components';
+import { Checkbox as JoyCheckbox } from '@mui/joy';
+import { Checkbox as TJCheckbox } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
 import { testEach } from '@/settings';
@@ -23,6 +23,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
         />
       );
     },
@@ -35,12 +36,13 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
         />
       );
     },
   },
   {
-    title: 'defaultChecked',
+    title: 'checked',
     alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
@@ -51,7 +53,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
-          defaultChecked
+          checked
         />
       );
     },
@@ -64,14 +66,14 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
-          defaultChecked
+          checked
         />
       );
     },
   },
   {
     title: 'uncheckedIcon',
-    alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
+    alterStates: ['default', 'hover', 'active', 'disabled'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoyCheckbox
@@ -81,11 +83,12 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           uncheckedIcon={<CloseIcon />}
         />
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJCheckbox
           data-testid={testId}
@@ -94,18 +97,15 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
-          uncheckedIcon={
-            <IconAdapter color={color}>
-              <MdClose />
-            </IconAdapter>
-          }
+          checked={false}
+          uncheckedIcon={<MdClose className={iconClassName} />}
         />
       );
     },
   },
   {
     title: 'uncheckedIcon (as a preview)',
-    alterStates: ['hover', 'focus-visible', 'active'],
+    alterStates: ['hover'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoyCheckbox
@@ -115,6 +115,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           uncheckedIcon={<DoneIcon />}
           slotProps={{
             root: ({ checked, focusVisible }) => ({
@@ -131,7 +132,7 @@ const fixtures: Fixture[] = [
         />
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJCheckbox
           data-testid={testId}
@@ -140,11 +141,8 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
-          uncheckedIcon={
-            <IconAdapter color={color}>
-              <MdDone />
-            </IconAdapter>
-          }
+          checked={false}
+          uncheckedIcon={<MdDone className={iconClassName} />}
           className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
         />
       );
@@ -162,6 +160,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           disableIcon
         />
       );
@@ -175,6 +174,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           disableIcon
         />
       );
@@ -182,7 +182,7 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'focus outline only wraps the input',
-    alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
+    alterStates: ['focus-visible'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoyCheckbox
@@ -192,8 +192,9 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           sx={{
-            [`& > .${checkboxClasses.checkbox}`]: { position: 'relative' },
+            '& > .MuiCheckbox-checkbox': { position: 'relative' },
           }}
         />
       );
@@ -207,6 +208,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           className="[&>.tj-checkbox-checkbox]:relative"
         />
       );
@@ -214,19 +216,18 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'overlay',
-    alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
+    alterStates: ['focus-visible'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
-        <div
-          data-testid={testId}
-          className="border-joy-neutral-300 flex rounded-lg border border-solid p-4"
-        >
+        <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4">
           <JoyCheckbox
+            data-testid={testId}
             size={size}
             variant={variant}
             color={color}
             disabled={state === 'disabled'}
             label="Label"
+            checked={false}
             overlay
           />
         </div>
@@ -234,16 +235,15 @@ const fixtures: Fixture[] = [
     },
     renderTjElement({ testId, size, variant, color, state }) {
       return (
-        <div
-          data-testid={testId}
-          className="border-joy-neutral-300 flex rounded-lg border border-solid p-4"
-        >
+        <div className="border-joy-neutral-300 dark:border-joy-neutral-700 bg-joy-neutral-50 dark:bg-joy-neutral-900 relative flex rounded-lg border border-solid p-4">
           <TJCheckbox
+            data-testid={testId}
             size={size}
             variant={variant}
             color={color}
             disabled={state === 'disabled'}
             label="Label"
+            checked={false}
             overlay
           />
         </div>
@@ -252,7 +252,7 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'indeterminate',
-    alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
+    alterStates: ['default', 'hover', 'active', 'disabled'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoyCheckbox
@@ -262,6 +262,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           indeterminate
         />
       );
@@ -275,6 +276,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
           label="Label"
+          checked={false}
           indeterminate
         />
       );

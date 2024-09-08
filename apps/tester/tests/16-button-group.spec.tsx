@@ -9,7 +9,6 @@ import {
   ButtonGroup as TJButtonGroup,
   Button as TJButton,
   IconButton as TJIconButton,
-  IconAdapter,
 } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
@@ -38,7 +37,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -50,9 +49,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -78,7 +75,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -91,9 +88,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -119,7 +114,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -132,9 +127,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton disabled={false}>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -160,7 +153,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -173,9 +166,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -234,7 +225,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -247,9 +238,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -275,7 +264,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -288,9 +277,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -317,7 +304,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -333,9 +320,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
@@ -362,7 +347,7 @@ const fixtures: Fixture[] = [
         </JoyButtonGroup>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButtonGroup
           data-testid={testId}
@@ -378,9 +363,7 @@ const fixtures: Fixture[] = [
           <TJButton>Two</TJButton>
           <TJButton>Three</TJButton>
           <TJIconButton>
-            <IconAdapter>
-              <MdSettings />
-            </IconAdapter>
+            <MdSettings className={iconClassName} />
           </TJIconButton>
         </TJButtonGroup>
       );
