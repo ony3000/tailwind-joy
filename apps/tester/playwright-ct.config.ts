@@ -5,7 +5,6 @@ import { defineConfig, devices } from '@playwright/experimental-ct-react';
  */
 export default defineConfig({
   testDir: './tests',
-  snapshotPathTemplate: '__screenshots__/{testFilePath}/{arg}{ext}',
   /* Maximum time one test can run for. */
   timeout: 10 * 1000,
   /* Run tests in files in parallel */
@@ -32,11 +31,6 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      teardown: 'cleanup screenshot',
-    },
-    {
-      name: 'cleanup screenshot',
-      testMatch: /global\.teardown\.ts/,
     },
     // {
     //   name: 'firefox',

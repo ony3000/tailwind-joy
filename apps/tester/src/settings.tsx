@@ -1,4 +1,3 @@
-import { resolve } from 'node:path';
 import { test, expect } from '@playwright/experimental-ct-react';
 
 import { App } from '@/App';
@@ -42,14 +41,13 @@ export function testEach(
   fixtures: Fixture[],
   options: {
     containerClassName: string;
-    screenshotPath: string;
     viewport: {
       width: number;
       height: number;
     };
   },
 ) {
-  const { containerClassName, screenshotPath, viewport } = options;
+  const { containerClassName, viewport } = options;
 
   test.use({ viewport });
 
@@ -89,6 +87,7 @@ export function testEach(
               }) => {
                 const containerTestId = `${scheme}-${state}-container-${testIdBase}`;
                 const elementTestId = `${scheme}-${state}-element-${testIdBase}`;
+                const screenshotName = `${scheme}-${testIdBase}-${state}.png`;
 
                 const joyComponent = await mount(
                   <App mode={scheme}>
@@ -116,12 +115,10 @@ export function testEach(
                     delay: 100,
                   });
                 }
-                await page.getByTestId(containerTestId).screenshot({
+                await expect(
+                  await page.getByTestId(containerTestId),
+                ).toHaveScreenshot(screenshotName, {
                   animations: 'disabled',
-                  path: resolve(
-                    screenshotPath,
-                    `${scheme}-${testIdBase}-${state}.png`,
-                  ),
                 });
                 if (state === 'active') {
                   await sleep(100);
@@ -156,7 +153,9 @@ export function testEach(
                 }
                 await expect(
                   await page.getByTestId(containerTestId),
-                ).toHaveScreenshot(`${scheme}-${testIdBase}-${state}.png`);
+                ).toHaveScreenshot(screenshotName, {
+                  animations: 'disabled',
+                });
                 if (state === 'active') {
                   await sleep(100);
                 }

@@ -1,7 +1,3 @@
-import { resolve, sep } from 'node:path';
-import pathPosix from 'node:path/posix';
-import pathWin32 from 'node:path/win32';
-
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
@@ -10,10 +6,6 @@ import { Button as TJButton } from 'tailwind-joy/components';
 
 import type { Fixture } from '@/settings';
 import { testEach } from '@/settings';
-
-const basename = sep === '/' ? pathPosix.basename : pathWin32.basename;
-const filename = basename(__filename);
-const screenshotPath = resolve(__dirname, `../__screenshots__/${filename}`);
 
 const containerClassName =
   'flex h-[100px] w-[200px] items-center justify-center p-2';
@@ -273,6 +265,5 @@ const fixtures: Fixture[] = [
 
 testEach(fixtures, {
   containerClassName,
-  screenshotPath,
   viewport: { width: 500, height: 500 },
 });
