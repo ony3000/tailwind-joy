@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import { test, expect } from '@playwright/experimental-ct-react';
+import { iconClass } from 'tailwind-joy/components';
 
 import { App } from '@/App';
 import { sleep, uuid } from '@/utils';
@@ -15,6 +16,7 @@ type ElementRenderer = (props: {
   variant: UIVariant;
   color: UIColor;
   state: UIState;
+  iconClassName?: string;
 }) => JSX.Element;
 
 export type Fixture = {
@@ -143,6 +145,7 @@ export function testEach(
                         size,
                         variant,
                         color,
+                        iconClassName: iconClass({ color, size }),
                       })}
                     </div>
                   </App>,

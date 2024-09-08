@@ -58,7 +58,7 @@ const fixtures: Fixture[] = [
         </JoyButton>
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJButton
           data-testid={testId}
@@ -66,7 +66,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           disabled={state === 'disabled'}
-          startDecorator={<MdAdd />}
+          startDecorator={<MdAdd className={iconClassName} />}
         >
           Button
         </TJButton>
@@ -90,7 +90,7 @@ const fixtures: Fixture[] = [
         </JoyButton>
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJButton
           data-testid={testId}
@@ -98,7 +98,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           disabled={state === 'disabled'}
-          endDecorator={<MdKeyboardArrowRight />}
+          endDecorator={<MdKeyboardArrowRight className={iconClassName} />}
         >
           Button
         </TJButton>
@@ -245,7 +245,7 @@ const fixtures: Fixture[] = [
         </JoyButton>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJButton
           data-testid={testId}
@@ -254,7 +254,7 @@ const fixtures: Fixture[] = [
           color={color}
           loading
           loadingPosition="end"
-          endDecorator={<MdKeyboardArrowRight />}
+          endDecorator={<MdKeyboardArrowRight className={iconClassName} />}
         >
           Button
         </TJButton>

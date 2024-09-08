@@ -210,7 +210,7 @@ const fixtures: Fixture[] = [
         </JoyCircularProgress>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJCircularProgress
           data-testid={testId}
@@ -218,7 +218,7 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
         >
-          <MdWarning />
+          <MdWarning className={iconClassName} />
         </TJCircularProgress>
       );
     },
@@ -274,7 +274,7 @@ const fixtures: Fixture[] = [
         </JoyCircularProgress>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJCircularProgress
           data-testid={testId}
@@ -286,7 +286,7 @@ const fixtures: Fixture[] = [
             '--CircularProgress-size': '80px',
           }}
         >
-          <MdReport />
+          <MdReport className={iconClassName} />
         </TJCircularProgress>
       );
     },

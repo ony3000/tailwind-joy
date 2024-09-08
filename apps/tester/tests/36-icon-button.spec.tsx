@@ -27,7 +27,7 @@ const fixtures: Fixture[] = [
         </JoyIconButton>
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJIconButton
           data-testid={testId}
@@ -36,7 +36,7 @@ const fixtures: Fixture[] = [
           color={color}
           disabled={state === 'disabled'}
         >
-          <MdFavoriteBorder />
+          <MdFavoriteBorder className={iconClassName} />
         </TJIconButton>
       );
     },
@@ -56,7 +56,7 @@ const fixtures: Fixture[] = [
         </JoyIconButton>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJIconButton
           data-testid={testId}
@@ -65,7 +65,7 @@ const fixtures: Fixture[] = [
           color={color}
           loading
         >
-          <MdFavoriteBorder />
+          <MdFavoriteBorder className={iconClassName} />
         </TJIconButton>
       );
     },
@@ -86,7 +86,7 @@ const fixtures: Fixture[] = [
         </JoyIconButton>
       );
     },
-    renderTjElement({ testId, size, variant, color }) {
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
       return (
         <TJIconButton
           data-testid={testId}
@@ -94,9 +94,9 @@ const fixtures: Fixture[] = [
           variant={variant}
           color={color}
           loading
-          loadingIndicator={<MdOutlinePending />}
+          loadingIndicator={<MdOutlinePending className={iconClassName} />}
         >
-          <MdFavoriteBorder />
+          <MdFavoriteBorder className={iconClassName} />
         </TJIconButton>
       );
     },
