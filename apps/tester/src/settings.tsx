@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { test, expect } from '@playwright/experimental-ct-react';
 
 import { App } from '@/App';
@@ -84,7 +85,7 @@ export function testEach(
               test(`${scheme}-${hyphenatedVariants}`, async ({
                 page,
                 mount,
-              }) => {
+              }, testInfo) => {
                 const containerTestId = `${scheme}-${state}-container-${testIdBase}`;
                 const elementTestId = `${scheme}-${state}-element-${testIdBase}`;
                 const screenshotName = `${scheme}-${testIdBase}-${state}.png`;
@@ -115,10 +116,14 @@ export function testEach(
                     delay: 100,
                   });
                 }
-                await expect(
-                  await page.getByTestId(containerTestId),
-                ).toHaveScreenshot(screenshotName, {
+                await page.getByTestId(containerTestId).screenshot({
                   animations: 'disabled',
+                  path: resolve(
+                    testInfo.project.testDir,
+                    '../__screenshots__',
+                    testInfo.titlePath[0],
+                    screenshotName,
+                  ),
                 });
                 if (state === 'active') {
                   await sleep(100);
