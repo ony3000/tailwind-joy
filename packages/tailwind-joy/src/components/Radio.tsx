@@ -34,7 +34,7 @@ const radioRootVariants = (
     clsx([
       'tj-radio-root group/tj-radio',
       '[--Icon-fontSize:var(--Radio-size)]',
-      '[--Icon-color:currentColor]',
+      '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
       size === 'sm' && [
         '[--Radio-size:1rem]',
         '[&~*]:[--FormHelperText-margin:0_0_0_1.5rem]',
@@ -115,15 +115,18 @@ const radioRadioVariants = (
     clsx([
       'tj-radio-radio',
       variant === 'solid'
-        ? '[--Icon-color:currentColor]'
+        ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
         : [
             color && [
               color !== 'neutral'
-                ? '[--Icon-color:currentColor]'
+                ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
                 : toVariableClass(baseTokens.text.icon, 'Icon-color'),
             ],
             !color && [
-              'has-[:checked]:[--Icon-color:currentColor]',
+              addPrefix(
+                '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+                'has-[:checked]:',
+              ),
               addPrefix(
                 toVariableClass(baseTokens.text.icon, 'Icon-color'),
                 '[&:not(:has(:checked))]:',
@@ -140,13 +143,16 @@ const radioRadioVariants = (
       'items-center',
       'shrink-0',
       disableIcon && 'contents',
-      'has-[:checked]:[--Icon-color:currentColor]',
+      addPrefix(
+        '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+        'has-[:checked]:',
+      ),
       !disableIcon && [
         variant === 'outlined'
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
         addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
           'has-[:disabled]:',
         ),
         color && [
@@ -250,7 +256,7 @@ const radioActionVariants = (
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
         addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
           'has-[:disabled]:',
         ),
         color && [

@@ -19,7 +19,7 @@ function sheetRootVariants(
     clsx([
       'tj-sheet-root group/tj-sheet',
       color !== 'neutral' || variant === 'solid'
-        ? '[--Icon-color:currentColor]'
+        ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
         : toVariableClass(baseTokens.text.icon, 'Icon-color'),
       toVariableClass(resolvedBgToken, 'ListItem-stickyBackground'),
       toVariableClass(resolvedBgToken, 'Sheet-background'),

@@ -89,7 +89,7 @@ const checkboxCheckboxVariants = (
     clsx([
       'tj-checkbox-checkbox',
       color !== 'neutral' || variant === 'solid'
-        ? '[--Icon-color:currentColor]'
+        ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
         : toVariableClass(baseTokens.text.icon, 'Icon-color'),
       'box-border',
       'rounded-[min(6px,0.25rem)]',
@@ -100,13 +100,14 @@ const checkboxCheckboxVariants = (
       'items-center',
       'shrink-0',
       disableIcon && 'contents',
-      instanceActive && '[--Icon-color:currentColor]',
+      instanceActive &&
+        '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
       !disableIcon && [
         variant === 'outlined'
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
         addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
           'has-[:disabled]:',
         ),
         colorTokens[color][`${variant}Color`],
@@ -164,7 +165,7 @@ const checkboxActionVariants = (
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
         addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
           'has-[:disabled]:',
         ),
         colorTokens[color][`${variant}Color`],

@@ -65,7 +65,7 @@ function buttonRootVariants(
       'tj-button-root group/tj-button',
       '[--Icon-margin:initial]',
       color !== 'neutral' || variant === 'solid'
-        ? '[--Icon-color:currentColor]'
+        ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
         : toVariableClass(baseTokens.text.icon, 'Icon-color'),
       size === 'sm' && [
         '[--Icon-fontSize:1.125rem]',
@@ -132,7 +132,7 @@ function buttonRootVariants(
       ],
       [
         disabled(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
         ),
         !invisibleChildren && colorTokens[color][`${variant}DisabledColor`],
         colorTokens[color][`${variant}DisabledBg`],

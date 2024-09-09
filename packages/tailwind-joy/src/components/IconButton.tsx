@@ -49,7 +49,7 @@ function iconButtonRootVariants(
       'tj-icon-button-root group/tj-icon-button',
       '[--Icon-margin:initial]',
       color !== 'neutral' || variant === 'solid'
-        ? '[--Icon-color:currentColor]'
+        ? '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'
         : toVariableClass(baseTokens.text.icon, 'Icon-color'),
       instanceSize && [
         instanceSize === 'sm' && '[--IconButton-size:2rem]',
@@ -97,7 +97,7 @@ function iconButtonRootVariants(
       'justify-center',
       'relative',
       [
-        focus('[--Icon-color:currentColor]'),
+        focus('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         focus('outline-2 outline outline-offset-2'),
         colorTokens.focusVisible,
       ],
@@ -110,18 +110,18 @@ function iconButtonRootVariants(
         colorTokens[color][`${variant}Border`],
       ],
       [
-        hover('[--Icon-color:currentColor]'),
+        hover('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         colorTokens[color][`${variant}HoverColor`],
         colorTokens[color][`${variant}HoverBg`],
       ],
       [
-        active('[--Icon-color:currentColor]'),
+        active('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         colorTokens[color][`${variant}ActiveColor`],
         colorTokens[color][`${variant}ActiveBg`],
       ],
       [
         disabled(
-          'pointer-events-none cursor-default [--Icon-color:currentColor]',
+          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
         ),
         colorTokens[color][`${variant}DisabledColor`],
         colorTokens[color][`${variant}DisabledBg`],

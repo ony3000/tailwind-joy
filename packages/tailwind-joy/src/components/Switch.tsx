@@ -19,7 +19,7 @@ function switchRootVariants(props?: BaseVariants) {
   return twMerge(
     clsx([
       'tj-switch-root group/tj-switch',
-      '[--Icon-color:currentColor]',
+      '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
       variant === 'outlined'
         ? '[--variant-borderWidth:1px]'
         : '[--variant-borderWidth:0px]',
