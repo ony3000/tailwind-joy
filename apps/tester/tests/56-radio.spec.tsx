@@ -105,7 +105,7 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'uncheckedIcon (as a preview)',
-    alterStates: ['hover'],
+    alterStates: ['default', 'hover', 'focus-visible'],
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoyRadio
@@ -117,17 +117,10 @@ const fixtures: Fixture[] = [
           label="Label"
           checked={false}
           uncheckedIcon={<DoneIcon />}
-          slotProps={{
-            root: ({ checked, focusVisible }) => ({
-              sx: !checked
-                ? {
-                    '& svg': { opacity: focusVisible ? 1 : 0 },
-                    '&:hover svg': {
-                      opacity: 1,
-                    },
-                  }
-                : undefined,
-            }),
+          sx={{
+            '&:not(:has(:checked)) svg': { opacity: 0 },
+            '&:not(:has(:checked)):hover svg': { opacity: 1 },
+            '&:not(:has(:checked)):has(:focus-visible) svg': { opacity: 1 },
           }}
         />
       );
