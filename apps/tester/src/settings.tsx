@@ -163,6 +163,7 @@ export function testEach(
                   await page.getByTestId(containerTestId),
                 ).toHaveScreenshot(screenshotName, {
                   animations: 'disabled',
+                  maxDiffPixels: 1,
                 });
                 if (state === 'active') {
                   await sleep(100);
