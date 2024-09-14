@@ -9,6 +9,7 @@ import {
   MdKeyboardArrowRight,
   MdSend,
 } from 'react-icons/md';
+import { iconClass } from 'tailwind-joy/components';
 
 # Button
 
@@ -253,10 +254,18 @@ Use the `startDecorator` and `endDecorator` props to append actions and icons to
 export function ButtonDecorators() {
   return (
     <DisplayStand>
-      <Button color="primary" startDecorator={<MdAdd />}>
+      <Button
+        color="primary"
+        startDecorator={<MdAdd className={iconClass({ color: 'primary' })} />}
+      >
         Add to cart
       </Button>
-      <Button color="success" endDecorator={<MdKeyboardArrowRight />}>
+      <Button
+        color="success"
+        endDecorator={
+          <MdKeyboardArrowRight className={iconClass({ color: 'success' })} />
+        }
+      >
         Go to checkout
       </Button>
     </DisplayStand>
@@ -266,22 +275,36 @@ export function ButtonDecorators() {
 <ButtonDecorators />
 
 ```jsx
-import { Button } from 'tailwind-joy/components';
 import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
+import { Button, iconClass } from 'tailwind-joy/components';
 
 export function ButtonDecorators() {
   return (
     <div>
-      <Button color="primary" startDecorator={<MdAdd />}>
+      <Button
+        color="primary"
+        startDecorator={<MdAdd className={iconClass({ color: 'primary' })} />}
+      >
         Add to cart
       </Button>
-      <Button color="success" endDecorator={<MdKeyboardArrowRight />}>
+      <Button
+        color="success"
+        endDecorator={
+          <MdKeyboardArrowRight className={iconClass({ color: 'success' })} />
+        }
+      >
         Go to checkout
       </Button>
     </div>
   );
 }
 ```
+
+:::info
+
+`iconClass()` is an adapter function provided by Tailwind-Joy.
+
+:::
 
 ### Loading indicator
 
@@ -331,7 +354,11 @@ export function ButtonLoadingPosition() {
       <Button loading loadingPosition="start">
         Start
       </Button>
-      <Button loading loadingPosition="end" endDecorator={<MdSend />}>
+      <Button
+        loading
+        loadingPosition="end"
+        endDecorator={<MdSend className={iconClass({ color: 'primary' })} />}
+      >
         End
       </Button>
     </DisplayStand>
@@ -341,8 +368,8 @@ export function ButtonLoadingPosition() {
 <ButtonLoadingPosition />
 
 ```jsx
-import { Button } from 'tailwind-joy/components';
 import { MdSend } from 'react-icons/md';
+import { Button, iconClass } from 'tailwind-joy/components';
 
 export function ButtonLoadingPosition() {
   return (
@@ -350,7 +377,11 @@ export function ButtonLoadingPosition() {
       <Button loading loadingPosition="start">
         Start
       </Button>
-      <Button loading loadingPosition="end" endDecorator={<MdSend />}>
+      <Button
+        loading
+        loadingPosition="end"
+        endDecorator={<MdSend className={iconClass({ color: 'primary' })} />}
+      >
         End
       </Button>
     </div>
@@ -370,16 +401,16 @@ export function IconButtonBasics() {
   return (
     <DisplayStand>
       <IconButton variant="solid">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="soft">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="outlined">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="plain">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
     </DisplayStand>
   );
@@ -388,23 +419,23 @@ export function IconButtonBasics() {
 <IconButtonBasics />
 
 ```jsx
-import { IconButton } from 'tailwind-joy/components';
 import { MdFavoriteBorder } from 'react-icons/md';
+import { IconButton, iconClass } from 'tailwind-joy/components';
 
 export function IconButtonBasics() {
   return (
     <div>
       <IconButton variant="solid">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="soft">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="outlined">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
       <IconButton variant="plain">
-        <MdFavoriteBorder />
+        <MdFavoriteBorder className={iconClass()} />
       </IconButton>
     </div>
   );

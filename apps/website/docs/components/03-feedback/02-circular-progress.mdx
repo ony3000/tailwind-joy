@@ -4,6 +4,7 @@ slug: /components/circular-progress
 ---
 
 import { MdReport, MdWarning } from 'react-icons/md';
+import { iconClass } from 'tailwind-joy/components';
 
 # Circular Progress
 
@@ -181,7 +182,7 @@ export function CircularProgressChildren() {
   return (
     <DisplayStand>
       <CircularProgress color="warning">
-        <MdWarning />
+        <MdWarning className={iconClass({ color: 'warning' })} />
       </CircularProgress>
       <CircularProgress size="lg" determinate value={66.67}>
         2 / 3
@@ -190,7 +191,7 @@ export function CircularProgressChildren() {
         color="danger"
         className="[--CircularProgress-size:80px]"
       >
-        <MdReport />
+        <MdReport className={iconClass({ color: 'danger' })} />
       </CircularProgress>
     </DisplayStand>
   );
@@ -199,14 +200,14 @@ export function CircularProgressChildren() {
 <CircularProgressChildren />
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
 import { MdWarning, MdReport } from 'react-icons/md';
+import { CircularProgress, iconClass } from 'tailwind-joy/components';
 
 export function CircularProgressChildren() {
   return (
     <div>
       <CircularProgress color="warning">
-        <MdWarning />
+        <MdWarning className={iconClass({ color: 'warning' })} />
       </CircularProgress>
       <CircularProgress size="lg" determinate value={66.67}>
         2 / 3
@@ -215,7 +216,7 @@ export function CircularProgressChildren() {
         color="danger"
         className="[--CircularProgress-size:80px]"
       >
-        <MdReport />
+        <MdReport className={iconClass({ color: 'danger' })} />
       </CircularProgress>
     </div>
   );
@@ -225,6 +226,12 @@ export function CircularProgressChildren() {
 :::info
 
 For plain texts and icons, the dimension is relative to the circular progress's CSS variable (`--CircularProgress-size`).
+
+:::
+
+:::info
+
+`iconClass()` is an adapter function provided by Tailwind-Joy.
 
 :::
 

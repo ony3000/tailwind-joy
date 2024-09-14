@@ -5,6 +5,7 @@ slug: /components/checkbox
 
 import { useState } from 'react';
 import { MdCheck, MdClose } from 'react-icons/md';
+import { iconClass } from 'tailwind-joy/components';
 
 # Checkbox
 
@@ -156,7 +157,7 @@ export function CheckboxIcons() {
     <DisplayStand>
       <Checkbox
         label="I have an icon when unchecked"
-        uncheckedIcon={<MdClose />}
+        uncheckedIcon={<MdClose className={iconClass()} />}
       />
     </DisplayStand>
   );
@@ -165,20 +166,26 @@ export function CheckboxIcons() {
 <CheckboxIcons />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
 import { MdClose } from 'react-icons/md';
+import { Checkbox, iconClass } from 'tailwind-joy/components';
 
 export function CheckboxIcons() {
   return (
     <div>
       <Checkbox
         label="I have an icon when unchecked"
-        uncheckedIcon={<MdClose />}
+        uncheckedIcon={<MdClose className={iconClass()} />}
       />
     </div>
   );
 }
 ```
+
+:::info
+
+`iconClass()` is an adapter function provided by Tailwind-Joy.
+
+:::
 
 #### Appear on hover
 
@@ -191,7 +198,7 @@ export function CheckboxAppearOnHover() {
     <DisplayStand>
       <Checkbox
         label="My unchecked icon appears on hover"
-        uncheckedIcon={<MdCheck />}
+        uncheckedIcon={<MdCheck className={iconClass()} />}
         className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
       />
     </DisplayStand>
@@ -201,15 +208,15 @@ export function CheckboxAppearOnHover() {
 <CheckboxAppearOnHover />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
 import { MdCheck } from 'react-icons/md';
+import { Checkbox, iconClass } from 'tailwind-joy/components';
 
 export function CheckboxAppearOnHover() {
   return (
     <div>
       <Checkbox
         label="My unchecked icon appears on hover"
-        uncheckedIcon={<MdCheck />}
+        uncheckedIcon={<MdCheck className={iconClass()} />}
         className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
       />
     </div>
