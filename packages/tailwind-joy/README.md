@@ -15,11 +15,21 @@ https://tailwind-joy.vercel.app
 - Checkbox
 - Icon Button
 - Radio
+- Radio Group
+- Switch
+
+### Data display
+
+- Divider
 
 ### Feedback
 
 - Circular Progress
 - Linear Progress
+
+### Surfaces
+
+- Sheet
 
 ### Tailwind-Joy's original
 
