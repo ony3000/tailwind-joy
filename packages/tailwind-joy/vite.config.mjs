@@ -12,6 +12,7 @@ export default defineConfig({
         resolve(__dirname, 'src/components.ts'),
         resolve(__dirname, 'src/index.ts'),
         resolve(__dirname, 'src/tw-extension.ts'),
+        resolve(__dirname, 'src/utils.ts'),
       ],
       formats: ['cjs', 'es'],
     },

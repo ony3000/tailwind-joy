@@ -10,4 +10,3 @@ export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';
 export { Switch } from './components/Switch';
-export { iconClassVariants as iconClass } from './components/internal/class-adapter';

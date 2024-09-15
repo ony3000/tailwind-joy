@@ -34,6 +34,10 @@
     "./tw-extension": {
       "import": "./dist/tw-extension.js",
       "require": "./dist/tw-extension.cjs"
+    },
+    "./utils": {
+      "import": "./dist/utils.js",
+      "require": "./dist/utils.cjs"
     }
   },
   "scripts": {

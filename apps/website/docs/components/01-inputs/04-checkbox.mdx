@@ -5,7 +5,7 @@ slug: /components/checkbox
 
 import { useState } from 'react';
 import { MdCheck, MdClose } from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 # Checkbox
 
@@ -167,7 +167,8 @@ export function CheckboxIcons() {
 
 ```jsx
 import { MdClose } from 'react-icons/md';
-import { Checkbox, iconClass } from 'tailwind-joy/components';
+import { Checkbox } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 export function CheckboxIcons() {
   return (
@@ -209,7 +210,8 @@ export function CheckboxAppearOnHover() {
 
 ```jsx
 import { MdCheck } from 'react-icons/md';
-import { Checkbox, iconClass } from 'tailwind-joy/components';
+import { Checkbox } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 export function CheckboxAppearOnHover() {
   return (
