@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import { test, expect } from '@playwright/experimental-ct-react';
-import { iconClass } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 import { App } from '@/App';
 import { sleep, uuid } from '@/utils';
