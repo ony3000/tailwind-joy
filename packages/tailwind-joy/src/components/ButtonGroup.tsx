@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
-import { forwardRef, isValidElement, Children } from 'react';
+import { forwardRef, cloneElement, isValidElement, Children } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { r } from '../base/alias';
@@ -202,22 +202,20 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
             return child;
           }
 
-          return Object.assign({}, child, {
-            props: {
-              ...(child.props ?? {}),
-              color: child.props?.color ?? color,
-              size: child.props?.size ?? size,
-              variant: child.props?.variant ?? variant,
-              disabled:
-                (child.props?.loading || child.props?.disabled) ?? disabled,
-              'data-first-child':
-                Children.count(children) > 1 && index === 0 ? '' : undefined,
-              'data-last-child':
-                Children.count(children) > 1 &&
-                index === Children.count(children) - 1
-                  ? ''
-                  : undefined,
-            },
+          return cloneElement(child, {
+            // @ts-expect-error
+            color: child.props?.color ?? color,
+            size: child.props?.size ?? size,
+            variant: child.props?.variant ?? variant,
+            disabled:
+              (child.props?.loading || child.props?.disabled) ?? disabled,
+            'data-first-child':
+              Children.count(children) > 1 && index === 0 ? '' : undefined,
+            'data-last-child':
+              Children.count(children) > 1 &&
+              index === Children.count(children) - 1
+                ? ''
+                : undefined,
           });
         })}
       </div>

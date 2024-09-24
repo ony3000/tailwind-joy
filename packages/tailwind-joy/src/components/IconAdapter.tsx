@@ -67,6 +67,7 @@ export function IconAdapter({
     );
   }
 
+  // NOTE: This `Object.assign` syntax will not be fixed.
   return Object.assign({}, children, {
     props: {
       ...(children.props ?? {}),
