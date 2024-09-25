@@ -17,12 +17,12 @@ import {
 import { baseTokens, colorTokens } from '../base/tokens';
 import { iconClassVariants } from './internal/class-adapter';
 
-const checkboxRootVariants = (
+function checkboxRootVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
-) => {
+) {
   const {
     color = 'neutral',
     size = 'md',
@@ -70,14 +70,14 @@ const checkboxRootVariants = (
       ],
     ]),
   );
-};
+}
 
-const checkboxCheckboxVariants = (
+function checkboxCheckboxVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     instanceActive?: boolean;
   },
-) => {
+) {
   const {
     color = 'neutral',
     variant = 'solid',
@@ -128,14 +128,14 @@ const checkboxCheckboxVariants = (
       ],
     ]),
   );
-};
+}
 
-const checkboxActionVariants = (
+function checkboxActionVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
-) => {
+) {
   const {
     color = 'neutral',
     variant = 'solid',
@@ -186,9 +186,9 @@ const checkboxActionVariants = (
       ],
     ]),
   );
-};
+}
 
-const checkboxInputVariants = (props?: BaseVariants) => {
+function checkboxInputVariants(props?: BaseVariants) {
   return twMerge(
     clsx([
       'tj-checkbox-input',
@@ -200,13 +200,13 @@ const checkboxInputVariants = (props?: BaseVariants) => {
       'cursor-pointer',
     ]),
   );
-};
+}
 
-const checkboxLabelVariants = (
+function checkboxLabelVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
   },
-) => {
+) {
   const { disableIcon = false } = props ?? {};
 
   return twMerge(
@@ -217,7 +217,7 @@ const checkboxLabelVariants = (
       disableIcon && ['z-[1]', 'pointer-events-none'],
     ]),
   );
-};
+}
 
 interface CheckboxRootVariants extends BaseVariants {
   checkedIcon?: ReactNode;

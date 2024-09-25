@@ -20,9 +20,9 @@ export function adaptClassName(node: ReactNode, className: string): ReactNode {
   });
 }
 
-export const iconClassVariants = (
+export function iconClassVariants(
   props?: Pick<BaseVariants, 'color' | 'size'>,
-) => {
+) {
   const { color = 'neutral', size = 'md' } = props ?? {};
 
   return twMerge(
@@ -42,7 +42,7 @@ export const iconClassVariants = (
       ),
     ]),
   );
-};
+}
 
 /**
  * A shortcut for the `adaptClassName` function.

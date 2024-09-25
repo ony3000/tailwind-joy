@@ -7,13 +7,13 @@ import { r } from '../base/alias';
 import { join, addPrefix, toVariableClass } from '../base/modifier';
 import { baseTokens } from '../base/tokens';
 
-const buttonGroupRootVariants = (
+function buttonGroupRootVariants(
   props?: BaseVariants & {
     orientation?: 'horizontal' | 'vertical';
     flexibleButton?: boolean;
     connectedButton?: boolean;
   },
-) => {
+) {
   const {
     color = 'neutral',
     variant = 'outlined',
@@ -138,7 +138,7 @@ const buttonGroupRootVariants = (
       ],
     ]),
   );
-};
+}
 
 interface ButtonGroupRootVariants extends BaseVariants {
   orientation?: 'horizontal' | 'vertical';

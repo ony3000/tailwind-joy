@@ -7,11 +7,11 @@ import { r } from '../base/alias';
 import { join, addPrefix, backgroundColor, textColor } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 
-const linearProgressRootVariants = (
+function linearProgressRootVariants(
   props?: BaseVariants & {
     determinate?: boolean;
   },
-) => {
+) {
   const {
     color = 'primary',
     size = 'md',
@@ -82,7 +82,7 @@ const linearProgressRootVariants = (
         : 'before:animate-joy-linear-circulate',
     ]),
   );
-};
+}
 
 interface LinearProgressRootVariants extends BaseVariants {
   determinate?: boolean;

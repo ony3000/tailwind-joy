@@ -16,12 +16,12 @@ import {
 import { baseTokens, colorTokens } from '../base/tokens';
 import { RadioGroupContext } from './RadioGroup';
 
-const radioRootVariants = (
+function radioRootVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
-) => {
+) {
   const {
     color,
     size = 'md',
@@ -101,14 +101,14 @@ const radioRootVariants = (
       ],
     ]),
   );
-};
+}
 
-const radioRadioVariants = (
+function radioRadioVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
-) => {
+) {
   const { color, variant = 'outlined', disableIcon = false } = props ?? {};
 
   return twMerge(
@@ -219,14 +219,14 @@ const radioRadioVariants = (
       ],
     ]),
   );
-};
+}
 
-const radioActionVariants = (
+function radioActionVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
-) => {
+) {
   const {
     color,
     variant = 'outlined',
@@ -321,9 +321,9 @@ const radioActionVariants = (
       ],
     ]),
   );
-};
+}
 
-const radioInputVariants = (props?: BaseVariants) => {
+function radioInputVariants(props?: BaseVariants) {
   return twMerge(
     clsx([
       'tj-radio-input',
@@ -335,13 +335,13 @@ const radioInputVariants = (props?: BaseVariants) => {
       'cursor-pointer',
     ]),
   );
-};
+}
 
-const radioLabelVariants = (
+function radioLabelVariants(
   props?: BaseVariants & {
     disableIcon?: boolean;
   },
-) => {
+) {
   const { disableIcon = false } = props ?? {};
 
   return twMerge(
@@ -352,9 +352,9 @@ const radioLabelVariants = (
       disableIcon && ['z-[1]', 'pointer-events-none'],
     ]),
   );
-};
+}
 
-const radioIconVariants = (props?: BaseVariants) => {
+function radioIconVariants(props?: BaseVariants) {
   return twMerge(
     clsx([
       'tj-radio-icon',
@@ -367,7 +367,7 @@ const radioIconVariants = (props?: BaseVariants) => {
       r`[.group\/tj-radio:not(:has(:checked))_&]:scale-0`,
     ]),
   );
-};
+}
 
 interface RadioRootVariants extends BaseVariants {
   disableIcon?: boolean;

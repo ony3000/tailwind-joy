@@ -5,13 +5,11 @@ import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens } from '../base/tokens';
 
-const childrenPlaceholderVariants = (props?: BaseVariants) => {
+function childrenPlaceholderVariants(props?: BaseVariants) {
   return 'contents';
-};
+}
 
-const iconAdapterRootVariants = (
-  props?: Pick<BaseVariants, 'color' | 'size'>,
-) => {
+function iconAdapterRootVariants(props?: Pick<BaseVariants, 'color' | 'size'>) {
   const { color = 'neutral', size = 'md' } = props ?? {};
 
   return twMerge(
@@ -32,7 +30,7 @@ const iconAdapterRootVariants = (
       ),
     ]),
   );
-};
+}
 
 interface IconAdapterRootVariants
   extends Pick<BaseVariants, 'color' | 'size'> {}
