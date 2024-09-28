@@ -2,6 +2,7 @@ import MDXComponents from '@theme-original/MDXComponents';
 import { CssVarsProvider } from '@mui/joy/styles';
 import { Button as JoyButton } from '@mui/joy';
 import {
+  Box,
   Button,
   ButtonGroup,
   Checkbox,
@@ -29,6 +30,7 @@ export default {
 
   // --------------------------------
 
+  Box,
   Button,
   ButtonGroup,
   Checkbox,

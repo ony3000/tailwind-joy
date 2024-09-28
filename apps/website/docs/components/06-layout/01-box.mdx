@@ -3,8 +3,6 @@ sidebar_position: 1
 slug: /components/box
 ---
 
-import { Box as JoyBox } from '@mui/joy';
-
 # Box
 
 <AvailableFrom version="0.4.0" />
@@ -23,12 +21,12 @@ The demo below replaces the `<div>` with a `<section>` element:
 export function BoxBasics() {
   return (
     <DisplayStand>
-      <JoyBox
+      <Box
         component="section"
         className="border border-dashed border-[grey] p-4"
       >
         This Box renders as an HTML section element.
-      </JoyBox>
+      </Box>
     </DisplayStand>
   );
 }
