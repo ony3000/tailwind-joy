@@ -31,6 +31,10 @@ https://tailwind-joy.vercel.app
 
 - Sheet
 
+### Layout
+
+- Box
+
 ### Tailwind-Joy's original
 
 - Icon Adapter
