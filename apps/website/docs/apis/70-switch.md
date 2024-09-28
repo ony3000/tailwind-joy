@@ -34,7 +34,7 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<input>` are also available for Checkbox component.
+By default, props available for HTML `<input>` are also available for Switch component.
 Other props are as follows:
 
 ### `color`
