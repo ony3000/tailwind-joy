@@ -40,7 +40,6 @@ Other props are as follows:
 ### `component`
 
 The component used for the root node.
-Either a string to use a HTML element or a component.
 
-- Type: `string | FunctionComponent | ComponentClass`
+- Type: `keyof JSX.IntrinsicElements`
 - Default: `'div'`
