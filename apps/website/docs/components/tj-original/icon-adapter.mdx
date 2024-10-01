@@ -45,7 +45,7 @@ The demo below shows the difference with or without the Icon Adapter.
 export function IconAdapterBasics() {
   return (
     <DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -79,8 +79,8 @@ export function IconAdapterBasics() {
         >
           With
         </Button>
-      </DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -108,7 +108,7 @@ export function IconAdapterBasics() {
         >
           Without
         </Button>
-      </DisplayStand>
+      </Box>
     </DisplayStand>
   );
 }
@@ -116,13 +116,13 @@ export function IconAdapterBasics() {
 <IconAdapterBasics />
 
 ```jsx
-import { Button, IconAdapter } from 'tailwind-joy/components';
+import { Box, Button, IconAdapter } from 'tailwind-joy/components';
 import { MdAdd } from 'react-icons/md';
 
 export function IconAdapterBasics() {
   return (
     <div>
-      <div className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -156,8 +156,8 @@ export function IconAdapterBasics() {
         >
           With
         </Button>
-      </div>
-      <div className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -185,7 +185,7 @@ export function IconAdapterBasics() {
         >
           Without
         </Button>
-      </div>
+      </Box>
     </div>
   );
 }
@@ -210,7 +210,7 @@ npm install @heroicons/react
 export function IconAdapterHeroicons() {
   return (
     <DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -244,8 +244,8 @@ export function IconAdapterHeroicons() {
         >
           With
         </Button>
-      </DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -273,7 +273,7 @@ export function IconAdapterHeroicons() {
         >
           Without
         </Button>
-      </DisplayStand>
+      </Box>
     </DisplayStand>
   );
 }
@@ -281,13 +281,13 @@ export function IconAdapterHeroicons() {
 <IconAdapterHeroicons />
 
 ```jsx
-import { Button, IconAdapter } from 'tailwind-joy/components';
+import { Box, Button, IconAdapter } from 'tailwind-joy/components';
 import { HeartIcon } from '@heroicons/react/24/outline';
 
 export function IconAdapterHeroicons() {
   return (
     <div>
-      <div>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -321,8 +321,8 @@ export function IconAdapterHeroicons() {
         >
           With
         </Button>
-      </div>
-      <div>
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -350,7 +350,7 @@ export function IconAdapterHeroicons() {
         >
           Without
         </Button>
-      </div>
+      </Box>
     </div>
   );
 }
@@ -379,4 +379,5 @@ Otherwise, the Icon Adapter component is composed of a single root `<span>` elem
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Button />`](../apis/button)

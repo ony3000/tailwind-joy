@@ -22,8 +22,10 @@ The Tailwind-Joy Radio button behaves similar to the native HTML `<input type="r
 export function RadioBasics() {
   return (
     <DisplayStand>
-      <Radio name="radio-basics" label="One" value="one" defaultChecked />
-      <Radio name="radio-basics" label="Two" value="two" />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Radio name="radio-basics" label="One" value="one" defaultChecked />
+        <Radio name="radio-basics" label="Two" value="two" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -31,14 +33,14 @@ export function RadioBasics() {
 <RadioBasics />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioBasics() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Radio name="radio-basics" label="One" value="one" defaultChecked />
       <Radio name="radio-basics" label="Two" value="two" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -52,15 +54,17 @@ The Radio component supports four variants: `solid`, `soft`, `outlined` (default
 export function RadioVariants() {
   return (
     <DisplayStand>
-      <Radio name="radio-variants" label="Solid" variant="solid" />
-      <Radio name="radio-variants" label="Soft" variant="soft" />
-      <Radio
-        name="radio-variants"
-        label="Outlined"
-        variant="outlined"
-        defaultChecked
-      />
-      <Radio name="radio-variants" label="Plain" variant="plain" />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Radio name="radio-variants" label="Solid" variant="solid" />
+        <Radio name="radio-variants" label="Soft" variant="soft" />
+        <Radio
+          name="radio-variants"
+          label="Outlined"
+          variant="outlined"
+          defaultChecked
+        />
+        <Radio name="radio-variants" label="Plain" variant="plain" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -68,11 +72,11 @@ export function RadioVariants() {
 <RadioVariants />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioVariants() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Radio name="radio-variants" label="Solid" variant="solid" />
       <Radio name="radio-variants" label="Soft" variant="soft" />
       <Radio
@@ -82,7 +86,7 @@ export function RadioVariants() {
         defaultChecked
       />
       <Radio name="radio-variants" label="Plain" variant="plain" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -94,9 +98,11 @@ The Radio component supports three sizes: `sm`, `md` (default), and `lg`.
 export function RadioSizes() {
   return (
     <DisplayStand>
-      <Radio name="radio-sizes" label="Small" size="sm" />
-      <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
-      <Radio name="radio-sizes" label="Large" size="lg" />
+      <Box className="flex flex-wrap items-center justify-center gap-6">
+        <Radio name="radio-sizes" label="Small" size="sm" />
+        <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
+        <Radio name="radio-sizes" label="Large" size="lg" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -104,15 +110,15 @@ export function RadioSizes() {
 <RadioSizes />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioSizes() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-6">
       <Radio name="radio-sizes" label="Small" size="sm" />
       <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
       <Radio name="radio-sizes" label="Large" size="lg" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -125,11 +131,13 @@ By default, when unchecked, the Radio is set to `neutral`; when checked, the col
 export function RadioColors() {
   return (
     <DisplayStand>
-      <Radio name="radio-colors" label="Primary" color="primary" />
-      <Radio name="radio-colors" label="Neutral" color="neutral" />
-      <Radio name="radio-colors" label="Danger" color="danger" />
-      <Radio name="radio-colors" label="Success" color="success" />
-      <Radio name="radio-colors" label="Warning" color="warning" />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Radio name="radio-colors" label="Primary" color="primary" />
+        <Radio name="radio-colors" label="Neutral" color="neutral" />
+        <Radio name="radio-colors" label="Danger" color="danger" />
+        <Radio name="radio-colors" label="Success" color="success" />
+        <Radio name="radio-colors" label="Warning" color="warning" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -137,17 +145,17 @@ export function RadioColors() {
 <RadioColors />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioColors() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Radio name="radio-colors" label="Primary" color="primary" />
       <Radio name="radio-colors" label="Neutral" color="neutral" />
       <Radio name="radio-colors" label="Danger" color="danger" />
       <Radio name="radio-colors" label="Success" color="success" />
       <Radio name="radio-colors" label="Warning" color="warning" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -159,8 +167,10 @@ To swap the positions of a Radio and its label, use the CSS property `flex-direc
 export function RadioPosition() {
   return (
     <DisplayStand>
-      <Radio name="radio-position" label="One" className="flex-row-reverse" />
-      <Radio name="radio-position" label="Two" className="flex-row-reverse" />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Radio name="radio-position" label="One" className="flex-row-reverse" />
+        <Radio name="radio-position" label="Two" className="flex-row-reverse" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -168,14 +178,14 @@ export function RadioPosition() {
 <RadioPosition />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioPosition() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Radio name="radio-position" label="One" className="flex-row-reverse" />
       <Radio name="radio-position" label="Two" className="flex-row-reverse" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -192,14 +202,14 @@ export function RadioFocusOutline() {
         <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
           Select an option and use keyboard &uarr;&darr;.
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <Box className="flex flex-wrap justify-center gap-6">
           <Radio name="radio-focus-outline" label="Fully wrapped" />
           <Radio
             name="radio-focus-outline"
             label="Input wrapped"
             className="[&>.tj-radio-radio]:relative"
           />
-        </div>
+        </Box>
       </div>
     </DisplayStand>
   );
@@ -208,7 +218,7 @@ export function RadioFocusOutline() {
 <RadioFocusOutline />
 
 ```jsx
-import { Radio } from 'tailwind-joy/components';
+import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioFocusOutline() {
   return (
@@ -216,14 +226,14 @@ export function RadioFocusOutline() {
       <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
         Select an option and use keyboard &uarr;&darr;.
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
+      <Box className="flex flex-wrap justify-center gap-6">
         <Radio name="radio-focus-outline" label="Fully wrapped" />
         <Radio
           name="radio-focus-outline"
           label="Input wrapped"
           className="[&>.tj-radio-radio]:relative"
         />
-      </div>
+      </Box>
     </div>
   );
 }
@@ -307,18 +317,16 @@ export function RadioGroupControlled() {
   const [variant, setVariant] = useState('outlined');
 
   return (
-    <div>
-      <RadioGroup
-        name="radio-group-controlled"
-        value={variant}
-        onChange={(e) => setVariant(e.currentTarget.value)}
-      >
-        <Radio value="solid" label="Solid" variant={variant} />
-        <Radio value="soft" label="Soft" variant={variant} />
-        <Radio value="outlined" label="Outlined" variant={variant} />
-        <Radio value="plain" label="Plain" variant={variant} />
-      </RadioGroup>
-    </div>
+    <RadioGroup
+      name="radio-group-controlled"
+      value={variant}
+      onChange={(e) => setVariant(e.currentTarget.value)}
+    >
+      <Radio value="solid" label="Solid" variant={variant} />
+      <Radio value="soft" label="Soft" variant={variant} />
+      <Radio value="outlined" label="Outlined" variant={variant} />
+      <Radio value="plain" label="Plain" variant={variant} />
+    </RadioGroup>
   );
 }
 ```
@@ -435,50 +443,44 @@ import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupClickableContainer() {
   return (
-    <div>
-      <RadioGroup
-        name="radio-group-clickable-container"
-        defaultValue="tailwind"
-        orientation="horizontal"
-        overlay
-        className="gap-4"
-      >
-        {[
-          {
-            label: 'Tailwind',
-            avatar: '/img/avatar/tailwind-gravatar.png',
-          },
-          {
-            label: 'Joy',
-            avatar: '/img/avatar/joy-gravatar.png',
-          },
-          {
-            label: 'Octocat',
-            avatar: '/img/avatar/octocat-avatar.png',
-          },
-        ].map(({ label, avatar }) => (
-          <Sheet
-            key={label}
-            variant="outlined"
-            className="flex flex-col items-center rounded-[8px] p-4"
-          >
-            <Radio
-              value={label.toLowerCase()}
-              variant="soft"
-              className="mb-4"
+    <RadioGroup
+      name="radio-group-clickable-container"
+      defaultValue="tailwind"
+      orientation="horizontal"
+      overlay
+      className="gap-4"
+    >
+      {[
+        {
+          label: 'Tailwind',
+          avatar: '/img/avatar/tailwind-gravatar.png',
+        },
+        {
+          label: 'Joy',
+          avatar: '/img/avatar/joy-gravatar.png',
+        },
+        {
+          label: 'Octocat',
+          avatar: '/img/avatar/octocat-avatar.png',
+        },
+      ].map(({ label, avatar }) => (
+        <Sheet
+          key={label}
+          variant="outlined"
+          className="flex flex-col items-center rounded-[8px] p-4"
+        >
+          <Radio value={label.toLowerCase()} variant="soft" className="mb-4" />
+          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
+            <img
+              src={avatar}
+              className="h-full w-full object-cover"
+              alt={label}
             />
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src={avatar}
-                className="h-full w-full object-cover"
-                alt={label}
-              />
-            </div>
-            <div className="mt-2">{label}</div>
-          </Sheet>
-        ))}
-      </RadioGroup>
-    </div>
+          </div>
+          <div className="mt-2">{label}</div>
+        </Sheet>
+      ))}
+    </RadioGroup>
   );
 }
 ```
@@ -522,28 +524,26 @@ import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupNoIcons() {
   return (
-    <div>
-      <RadioGroup
-        name="radio-group-no-icons"
-        defaultValue="512GB"
-        disableIcon
-        overlay
-      >
-        {['512GB', '1TB', '2TB'].map((value) => (
-          <Sheet
-            key={value}
-            variant="outlined"
-            className="flex rounded-[8px] p-4"
-          >
-            <Radio
-              value={value}
-              label={`${value} SSD storage`}
-              className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
-            />
-          </Sheet>
-        ))}
-      </RadioGroup>
-    </div>
+    <RadioGroup
+      name="radio-group-no-icons"
+      defaultValue="512GB"
+      disableIcon
+      overlay
+    >
+      {['512GB', '1TB', '2TB'].map((value) => (
+        <Sheet
+          key={value}
+          variant="outlined"
+          className="flex rounded-[8px] p-4"
+        >
+          <Radio
+            value={value}
+            label={`${value} SSD storage`}
+            className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
+          />
+        </Sheet>
+      ))}
+    </RadioGroup>
   );
 }
 ```
@@ -578,6 +578,7 @@ The Radio component is composed of a root `<span>`, with further nested `<span>`
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Radio />`](../apis/radio)
 - [`<RadioGroup />`](../apis/radio-group)
 - [`<Sheet />`](../apis/sheet)

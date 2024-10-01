@@ -25,8 +25,10 @@ Use the `label` prop to provide text, and add `defaultChecked` when the input sh
 export function CheckboxBasics() {
   return (
     <DisplayStand>
-      <Checkbox label="Label" />
-      <Checkbox label="Label" defaultChecked />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Checkbox label="Label" />
+        <Checkbox label="Label" defaultChecked />
+      </Box>
     </DisplayStand>
   );
 }
@@ -34,14 +36,14 @@ export function CheckboxBasics() {
 <CheckboxBasics />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxBasics() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Checkbox label="Label" />
       <Checkbox label="Label" defaultChecked />
-    </div>
+    </Box>
   );
 }
 ```
@@ -56,10 +58,12 @@ By default, when unchecked, the Checkbox is set to `outlined`; when checked, the
 export function CheckboxVariants() {
   return (
     <DisplayStand>
-      <Checkbox label="Solid" variant="solid" defaultChecked />
-      <Checkbox label="Soft" variant="soft" defaultChecked />
-      <Checkbox label="Outlined" variant="outlined" defaultChecked />
-      <Checkbox label="Plain" variant="plain" defaultChecked />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Checkbox label="Solid" variant="solid" defaultChecked />
+        <Checkbox label="Soft" variant="soft" defaultChecked />
+        <Checkbox label="Outlined" variant="outlined" defaultChecked />
+        <Checkbox label="Plain" variant="plain" defaultChecked />
+      </Box>
     </DisplayStand>
   );
 }
@@ -67,16 +71,16 @@ export function CheckboxVariants() {
 <CheckboxVariants />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxVariants() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Checkbox label="Solid" variant="solid" defaultChecked />
       <Checkbox label="Soft" variant="soft" defaultChecked />
       <Checkbox label="Outlined" variant="outlined" defaultChecked />
       <Checkbox label="Plain" variant="plain" defaultChecked />
-    </div>
+    </Box>
   );
 }
 ```
@@ -88,9 +92,11 @@ The Checkbox component supports three sizes: `sm`, `md` (default), and `lg`.
 export function CheckboxSizes() {
   return (
     <DisplayStand>
-      <Checkbox label="Small" size="sm" defaultChecked />
-      <Checkbox label="Medium" size="md" defaultChecked />
-      <Checkbox label="Large" size="lg" defaultChecked />
+      <Box className="flex flex-wrap items-center justify-center gap-6">
+        <Checkbox label="Small" size="sm" defaultChecked />
+        <Checkbox label="Medium" size="md" defaultChecked />
+        <Checkbox label="Large" size="lg" defaultChecked />
+      </Box>
     </DisplayStand>
   );
 }
@@ -98,15 +104,15 @@ export function CheckboxSizes() {
 <CheckboxSizes />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxSizes() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-6">
       <Checkbox label="Small" size="sm" defaultChecked />
       <Checkbox label="Medium" size="md" defaultChecked />
       <Checkbox label="Large" size="lg" defaultChecked />
-    </div>
+    </Box>
   );
 }
 ```
@@ -119,11 +125,13 @@ By default, when unchecked, the Checkbox is set to `neutral`; when checked, the 
 export function CheckboxColors() {
   return (
     <DisplayStand>
-      <Checkbox label="Primary" color="primary" defaultChecked />
-      <Checkbox label="Neutral" color="neutral" defaultChecked />
-      <Checkbox label="Danger" color="danger" defaultChecked />
-      <Checkbox label="Success" color="success" defaultChecked />
-      <Checkbox label="Warning" color="warning" defaultChecked />
+      <Box className="flex flex-wrap justify-center gap-6">
+        <Checkbox label="Primary" color="primary" defaultChecked />
+        <Checkbox label="Neutral" color="neutral" defaultChecked />
+        <Checkbox label="Danger" color="danger" defaultChecked />
+        <Checkbox label="Success" color="success" defaultChecked />
+        <Checkbox label="Warning" color="warning" defaultChecked />
+      </Box>
     </DisplayStand>
   );
 }
@@ -131,17 +139,17 @@ export function CheckboxColors() {
 <CheckboxColors />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxColors() {
   return (
-    <div>
+    <Box className="flex flex-wrap justify-center gap-6">
       <Checkbox label="Primary" color="primary" defaultChecked />
       <Checkbox label="Neutral" color="neutral" defaultChecked />
       <Checkbox label="Danger" color="danger" defaultChecked />
       <Checkbox label="Success" color="success" defaultChecked />
       <Checkbox label="Warning" color="warning" defaultChecked />
-    </div>
+    </Box>
   );
 }
 ```
@@ -172,12 +180,10 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function CheckboxIcons() {
   return (
-    <div>
-      <Checkbox
-        label="I have an icon when unchecked"
-        uncheckedIcon={<MdClose className={iconClass()} />}
-      />
-    </div>
+    <Checkbox
+      label="I have an icon when unchecked"
+      uncheckedIcon={<MdClose className={iconClass()} />}
+    />
   );
 }
 ```
@@ -215,13 +221,11 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function CheckboxAppearOnHover() {
   return (
-    <div>
-      <Checkbox
-        label="My unchecked icon appears on hover"
-        uncheckedIcon={<MdCheck className={iconClass()} />}
-        className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
-      />
-    </div>
+    <Checkbox
+      label="My unchecked icon appears on hover"
+      uncheckedIcon={<MdCheck className={iconClass()} />}
+      className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
+    />
   );
 }
 ```
@@ -235,11 +239,11 @@ Try clicking on the Checkbox labels in the demo below to see how this works:
 export function CheckboxNoIcons() {
   return (
     <DisplayStand>
-      <div className="w-[343px] max-w-full">
+      <Box className="w-[343px] max-w-full">
         <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
           Pizza toppings
         </div>
-        <div>
+        <div role="group" aria-labelledby="topping">
           <div className="flex flex-wrap gap-2">
             {[
               'Pepperoni',
@@ -264,7 +268,7 @@ export function CheckboxNoIcons() {
             ))}
           </div>
         </div>
-      </div>
+      </Box>
     </DisplayStand>
   );
 }
@@ -272,15 +276,15 @@ export function CheckboxNoIcons() {
 <CheckboxNoIcons />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxNoIcons() {
   return (
-    <div className="w-[343px] max-w-full">
+    <Box className="w-[343px] max-w-full">
       <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
         Pizza toppings
       </div>
-      <div>
+      <div role="group" aria-labelledby="topping">
         <div className="flex flex-wrap gap-2">
           {[
             'Pepperoni',
@@ -305,7 +309,7 @@ export function CheckboxNoIcons() {
           ))}
         </div>
       </div>
-    </div>
+    </Box>
   );
 }
 ```
@@ -322,14 +326,14 @@ export function CheckboxFocusOutline() {
         <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
           Try using keyboard navigation.
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <Box className="flex flex-wrap justify-center gap-6">
           <Checkbox label="Fully wrapped" defaultChecked />
           <Checkbox
             label="Input wrapped"
             defaultChecked
             className="[&>.tj-checkbox-checkbox]:relative"
           />
-        </div>
+        </Box>
       </div>
     </DisplayStand>
   );
@@ -338,7 +342,7 @@ export function CheckboxFocusOutline() {
 <CheckboxFocusOutline />
 
 ```jsx
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxFocusOutline() {
   return (
@@ -346,14 +350,14 @@ export function CheckboxFocusOutline() {
       <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
         Try using keyboard navigation.
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
+      <Box className="flex flex-wrap justify-center gap-6">
         <Checkbox label="Fully wrapped" defaultChecked />
         <Checkbox
           label="Input wrapped"
           defaultChecked
           className="[&>.tj-checkbox-checkbox]:relative"
         />
-      </div>
+      </Box>
     </div>
   );
 }
@@ -415,7 +419,7 @@ export function CheckboxIndeterminate() {
   const [checked, setChecked] = useState([true, false]);
   return (
     <DisplayStand>
-      <div className="space-y-2">
+      <div>
         <Checkbox
           label="Parent"
           checked={checked[0] && checked[1]}
@@ -424,7 +428,7 @@ export function CheckboxIndeterminate() {
             setChecked([e.currentTarget.checked, e.currentTarget.checked]);
           }}
         />
-        <div className="ml-6 flex flex-col gap-2">
+        <Box className="ml-6 mt-2 flex flex-col gap-2">
           <Checkbox
             label="Child 1"
             checked={checked[0]}
@@ -439,7 +443,7 @@ export function CheckboxIndeterminate() {
               setChecked([checked[0], e.currentTarget.checked]);
             }}
           />
-        </div>
+        </Box>
       </div>
     </DisplayStand>
   );
@@ -449,13 +453,13 @@ export function CheckboxIndeterminate() {
 
 ```jsx
 import { useState } from 'react';
-import { Checkbox } from 'tailwind-joy/components';
+import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxIndeterminate() {
   const [checked, setChecked] = useState([true, false]);
 
   return (
-    <div className="space-y-2">
+    <div>
       <Checkbox
         label="Parent"
         checked={checked[0] && checked[1]}
@@ -464,7 +468,7 @@ export function CheckboxIndeterminate() {
           setChecked([e.currentTarget.checked, e.currentTarget.checked]);
         }}
       />
-      <div className="ml-6 flex flex-col gap-2">
+      <Box className="ml-6 mt-2 flex flex-col gap-2">
         <Checkbox
           label="Child 1"
           checked={checked[0]}
@@ -479,7 +483,7 @@ export function CheckboxIndeterminate() {
             setChecked([checked[0], e.currentTarget.checked]);
           }}
         />
-      </div>
+      </Box>
     </div>
   );
 }
@@ -508,5 +512,6 @@ Note that the actual `<input type="checkbox">` is doubly nested within `<span>` 
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Checkbox />`](../apis/checkbox)
 - [`<Sheet />`](../apis/sheet)

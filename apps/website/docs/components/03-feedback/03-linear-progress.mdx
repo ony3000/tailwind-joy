@@ -21,13 +21,17 @@ import { LinearProgress } from 'tailwind-joy/components';
 
 The Linear Progress component supports four variants: `solid`, `soft` (default), `outlined`, and `plain`.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function LinearProgressVariants() {
   return (
-    <DisplayStand className="flex-col items-stretch">
-      <LinearProgress variant="solid" />
-      <LinearProgress variant="soft" />
-      <LinearProgress variant="outlined" />
-      <LinearProgress variant="plain" />
+    <DisplayStand>
+      <Box className="w-full space-y-4">
+        <LinearProgress variant="solid" />
+        <LinearProgress variant="soft" />
+        <LinearProgress variant="outlined" />
+        <LinearProgress variant="plain" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -35,16 +39,16 @@ export function LinearProgressVariants() {
 <LinearProgressVariants />
 
 ```jsx
-import { LinearProgress } from 'tailwind-joy/components';
+import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressVariants() {
   return (
-    <div>
+    <Box className="w-full space-y-4">
       <LinearProgress variant="solid" />
       <LinearProgress variant="soft" />
       <LinearProgress variant="outlined" />
       <LinearProgress variant="plain" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -53,12 +57,16 @@ export function LinearProgressVariants() {
 
 The Linear Progress component supports three sizes: `sm`, `md` (default), and `lg`.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function LinearProgressSizes() {
   return (
-    <DisplayStand className="flex-col items-stretch">
-      <LinearProgress size="sm" />
-      <LinearProgress size="md" />
-      <LinearProgress size="lg" />
+    <DisplayStand>
+      <Box className="w-full space-y-4">
+        <LinearProgress size="sm" />
+        <LinearProgress size="md" />
+        <LinearProgress size="lg" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -66,15 +74,15 @@ export function LinearProgressSizes() {
 <LinearProgressSizes />
 
 ```jsx
-import { LinearProgress } from 'tailwind-joy/components';
+import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressSizes() {
   return (
-    <div>
+    <Box className="w-full space-y-4">
       <LinearProgress size="sm" />
       <LinearProgress size="md" />
       <LinearProgress size="lg" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -83,14 +91,18 @@ export function LinearProgressSizes() {
 
 The Linear Progress component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function LinearProgressColors() {
   return (
-    <DisplayStand className="flex-col items-stretch">
-      <LinearProgress color="primary" />
-      <LinearProgress color="neutral" />
-      <LinearProgress color="danger" />
-      <LinearProgress color="success" />
-      <LinearProgress color="warning" />
+    <DisplayStand>
+      <Box className="w-full space-y-4">
+        <LinearProgress color="primary" />
+        <LinearProgress color="neutral" />
+        <LinearProgress color="danger" />
+        <LinearProgress color="success" />
+        <LinearProgress color="warning" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -98,17 +110,17 @@ export function LinearProgressColors() {
 <LinearProgressColors />
 
 ```jsx
-import { LinearProgress } from 'tailwind-joy/components';
+import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressColors() {
   return (
-    <div>
+    <Box className="w-full space-y-4">
       <LinearProgress color="primary" />
       <LinearProgress color="neutral" />
       <LinearProgress color="danger" />
       <LinearProgress color="success" />
       <LinearProgress color="warning" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -119,7 +131,7 @@ Provides a number to `thickness` prop to control the bar's stroke width.
 
 export function LinearProgressThickness() {
   return (
-    <DisplayStand className="flex-col items-stretch">
+    <DisplayStand>
       <LinearProgress thickness={1} />
     </DisplayStand>
   );
@@ -131,11 +143,7 @@ export function LinearProgressThickness() {
 import { LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressThickness() {
-  return (
-    <div>
-      <LinearProgress thickness={1} />
-    </div>
-  );
+  return <LinearProgress thickness={1} />;
 }
 ```
 
@@ -143,13 +151,17 @@ export function LinearProgressThickness() {
 
 You can use the `determinate` prop if you want to indicate a specified wait time.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function LinearProgressDeterminate() {
   return (
-    <DisplayStand className="flex-col items-stretch">
-      <LinearProgress determinate value={25} />
-      <LinearProgress determinate value={50} />
-      <LinearProgress determinate value={75} />
-      <LinearProgress determinate value={100} />
+    <DisplayStand>
+      <Box className="w-full space-y-4">
+        <LinearProgress determinate value={25} />
+        <LinearProgress determinate value={50} />
+        <LinearProgress determinate value={75} />
+        <LinearProgress determinate value={100} />
+      </Box>
     </DisplayStand>
   );
 }
@@ -157,16 +169,16 @@ export function LinearProgressDeterminate() {
 <LinearProgressDeterminate />
 
 ```jsx
-import { LinearProgress } from 'tailwind-joy/components';
+import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressDeterminate() {
   return (
-    <div>
+    <Box className="w-full space-y-4">
       <LinearProgress determinate value={25} />
       <LinearProgress determinate value={50} />
       <LinearProgress determinate value={75} />
       <LinearProgress determinate value={100} />
-    </div>
+    </Box>
   );
 }
 ```
@@ -185,4 +197,5 @@ The Linear Progress component is composed of a single root `<div>` element that 
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<LinearProgress />`](../apis/linear-progress)

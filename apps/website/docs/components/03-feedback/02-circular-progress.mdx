@@ -27,10 +27,12 @@ The Circular Progress component supports four variants: `solid`, `soft` (default
 export function CircularProgressVariants() {
   return (
     <DisplayStand>
-      <CircularProgress variant="solid" />
-      <CircularProgress variant="soft" />
-      <CircularProgress variant="outlined" />
-      <CircularProgress variant="plain" />
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <CircularProgress variant="solid" />
+        <CircularProgress variant="soft" />
+        <CircularProgress variant="outlined" />
+        <CircularProgress variant="plain" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -38,16 +40,16 @@ export function CircularProgressVariants() {
 <CircularProgressVariants />
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
+import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressVariants() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <CircularProgress variant="solid" />
       <CircularProgress variant="soft" />
       <CircularProgress variant="outlined" />
       <CircularProgress variant="plain" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -59,9 +61,11 @@ The Circular Progress component supports three sizes: `sm`, `md` (default), and 
 export function CircularProgressSizes() {
   return (
     <DisplayStand>
-      <CircularProgress size="sm" />
-      <CircularProgress size="md" />
-      <CircularProgress size="lg" />
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <CircularProgress size="sm" />
+        <CircularProgress size="md" />
+        <CircularProgress size="lg" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -69,15 +73,15 @@ export function CircularProgressSizes() {
 <CircularProgressSizes />
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
+import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressSizes() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <CircularProgress size="sm" />
       <CircularProgress size="md" />
       <CircularProgress size="lg" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -89,11 +93,13 @@ The Circular Progress component supports five colors: `primary` (default), `neut
 export function CircularProgressColors() {
   return (
     <DisplayStand>
-      <CircularProgress color="primary" />
-      <CircularProgress color="neutral" />
-      <CircularProgress color="danger" />
-      <CircularProgress color="success" />
-      <CircularProgress color="warning" />
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <CircularProgress color="primary" />
+        <CircularProgress color="neutral" />
+        <CircularProgress color="danger" />
+        <CircularProgress color="success" />
+        <CircularProgress color="warning" />
+      </Box>
     </DisplayStand>
   );
 }
@@ -101,17 +107,17 @@ export function CircularProgressColors() {
 <CircularProgressColors />
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
+import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressColors() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <CircularProgress color="primary" />
       <CircularProgress color="neutral" />
       <CircularProgress color="danger" />
       <CircularProgress color="success" />
       <CircularProgress color="warning" />
-    </div>
+    </Box>
   );
 }
 ```
@@ -134,11 +140,7 @@ export function CircularProgressThickness() {
 import { CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressThickness() {
-  return (
-    <div>
-      <CircularProgress thickness={1} />
-    </div>
-  );
+  return <CircularProgress thickness={1} />;
 }
 ```
 
@@ -149,10 +151,12 @@ The `determinate` prop lets you indicate a specified wait time.
 export function CircularProgressDeterminate() {
   return (
     <DisplayStand>
-      <CircularProgress determinate value={25} />
-      <CircularProgress determinate value={50} />
-      <CircularProgress determinate value={75} />
-      <CircularProgress determinate value={100} />
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <CircularProgress determinate value={25} />
+        <CircularProgress determinate value={50} />
+        <CircularProgress determinate value={75} />
+        <CircularProgress determinate value={100} />
+      </Box>
     </DisplayStand>
   );
 }
@@ -160,16 +164,16 @@ export function CircularProgressDeterminate() {
 <CircularProgressDeterminate />
 
 ```jsx
-import { CircularProgress } from 'tailwind-joy/components';
+import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressDeterminate() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <CircularProgress determinate value={25} />
       <CircularProgress determinate value={50} />
       <CircularProgress determinate value={75} />
       <CircularProgress determinate value={100} />
-    </div>
+    </Box>
   );
 }
 ```
@@ -181,18 +185,20 @@ By default, any children nested inside the Circular Progress will be centered.
 export function CircularProgressChildren() {
   return (
     <DisplayStand>
-      <CircularProgress color="warning">
-        <MdWarning className={iconClass({ color: 'warning' })} />
-      </CircularProgress>
-      <CircularProgress size="lg" determinate value={66.67}>
-        2 / 3
-      </CircularProgress>
-      <CircularProgress
-        color="danger"
-        className="[--CircularProgress-size:80px]"
-      >
-        <MdReport className={iconClass({ color: 'danger' })} />
-      </CircularProgress>
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <CircularProgress color="warning">
+          <MdWarning className={iconClass({ color: 'warning' })} />
+        </CircularProgress>
+        <CircularProgress size="lg" determinate value={66.67}>
+          2 / 3
+        </CircularProgress>
+        <CircularProgress
+          color="danger"
+          className="[--CircularProgress-size:80px]"
+        >
+          <MdReport className={iconClass({ color: 'danger' })} />
+        </CircularProgress>
+      </Box>
     </DisplayStand>
   );
 }
@@ -201,12 +207,12 @@ export function CircularProgressChildren() {
 
 ```jsx
 import { MdWarning, MdReport } from 'react-icons/md';
-import { CircularProgress } from 'tailwind-joy/components';
+import { Box, CircularProgress } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function CircularProgressChildren() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <CircularProgress color="warning">
         <MdWarning className={iconClass({ color: 'warning' })} />
       </CircularProgress>
@@ -219,7 +225,7 @@ export function CircularProgressChildren() {
       >
         <MdReport className={iconClass({ color: 'danger' })} />
       </CircularProgress>
-    </div>
+    </Box>
   );
 }
 ```
@@ -245,12 +251,14 @@ The size of the Circular Progress is controlled by a button, or an icon button u
 export function CircularProgressWithButton() {
   return (
     <DisplayStand>
-      <Button startDecorator={<CircularProgress variant="solid" />}>
-        Loading...
-      </Button>
-      <IconButton>
-        <CircularProgress />
-      </IconButton>
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <Button startDecorator={<CircularProgress variant="solid" />}>
+          Loading...
+        </Button>
+        <IconButton>
+          <CircularProgress />
+        </IconButton>
+      </Box>
     </DisplayStand>
   );
 }
@@ -258,18 +266,23 @@ export function CircularProgressWithButton() {
 <CircularProgressWithButton />
 
 ```jsx
-import { Button, CircularProgress, IconButton } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  IconButton,
+} from 'tailwind-joy/components';
 
 export function CircularProgressWithButton() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <Button startDecorator={<CircularProgress variant="solid" />}>
         Loading...
       </Button>
       <IconButton>
         <CircularProgress />
       </IconButton>
-    </div>
+    </Box>
   );
 }
 ```
@@ -292,6 +305,7 @@ The Circular Progress component is composed of a single root `<span>` with an `<
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Button />`](../apis/button)
 - [`<CircularProgress />`](../apis/circular-progress)
 - [`<IconButton />`](../apis/icon-button)

@@ -48,12 +48,10 @@ export function SwitchControlled() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div>
-      <Switch
-        checked={checked}
-        onChange={(e) => setChecked(e.currentTarget.checked)}
-      />
-    </div>
+    <Switch
+      checked={checked}
+      onChange={(e) => setChecked(e.currentTarget.checked)}
+    />
   );
 }
 ```
@@ -80,14 +78,12 @@ import { Switch } from 'tailwind-joy/components';
 
 export function SwitchLabel() {
   return (
-    <div>
-      <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
-        Turn alarm on
-        <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
-          <Switch className="ml-2" />
-        </span>
-      </label>
-    </div>
+    <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
+      Turn alarm on
+      <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
+        <Switch className="ml-2" />
+      </span>
+    </label>
   );
 }
 ```
@@ -142,33 +138,31 @@ export function SwitchDecorators() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div>
-      <Switch
-        color={checked ? 'primary' : 'danger'}
-        startDecorator={
-          <MdLocalFireDepartment
-            className={twMerge(
-              iconClass(),
-              checked
-                ? '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
-                : '[--Icon-color:var(--joy-danger-600)]',
-            )}
-          />
-        }
-        endDecorator={
-          <MdWaves
-            className={twMerge(
-              iconClass(),
-              checked
-                ? '[--Icon-color:var(--joy-primary-500)]'
-                : '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]',
-            )}
-          />
-        }
-        checked={checked}
-        onChange={(e) => setChecked(e.currentTarget.checked)}
-      />
-    </div>
+    <Switch
+      color={checked ? 'primary' : 'danger'}
+      startDecorator={
+        <MdLocalFireDepartment
+          className={twMerge(
+            iconClass(),
+            checked
+              ? '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
+              : '[--Icon-color:var(--joy-danger-600)]',
+          )}
+        />
+      }
+      endDecorator={
+        <MdWaves
+          className={twMerge(
+            iconClass(),
+            checked
+              ? '[--Icon-color:var(--joy-primary-500)]'
+              : '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]',
+          )}
+        />
+      }
+      checked={checked}
+      onChange={(e) => setChecked(e.currentTarget.checked)}
+    />
   );
 }
 ```

@@ -31,17 +31,19 @@ import { Divider } from 'tailwind-joy/components';
 
 Use the `Divider` to wrap elements that will be added to it.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function DividerRenderedWithContent() {
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
   return (
     <DisplayStand>
-      <div>
+      <Box className="space-y-2">
         {content}
         <Divider>Visual indicator</Divider>
         {content}
@@ -53,7 +55,7 @@ export function DividerRenderedWithContent() {
           </div>
         </Divider>
         {content}
-      </div>
+      </Box>
     </DisplayStand>
   );
 }
@@ -61,19 +63,19 @@ export function DividerRenderedWithContent() {
 <DividerRenderedWithContent />
 
 ```jsx
-import { Divider } from 'tailwind-joy/components';
+import { Box, Divider } from 'tailwind-joy/components';
 
 export function DividerRenderedWithContent() {
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
 
   return (
-    <div>
+    <Box className="space-y-2">
       {content}
       <Divider>Visual indicator</Divider>
       {content}
@@ -85,7 +87,7 @@ export function DividerRenderedWithContent() {
         </div>
       </Divider>
       {content}
-    </div>
+    </Box>
   );
 }
 ```
@@ -97,14 +99,14 @@ Use the `orientation` prop to render a vertical divider.
 export function DividerVerticalDivider() {
   return (
     <DisplayStand>
-      <div className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
+      <Box className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
         <MdFormatAlignLeft className={iconClass()} />
         <MdFormatAlignCenter className={iconClass()} />
         <MdFormatAlignRight className={iconClass()} />
         <Divider orientation="vertical" />
         <MdFormatBold className={iconClass()} />
         <MdFormatItalic className={iconClass()} />
-      </div>
+      </Box>
     </DisplayStand>
   );
 }
@@ -119,19 +121,19 @@ import {
   MdFormatBold,
   MdFormatItalic,
 } from 'react-icons/md';
-import { Divider } from 'tailwind-joy/components';
+import { Box, Divider } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function DividerVerticalDivider() {
   return (
-    <div className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
+    <Box className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
       <MdFormatAlignLeft className={iconClass()} />
       <MdFormatAlignCenter className={iconClass()} />
       <MdFormatAlignRight className={iconClass()} />
       <Divider orientation="vertical" />
       <MdFormatBold className={iconClass()} />
       <MdFormatItalic className={iconClass()} />
-    </div>
+    </Box>
   );
 }
 ```
@@ -146,21 +148,23 @@ export function DividerVerticalDivider() {
 
 You can also render a vertical divider with content.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function DividerVerticalWithText() {
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
   return (
     <DisplayStand>
-      <div className="flex flex-row gap-4">
+      <Box className="flex flex-row gap-4">
         {content}
         <Divider orientation="vertical">Visual indicator</Divider>
         {content}
-      </div>
+      </Box>
     </DisplayStand>
   );
 }
@@ -168,23 +172,23 @@ export function DividerVerticalWithText() {
 <DividerVerticalWithText />
 
 ```jsx
-import { Divider } from 'tailwind-joy/components';
+import { Box, Divider } from 'tailwind-joy/components';
 
 export function DividerVerticalWithText() {
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
 
   return (
-    <div className="flex flex-row gap-4">
+    <Box className="flex flex-row gap-4">
       {content}
       <Divider orientation="vertical">Visual indicator</Divider>
       {content}
-    </div>
+    </Box>
   );
 }
 ```
@@ -193,19 +197,21 @@ export function DividerVerticalWithText() {
 
 To control the position of the content, override the CSS variable `--Divider-childPosition`.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function DividerChildPosition() {
   const [position, setPosition] = useState(50);
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
   return (
     <DisplayStand>
-      <div className="space-y-2">
-        <div>
+      <Box className="space-y-2">
+        <Box className="space-y-2">
           {content}
           <Divider style={{ '--Divider-childPosition': `${position}%` }}>
             <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
@@ -215,8 +221,8 @@ export function DividerChildPosition() {
             </div>
           </Divider>
           {content}
-        </div>
-        <div className="flex items-center justify-center gap-2">
+        </Box>
+        <Box className="flex items-center justify-center gap-2">
           <span className="w-20 text-right">Position:</span>
           <input
             type="range"
@@ -227,8 +233,8 @@ export function DividerChildPosition() {
             onChange={(e) => setPosition(e.currentTarget.value)}
           />
           <span className="w-20 text-left">{position}%</span>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </DisplayStand>
   );
 }
@@ -237,21 +243,21 @@ export function DividerChildPosition() {
 
 ```jsx
 import { useState } from 'react';
-import { Divider } from 'tailwind-joy/components';
+import { Box, Divider } from 'tailwind-joy/components';
 
 export function DividerChildPosition() {
   const [position, setPosition] = useState(50);
   const content = (
-    <div className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
+    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
       nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
       imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </div>
+    </Box>
   );
 
   return (
-    <div className="space-y-2">
-      <div>
+    <Box className="space-y-2">
+      <Box className="space-y-2">
         {content}
         <Divider style={{ '--Divider-childPosition': `${position}%` }}>
           <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
@@ -261,8 +267,8 @@ export function DividerChildPosition() {
           </div>
         </Divider>
         {content}
-      </div>
-      <div className="flex items-center justify-center gap-2">
+      </Box>
+      <Box className="flex items-center justify-center gap-2">
         <span className="w-20 text-right">Position:</span>
         <input
           type="range"
@@ -273,8 +279,8 @@ export function DividerChildPosition() {
           onChange={(e) => setPosition(e.currentTarget.value)}
         />
         <span className="w-20 text-left">{position}%</span>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 ```
@@ -299,4 +305,5 @@ Otherwise, the Divider component is composed of a single root `<hr>` element.
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Divider />`](../apis/divider)

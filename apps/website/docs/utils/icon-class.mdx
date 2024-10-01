@@ -40,7 +40,7 @@ The demo below shows the difference with or without the `iconClass` function.
 export function IconClassBasics() {
   return (
     <DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -62,8 +62,8 @@ export function IconClassBasics() {
         >
           With
         </Button>
-      </DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -91,7 +91,7 @@ export function IconClassBasics() {
         >
           Without
         </Button>
-      </DisplayStand>
+      </Box>
     </DisplayStand>
   );
 }
@@ -99,14 +99,14 @@ export function IconClassBasics() {
 <IconClassBasics />
 
 ```jsx
-import { Button } from 'tailwind-joy/components';
+import { Box, Button } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { MdAdd } from 'react-icons/md';
 
 export function IconClassBasics() {
   return (
     <div>
-      <div className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -128,8 +128,8 @@ export function IconClassBasics() {
         >
           With
         </Button>
-      </div>
-      <div className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="primary"
           size="sm"
@@ -157,7 +157,7 @@ export function IconClassBasics() {
         >
           Without
         </Button>
-      </div>
+      </Box>
     </div>
   );
 }
@@ -182,7 +182,7 @@ npm install @heroicons/react
 export function IconClassHeroicons() {
   return (
     <DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -204,8 +204,8 @@ export function IconClassHeroicons() {
         >
           With
         </Button>
-      </DisplayStand>
-      <DisplayStand className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -233,7 +233,7 @@ export function IconClassHeroicons() {
         >
           Without
         </Button>
-      </DisplayStand>
+      </Box>
     </DisplayStand>
   );
 }
@@ -241,14 +241,14 @@ export function IconClassHeroicons() {
 <IconClassHeroicons />
 
 ```jsx
-import { Button } from 'tailwind-joy/components';
+import { Box, Button } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { HeartIcon } from '@heroicons/react/24/outline';
 
 export function IconClassHeroicons() {
   return (
     <div>
-      <div className="gap-2 border-none p-0">
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -270,8 +270,8 @@ export function IconClassHeroicons() {
         >
           With
         </Button>
-      </div>
-      <div className="gap-2 border-none p-0">
+      </Box>
+      <Box className="flex flex-wrap items-center justify-center gap-2">
         <Button
           color="danger"
           size="sm"
@@ -299,7 +299,7 @@ export function IconClassHeroicons() {
         >
           Without
         </Button>
-      </div>
+      </Box>
     </div>
   );
 }

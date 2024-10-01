@@ -45,16 +45,14 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupBasics() {
   return (
-    <div>
-      <ButtonGroup>
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup>
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+      <IconButton>
+        <MdSettings className={iconClass()} />
+      </IconButton>
+    </ButtonGroup>
   );
 }
 ```
@@ -73,29 +71,33 @@ The Button Group component supports four variants: `solid`, `soft`, `outlined` (
 
 The `variant` prop is passed to the buttons, not the Button Group itself.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function ButtonGroupVariants() {
   return (
-    <DisplayStand className="flex-col">
-      <ButtonGroup variant="solid">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup variant="soft">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup variant="outlined">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup variant="plain">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+    <DisplayStand>
+      <Box className="flex flex-col items-center justify-center gap-4">
+        <ButtonGroup variant="solid">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup variant="soft">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup variant="outlined">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup variant="plain">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      </Box>
     </DisplayStand>
   );
 }
@@ -103,11 +105,11 @@ export function ButtonGroupVariants() {
 <ButtonGroupVariants />
 
 ```jsx
-import { Button, ButtonGroup } from 'tailwind-joy/components';
+import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 
 export function ButtonGroupVariants() {
   return (
-    <div>
+    <Box className="flex flex-col items-center justify-center gap-4">
       <ButtonGroup variant="solid">
         <Button>One</Button>
         <Button>Two</Button>
@@ -128,7 +130,7 @@ export function ButtonGroupVariants() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }
 ```
@@ -139,24 +141,28 @@ The Button Group component supports three sizes: `sm`, `md` (default), and `lg`.
 
 The `size` prop is passed to the buttons, not the Button Group itself.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function ButtonGroupSizes() {
   return (
-    <DisplayStand className="flex-col">
-      <ButtonGroup size="sm">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup size="md">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup size="lg">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+    <DisplayStand>
+      <Box className="flex flex-col items-center justify-center gap-4">
+        <ButtonGroup size="sm">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup size="md">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup size="lg">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      </Box>
     </DisplayStand>
   );
 }
@@ -164,11 +170,11 @@ export function ButtonGroupSizes() {
 <ButtonGroupSizes />
 
 ```jsx
-import { Button, ButtonGroup } from 'tailwind-joy/components';
+import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 
 export function ButtonGroupSizes() {
   return (
-    <div>
+    <Box className="flex flex-col items-center justify-center gap-4">
       <ButtonGroup size="sm">
         <Button>One</Button>
         <Button>Two</Button>
@@ -184,7 +190,7 @@ export function ButtonGroupSizes() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }
 ```
@@ -195,34 +201,38 @@ The Button Group component supports five colors: `primary`, `neutral` (default),
 
 The `color` prop is passed to the buttons, not the Button Group itself.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function ButtonGroupColors() {
   return (
-    <DisplayStand className="flex-col">
-      <ButtonGroup color="primary">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup color="neutral">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup color="danger">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup color="success">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
-      <ButtonGroup color="warning">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+    <DisplayStand>
+      <Box className="flex flex-col items-center justify-center gap-4">
+        <ButtonGroup color="primary">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup color="neutral">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup color="danger">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup color="success">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <ButtonGroup color="warning">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      </Box>
     </DisplayStand>
   );
 }
@@ -230,11 +240,11 @@ export function ButtonGroupColors() {
 <ButtonGroupColors />
 
 ```jsx
-import { Button, ButtonGroup } from 'tailwind-joy/components';
+import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 
 export function ButtonGroupColors() {
   return (
-    <div>
+    <Box className="flex flex-col items-center justify-center gap-4">
       <ButtonGroup color="primary">
         <Button>One</Button>
         <Button>Two</Button>
@@ -260,7 +270,7 @@ export function ButtonGroupColors() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }
 ```
@@ -296,16 +306,14 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupDisabled() {
   return (
-    <div>
-      <ButtonGroup disabled>
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-        <IconButton disabled={false}>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup disabled>
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+      <IconButton disabled={false}>
+        <MdSettings className={iconClass()} />
+      </IconButton>
+    </ButtonGroup>
   );
 }
 ```
@@ -339,16 +347,14 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupSpacing() {
   return (
-    <div>
-      <ButtonGroup spacing="0.5rem">
-        <Button>One</Button>
-        <Button disabled>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup spacing="0.5rem">
+      <Button>One</Button>
+      <Button disabled>Two</Button>
+      <Button>Three</Button>
+      <IconButton>
+        <MdSettings className={iconClass()} />
+      </IconButton>
+    </ButtonGroup>
   );
 }
 ```
@@ -357,41 +363,45 @@ export function ButtonGroupSpacing() {
 
 The Button Group component can be displayed vertically using the `orientation="vertical"` prop.
 
+<!-- TODO: Replace Box with Stack. -->
+
 export function ButtonGroupVertical() {
   return (
     <DisplayStand>
-      <ButtonGroup orientation="vertical" variant="solid">
-        <Button>One</Button>
-        <Button disabled>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-      <ButtonGroup orientation="vertical" variant="soft">
-        <Button>One</Button>
-        <Button disabled>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-      <ButtonGroup orientation="vertical" variant="outlined">
-        <Button>One</Button>
-        <Button disabled>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-      <ButtonGroup orientation="vertical" variant="plain">
-        <Button>One</Button>
-        <Button disabled>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
+      <Box className="flex flex-wrap items-center justify-center gap-4">
+        <ButtonGroup orientation="vertical" variant="solid">
+          <Button>One</Button>
+          <Button disabled>Two</Button>
+          <Button>Three</Button>
+          <IconButton>
+            <MdSettings className={iconClass()} />
+          </IconButton>
+        </ButtonGroup>
+        <ButtonGroup orientation="vertical" variant="soft">
+          <Button>One</Button>
+          <Button disabled>Two</Button>
+          <Button>Three</Button>
+          <IconButton>
+            <MdSettings className={iconClass()} />
+          </IconButton>
+        </ButtonGroup>
+        <ButtonGroup orientation="vertical" variant="outlined">
+          <Button>One</Button>
+          <Button disabled>Two</Button>
+          <Button>Three</Button>
+          <IconButton>
+            <MdSettings className={iconClass()} />
+          </IconButton>
+        </ButtonGroup>
+        <ButtonGroup orientation="vertical" variant="plain">
+          <Button>One</Button>
+          <Button disabled>Two</Button>
+          <Button>Three</Button>
+          <IconButton>
+            <MdSettings className={iconClass()} />
+          </IconButton>
+        </ButtonGroup>
+      </Box>
     </DisplayStand>
   );
 }
@@ -400,12 +410,12 @@ export function ButtonGroupVertical() {
 
 ```jsx
 import { MdSettings } from 'react-icons/md';
-import { Button, ButtonGroup, IconButton } from 'tailwind-joy/components';
+import { Box, Button, ButtonGroup, IconButton } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupVertical() {
   return (
-    <div>
+    <Box className="flex flex-wrap items-center justify-center gap-4">
       <ButtonGroup orientation="vertical" variant="solid">
         <Button>One</Button>
         <Button disabled>Two</Button>
@@ -438,7 +448,7 @@ export function ButtonGroupVertical() {
           <MdSettings className={iconClass()} />
         </IconButton>
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }
 ```
@@ -471,16 +481,14 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupStretching1() {
   return (
-    <div>
-      <ButtonGroup buttonFlex={1} className="w-[350px] max-w-full">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-        <IconButton>
-          <MdSettings className={iconClass()} />
-        </IconButton>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup buttonFlex={1} className="w-[350px] max-w-full">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+      <IconButton>
+        <MdSettings className={iconClass()} />
+      </IconButton>
+    </ButtonGroup>
   );
 }
 ```
@@ -505,12 +513,10 @@ import { Button, ButtonGroup } from 'tailwind-joy/components';
 
 export function ButtonGroupStretching2() {
   return (
-    <div>
-      <ButtonGroup buttonFlex="0 1 200px" className="w-full justify-center">
-        <Button>One</Button>
-        <Button>Two</Button>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup buttonFlex="0 1 200px" className="w-full justify-center">
+      <Button>One</Button>
+      <Button>Two</Button>
+    </ButtonGroup>
   );
 }
 ```
@@ -523,27 +529,29 @@ To control the color of the separator, override the CSS variable `--ButtonGroup-
 export function ButtonGroupSeparatorColor() {
   const [hue, setHue] = useState(0);
   return (
-    <DisplayStand className="flex-col">
-      <div className="flex items-center gap-2">
-        <span className="w-10 text-right">Hue:</span>
-        <input
-          type="range"
-          name="hue-range"
-          min="0"
-          max="360"
-          defaultValue="0"
-          onChange={(e) => setHue(e.currentTarget.value)}
-        />
-        <span className="w-10 text-left">{hue}</span>
-      </div>
-      <ButtonGroup
-        variant="soft"
-        style={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
-      >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+    <DisplayStand>
+      <Box className="flex flex-col items-center justify-center gap-4">
+        <Box className="flex items-center gap-2">
+          <span className="w-10 text-right">Hue:</span>
+          <input
+            type="range"
+            name="hue-range"
+            min="0"
+            max="360"
+            defaultValue="0"
+            onChange={(e) => setHue(e.currentTarget.value)}
+          />
+          <span className="w-10 text-left">{hue}</span>
+        </Box>
+        <ButtonGroup
+          variant="soft"
+          style={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
+        >
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      </Box>
     </DisplayStand>
   );
 }
@@ -552,14 +560,14 @@ export function ButtonGroupSeparatorColor() {
 
 ```jsx
 import { useState } from 'react';
-import { Button, ButtonGroup } from 'tailwind-joy/components';
+import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 
 export function ButtonGroupSeparatorColor() {
   const [hue, setHue] = useState(0);
 
   return (
-    <div>
-      <div className="flex items-center gap-2">
+    <Box className="flex flex-col items-center justify-center gap-4">
+      <Box className="flex items-center gap-2">
         <span className="w-10 text-right">Hue:</span>
         <input
           type="range"
@@ -570,7 +578,7 @@ export function ButtonGroupSeparatorColor() {
           onChange={(e) => setHue(e.currentTarget.value)}
         />
         <span className="w-10 text-left">{hue}</span>
-      </div>
+      </Box>
       <ButtonGroup
         variant="soft"
         style={{ '--ButtonGroup-separatorColor': `hsl(${hue} 100% 50%)` }}
@@ -579,7 +587,7 @@ export function ButtonGroupSeparatorColor() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }
 ```
@@ -598,6 +606,7 @@ The Button Group component is composed of a single root `<div>` element that wra
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Box />`](../apis/box)
 - [`<Button />`](../apis/button)
 - [`<ButtonGroup />`](../apis/button-group)
 - [`<IconButton />`](../apis/icon-button)
