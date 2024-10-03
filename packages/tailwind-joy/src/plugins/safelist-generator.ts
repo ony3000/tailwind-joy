@@ -7,6 +7,7 @@ import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../
 import { generatorInputs as dividerClassNameGeneratorInputs } from '../components/Divider';
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
+import { generatorInputs as inputClassNameGeneratorInputs } from '../components/Input';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
@@ -25,6 +26,7 @@ const inputs: GeneratorInput[] = [
   ...dividerClassNameGeneratorInputs,
   ...iconAdapterClassNameGeneratorInputs,
   ...iconButtonClassNameGeneratorInputs,
+  ...inputClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
   ...radioClassNameGeneratorInputs,
   ...radioGroupClassNameGeneratorInputs,

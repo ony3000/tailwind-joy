@@ -6,6 +6,7 @@ export { CircularProgress } from './components/CircularProgress';
 export { Divider } from './components/Divider';
 export { IconAdapter } from './components/IconAdapter';
 export { IconButton } from './components/IconButton';
+export { Input } from './components/Input';
 export { LinearProgress } from './components/LinearProgress';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
