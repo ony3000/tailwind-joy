@@ -1,0 +1,295 @@
+---
+sidebar_position: 5
+slug: /components/input
+---
+
+import {
+  InputBasics,
+  InputVariants,
+  InputSizes,
+  InputColors,
+  InputFormSubmission,
+  InputFocusedRing,
+  InputValidation,
+  InputDecorators,
+  InputInnerHTMLInput,
+} from '@site/src/demos/input';
+
+# Input
+
+<AvailableFrom version="0.4.0" />
+
+The Input component facilitates the entry of text data from the user.
+
+## Basics
+
+```tsx
+import { Input } from 'tailwind-joy/components';
+```
+
+The Input component provides a customizable input field that can be used to collect user information, such as name, email, password, or other types of data.
+
+<InputBasics />
+
+```tsx
+import { Input } from 'tailwind-joy/components';
+
+export function InputBasics() {
+  return <Input placeholder="Type in here..." />;
+}
+```
+
+## Customization
+
+### Variants
+
+The Input component supports four variants: `solid`, `soft`, `outlined` (default), and `plain`.
+
+<InputVariants />
+
+```tsx
+import { Box, Input } from 'tailwind-joy/components';
+
+export function InputVariants() {
+  return (
+    <Box className="grid flex-wrap items-center gap-4 py-4">
+      <Input placeholder="Type in here..." variant="solid" />
+      <Input placeholder="Type in here..." variant="soft" />
+      <Input placeholder="Type in here..." variant="outlined" />
+      <Input placeholder="Type in here..." variant="plain" />
+    </Box>
+  );
+}
+```
+
+### Sizes
+
+The Input component supports three sizes: `sm`, `md` (default), and `lg`.
+
+<InputSizes />
+
+```tsx
+import { Box, Input } from 'tailwind-joy/components';
+
+export function InputSizes() {
+  return (
+    <Box className="grid flex-wrap items-center gap-4 py-4">
+      <Input size="sm" placeholder="Small" />
+      <Input size="md" placeholder="Medium" />
+      <Input size="lg" placeholder="Large" />
+    </Box>
+  );
+}
+```
+
+### Colors
+
+The Input component supports five colors: `primary`, `neutral` (default), `danger`, `success`, and `warning`.
+
+<InputColors />
+
+```tsx
+import { Box, Input } from 'tailwind-joy/components';
+
+export function InputColors() {
+  return (
+    <Box className="grid flex-wrap items-center gap-4 py-4">
+      <Input placeholder="Type in here..." color="primary" />
+      <Input placeholder="Type in here..." color="neutral" />
+      <Input placeholder="Type in here..." color="danger" />
+      <Input placeholder="Type in here..." color="success" />
+      <Input placeholder="Type in here..." color="warning" />
+    </Box>
+  );
+}
+```
+
+### Form submission
+
+You can add standard form attributes such as `required` and `disabled` to the Input component:
+
+<InputFormSubmission />
+
+```tsx
+import { Box, Button, Input } from 'tailwind-joy/components';
+
+export function InputFormSubmission() {
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const formJson = Object.fromEntries((formData as any).entries());
+        alert(JSON.stringify(formJson));
+      }}
+    >
+      <Box className="grid flex-wrap items-center gap-2">
+        <Input
+          name="first"
+          placeholder="Try to submit with no text!"
+          required
+        />
+        <Input name="second" placeholder="It is disabled" disabled />
+        <Button type="submit">Submit</Button>
+      </Box>
+    </form>
+  );
+}
+```
+
+### Focused ring
+
+Provide these CSS variables as class names to control the focused ring appearance:
+
+- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any,)`) of the Input.
+- `--Input-focusedThickness`: the **size** of the focused ring.
+- `--Input-focusedHighlight`: the **color** of the focused ring.
+
+<InputFocusedRing />
+
+```tsx
+import { Input } from 'tailwind-joy/components';
+
+export function InputFocusedRing() {
+  return (
+    <Input
+      placeholder="Bootstrap"
+      className="
+        before:transition-shadow
+        before:ease-[ease-in-out]
+        focus-within:border-[#86b7fe]
+        [&.tj-input-root]:[--Input-focusedHighlight:rgba(13,110,253,.25)]
+        [&.tj-input-root]:[--Input-focusedInset:var(--any,)]
+        [&.tj-input-root]:[--Input-focusedThickness:0.25rem]
+      "
+    />
+  );
+}
+```
+
+### Validation
+
+Use the `error` prop on Input to toggle the error state:
+
+<InputValidation />
+
+```tsx
+import { Input } from 'tailwind-joy/components';
+
+export function InputValidation() {
+  return (
+    <Input
+      placeholder="Type in here..."
+      error
+      defaultValue="Oh no, error found!"
+    />
+  );
+}
+```
+
+### Decorators
+
+The `startDecorator` and `endDecorator` props can be used to add supporting icons or elements to the input.
+With inputs, decorators are typically located at the top and/or bottom of the input field.
+
+<InputDecorators />
+
+```tsx
+import { MdLocationOn } from 'react-icons/md';
+import { Box, Button, Divider, Input } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function InputDecorators() {
+  return (
+    <Box className="grid flex-wrap items-center gap-3">
+      <Input
+        placeholder="Amount"
+        startDecorator="$"
+        endDecorator={
+          <>
+            <Divider orientation="vertical" />
+            <span className="text-joy-neutral-700 dark:text-joy-neutral-300 ml-3 text-[1rem]">
+              US dollar
+            </span>
+          </>
+        }
+        className="w-[300px]"
+      />
+      <Input
+        placeholder="Your location"
+        startDecorator={
+          <Button
+            variant="soft"
+            color="neutral"
+            startDecorator={<MdLocationOn className={iconClass()} />}
+          >
+            Locate
+          </Button>
+        }
+        className="w-[300px]"
+      />
+    </Box>
+  );
+}
+```
+
+### Inner HTML input
+
+If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: { ...props } }}`.
+These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
+
+<InputInnerHTMLInput />
+
+```tsx
+import { useRef } from 'react';
+import { Box, Input } from 'tailwind-joy/components';
+
+export function InputInnerHTMLInput() {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  return (
+    <Box className="grid min-w-[300px] flex-wrap items-center gap-3">
+      <Input
+        type="number"
+        defaultValue={2.5}
+        slotProps={{
+          input: {
+            ref: inputRef,
+            min: 1,
+            max: 5,
+            step: 0.1,
+          },
+        }}
+      />
+      <Input
+        type="date"
+        slotProps={{
+          input: {
+            min: '2024-10-03',
+            max: '2024-10-10',
+          },
+        }}
+      />
+    </Box>
+  );
+}
+```
+
+## Anatomy
+
+The Input component is composed of a root `<div>` with an `<input>` nested inside:
+
+```html
+<div class="tj-input-root ...">
+  <input class="tj-input-input ..." />
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Box />`](../apis/box)
+- [`<Button />`](../apis/button)
+- [`<Divider />`](../apis/divider)
+- [`<Input />`](../apis/input)
