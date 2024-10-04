@@ -11,7 +11,7 @@ export function InputFocusedRing() {
           before:ease-[ease-in-out]
           focus-within:border-[#86b7fe]
           [&.MuiInput-root]:[--Input-focusedHighlight:rgba(13,110,253,.25)]
-          [&.MuiInput-root]:[--Input-focusedInset:var(--any)]
+          [&.MuiInput-root]:[--Input-focusedInset:var(--any,)]
           [&.MuiInput-root]:[--Input-focusedThickness:0.25rem]
         "
       />

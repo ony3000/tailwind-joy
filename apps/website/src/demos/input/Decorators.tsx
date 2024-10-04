@@ -14,7 +14,9 @@ export function InputDecorators() {
           endDecorator={
             <>
               <Divider orientation="vertical" />
-              <span className="ml-3">US dollar</span>
+              <span className="text-joy-neutral-700 dark:text-joy-neutral-300 ml-3 text-[1rem]">
+                US dollar
+              </span>
             </>
           }
           className="w-[300px]"

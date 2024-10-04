@@ -145,7 +145,7 @@ export function InputFormSubmission() {
 
 Provide these CSS variables as class names to control the focused ring appearance:
 
-- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any)`) of the Input.
+- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any,)`) of the Input.
 - `--Input-focusedThickness`: the **size** of the focused ring.
 - `--Input-focusedHighlight`: the **color** of the focused ring.
 
@@ -163,7 +163,7 @@ export function InputFocusedRing() {
         before:ease-[ease-in-out]
         focus-within:border-[#86b7fe]
         [&.MuiInput-root]:[--Input-focusedHighlight:rgba(13,110,253,.25)]
-        [&.MuiInput-root]:[--Input-focusedInset:var(--any)]
+        [&.MuiInput-root]:[--Input-focusedInset:var(--any,)]
         [&.MuiInput-root]:[--Input-focusedThickness:0.25rem]
       "
     />
@@ -213,7 +213,9 @@ export function InputDecorators() {
         endDecorator={
           <>
             <Divider orientation="vertical" />
-            <span className="ml-3">US dollar</span>
+            <span className="text-joy-neutral-700 dark:text-joy-neutral-300 ml-3 text-[1rem]">
+              US dollar
+            </span>
           </>
         }
         className="w-[300px]"
