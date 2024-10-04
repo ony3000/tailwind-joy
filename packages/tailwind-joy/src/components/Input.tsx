@@ -327,7 +327,7 @@ export const Input = forwardRef(function InputRoot(
     startDecorator,
 
     // slot props
-    slotProps,
+    slotProps = {},
 
     // others
     component = 'div',
@@ -338,22 +338,20 @@ export const Input = forwardRef(function InputRoot(
   ref,
 ) {
   const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps?.root ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
   );
   const slotInputPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps?.input ?? {}).filter(
+    Object.entries(slotProps.input ?? {}).filter(
       ([key]) => key !== 'className',
     ),
   );
   const slotStartDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps?.startDecorator ?? {}).filter(
+    Object.entries(slotProps.startDecorator ?? {}).filter(
       ([key]) => key !== 'className',
     ),
   );
   const slotEndDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps?.endDecorator ?? {}).filter(
+    Object.entries(slotProps.endDecorator ?? {}).filter(
       ([key]) => key !== 'className',
     ),
   );
@@ -380,7 +378,7 @@ export const Input = forwardRef(function InputRoot(
         <div
           className={twMerge(
             inputStartDecoratorVariants(),
-            slotProps?.startDecorator?.className ?? '',
+            slotProps.startDecorator?.className ?? '',
           )}
           {...slotStartDecoratorPropsWithoutClassName}
         >
@@ -393,7 +391,7 @@ export const Input = forwardRef(function InputRoot(
             hasStartDecorator: Boolean(startDecorator),
             hasEndDecorator: Boolean(endDecorator),
           }),
-          slotProps?.input?.className ?? '',
+          slotProps.input?.className ?? '',
         )}
         {...{
           autoComplete,
@@ -420,7 +418,7 @@ export const Input = forwardRef(function InputRoot(
         <div
           className={twMerge(
             inputEndDecoratorVariants(),
-            slotProps?.endDecorator?.className ?? '',
+            slotProps.endDecorator?.className ?? '',
           )}
           {...slotEndDecoratorPropsWithoutClassName}
         >
