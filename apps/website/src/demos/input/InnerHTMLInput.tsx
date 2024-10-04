@@ -1,6 +1,5 @@
-import { Input as JoyInput } from '@mui/joy';
 import { useRef } from 'react';
-import { Box } from 'tailwind-joy/components';
+import { Box, Input } from 'tailwind-joy/components';
 import { DemoContainer } from '../DemoContainer';
 
 export function InputInnerHTMLInput() {
@@ -9,7 +8,7 @@ export function InputInnerHTMLInput() {
   return (
     <DemoContainer>
       <Box className="grid min-w-[300px] flex-wrap items-center gap-3">
-        <JoyInput
+        <Input
           type="number"
           defaultValue={2.5}
           slotProps={{
@@ -21,7 +20,7 @@ export function InputInnerHTMLInput() {
             },
           }}
         />
-        <JoyInput
+        <Input
           type="date"
           slotProps={{
             input: {

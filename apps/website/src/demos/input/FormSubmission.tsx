@@ -1,5 +1,4 @@
-import { Input as JoyInput } from '@mui/joy';
-import { Box, Button } from 'tailwind-joy/components';
+import { Box, Button, Input } from 'tailwind-joy/components';
 import { DemoContainer } from '../DemoContainer';
 
 export function InputFormSubmission() {
@@ -14,12 +13,12 @@ export function InputFormSubmission() {
         }}
       >
         <Box className="grid flex-wrap items-center gap-2">
-          <JoyInput
+          <Input
             name="first"
             placeholder="Try to submit with no text!"
             required
           />
-          <JoyInput name="second" placeholder="It is disabled" disabled />
+          <Input name="second" placeholder="It is disabled" disabled />
           <Button type="submit">Submit</Button>
         </Box>
       </form>

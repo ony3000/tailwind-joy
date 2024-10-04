@@ -1,10 +1,10 @@
-import { Input as JoyInput } from '@mui/joy';
+import { Input } from 'tailwind-joy/components';
 import { DemoContainer } from '../DemoContainer';
 
 export function InputValidation() {
   return (
     <DemoContainer>
-      <JoyInput
+      <Input
         placeholder="Type in here..."
         error
         defaultValue="Oh no, error found!"
