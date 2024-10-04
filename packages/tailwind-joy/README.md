@@ -14,6 +14,7 @@ https://tailwind-joy.vercel.app
 - Button Group
 - Checkbox
 - Icon Button
+- Input
 - Radio
 - Radio Group
 - Switch
