@@ -16,7 +16,10 @@ export function join(elements: unknown[]): string {
  *
  * For example, `sm:gap-16 sm:px-12 sm:py-16` can be written as `addPrefix('gap-16 px-12 py-16', 'sm:')`.
  */
-export function addPrefix(classNameOrToken: string, prefix: string): string {
+export function addPrefix(
+  classNameOrToken: string,
+  prefix: `${string}:`,
+): string {
   return classNameOrToken
     .split(SPACE)
     .filter(Boolean)
@@ -59,7 +62,7 @@ export function disabled(classNameOrToken: string): string {
 /**
  * Converts a color token string into a valid Tailwind CSS class name.
  */
-export function toColorClass(token: BaseToken, prefix: string): string {
+export function toColorClass(token: BaseToken, prefix: `${string}-`): string {
   return token.replace(/(joy-[a-z0-9]+-[a-z0-9]+)/g, `${prefix}$1`);
 }
 
