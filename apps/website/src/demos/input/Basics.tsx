@@ -1,10 +1,10 @@
 import { Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputBasics() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Input placeholder="Type in here..." />
-    </DemoContainer>
+    </DisplayStand>
   );
 }

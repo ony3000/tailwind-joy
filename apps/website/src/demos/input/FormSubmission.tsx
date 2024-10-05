@@ -1,9 +1,9 @@
 import { Box, Button, Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputFormSubmission() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -22,6 +22,6 @@ export function InputFormSubmission() {
           <Button type="submit">Submit</Button>
         </Box>
       </form>
-    </DemoContainer>
+    </DisplayStand>
   );
 }

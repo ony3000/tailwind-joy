@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { Box, Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputInnerHTMLInput() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Box className="grid min-w-[300px] flex-wrap items-center gap-3">
         <Input
           type="number"
@@ -30,6 +30,6 @@ export function InputInnerHTMLInput() {
           }}
         />
       </Box>
-    </DemoContainer>
+    </DisplayStand>
   );
 }

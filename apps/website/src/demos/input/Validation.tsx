@@ -1,14 +1,14 @@
 import { Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputValidation() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Input
         placeholder="Type in here..."
         error
         defaultValue="Oh no, error found!"
       />
-    </DemoContainer>
+    </DisplayStand>
   );
 }

@@ -1,9 +1,9 @@
 import { Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputFocusedRing() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Input
         placeholder="Bootstrap"
         className="
@@ -15,6 +15,6 @@ export function InputFocusedRing() {
           [&.tj-input-root]:[--Input-focusedThickness:0.25rem]
         "
       />
-    </DemoContainer>
+    </DisplayStand>
   );
 }

@@ -1,9 +1,9 @@
 import { Box, Input } from 'tailwind-joy/components';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputColors() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Box className="grid flex-wrap items-center gap-4 py-4">
         <Input placeholder="Type in here..." color="primary" />
         <Input placeholder="Type in here..." color="neutral" />
@@ -11,6 +11,6 @@ export function InputColors() {
         <Input placeholder="Type in here..." color="success" />
         <Input placeholder="Type in here..." color="warning" />
       </Box>
-    </DemoContainer>
+    </DisplayStand>
   );
 }

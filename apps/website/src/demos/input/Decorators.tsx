@@ -1,11 +1,11 @@
 import { MdLocationOn } from 'react-icons/md';
 import { Box, Button, Divider, Input } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
-import { DemoContainer } from '../DemoContainer';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function InputDecorators() {
   return (
-    <DemoContainer>
+    <DisplayStand>
       <Box className="grid flex-wrap items-center gap-3">
         <Input
           placeholder="Amount"
@@ -34,6 +34,6 @@ export function InputDecorators() {
           className="w-[300px]"
         />
       </Box>
-    </DemoContainer>
+    </DisplayStand>
   );
 }
