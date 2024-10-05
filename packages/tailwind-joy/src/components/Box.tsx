@@ -2,21 +2,30 @@ import { clsx } from 'clsx';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
-  BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
 
-function boxRootVariants(props?: BaseVariants) {
+function boxRootVariants() {
   return twMerge(clsx(['tj-box-root group/tj-box']));
 }
 
-interface BoxRootVariants {}
+type BoxRootVariants = {};
 
 type BoxRootProps = GenericComponentPropsWithVariants<'div', BoxRootVariants>;
 
 export const Box = forwardRef(function BoxRoot(
-  { children, className, component = 'div', ...otherProps }: BoxRootProps,
+  {
+    // ---- non-passing props ----
+    // non-base variants
+    className,
+
+    // others
+    component = 'div',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: BoxRootProps,
   ref,
 ) {
   return createElement(

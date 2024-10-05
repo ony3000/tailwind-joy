@@ -3,6 +3,8 @@ sidebar_position: 1
 slug: /components/box
 ---
 
+import { BoxBasics } from '@site/src/demos/box';
+
 # Box
 
 <AvailableFrom version="0.4.0" />
@@ -11,29 +13,16 @@ The Box component is a generic container.
 
 ## Basics
 
-```jsx
+```tsx
 import { Box } from 'tailwind-joy/components';
 ```
 
 The Box component renders as a `<div>` by default, but you can swap in any other valid HTML tag or React component using the `component` prop.
 The demo below replaces the `<div>` with a `<section>` element:
 
-export function BoxBasics() {
-  return (
-    <DisplayStand>
-      <Box
-        component="section"
-        className="border border-dashed border-[grey] p-4"
-      >
-        This Box renders as an HTML section element.
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <BoxBasics />
 
-```jsx
+```tsx
 import { Box } from 'tailwind-joy/components';
 
 export function BoxBasics() {

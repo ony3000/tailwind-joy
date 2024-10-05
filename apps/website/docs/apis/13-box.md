@@ -34,9 +34,6 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<div>` are also available for Box component.
-Other props are as follows:
-
 ### `component`
 
 The component used for the root node.
