@@ -7,3 +7,5 @@ export { ButtonColors } from './Colors';
 export { ButtonDecorators } from './Decorators';
 export { ButtonLoadingIndicator } from './LoadingIndicator';
 export { ButtonLoadingPosition } from './LoadingPosition';
+export { ButtonLink } from './Link';
+export { ButtonFileUpload } from './FileUpload';
