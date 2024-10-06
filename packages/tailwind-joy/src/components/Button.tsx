@@ -7,7 +7,13 @@ import type {
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
-import { focus, disabled, textColor, toVariableClass } from '../base/modifier';
+import {
+  focus,
+  backgroundColor,
+  borderColor,
+  textColor,
+  toVariableClass,
+} from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
 
@@ -57,6 +63,7 @@ function buttonLoadingIndicatorCenterVariants(
 function buttonRootVariants(
   props?: BaseVariants & {
     fullWidth?: boolean;
+    instanceDisabled?: boolean;
     invisibleChildren?: boolean;
   },
 ) {
@@ -65,6 +72,7 @@ function buttonRootVariants(
     size = 'md',
     variant = 'solid',
     fullWidth = false,
+    instanceDisabled = false,
     invisibleChildren = false,
   } = props ?? {};
 
@@ -121,30 +129,33 @@ function buttonRootVariants(
       'font-semibold',
       'leading-normal',
       fullWidth && 'w-full',
-      [focus('outline-2 outline outline-offset-2'), colorTokens.focusVisible],
-      [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        !invisibleChildren && colorTokens[color][`${variant}Color`],
-        colorTokens[color][`${variant}Bg`],
-        colorTokens[color][`${variant}Border`],
+      !instanceDisabled && [
+        [focus('outline-2 outline outline-offset-2'), colorTokens.focusVisible],
+        [
+          variant === 'outlined'
+            ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
+            : '[--variant-borderWidth:0px]',
+          !invisibleChildren && colorTokens[color][`${variant}Color`],
+          colorTokens[color][`${variant}Bg`],
+          colorTokens[color][`${variant}Border`],
+        ],
+        [
+          !invisibleChildren && colorTokens[color][`${variant}HoverColor`],
+          colorTokens[color][`${variant}HoverBg`],
+        ],
+        [
+          !invisibleChildren && colorTokens[color][`${variant}ActiveColor`],
+          colorTokens[color][`${variant}ActiveBg`],
+        ],
       ],
-      [
-        !invisibleChildren && colorTokens[color][`${variant}HoverColor`],
-        colorTokens[color][`${variant}HoverBg`],
-      ],
-      [
-        !invisibleChildren && colorTokens[color][`${variant}ActiveColor`],
-        colorTokens[color][`${variant}ActiveBg`],
-      ],
-      [
-        disabled(
+      instanceDisabled && [
+        [
           'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-        ),
-        !invisibleChildren && colorTokens[color][`${variant}DisabledColor`],
-        colorTokens[color][`${variant}DisabledBg`],
-        colorTokens[color][`${variant}DisabledBorder`],
+          !invisibleChildren &&
+            textColor(baseTokens[color][`${variant}DisabledColor`]),
+          backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
+          borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+        ],
       ],
       invisibleChildren && 'text-transparent',
     ]),
@@ -236,6 +247,7 @@ export const Button = forwardRef(function ButtonRoot(
           fullWidth,
           size,
           variant,
+          instanceDisabled: disabled,
           invisibleChildren: loading && loadingPosition === 'center',
         }),
         className,
@@ -309,6 +321,7 @@ export const generatorInputs: GeneratorInput[] = [
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
       fullWidth: [false, true],
+      instanceDisabled: [false, true],
       invisibleChildren: [false, true],
     },
   },
