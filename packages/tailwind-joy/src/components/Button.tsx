@@ -1,13 +1,17 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { focus, disabled, textColor, toVariableClass } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
 
-function buttonStartDecoratorVariants(props?: BaseVariants) {
+function buttonStartDecoratorVariants() {
   return twMerge(
     clsx([
       'tj-button-start-decorator',
@@ -19,7 +23,7 @@ function buttonStartDecoratorVariants(props?: BaseVariants) {
   );
 }
 
-function buttonEndDecoratorVariants(props?: BaseVariants) {
+function buttonEndDecoratorVariants() {
   return twMerge(
     clsx([
       'tj-button-end-decorator',
@@ -31,7 +35,9 @@ function buttonEndDecoratorVariants(props?: BaseVariants) {
   );
 }
 
-function buttonLoadingIndicatorCenterVariants(props?: BaseVariants) {
+function buttonLoadingIndicatorCenterVariants(
+  props?: Pick<BaseVariants, 'color' | 'variant'>,
+) {
   const { color = 'primary', variant = 'solid' } = props ?? {};
 
   return twMerge(
@@ -41,6 +47,8 @@ function buttonLoadingIndicatorCenterVariants(props?: BaseVariants) {
       'absolute',
       'left-1/2',
       '-translate-x-1/2',
+
+      // NOTE: It is disabled by default because the indicator is only activated when `loading: true`. So I didn't specify a color class name for the enabled state.
       textColor(baseTokens[color][`${variant}DisabledColor`]),
     ]),
   );
@@ -74,8 +82,8 @@ function buttonRootVariants(
         '[--Button-gap:0.375rem]',
         'min-h-[var(--Button-minHeight,2rem)]',
         'text-[0.875rem]',
-        'py-[var(--Button-paddingBlock,0.25rem)]',
-        'px-3',
+        '[padding-block:var(--Button-paddingBlock,0.25rem)]',
+        '[padding-inline:0.75rem]',
       ],
       size === 'md' && [
         '[--Icon-fontSize:1.25rem]',
@@ -84,8 +92,8 @@ function buttonRootVariants(
         '[--Button-gap:0.5rem]',
         'min-h-[var(--Button-minHeight,2.25rem)]',
         'text-[0.875rem]',
-        'py-[var(--Button-paddingBlock,0.375rem)]',
-        'px-4',
+        '[padding-block:var(--Button-paddingBlock,0.375rem)]',
+        '[padding-inline:1rem]',
       ],
       size === 'lg' && [
         '[--Icon-fontSize:1.5rem]',
@@ -94,8 +102,8 @@ function buttonRootVariants(
         '[--Button-gap:0.75rem]',
         'min-h-[var(--Button-minHeight,2.75rem)]',
         'text-[1rem]',
-        'py-[var(--Button-paddingBlock,0.5rem)]',
-        'px-6',
+        '[padding-block:var(--Button-paddingBlock,0.5rem)]',
+        '[padding-inline:1.5rem]',
       ],
       '[-webkit-tap-highlight-color:transparent]',
       'box-border',
@@ -143,87 +151,140 @@ function buttonRootVariants(
   );
 }
 
-interface ButtonRootVariants extends BaseVariants {
-  fullWidth?: boolean;
-  startDecorator?: ReactNode;
+type ButtonRootVariants = BaseVariants & {
+  className?: string;
+  disabled?: boolean;
   endDecorator?: ReactNode;
+  fullWidth?: boolean;
   loading?: boolean;
   loadingIndicator?: ReactNode;
   loadingPosition?: 'center' | 'start' | 'end';
-}
+  startDecorator?: ReactNode;
+} & {
+  slotProps?: {
+    root?: ComponentProps<'button'>;
+    startDecorator?: ComponentProps<'span'>;
+    endDecorator?: ComponentProps<'span'>;
+    loadingIndicatorCenter?: ComponentProps<'span'>;
+  };
+};
 
-type ButtonRootProps = Omit<
-  ComponentProps<'button'>,
-  keyof ButtonRootVariants
-> &
-  ButtonRootVariants;
+type ButtonRootProps = GenericComponentPropsWithVariants<
+  'button',
+  ButtonRootVariants
+>;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonRootProps>(
-  function ButtonRoot(
+export const Button = forwardRef(function ButtonRoot(
+  {
+    // ---- non-passing props ----
+    // base variants
+    color = 'primary',
+    size = 'md',
+    variant = 'solid',
+
+    // non-base variants
+    className,
+    disabled,
+    endDecorator,
+    fullWidth,
+    loading,
+    loadingIndicator,
+    loadingPosition = 'center',
+    startDecorator,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'button',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: ButtonRootProps,
+  ref,
+) {
+  const slotRootPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  );
+  const slotStartDecoratorPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.startDecorator ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotEndDecoratorPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.endDecorator ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotLoadingIndicatorCenterPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.loadingIndicatorCenter ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+  const instanceLoadingIndicator = loadingIndicator ?? (
+    <CircularProgress color={color} thickness={thickness} />
+  );
+
+  return createElement(
+    component,
     {
-      children,
-      className,
-      disabled,
-      color = 'primary',
-      fullWidth,
-      size = 'md',
-      variant = 'solid',
-      startDecorator,
-      endDecorator,
-      loading,
-      loadingIndicator,
-      loadingPosition = 'center',
-      ...otherProps
+      ref,
+      className: twMerge(
+        buttonRootVariants({
+          color,
+          fullWidth,
+          size,
+          variant,
+          invisibleChildren: loading && loadingPosition === 'center',
+        }),
+        className,
+      ),
+      disabled: disabled || loading,
+      ...otherProps,
+      ...slotRootPropsWithoutClassName,
     },
-    ref,
-  ) {
-    const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
-    const instanceLoadingIndicator = loadingIndicator ?? (
-      <CircularProgress color={color} thickness={thickness} />
-    );
-
-    return (
-      <button
-        ref={ref}
-        type="button"
-        className={twMerge(
-          buttonRootVariants({
-            color,
-            fullWidth,
-            size,
-            variant,
-            invisibleChildren: loading && loadingPosition === 'center',
-          }),
-          className,
-        )}
-        disabled={disabled || loading}
-        {...otherProps}
-      >
-        {(startDecorator || (loading && loadingPosition === 'start')) && (
-          <span className={buttonStartDecoratorVariants()}>
-            {loading ? instanceLoadingIndicator : startDecorator}
-          </span>
-        )}
-        {children}
-        {loading && loadingPosition === 'center' && (
-          <span
-            className={buttonLoadingIndicatorCenterVariants({
+    <>
+      {(startDecorator || (loading && loadingPosition === 'start')) && (
+        <span
+          className={twMerge(
+            buttonStartDecoratorVariants(),
+            slotProps.startDecorator?.className ?? '',
+          )}
+          {...slotStartDecoratorPropsWithoutClassName}
+        >
+          {loading ? instanceLoadingIndicator : startDecorator}
+        </span>
+      )}
+      {children}
+      {loading && loadingPosition === 'center' && (
+        <span
+          className={twMerge(
+            buttonLoadingIndicatorCenterVariants({
               color,
               variant,
-            })}
-          >
-            {instanceLoadingIndicator}
-          </span>
-        )}
-        {(endDecorator || (loading && loadingPosition === 'end')) && (
-          <span className={buttonEndDecoratorVariants()}>
-            {loading ? instanceLoadingIndicator : endDecorator}
-          </span>
-        )}
-      </button>
-    );
-  },
-);
+            }),
+            slotProps.loadingIndicatorCenter?.className ?? '',
+          )}
+          {...slotLoadingIndicatorCenterPropsWithoutClassName}
+        >
+          {instanceLoadingIndicator}
+        </span>
+      )}
+      {(endDecorator || (loading && loadingPosition === 'end')) && (
+        <span
+          className={twMerge(
+            buttonEndDecoratorVariants(),
+            slotProps.endDecorator?.className ?? '',
+          )}
+          {...slotEndDecoratorPropsWithoutClassName}
+        >
+          {loading ? instanceLoadingIndicator : endDecorator}
+        </span>
+      )}
+    </>,
+  );
+});
 
 export const generatorInputs: GeneratorInput[] = [
   {
