@@ -20,7 +20,7 @@ For examples and details on the usage of this React component, visit the compone
 
 ## Import
 
-```jsx
+```tsx
 import { Button } from 'tailwind-joy/components';
 ```
 
@@ -32,8 +32,11 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<button>` are also available for Button component.
-Other props are as follows:
+### `className`
+
+Class name applied to the root element.
+
+- Type: `string`
 
 ### `color`
 
@@ -41,6 +44,22 @@ The color of the component.
 
 - Type: `'primary' | 'neutral' | 'danger' | 'success' | 'warning'`
 - Default: `'primary'`
+
+### `component`
+
+<AvailableFrom version="0.4.0" />
+
+The component used for the root node.
+
+- Type: `keyof JSX.IntrinsicElements`
+- Default: `'button'`
+
+### `disabled`
+
+If `true`, the component is disabled.
+
+- Type: `boolean`
+- Default: `false`
 
 ### `endDecorator`
 
@@ -82,6 +101,23 @@ The size of the component.
 
 - Type: `'sm' | 'md' | 'lg'`
 - Default: `'md'`
+
+### `slotProps`
+
+<AvailableFrom version="0.4.0" />
+
+The props used for each slot inside.
+
+- Type:
+  ```tsx
+  {
+    root?: ComponentProps<'button'>;
+    startDecorator?: ComponentProps<'span'>;
+    endDecorator?: ComponentProps<'span'>;
+    loadingIndicatorCenter?: ComponentProps<'span'>;
+  }
+  ```
+- Default: `{}`
 
 ### `startDecorator`
 

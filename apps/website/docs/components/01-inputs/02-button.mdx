@@ -4,12 +4,19 @@ slug: /components/button
 ---
 
 import {
-  MdAdd,
-  MdFavoriteBorder,
-  MdKeyboardArrowRight,
-  MdSend,
-} from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/utils';
+  ButtonBasics,
+  ButtonDisabled,
+  ButtonLoading,
+  ButtonVariants,
+  ButtonSizes,
+  ButtonColors,
+  ButtonDecorators,
+  ButtonLoadingIndicator,
+  ButtonLoadingPosition,
+  ButtonLink,
+  ButtonFileUpload,
+} from '@site/src/demos/button';
+import { IconButtonBasics } from '@site/src/demos/icon-button';
 
 # Button
 
@@ -17,7 +24,7 @@ Buttons let users take actions and make choices with a single tap.
 
 ## Basics
 
-```jsx
+```tsx
 import { Button } from 'tailwind-joy/components';
 ```
 
@@ -25,21 +32,9 @@ The Tailwind-Joy Button behaves similarly to the native HTML `<button>`, so it w
 
 The demo below shows the three basic states available to the Button: default, disabled, and loading.
 
-export function ButtonBasics() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button>Button</Button>
-        <Button disabled>Disabled</Button>
-        <Button loading>Loading</Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonBasics />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonBasics() {
@@ -57,30 +52,9 @@ export function ButtonBasics() {
 
 Use the `disabled` prop to disable interaction and focus:
 
-export function ButtonDisabled() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button disabled variant="solid">
-          Solid
-        </Button>
-        <Button disabled variant="soft">
-          Soft
-        </Button>
-        <Button disabled variant="outlined">
-          Outlined
-        </Button>
-        <Button disabled variant="plain">
-          Plain
-        </Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonDisabled />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonDisabled() {
@@ -109,30 +83,9 @@ Add the `loading` prop to show the Button's loading state.
 The Button is [disabled](#disabled) as long as it's loading.
 See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
 
-export function ButtonLoading() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button loading variant="solid">
-          Solid
-        </Button>
-        <Button loading variant="soft">
-          Soft
-        </Button>
-        <Button loading variant="outlined">
-          Outlined
-        </Button>
-        <Button loading variant="plain">
-          Plain
-        </Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonLoading />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonLoading() {
@@ -161,22 +114,9 @@ export function ButtonLoading() {
 
 The Button component supports four variants: `solid` (default), `soft`, `outlined`, and `plain`.
 
-export function ButtonVariants() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button variant="solid">Solid</Button>
-        <Button variant="soft">Soft</Button>
-        <Button variant="outlined">Outlined</Button>
-        <Button variant="plain">Plain</Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonVariants />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonVariants() {
@@ -195,21 +135,9 @@ export function ButtonVariants() {
 
 The Button component supports three sizes: `sm`, `md` (default), and `lg`.
 
-export function ButtonSizes() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <Button size="sm">Small</Button>
-        <Button size="md">Medium</Button>
-        <Button size="lg">Large</Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonSizes />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonSizes() {
@@ -227,23 +155,9 @@ export function ButtonSizes() {
 
 The Button component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
 
-export function ButtonColors() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button color="primary">Primary</Button>
-        <Button color="neutral">Neutral</Button>
-        <Button color="danger">Danger</Button>
-        <Button color="success">Success</Button>
-        <Button color="warning">Warning</Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonColors />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonColors() {
@@ -263,30 +177,9 @@ export function ButtonColors() {
 
 Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
 
-export function ButtonDecorators() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button
-          color="primary"
-          startDecorator={<MdAdd className={iconClass()} />}
-        >
-          Add to cart
-        </Button>
-        <Button
-          color="success"
-          endDecorator={<MdKeyboardArrowRight className={iconClass()} />}
-        >
-          Go to checkout
-        </Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonDecorators />
 
-```jsx
+```tsx
 import { MdAdd, MdKeyboardArrowRight } from 'react-icons/md';
 import { Box, Button } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
@@ -322,24 +215,9 @@ export function ButtonDecorators() {
 The default loading indicator uses the [Circular Progress](./circular-progress) component.
 Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function ButtonLoadingIndicator() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button loading>Default</Button>
-        <Button loading loadingIndicator="Loading...">
-          Custom
-        </Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonLoadingIndicator />
 
-```jsx
+```tsx
 import { Box, Button } from 'tailwind-joy/components';
 
 export function ButtonLoadingIndicator() {
@@ -363,30 +241,9 @@ It supports three values:
 - `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
 - `end`: The loading indicator replaces the [ending decorator](#decorators) when the Button is in the loading state.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function ButtonLoadingPosition() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-4">
-        <Button loading loadingPosition="start">
-          Start
-        </Button>
-        <Button
-          loading
-          loadingPosition="end"
-          endDecorator={<MdSend className={iconClass()} />}
-        >
-          End
-        </Button>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <ButtonLoadingPosition />
 
-```jsx
+```tsx
 import { MdSend } from 'react-icons/md';
 import { Box, Button } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
@@ -409,38 +266,90 @@ export function ButtonLoadingPosition() {
 }
 ```
 
+### Link Button
+
+Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
+
+If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
+
+:::info
+
+The text color and underline that change when hovering are in the style of docusaurus.
+
+:::
+
+<ButtonLink />
+
+```tsx
+import { MdOpenInNew } from 'react-icons/md';
+import { Button } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ButtonLink() {
+  return (
+    <Button
+      component="a"
+      href="/docs/components/button"
+      target="_blank"
+      rel="noreferrer"
+      color="neutral"
+      variant="soft"
+      startDecorator={<MdOpenInNew className={iconClass()} />}
+    >
+      Open in new tab
+    </Button>
+  );
+}
+```
+
+### File upload
+
+To create a file upload button, turn the button into a label using `component="label"` and then create a visually-hidden input with type `file`.
+
+<ButtonFileUpload />
+
+```tsx
+import { MdOutlineCloudUpload } from 'react-icons/md';
+import { Button } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+function VisuallyHiddenInput() {
+  return (
+    <input
+      type="file"
+      className="absolute bottom-0 left-0 h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)] [clip:rect(0_0_0_0)]"
+    />
+  );
+}
+
+export function ButtonFileUpload() {
+  return (
+    <Button
+      component="label"
+      role={undefined}
+      tabIndex={-1}
+      color="neutral"
+      variant="outlined"
+      startDecorator={<MdOutlineCloudUpload className={iconClass()} />}
+    >
+      Upload a file
+      <VisuallyHiddenInput />
+    </Button>
+  );
+}
+```
+
 ## Icon Button
 
-```jsx
+```tsx
 import { IconButton } from 'tailwind-joy/components';
 ```
 
 Use the Icon Button component for a square button to house an icon with no text content.
 
-export function IconButtonBasics() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <IconButton variant="solid">
-          <MdFavoriteBorder className={iconClass()} />
-        </IconButton>
-        <IconButton variant="soft">
-          <MdFavoriteBorder className={iconClass()} />
-        </IconButton>
-        <IconButton variant="outlined">
-          <MdFavoriteBorder className={iconClass()} />
-        </IconButton>
-        <IconButton variant="plain">
-          <MdFavoriteBorder className={iconClass()} />
-        </IconButton>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <IconButtonBasics />
 
-```jsx
+```tsx
 import { MdFavoriteBorder } from 'react-icons/md';
 import { Box, IconButton } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
