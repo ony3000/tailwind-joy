@@ -1,14 +1,24 @@
 import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
-import { forwardRef, cloneElement, isValidElement, Children } from 'react';
+import {
+  forwardRef,
+  createElement,
+  cloneElement,
+  isValidElement,
+  Children,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r } from '../base/alias';
 import { join, addPrefix, toVariableClass } from '../base/modifier';
-import { baseTokens } from '../base/tokens';
+import { theme } from '../base/theme';
 
 function buttonGroupRootVariants(
-  props?: BaseVariants & {
+  props?: Pick<BaseVariants, 'color' | 'variant'> & {
     orientation?: 'horizontal' | 'vertical';
     flexibleButton?: boolean;
     connectedButton?: boolean;
@@ -29,7 +39,7 @@ function buttonGroupRootVariants(
         ? '[--ButtonGroup-separatorSize:1px]'
         : '[--ButtonGroup-separatorSize:calc(var(--ButtonGroup-connected)*1px)]',
       toVariableClass(
-        baseTokens[color].outlinedBorder,
+        theme.variants.outlined[color].tokens.borderColor,
         'ButtonGroup-separatorColor',
       ),
       '[--ButtonGroup-radius:6px]',
@@ -112,26 +122,30 @@ function buttonGroupRootVariants(
         ]),
         '[&>:not([data-first-child]):not(:only-child)]:',
       ),
-      '[&_.tj-button-root:enabled]:z-[1]',
-      addPrefix(
-        toVariableClass(
-          baseTokens[color].outlinedDisabledBorder,
-          'ButtonGroup-separatorColor',
+      [
+        '[&_.tj-button-root:enabled]:z-[1]',
+        addPrefix(
+          toVariableClass(
+            theme.variants.outlinedDisabled[color].tokens.borderColor,
+            'ButtonGroup-separatorColor',
+          ),
+          '[&_.tj-button-root:disabled]:',
         ),
-        '[&_.tj-button-root:disabled]:',
-      ),
-      'non-touchscreen:[&_.tj-button-root:hover]:z-[2]',
-      '[&_.tj-button-root:focus-visible]:z-[2]',
-      '[&_.tj-icon-button-root:enabled]:z-[1]',
-      addPrefix(
-        toVariableClass(
-          baseTokens[color].outlinedDisabledBorder,
-          'ButtonGroup-separatorColor',
+        'non-touchscreen:[&_.tj-button-root:hover]:z-[2]',
+        '[&_.tj-button-root:focus-visible]:z-[2]',
+      ],
+      [
+        '[&_.tj-icon-button-root:enabled]:z-[1]',
+        addPrefix(
+          toVariableClass(
+            theme.variants.outlinedDisabled[color].tokens.borderColor,
+            'ButtonGroup-separatorColor',
+          ),
+          '[&_.tj-icon-button-root:disabled]:',
         ),
-        '[&_.tj-icon-button-root:disabled]:',
-      ),
-      'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
-      '[&_.tj-icon-button-root:focus-visible]:z-[2]',
+        'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
+        '[&_.tj-icon-button-root:focus-visible]:z-[2]',
+      ],
       flexibleButton && [
         '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-ButtonGroup-buttonFlex)]',
         '[&>:not(button)>.tj-button-root]:w-full',
@@ -140,88 +154,108 @@ function buttonGroupRootVariants(
   );
 }
 
-interface ButtonGroupRootVariants extends BaseVariants {
-  orientation?: 'horizontal' | 'vertical';
+type ButtonGroupRootVariants = BaseVariants & {
   buttonFlex?: number | string;
   disabled?: boolean;
+  orientation?: 'horizontal' | 'vertical';
   spacing?: string;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'div'>;
+  };
+};
 
-type ButtonGroupRootProps = Omit<
-  ComponentProps<'div'>,
-  keyof ButtonGroupRootVariants
-> &
-  ButtonGroupRootVariants;
+type ButtonGroupRootProps = GenericComponentPropsWithVariants<
+  'div',
+  ButtonGroupRootVariants
+>;
 
-export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupRootProps>(
-  function ButtonGroupRoot(
+export const ButtonGroup = forwardRef(function ButtonGroupRoot(
+  {
+    // ---- passing props ----
+    // base variants
+    color = 'neutral',
+    size = 'md',
+    variant = 'outlined',
+
+    // non-base variants
+    disabled = false,
+    // -----------------------
+
+    // ---- non-passing props ----
+    // non-base variants
+    className,
+    style,
+    buttonFlex,
+    orientation,
+    spacing = '0',
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'div',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: ButtonGroupRootProps,
+  ref,
+) {
+  const slotRootPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  );
+
+  return createElement(
+    component,
     {
-      children,
-      className,
-      style,
-      color = 'neutral',
-      size = 'md',
-      variant = 'outlined',
-      orientation,
-      buttonFlex,
-      disabled = false,
-      spacing = '0',
-      ...otherProps
+      ref,
+      role: 'group',
+      className: twMerge(
+        buttonGroupRootVariants({
+          color,
+          variant,
+          orientation,
+          flexibleButton: buttonFlex !== undefined,
+          connectedButton: parseFloat(spacing) === 0,
+        }),
+        className,
+      ),
+      style: {
+        ...style,
+        ...(buttonFlex === undefined
+          ? {}
+          : {
+              '--tj-ButtonGroup-buttonFlex': buttonFlex,
+            }),
+        '--tj-ButtonGroup-spacing': spacing,
+      },
+      ...otherProps,
+      ...slotRootPropsWithoutClassName,
     },
-    ref,
-  ) {
-    return (
-      <div
-        ref={ref}
-        role="group"
-        className={twMerge(
-          buttonGroupRootVariants({
-            color,
-            variant,
-            orientation,
-            flexibleButton: buttonFlex !== undefined,
-            connectedButton: parseFloat(spacing) === 0,
-          }),
-          className,
-        )}
-        {...otherProps}
-        // @ts-ignore
-        style={{
-          ...style,
-          ...(buttonFlex === undefined
-            ? {}
-            : {
-                '--tj-ButtonGroup-buttonFlex': buttonFlex,
-              }),
-          // @ts-ignore
-          '--tj-ButtonGroup-spacing': spacing,
-        }}
-      >
-        {Children.map(children, (child, index) => {
-          if (!isValidElement(child)) {
-            return child;
-          }
+    <>
+      {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) {
+          return child;
+        }
 
-          return cloneElement(child, {
-            // @ts-expect-error
-            color: child.props?.color ?? color,
-            size: child.props?.size ?? size,
-            variant: child.props?.variant ?? variant,
-            disabled:
-              (child.props?.loading || child.props?.disabled) ?? disabled,
-            'data-first-child':
-              Children.count(children) > 1 && index === 0 ? '' : undefined,
-            'data-last-child':
-              Children.count(children) > 1 &&
-              index === Children.count(children) - 1
-                ? ''
-                : undefined,
-          });
-        })}
-      </div>
-    );
-  },
-);
+        return cloneElement(child, {
+          // @ts-expect-error
+          color: child.props?.color ?? color,
+          size: child.props?.size ?? size,
+          variant: child.props?.variant ?? variant,
+          disabled: (child.props?.loading || child.props?.disabled) ?? disabled,
+          'data-first-child':
+            Children.count(children) > 1 && index === 0 ? '' : undefined,
+          'data-last-child':
+            Children.count(children) > 1 &&
+            index === Children.count(children) - 1
+              ? ''
+              : undefined,
+        });
+      })}
+    </>,
+  );
+});
 
 export const generatorInputs: GeneratorInput[] = [
   {

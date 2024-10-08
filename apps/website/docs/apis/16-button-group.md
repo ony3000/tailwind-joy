@@ -34,14 +34,17 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<div>` are also available for ButtonGroup component.
-Other props are as follows:
-
 ### `buttonFlex`
 
 The flex value of the button.
 
 - Type: `number | string`
+
+### `className`
+
+Class name applied to the root element.
+
+- Type: `string`
 
 ### `color`
 
@@ -49,6 +52,15 @@ The color of the component.
 
 - Type: `'primary' | 'neutral' | 'danger' | 'success' | 'warning'`
 - Default: `'neutral'`
+
+### `component`
+
+<AvailableFrom version="0.4.0" />
+
+The component used for the root node.
+
+- Type: `keyof JSX.IntrinsicElements`
+- Default: `'div'`
 
 ### `disabled`
 
@@ -70,6 +82,20 @@ The size of the component.
 
 - Type: `'sm' | 'md' | 'lg'`
 - Default: `'md'`
+
+### `slotProps`
+
+<AvailableFrom version="0.4.0" />
+
+The props used for each slot inside.
+
+- Type:
+  ```tsx
+  {
+    root?: ComponentProps<'div'>;
+  }
+  ```
+- Default: `{}`
 
 ### `spacing`
 
