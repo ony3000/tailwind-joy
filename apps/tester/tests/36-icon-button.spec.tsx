@@ -101,6 +101,41 @@ const fixtures: Fixture[] = [
       );
     },
   },
+  {
+    // NOTE: This test cannot pass until the issue `mui/material-ui#43245` is resolved.
+    title: 'component: a (disabled)',
+    alterStates: ['default', 'focus-visible'],
+    renderJoyElement({ testId, size, variant, color }) {
+      return (
+        <JoyIconButton
+          data-testid={testId}
+          size={size}
+          variant={variant}
+          color={color}
+          component="a"
+          href="#"
+          disabled
+        >
+          <FavoriteBorderIcon />
+        </JoyIconButton>
+      );
+    },
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
+      return (
+        <TJIconButton
+          data-testid={testId}
+          size={size}
+          variant={variant}
+          color={color}
+          component="a"
+          href="#"
+          disabled
+        >
+          <MdFavoriteBorder className={iconClassName} />
+        </TJIconButton>
+      );
+    },
+  },
 ];
 
 testEach(fixtures, {

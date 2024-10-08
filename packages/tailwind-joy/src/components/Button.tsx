@@ -8,12 +8,16 @@ import type {
   GenericComponentPropsWithVariants,
 } from '@/base/types';
 import {
+  hover,
   focus,
+  active,
+  disabled,
   backgroundColor,
   borderColor,
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
 
@@ -63,8 +67,8 @@ function buttonLoadingIndicatorCenterVariants(
 function buttonRootVariants(
   props?: BaseVariants & {
     fullWidth?: boolean;
-    instanceDisabled?: boolean;
     invisibleChildren?: boolean;
+    visuallyDisabled?: boolean;
   },
 ) {
   const {
@@ -72,8 +76,8 @@ function buttonRootVariants(
     size = 'md',
     variant = 'solid',
     fullWidth = false,
-    instanceDisabled = false,
     invisibleChildren = false,
+    visuallyDisabled = false,
   } = props ?? {};
 
   return twMerge(
@@ -129,35 +133,27 @@ function buttonRootVariants(
       'font-semibold',
       'leading-normal',
       fullWidth && 'w-full',
-      !instanceDisabled && [
-        [focus('outline-2 outline outline-offset-2'), colorTokens.focusVisible],
-        [
-          variant === 'outlined'
-            ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-            : '[--variant-borderWidth:0px]',
-          !invisibleChildren && colorTokens[color][`${variant}Color`],
-          colorTokens[color][`${variant}Bg`],
-          colorTokens[color][`${variant}Border`],
-        ],
-        [
-          !invisibleChildren && colorTokens[color][`${variant}HoverColor`],
-          colorTokens[color][`${variant}HoverBg`],
-        ],
-        [
-          !invisibleChildren && colorTokens[color][`${variant}ActiveColor`],
-          colorTokens[color][`${variant}ActiveBg`],
-        ],
+      [focus('outline-2 outline outline-offset-2'), colorTokens.focusVisible],
+      theme.variants[variant][color].className,
+      theme.variants[`${variant}Hover`][color].className,
+      theme.variants[`${variant}Active`][color].className,
+      theme.variants[`${variant}Disabled`][color].className,
+      visuallyDisabled && [
+        'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+        textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
+        backgroundColor(
+          theme.variants[`${variant}Disabled`][color].tokens.backgroundColor,
+        ),
+        borderColor(
+          theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+        ),
       ],
-      instanceDisabled && [
-        [
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          !invisibleChildren &&
-            textColor(baseTokens[color][`${variant}DisabledColor`]),
-          backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-          borderColor(baseTokens[color][`${variant}DisabledBorder`]),
-        ],
+      invisibleChildren && [
+        'text-transparent dark:text-transparent',
+        hover('text-transparent dark:text-transparent'),
+        active('text-transparent dark:text-transparent'),
+        disabled('text-transparent dark:text-transparent'),
       ],
-      invisibleChildren && 'text-transparent',
     ]),
   );
 }
@@ -236,6 +232,7 @@ export const Button = forwardRef(function ButtonRoot(
   const instanceLoadingIndicator = loadingIndicator ?? (
     <CircularProgress color={color} thickness={thickness} />
   );
+  const visuallyDisabled = disabled || loading;
 
   return createElement(
     component,
@@ -247,12 +244,13 @@ export const Button = forwardRef(function ButtonRoot(
           fullWidth,
           size,
           variant,
-          instanceDisabled: disabled,
           invisibleChildren: loading && loadingPosition === 'center',
+          visuallyDisabled,
         }),
         className,
       ),
-      disabled: disabled || loading,
+      disabled: visuallyDisabled,
+      tabIndex: visuallyDisabled ? -1 : undefined,
       ...otherProps,
       ...slotRootPropsWithoutClassName,
     },
@@ -321,8 +319,8 @@ export const generatorInputs: GeneratorInput[] = [
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
       fullWidth: [false, true],
-      instanceDisabled: [false, true],
       invisibleChildren: [false, true],
+      visuallyDisabled: [false, true],
     },
   },
 ];
