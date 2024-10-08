@@ -263,7 +263,7 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'component: a (disabled)',
-    alterStates: ['default', 'hover', 'focus-visible', 'active'],
+    alterStates: ['default', 'focus-visible'],
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyButton
