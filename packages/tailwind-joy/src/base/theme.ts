@@ -1,3 +1,4 @@
+import { disabled } from './modifier';
 import { baseTokens, colorTokens } from './tokens';
 
 export const theme = {
@@ -196,9 +197,9 @@ export const theme = {
     plainDisabled: {
       primary: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.primary.plainDisabledColor,
           colorTokens.primary.plainDisabledBg,
           colorTokens.primary.plainDisabledBorder,
@@ -211,9 +212,9 @@ export const theme = {
       },
       neutral: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.neutral.plainDisabledColor,
           colorTokens.neutral.plainDisabledBg,
           colorTokens.neutral.plainDisabledBorder,
@@ -226,9 +227,9 @@ export const theme = {
       },
       danger: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.danger.plainDisabledColor,
           colorTokens.danger.plainDisabledBg,
           colorTokens.danger.plainDisabledBorder,
@@ -241,9 +242,9 @@ export const theme = {
       },
       success: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.success.plainDisabledColor,
           colorTokens.success.plainDisabledBg,
           colorTokens.success.plainDisabledBorder,
@@ -256,9 +257,9 @@ export const theme = {
       },
       warning: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.warning.plainDisabledColor,
           colorTokens.warning.plainDisabledBg,
           colorTokens.warning.plainDisabledBorder,
@@ -469,9 +470,9 @@ export const theme = {
     outlinedDisabled: {
       primary: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.primary.outlinedDisabledColor,
           colorTokens.primary.outlinedDisabledBg,
           colorTokens.primary.outlinedDisabledBorder,
@@ -484,9 +485,9 @@ export const theme = {
       },
       neutral: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.neutral.outlinedDisabledColor,
           colorTokens.neutral.outlinedDisabledBg,
           colorTokens.neutral.outlinedDisabledBorder,
@@ -499,9 +500,9 @@ export const theme = {
       },
       danger: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.danger.outlinedDisabledColor,
           colorTokens.danger.outlinedDisabledBg,
           colorTokens.danger.outlinedDisabledBorder,
@@ -514,9 +515,9 @@ export const theme = {
       },
       success: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.success.outlinedDisabledColor,
           colorTokens.success.outlinedDisabledBg,
           colorTokens.success.outlinedDisabledBorder,
@@ -529,9 +530,9 @@ export const theme = {
       },
       warning: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.warning.outlinedDisabledColor,
           colorTokens.warning.outlinedDisabledBg,
           colorTokens.warning.outlinedDisabledBorder,
@@ -737,9 +738,9 @@ export const theme = {
     softDisabled: {
       primary: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.primary.softDisabledColor,
           colorTokens.primary.softDisabledBg,
           colorTokens.primary.softDisabledBorder,
@@ -752,9 +753,9 @@ export const theme = {
       },
       neutral: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.neutral.softDisabledColor,
           colorTokens.neutral.softDisabledBg,
           colorTokens.neutral.softDisabledBorder,
@@ -767,9 +768,9 @@ export const theme = {
       },
       danger: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.danger.softDisabledColor,
           colorTokens.danger.softDisabledBg,
           colorTokens.danger.softDisabledBorder,
@@ -782,9 +783,9 @@ export const theme = {
       },
       success: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.success.softDisabledColor,
           colorTokens.success.softDisabledBg,
           colorTokens.success.softDisabledBorder,
@@ -797,9 +798,9 @@ export const theme = {
       },
       warning: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.warning.softDisabledColor,
           colorTokens.warning.softDisabledBg,
           colorTokens.warning.softDisabledBorder,
@@ -1005,9 +1006,9 @@ export const theme = {
     solidDisabled: {
       primary: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.primary.solidDisabledColor,
           colorTokens.primary.solidDisabledBg,
           colorTokens.primary.solidDisabledBorder,
@@ -1020,9 +1021,9 @@ export const theme = {
       },
       neutral: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.neutral.solidDisabledColor,
           colorTokens.neutral.solidDisabledBg,
           colorTokens.neutral.solidDisabledBorder,
@@ -1035,9 +1036,9 @@ export const theme = {
       },
       danger: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.danger.solidDisabledColor,
           colorTokens.danger.solidDisabledBg,
           colorTokens.danger.solidDisabledBorder,
@@ -1050,9 +1051,9 @@ export const theme = {
       },
       success: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.success.solidDisabledColor,
           colorTokens.success.solidDisabledBg,
           colorTokens.success.solidDisabledBorder,
@@ -1065,9 +1066,9 @@ export const theme = {
       },
       warning: {
         className: [
-          'pointer-events-none',
-          'cursor-default',
-          '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          disabled(
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+          ),
           colorTokens.warning.solidDisabledColor,
           colorTokens.warning.solidDisabledBg,
           colorTokens.warning.solidDisabledBorder,

@@ -16,6 +16,7 @@ import {
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { CircularProgress } from './CircularProgress';
 
@@ -40,19 +41,19 @@ function iconButtonLoadingIndicatorVariants(
 
 function iconButtonRootVariants(
   props?: BaseVariants & {
-    instanceDisabled?: boolean;
     /**
      * The explicit `size` provided to the component.
      */
     instanceSize?: BaseVariants['size'];
+    visuallyDisabled?: boolean;
   },
 ) {
   const {
     color = 'neutral',
     size = 'md',
     variant = 'plain',
-    instanceDisabled = false,
     instanceSize,
+    visuallyDisabled = false,
   } = props ?? {};
 
   return twMerge(
@@ -107,51 +108,33 @@ function iconButtonRootVariants(
       'items-center',
       'justify-center',
       'relative',
-      !instanceDisabled && [
-        [
-          focus('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
+      [
+        focus('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
 
-          // ---- (reference) theme.focus.default ----
-          focus('outline-2 outline outline-offset-2'),
-          colorTokens.focusVisible,
-          // -----------------------------------------
-        ],
-        [
-          // ---- (reference) theme.variants[ownerState.variant!]?.[ownerState.color!] ----
-          variant === 'outlined'
-            ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-            : '[--variant-borderWidth:0px]',
-          colorTokens[color][`${variant}Color`],
-          colorTokens[color][`${variant}Bg`],
-          colorTokens[color][`${variant}Border`],
-          // ------------------------------------------------------------------------------
-        ],
-        [
-          hover('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
-
-          // ---- (reference) theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] ----
-          colorTokens[color][`${variant}HoverColor`],
-          colorTokens[color][`${variant}HoverBg`],
-          // ----------------------------------------------------------------------------------------
-        ],
-        [
-          active(
-            '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          ),
-
-          // ---- (reference) theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] ----
-          colorTokens[color][`${variant}ActiveColor`],
-          colorTokens[color][`${variant}ActiveBg`],
-          // -----------------------------------------------------------------------------------------
-        ],
+        // ---- (reference) theme.focus.default ----
+        focus('outline-2 outline outline-offset-2'),
+        colorTokens.focusVisible,
+        // -----------------------------------------
       ],
-      instanceDisabled && [
-        [
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          textColor(baseTokens[color][`${variant}DisabledColor`]),
-          backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-          borderColor(baseTokens[color][`${variant}DisabledBorder`]),
-        ],
+      theme.variants[variant][color].className,
+      [
+        hover('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
+        theme.variants[`${variant}Hover`][color].className,
+      ],
+      [
+        active('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
+        theme.variants[`${variant}Active`][color].className,
+      ],
+      theme.variants[`${variant}Disabled`][color].className,
+      visuallyDisabled && [
+        'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+        textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
+        backgroundColor(
+          theme.variants[`${variant}Disabled`][color].tokens.backgroundColor,
+        ),
+        borderColor(
+          theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+        ),
       ],
     ]),
   );
@@ -208,6 +191,7 @@ export const IconButton = forwardRef(function IconButtonRoot(
     ),
   );
   const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+  const visuallyDisabled = disabled || loading;
 
   return createElement(
     component,
@@ -219,11 +203,12 @@ export const IconButton = forwardRef(function IconButtonRoot(
           size,
           instanceSize: size,
           variant,
-          instanceDisabled: disabled,
+          visuallyDisabled,
         }),
         className,
       ),
-      disabled: disabled || loading,
+      disabled: visuallyDisabled,
+      tabIndex: visuallyDisabled ? -1 : undefined,
       ...otherProps,
       ...slotRootPropsWithoutClassName,
     },
@@ -264,8 +249,8 @@ export const generatorInputs: GeneratorInput[] = [
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
-      instanceDisabled: [false, true],
       instanceSize: [undefined, 'sm', 'md', 'lg'],
+      visuallyDisabled: [false, true],
     },
   },
 ];
