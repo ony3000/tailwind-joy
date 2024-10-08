@@ -101,6 +101,40 @@ const fixtures: Fixture[] = [
       );
     },
   },
+  {
+    title: 'component: a (disabled)',
+    alterStates: ['default', 'hover', 'focus-visible', 'active'],
+    renderJoyElement({ testId, size, variant, color }) {
+      return (
+        <JoyIconButton
+          data-testid={testId}
+          size={size}
+          variant={variant}
+          color={color}
+          component="a"
+          href="#"
+          disabled
+        >
+          <FavoriteBorderIcon />
+        </JoyIconButton>
+      );
+    },
+    renderTjElement({ testId, size, variant, color, iconClassName }) {
+      return (
+        <TJIconButton
+          data-testid={testId}
+          size={size}
+          variant={variant}
+          color={color}
+          component="a"
+          href="#"
+          disabled
+        >
+          <MdFavoriteBorder className={iconClassName} />
+        </TJIconButton>
+      );
+    },
+  },
 ];
 
 testEach(fixtures, {
