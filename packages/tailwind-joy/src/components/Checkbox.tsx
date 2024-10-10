@@ -1,9 +1,13 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
-import { forwardRef, useState } from 'react';
+import { forwardRef, createElement, useState } from 'react';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r, uuid } from '../base/alias';
 import {
   join,
@@ -14,8 +18,22 @@ import {
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { iconClassVariants } from './internal/class-adapter';
+
+type PassingProps = Pick<
+  ComponentProps<'input'>,
+  | 'checked'
+  | 'defaultChecked'
+  | 'disabled'
+  | 'id'
+  | 'onBlur'
+  | 'onChange'
+  | 'onFocus'
+  | 'readOnly'
+  | 'required'
+>;
 
 function checkboxRootVariants(
   props?: BaseVariants & {
@@ -58,13 +76,13 @@ function checkboxRootVariants(
       'leading-[var(--Checkbox-size)]',
       colorTokens.text.primary,
       addPrefix(
-        textColor(baseTokens[color].plainDisabledColor),
+        textColor(theme.variants.plainDisabled[color].tokens.color),
         'has-[:disabled]:',
       ),
       disableIcon && [
-        colorTokens[color][`${variant}Color`],
+        textColor(theme.variants[variant][color].tokens.color),
         addPrefix(
-          textColor(baseTokens[color][`${variant}DisabledColor`]),
+          textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
           'has-[:disabled]:',
         ),
       ],
@@ -73,7 +91,7 @@ function checkboxRootVariants(
 }
 
 function checkboxCheckboxVariants(
-  props?: BaseVariants & {
+  props?: Pick<BaseVariants, 'color' | 'variant'> & {
     disableIcon?: boolean;
     instanceActive?: boolean;
   },
@@ -103,25 +121,22 @@ function checkboxCheckboxVariants(
       instanceActive &&
         '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
       !disableIcon && [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          'has-[:disabled]:',
-        ),
-        colorTokens[color][`${variant}Color`],
-        colorTokens[color][`${variant}Bg`] || colorTokens.background.surface,
-        colorTokens[color][`${variant}Border`],
-        colorTokens[color][`${variant}HoverColor`],
-        colorTokens[color][`${variant}HoverBg`],
-        colorTokens[color][`${variant}ActiveColor`],
-        colorTokens[color][`${variant}ActiveBg`],
+        theme.variants[variant][color].className,
+        !theme.variants[variant][color].tokens.backgroundColor &&
+          colorTokens.background.surface,
+        theme.variants[`${variant}Hover`][color].className,
+        theme.variants[`${variant}Active`][color].className,
         addPrefix(
           join([
-            textColor(baseTokens[color][`${variant}DisabledColor`]),
-            backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-            borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+            textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
+            backgroundColor(
+              theme.variants[`${variant}Disabled`][color].tokens
+                .backgroundColor,
+            ),
+            borderColor(
+              theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+            ),
           ]),
           'has-[:disabled]:',
         ),
@@ -131,7 +146,7 @@ function checkboxCheckboxVariants(
 }
 
 function checkboxActionVariants(
-  props?: BaseVariants & {
+  props?: Pick<BaseVariants, 'color' | 'variant'> & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
@@ -161,25 +176,20 @@ function checkboxActionVariants(
         'has-[:focus-visible]:',
       ),
       disableIcon && [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          'has-[:disabled]:',
-        ),
-        colorTokens[color][`${variant}Color`],
-        colorTokens[color][`${variant}Bg`],
-        colorTokens[color][`${variant}Border`],
-        colorTokens[color][`${variant}HoverColor`],
-        colorTokens[color][`${variant}HoverBg`],
-        colorTokens[color][`${variant}ActiveColor`],
-        colorTokens[color][`${variant}ActiveBg`],
+        theme.variants[variant][color].className,
+        theme.variants[`${variant}Hover`][color].className,
+        theme.variants[`${variant}Active`][color].className,
         addPrefix(
           join([
-            textColor(baseTokens[color][`${variant}DisabledColor`]),
-            backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-            borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+            'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+            textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
+            backgroundColor(
+              theme.variants[`${variant}Disabled`][color].tokens
+                .backgroundColor,
+            ),
+            borderColor(
+              theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+            ),
           ]),
           'has-[:disabled]:',
         ),
@@ -188,7 +198,7 @@ function checkboxActionVariants(
   );
 }
 
-function checkboxInputVariants(props?: BaseVariants) {
+function checkboxInputVariants() {
   return twMerge(
     clsx([
       'tj-checkbox-input',
@@ -202,11 +212,7 @@ function checkboxInputVariants(props?: BaseVariants) {
   );
 }
 
-function checkboxLabelVariants(
-  props?: BaseVariants & {
-    disableIcon?: boolean;
-  },
-) {
+function checkboxLabelVariants(props?: { disableIcon?: boolean }) {
   const { disableIcon = false } = props ?? {};
 
   return twMerge(
@@ -219,7 +225,7 @@ function checkboxLabelVariants(
   );
 }
 
-interface CheckboxRootVariants extends BaseVariants {
+type CheckboxRootVariants = BaseVariants & {
   checkedIcon?: ReactNode;
   disableIcon?: boolean;
   indeterminate?: boolean;
@@ -227,137 +233,210 @@ interface CheckboxRootVariants extends BaseVariants {
   label?: ReactNode;
   overlay?: boolean;
   uncheckedIcon?: ReactNode;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'span'>;
+    checkbox?: ComponentProps<'span'>;
+    action?: ComponentProps<'span'>;
+    input?: ComponentProps<'input'>;
+    label?: ComponentProps<'label'>;
+  };
+} & PassingProps;
 
-type CheckboxRootProps = Omit<
-  ComponentProps<'input'>,
-  keyof CheckboxRootVariants
-> &
-  CheckboxRootVariants;
+type CheckboxRootProps = GenericComponentPropsWithVariants<
+  'span',
+  CheckboxRootVariants
+>;
 
-export const Checkbox = forwardRef<HTMLSpanElement, CheckboxRootProps>(
-  function CheckboxRoot(
+export const Checkbox = forwardRef(function CheckboxRoot(
+  {
+    // ---- passing props ----
+    checked,
+    defaultChecked,
+    disabled,
+    id,
+    onBlur,
+    onChange,
+    onFocus,
+    readOnly,
+    required,
+    // -----------------------
+
+    // ---- non-passing props ----
+    // base variants
+    color,
+    size = 'md',
+    variant,
+
+    // non-base variants
+    checkedIcon,
+    className,
+    disableIcon = false,
+    indeterminate = false,
+    indeterminateIcon,
+    label,
+    overlay,
+    uncheckedIcon,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'span',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: CheckboxRootProps,
+  ref,
+) {
+  const [instanceId, setInstanceId] = useState(id ?? uuid());
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(
+    defaultChecked ?? false,
+  );
+
+  const slotRootPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  );
+  const slotCheckboxPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.checkbox ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotActionPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.action ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotInputPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.input ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotLabelPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.label ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+
+  const instanceChecked = checked ?? uncontrolledChecked;
+
+  const isCheckboxActive = instanceChecked || indeterminate;
+
+  const activeVariant = variant ?? 'solid';
+  const inactiveVariant = variant ?? 'outlined';
+  const instanceVariant = isCheckboxActive ? activeVariant : inactiveVariant;
+
+  const activeColor = color || 'primary';
+  const inactiveColor = color || 'neutral';
+  const instanceColor = isCheckboxActive ? activeColor : inactiveColor;
+
+  return createElement(
+    component,
     {
-      children,
-      className,
-      id,
-      color,
-      size = 'md',
-      variant,
-      checked,
-      checkedIcon,
-      defaultChecked,
-      disabled,
-      disableIcon = false,
-      indeterminate = false,
-      indeterminateIcon,
-      label,
-      overlay,
-      uncheckedIcon,
-      onChange,
-      ...otherProps
+      ref,
+      className: twMerge(
+        checkboxRootVariants({
+          color: instanceColor,
+          size,
+          variant: instanceVariant,
+          disableIcon,
+          overlay,
+        }),
+        className,
+        slotProps.root?.className ?? '',
+      ),
+      ...otherProps,
+      ...slotRootPropsWithoutClassName,
     },
-    ref,
-  ) {
-    const [instanceId, setInstanceId] = useState(id ?? uuid());
-    const [uncontrolledChecked, setUncontrolledChecked] = useState(
-      defaultChecked ?? false,
-    );
-
-    const instanceChecked = checked ?? uncontrolledChecked;
-
-    const isCheckboxActive = instanceChecked || indeterminate;
-
-    const activeVariant = variant ?? 'solid';
-    const inactiveVariant = variant ?? 'outlined';
-    const instanceVariant = isCheckboxActive ? activeVariant : inactiveVariant;
-
-    const activeColor = color || 'primary';
-    const inactiveColor = color || 'neutral';
-    const instanceColor = isCheckboxActive ? activeColor : inactiveColor;
-
-    return (
+    <>
       <span
-        ref={ref}
         className={twMerge(
-          checkboxRootVariants({
-            color: instanceColor,
-            size,
-            variant: instanceVariant,
-            disableIcon,
-            overlay,
-          }),
-          className,
-        )}
-      >
-        <span
-          className={checkboxCheckboxVariants({
+          checkboxCheckboxVariants({
             color: instanceColor,
             variant: instanceVariant,
             disableIcon,
             instanceActive: isCheckboxActive,
-          })}
-        >
-          <span
-            className={checkboxActionVariants({
+          }),
+          slotProps.checkbox?.className ?? '',
+        )}
+        {...slotCheckboxPropsWithoutClassName}
+      >
+        <span
+          className={twMerge(
+            checkboxActionVariants({
               color: instanceColor,
               variant: instanceVariant,
               disableIcon,
               overlay,
-            })}
-          >
-            <input
-              id={instanceId}
-              type="checkbox"
-              className={checkboxInputVariants()}
-              checked={checked}
-              defaultChecked={defaultChecked}
-              disabled={disabled}
-              onChange={(e) => {
+            }),
+            slotProps.action?.className ?? '',
+          )}
+          {...slotActionPropsWithoutClassName}
+        >
+          <input
+            type="checkbox"
+            className={twMerge(
+              checkboxInputVariants(),
+              slotProps.input?.className ?? '',
+            )}
+            {...{
+              checked,
+              defaultChecked,
+              disabled,
+              id: instanceId,
+              onBlur,
+              onChange: (e) => {
                 if (checked === undefined) {
                   setUncontrolledChecked(e.currentTarget.checked);
                 }
                 if (onChange) {
                   onChange(e);
                 }
-              }}
-              {...otherProps}
-            />
-          </span>
-          {disableIcon
-            ? null
-            : indeterminate
-              ? (indeterminateIcon ?? (
-                  <MdHorizontalRule
+              },
+              onFocus,
+              readOnly,
+              required,
+            }}
+            {...slotInputPropsWithoutClassName}
+          />
+        </span>
+        {disableIcon
+          ? null
+          : indeterminate
+            ? (indeterminateIcon ?? (
+                <MdHorizontalRule
+                  className={iconClassVariants({
+                    color: instanceColor,
+                    size,
+                  })}
+                />
+              ))
+            : instanceChecked
+              ? (checkedIcon ?? (
+                  <MdCheck
                     className={iconClassVariants({
                       color: instanceColor,
                       size,
                     })}
                   />
                 ))
-              : instanceChecked
-                ? (checkedIcon ?? (
-                    <MdCheck
-                      className={iconClassVariants({
-                        color: instanceColor,
-                        size,
-                      })}
-                    />
-                  ))
-                : uncheckedIcon}
-        </span>
-        {label && (
-          <label
-            htmlFor={instanceId}
-            className={checkboxLabelVariants({ disableIcon })}
-          >
-            {label}
-          </label>
-        )}
+              : uncheckedIcon}
       </span>
-    );
-  },
-);
+      {label && (
+        <label
+          htmlFor={instanceId}
+          className={twMerge(
+            checkboxLabelVariants({ disableIcon }),
+            slotProps.label?.className ?? '',
+          )}
+          {...slotLabelPropsWithoutClassName}
+        >
+          {label}
+        </label>
+      )}
+    </>,
+  );
+});
 
 export const generatorInputs: GeneratorInput[] = [
   {

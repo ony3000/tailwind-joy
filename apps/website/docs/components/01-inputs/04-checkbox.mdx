@@ -3,9 +3,18 @@ sidebar_position: 4
 slug: /components/checkbox
 ---
 
-import { useState } from 'react';
-import { MdCheck, MdClose } from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/utils';
+import {
+  CheckboxBasics,
+  CheckboxVariants,
+  CheckboxSizes,
+  CheckboxColors,
+  CheckboxIcons,
+  CheckboxAppearOnHover,
+  CheckboxNoIcons,
+  CheckboxFocusOutline,
+  CheckboxClickableContainer,
+  CheckboxIndeterminate,
+} from '@site/src/demos/checkbox';
 
 # Checkbox
 
@@ -15,27 +24,16 @@ Checkboxes give users binary choices when presented with multiple options in a s
 
 ## Basics
 
-```jsx
+```tsx
 import { Checkbox } from 'tailwind-joy/components';
 ```
 
 The basic Checkbox component is a single input set to the unchecked state.
 Use the `label` prop to provide text, and add `defaultChecked` when the input should be checked by default.
 
-export function CheckboxBasics() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Checkbox label="Label" />
-        <Checkbox label="Label" defaultChecked />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CheckboxBasics />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxBasics() {
@@ -55,22 +53,9 @@ export function CheckboxBasics() {
 The Checkbox component supports four variants: `solid`, `soft`, `outlined`, and `plain`.
 By default, when unchecked, the Checkbox is set to `outlined`; when checked, the variant changes to `solid`.
 
-export function CheckboxVariants() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Checkbox label="Solid" variant="solid" defaultChecked />
-        <Checkbox label="Soft" variant="soft" defaultChecked />
-        <Checkbox label="Outlined" variant="outlined" defaultChecked />
-        <Checkbox label="Plain" variant="plain" defaultChecked />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CheckboxVariants />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxVariants() {
@@ -89,21 +74,9 @@ export function CheckboxVariants() {
 
 The Checkbox component supports three sizes: `sm`, `md` (default), and `lg`.
 
-export function CheckboxSizes() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-6">
-        <Checkbox label="Small" size="sm" defaultChecked />
-        <Checkbox label="Medium" size="md" defaultChecked />
-        <Checkbox label="Large" size="lg" defaultChecked />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CheckboxSizes />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxSizes() {
@@ -122,23 +95,9 @@ export function CheckboxSizes() {
 The Checkbox component supports five colors: `primary`, `neutral`, `danger`, `success`, and `warning`.
 By default, when unchecked, the Checkbox is set to `neutral`; when checked, the color changes to `primary`.
 
-export function CheckboxColors() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Checkbox label="Primary" color="primary" defaultChecked />
-        <Checkbox label="Neutral" color="neutral" defaultChecked />
-        <Checkbox label="Danger" color="danger" defaultChecked />
-        <Checkbox label="Success" color="success" defaultChecked />
-        <Checkbox label="Warning" color="warning" defaultChecked />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CheckboxColors />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxColors() {
@@ -160,20 +119,9 @@ By default, the Checkbox component is empty when unchecked.
 Use the `uncheckedIcon` prop to add a custom icon for the unchecked state.
 You can also use `checkedIcon` to customize the checked state.
 
-export function CheckboxIcons() {
-  return (
-    <DisplayStand>
-      <Checkbox
-        label="I have an icon when unchecked"
-        uncheckedIcon={<MdClose className={iconClass()} />}
-      />
-    </DisplayStand>
-  );
-}
-
 <CheckboxIcons />
 
-```jsx
+```tsx
 import { MdClose } from 'react-icons/md';
 import { Checkbox } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
@@ -200,21 +148,9 @@ You can use the `uncheckedIcon` as a "preview" of the checked state by making it
 
 The demo below shows how to target the icon by using the `svg` selector and apply `opacity` for a smooth effect:
 
-export function CheckboxAppearOnHover() {
-  return (
-    <DisplayStand>
-      <Checkbox
-        label="My unchecked icon appears on hover"
-        uncheckedIcon={<MdCheck className={iconClass()} />}
-        className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
-      />
-    </DisplayStand>
-  );
-}
-
 <CheckboxAppearOnHover />
 
-```jsx
+```tsx
 import { MdCheck } from 'react-icons/md';
 import { Checkbox } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
@@ -236,46 +172,9 @@ Use the `disableIcon` prop to remove the icon entirely.
 In this case, the state of the Checkbox is communicated through the type of variant applied to the label.
 Try clicking on the Checkbox labels in the demo below to see how this works:
 
-export function CheckboxNoIcons() {
-  return (
-    <DisplayStand>
-      <Box className="w-[343px] max-w-full">
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Pizza toppings
-        </div>
-        <div role="group" aria-labelledby="topping">
-          <div className="flex flex-wrap gap-2">
-            {[
-              'Pepperoni',
-              'Cheese',
-              'Olives',
-              'Tomatoes',
-              'Fried Bacon',
-              'Spinach',
-            ].map((item, index) => (
-              <div
-                key={item}
-                className="relative px-3 py-1 [--unstable_actionRadius:20px]"
-              >
-                <Checkbox
-                  disabled={index === 0}
-                  overlay
-                  disableIcon
-                  variant="soft"
-                  label={item}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CheckboxNoIcons />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxNoIcons() {
@@ -319,29 +218,9 @@ export function CheckboxNoIcons() {
 By default, the focus outline wraps both the Checkbox input and its label.
 To set the focus outline so that it only wraps the input, target the `tj-checkbox-checkbox` class and add `position: 'relative'`, as shown in the demo below:
 
-export function CheckboxFocusOutline() {
-  return (
-    <DisplayStand>
-      <div>
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Try using keyboard navigation.
-        </div>
-        <Box className="flex flex-wrap justify-center gap-6">
-          <Checkbox label="Fully wrapped" defaultChecked />
-          <Checkbox
-            label="Input wrapped"
-            defaultChecked
-            className="[&>.tj-checkbox-checkbox]:relative"
-          />
-        </Box>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <CheckboxFocusOutline />
 
-```jsx
+```tsx
 import { Box, Checkbox } from 'tailwind-joy/components';
 
 export function CheckboxFocusOutline() {
@@ -368,24 +247,9 @@ export function CheckboxFocusOutline() {
 Use the `overlay` prop to shift the focus outline from the Checkbox to its container, making the entire container clickable to toggle the state of the Checkbox.
 This works with any [positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning) wrapper element:
 
-export function CheckboxClickableContainer() {
-  return (
-    <DisplayStand>
-      <div>
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Try using keyboard navigation.
-        </div>
-        <Sheet variant="outlined" className="flex rounded-[8px] p-4">
-          <Checkbox label="Focus on me" overlay />
-        </Sheet>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <CheckboxClickableContainer />
 
-```jsx
+```tsx
 import { Checkbox, Sheet } from 'tailwind-joy/components';
 
 export function CheckboxClickableContainer() {
@@ -415,43 +279,9 @@ The demo below shows how to implement the `indeterminate` prop on a parent Check
 If only one child is checked, then the parent displays the indeterminate state.
 Clicking on the parent Checkbox toggles selecting and deselecting all children.
 
-export function CheckboxIndeterminate() {
-  const [checked, setChecked] = useState([true, false]);
-  return (
-    <DisplayStand>
-      <div>
-        <Checkbox
-          label="Parent"
-          checked={checked[0] && checked[1]}
-          indeterminate={checked[0] !== checked[1]}
-          onChange={(e) => {
-            setChecked([e.currentTarget.checked, e.currentTarget.checked]);
-          }}
-        />
-        <Box className="ml-6 mt-2 flex flex-col gap-2">
-          <Checkbox
-            label="Child 1"
-            checked={checked[0]}
-            onChange={(e) => {
-              setChecked([e.currentTarget.checked, checked[1]]);
-            }}
-          />
-          <Checkbox
-            label="Child 2"
-            checked={checked[1]}
-            onChange={(e) => {
-              setChecked([checked[0], e.currentTarget.checked]);
-            }}
-          />
-        </Box>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <CheckboxIndeterminate />
 
-```jsx
+```tsx
 import { useState } from 'react';
 import { Box, Checkbox } from 'tailwind-joy/components';
 
