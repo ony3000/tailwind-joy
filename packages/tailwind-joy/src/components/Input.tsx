@@ -369,6 +369,7 @@ export const Input = forwardRef(function InputRoot(
           instanceColor: error ? 'danger' : color,
         }),
         className,
+        slotProps.root?.className ?? '',
       ),
       ...otherProps,
       ...slotRootPropsWithoutClassName,

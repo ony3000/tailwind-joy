@@ -248,6 +248,7 @@ export const Button = forwardRef(function ButtonRoot(
           visuallyDisabled,
         }),
         className,
+        slotProps.root?.className ?? '',
       ),
       disabled: visuallyDisabled,
       tabIndex: visuallyDisabled ? -1 : undefined,

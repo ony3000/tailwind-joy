@@ -206,6 +206,7 @@ export const IconButton = forwardRef(function IconButtonRoot(
           visuallyDisabled,
         }),
         className,
+        slotProps.root?.className ?? '',
       ),
       disabled: visuallyDisabled,
       tabIndex: visuallyDisabled ? -1 : undefined,

@@ -219,6 +219,7 @@ export const ButtonGroup = forwardRef(function ButtonGroupRoot(
           connectedButton: parseFloat(spacing) === 0,
         }),
         className,
+        slotProps.root?.className ?? '',
       ),
       style: {
         ...style,
