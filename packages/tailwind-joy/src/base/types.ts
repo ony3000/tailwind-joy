@@ -11,9 +11,11 @@ export type GenericComponentPropsWithVariants<
   T,
 > = {
   component?: T;
-} & (T extends keyof JSX.IntrinsicElements
-  ? ComponentPropsWithVariants<T, V>
-  : ComponentPropsWithVariants<D, V>);
+} & (T extends undefined
+  ? ComponentPropsWithVariants<D, V>
+  : T extends keyof JSX.IntrinsicElements
+    ? ComponentPropsWithVariants<T, V>
+    : ComponentPropsWithVariants<D, V>);
 
 export type BaseVariants = {
   color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
