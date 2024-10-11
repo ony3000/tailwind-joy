@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -176,12 +176,15 @@ type ButtonRootVariants = BaseVariants & {
   };
 };
 
-type ButtonRootProps = GenericComponentPropsWithVariants<
+type ButtonRootProps<T> = GenericComponentPropsWithVariants<
   'button',
-  ButtonRootVariants
+  ButtonRootVariants,
+  T
 >;
 
-export const Button = forwardRef(function ButtonRoot(
+function ButtonRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
     // ---- non-passing props ----
     // base variants
@@ -207,8 +210,8 @@ export const Button = forwardRef(function ButtonRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: ButtonRootProps,
-  ref,
+  }: ButtonRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   const slotRootPropsWithoutClassName = Object.fromEntries(
     Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
@@ -295,7 +298,13 @@ export const Button = forwardRef(function ButtonRoot(
       )}
     </>,
   );
-});
+}
+
+export const Button = forwardRef(ButtonRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: ButtonRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

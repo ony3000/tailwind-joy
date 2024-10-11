@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -286,12 +286,15 @@ type InputRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type InputRootProps = GenericComponentPropsWithVariants<
+type InputRootProps<T> = GenericComponentPropsWithVariants<
   'div',
-  InputRootVariants
+  InputRootVariants,
+  T
 >;
 
-export const Input = forwardRef(function InputRoot(
+function InputRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
     // ---- passing props ----
     autoComplete,
@@ -334,8 +337,8 @@ export const Input = forwardRef(function InputRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: InputRootProps,
-  ref,
+  }: InputRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   const slotRootPropsWithoutClassName = Object.fromEntries(
     Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
@@ -428,7 +431,13 @@ export const Input = forwardRef(function InputRoot(
       )}
     </>,
   );
-});
+}
+
+export const Input = forwardRef(InputRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: InputRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

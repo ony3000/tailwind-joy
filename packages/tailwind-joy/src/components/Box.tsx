@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import type { ForwardedRef } from 'react';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -12,9 +13,13 @@ function boxRootVariants() {
 
 type BoxRootVariants = {};
 
-type BoxRootProps = GenericComponentPropsWithVariants<'div', BoxRootVariants>;
+type BoxRootProps<T> = GenericComponentPropsWithVariants<
+  'div',
+  BoxRootVariants,
+  T
+>;
 
-export const Box = forwardRef(function BoxRoot(
+function BoxRoot<T extends keyof JSX.IntrinsicElements | undefined = undefined>(
   {
     // ---- non-passing props ----
     // non-base variants
@@ -25,8 +30,8 @@ export const Box = forwardRef(function BoxRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: BoxRootProps,
-  ref,
+  }: BoxRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   return createElement(
     component,
@@ -37,7 +42,13 @@ export const Box = forwardRef(function BoxRoot(
     },
     children,
   );
-});
+}
+
+export const Box = forwardRef(BoxRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: BoxRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

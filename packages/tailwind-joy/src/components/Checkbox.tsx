@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useState } from 'react';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
 import { twMerge } from 'tailwind-merge';
@@ -243,12 +243,15 @@ type CheckboxRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type CheckboxRootProps = GenericComponentPropsWithVariants<
+type CheckboxRootProps<T> = GenericComponentPropsWithVariants<
   'span',
-  CheckboxRootVariants
+  CheckboxRootVariants,
+  T
 >;
 
-export const Checkbox = forwardRef(function CheckboxRoot(
+function CheckboxRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
     // ---- passing props ----
     checked,
@@ -286,8 +289,8 @@ export const Checkbox = forwardRef(function CheckboxRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: CheckboxRootProps,
-  ref,
+  }: CheckboxRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   const [instanceId, setInstanceId] = useState(id ?? uuid());
   const [uncontrolledChecked, setUncontrolledChecked] = useState(
@@ -436,7 +439,13 @@ export const Checkbox = forwardRef(function CheckboxRoot(
       )}
     </>,
   );
-});
+}
+
+export const Checkbox = forwardRef(CheckboxRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: CheckboxRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

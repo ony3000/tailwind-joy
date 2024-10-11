@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -152,12 +152,15 @@ type IconButtonRootVariants = BaseVariants & {
   };
 };
 
-type IconButtonRootProps = GenericComponentPropsWithVariants<
+type IconButtonRootProps<T> = GenericComponentPropsWithVariants<
   'button',
-  IconButtonRootVariants
+  IconButtonRootVariants,
+  T
 >;
 
-export const IconButton = forwardRef(function IconButtonRoot(
+function IconButtonRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
     // ---- non-passing props ----
     // base variants
@@ -179,8 +182,8 @@ export const IconButton = forwardRef(function IconButtonRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: IconButtonRootProps,
-  ref,
+  }: IconButtonRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   const slotRootPropsWithoutClassName = Object.fromEntries(
     Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
@@ -234,7 +237,13 @@ export const IconButton = forwardRef(function IconButtonRoot(
       )}
     </>,
   );
-});
+}
+
+export const IconButton = forwardRef(IconButtonRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: IconButtonRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

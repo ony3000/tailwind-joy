@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
 import {
   forwardRef,
   createElement,
@@ -165,12 +165,15 @@ type ButtonGroupRootVariants = BaseVariants & {
   };
 };
 
-type ButtonGroupRootProps = GenericComponentPropsWithVariants<
+type ButtonGroupRootProps<T> = GenericComponentPropsWithVariants<
   'div',
-  ButtonGroupRootVariants
+  ButtonGroupRootVariants,
+  T
 >;
 
-export const ButtonGroup = forwardRef(function ButtonGroupRoot(
+function ButtonGroupRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
     // ---- passing props ----
     // base variants
@@ -198,8 +201,8 @@ export const ButtonGroup = forwardRef(function ButtonGroupRoot(
     children,
     ...otherProps
     // ---------------------------
-  }: ButtonGroupRootProps,
-  ref,
+  }: ButtonGroupRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
   const slotRootPropsWithoutClassName = Object.fromEntries(
     Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
@@ -256,7 +259,13 @@ export const ButtonGroup = forwardRef(function ButtonGroupRoot(
       })}
     </>,
   );
-});
+}
+
+export const ButtonGroup = forwardRef(ButtonGroupRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: ButtonGroupRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {
