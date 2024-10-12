@@ -1,20 +1,26 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
-import { createContext, forwardRef, useState } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { createContext, forwardRef, createElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r, uuid } from '../base/alias';
-import { colorTokens } from '../base/tokens';
+import { theme } from '../base/theme';
+
+type PassingProps = Pick<
+  ComponentProps<'input'>,
+  'defaultValue' | 'name' | 'onChange' | 'value'
+>;
 
 export const RadioGroupContext = createContext<
   Partial<
     Pick<BaseVariants, 'size'> & {
       disableIcon?: boolean;
       overlay?: boolean;
-    } & Pick<
-        ComponentProps<'input'>,
-        'defaultValue' | 'name' | 'value' | 'onChange'
-      >
+    } & PassingProps
   >
 >({});
 
@@ -40,70 +46,90 @@ function radioGroupRootVariants(
       r`m-[var(--unstable\_RadioGroup-margin)]`,
       orientation === 'horizontal' ? 'flex-row' : 'flex-col',
       'rounded-[6px]',
-      [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        colorTokens[color][`${variant}Color`],
-        colorTokens[color][`${variant}Bg`],
-        colorTokens[color][`${variant}Border`],
-      ],
+      theme.variants[variant][color].className,
       orientation === 'horizontal' && 'gap-x-[var(--RadioGroup-gap)]',
       orientation === 'vertical' && 'gap-y-[var(--RadioGroup-gap)]',
     ]),
   );
 }
 
-interface RadioGroupRootVariants extends BaseVariants {
+type RadioGroupRootVariants = BaseVariants & {
   disableIcon?: boolean;
   orientation?: 'horizontal' | 'vertical';
   overlay?: boolean;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'div'>;
+  };
+} & PassingProps;
 
-type RadioGroupRootProps = Omit<
-  ComponentProps<'div'>,
-  keyof RadioGroupRootVariants
-> &
-  RadioGroupRootVariants &
-  Pick<ComponentProps<'input'>, 'defaultValue' | 'name' | 'value' | 'onChange'>;
+type RadioGroupRootProps<T> = GenericComponentPropsWithVariants<
+  'div',
+  RadioGroupRootVariants,
+  T
+>;
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupRootProps>(
-  function RadioGroupRoot(
-    {
-      children,
-      className,
-      color = 'neutral',
-      size = 'md',
-      variant = 'plain',
-      defaultValue,
-      disableIcon = false,
-      orientation = 'vertical',
-      overlay = false,
-      name,
-      value,
-      onChange,
-      ...otherProps
-    },
-    ref,
-  ) {
-    const [instanceName, setInstanceName] = useState(name ?? uuid());
+function RadioGroupRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  {
+    // ---- passing props ----
+    // base variants
+    size = 'md',
 
-    return (
-      <RadioGroupContext.Provider
-        value={{
-          size,
-          defaultValue,
-          disableIcon,
-          overlay,
-          name: instanceName,
-          value,
-          onChange,
-        }}
-      >
-        <div
-          ref={ref}
-          role="radiogroup"
-          className={twMerge(
+    // non-base variants
+    defaultValue,
+    disableIcon = false,
+    name,
+    onChange,
+    overlay = false,
+    value,
+    // -----------------------
+
+    // ---- non-passing props ----
+    // base variants
+    color = 'neutral',
+    variant = 'plain',
+
+    // non-base variants
+    className,
+    orientation = 'vertical',
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'div',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: RadioGroupRootProps<T>,
+  ref: ForwardedRef<unknown>,
+) {
+  const [instanceName, setInstanceName] = useState(name ?? uuid());
+
+  const slotRootPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  );
+
+  return (
+    <RadioGroupContext.Provider
+      value={{
+        size,
+        defaultValue,
+        disableIcon,
+        overlay,
+        name: instanceName,
+        value,
+        onChange,
+      }}
+    >
+      {createElement(
+        component,
+        {
+          ref,
+          role: 'radiogroup',
+          className: twMerge(
             radioGroupRootVariants({
               color,
               size,
@@ -111,15 +137,22 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupRootProps>(
               orientation,
             }),
             className,
-          )}
-          {...otherProps}
-        >
-          {children}
-        </div>
-      </RadioGroupContext.Provider>
-    );
-  },
-);
+            slotProps.root?.className ?? '',
+          ),
+          ...otherProps,
+          ...slotRootPropsWithoutClassName,
+        },
+        children,
+      )}
+    </RadioGroupContext.Provider>
+  );
+}
+
+export const RadioGroup = forwardRef(RadioGroupRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: RadioGroupRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {
