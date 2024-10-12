@@ -3,10 +3,11 @@ sidebar_position: 9
 slug: /components/switch
 ---
 
-import { useState } from 'react';
-import { MdLocalFireDepartment, MdWaves } from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/utils';
-import { twMerge } from 'tailwind-merge';
+import {
+  SwitchControlled,
+  SwitchLabel,
+  SwitchDecorators,
+} from '@site/src/demos/switch';
 
 # Switch
 
@@ -16,7 +17,7 @@ Switches toggle the state of a single setting on or off.
 
 ## Basics
 
-```jsx
+```tsx
 import { Switch } from 'tailwind-joy/components';
 ```
 
@@ -26,21 +27,9 @@ import { Switch } from 'tailwind-joy/components';
 
 To create a controlled switch, use the `checked` and `onChange` props.
 
-export function SwitchControlled() {
-  const [checked, setChecked] = useState(false);
-  return (
-    <DisplayStand>
-      <Switch
-        checked={checked}
-        onChange={(e) => setChecked(e.currentTarget.checked)}
-      />
-    </DisplayStand>
-  );
-}
-
 <SwitchControlled />
 
-```jsx
+```tsx
 import { useState } from 'react';
 import { Switch } from 'tailwind-joy/components';
 
@@ -58,22 +47,9 @@ export function SwitchControlled() {
 
 ### Label
 
-export function SwitchLabel() {
-  return (
-    <DisplayStand>
-      <label className="text-joy-neutral-700 dark:text-joy-neutral-300 flex items-center text-[1rem] leading-normal">
-        Turn alarm on
-        <span className="ms-[clamp(4px,var(--Typography-gap,0.375em),0.75rem)] inline-flex">
-          <Switch className="ml-2" />
-        </span>
-      </label>
-    </DisplayStand>
-  );
-}
-
 <SwitchLabel />
 
-```jsx
+```tsx
 import { Switch } from 'tailwind-joy/components';
 
 export function SwitchLabel() {
@@ -92,42 +68,9 @@ export function SwitchLabel() {
 
 To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 
-export function SwitchDecorators() {
-  const [checked, setChecked] = useState(false);
-  return (
-    <DisplayStand>
-      <Switch
-        color={checked ? 'primary' : 'danger'}
-        startDecorator={
-          <MdLocalFireDepartment
-            className={twMerge(
-              iconClass(),
-              checked
-                ? '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]'
-                : '[--Icon-color:var(--joy-danger-600)]',
-            )}
-          />
-        }
-        endDecorator={
-          <MdWaves
-            className={twMerge(
-              iconClass(),
-              checked
-                ? '[--Icon-color:var(--joy-primary-500)]'
-                : '[--Icon-color:var(--joy-neutral-600)] dark:[--Icon-color:var(--joy-neutral-400)]',
-            )}
-          />
-        }
-        checked={checked}
-        onChange={(e) => setChecked(e.currentTarget.checked)}
-      />
-    </DisplayStand>
-  );
-}
-
 <SwitchDecorators />
 
-```jsx
+```tsx
 import { useState } from 'react';
 import { MdLocalFireDepartment, MdWaves } from 'react-icons/md';
 import { Switch } from 'tailwind-joy/components';
