@@ -4,6 +4,8 @@ const SPACE = ' ';
 
 /**
  * A shortcut for the `Array.join` function.
+ *
+ * @deprecated Use `clsx` instead.
  */
 export function join(elements: unknown[]): string {
   return elements.join(SPACE);

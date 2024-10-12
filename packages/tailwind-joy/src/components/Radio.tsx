@@ -1,11 +1,14 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
-import { forwardRef, useContext, useState } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
+import { forwardRef, createElement, useContext, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r, uuid } from '../base/alias';
 import {
-  join,
   addPrefix,
   toColorClass,
   backgroundColor,
@@ -13,8 +16,24 @@ import {
   textColor,
   toVariableClass,
 } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import { RadioGroupContext } from './RadioGroup';
+
+type PassingProps = Pick<
+  ComponentProps<'input'>,
+  | 'checked'
+  | 'defaultChecked'
+  | 'disabled'
+  | 'id'
+  | 'name'
+  | 'onBlur'
+  | 'onChange'
+  | 'onFocus'
+  | 'readOnly'
+  | 'required'
+  | 'value'
+>;
 
 function radioRootVariants(
   props?: BaseVariants & {
@@ -61,52 +80,62 @@ function radioRootVariants(
       colorTokens.text.primary,
       color && [
         addPrefix(
-          textColor(baseTokens[color].plainDisabledColor),
+          textColor(theme.variants.plainDisabled[color].tokens.color),
           'has-[:disabled]:',
         ),
         disableIcon && [
-          colorTokens[color][`${variant}Color`],
+          textColor(theme.variants[variant][color].tokens.color),
           addPrefix(
-            textColor(baseTokens[color][`${variant}DisabledColor`]),
+            textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
             'has-[:disabled]:',
           ),
         ],
       ],
       !color && [
         addPrefix(
-          textColor(baseTokens.primary.plainDisabledColor),
-          'has-[:checked]:has-[:disabled]:',
+          clsx([
+            addPrefix(
+              textColor(theme.variants.plainDisabled.primary.tokens.color),
+              'has-[:disabled]:',
+            ),
+            disableIcon && [
+              textColor(theme.variants[variant].primary.tokens.color),
+              addPrefix(
+                textColor(
+                  theme.variants[`${variant}Disabled`].primary.tokens.color,
+                ),
+                'has-[:disabled]:',
+              ),
+            ],
+          ]),
+          'has-[:checked]:',
         ),
-        disableIcon && [
-          addPrefix(colorTokens.primary[`${variant}Color`], 'has-[:checked]:'),
-          addPrefix(
-            textColor(baseTokens.primary[`${variant}DisabledColor`]),
-            'has-[:checked]:has-[:disabled]:',
-          ),
-        ],
         addPrefix(
-          textColor(baseTokens.neutral.plainDisabledColor),
-          '[&:not(:has(:checked))]:has-[:disabled]:',
+          clsx([
+            addPrefix(
+              textColor(theme.variants.plainDisabled.neutral.tokens.color),
+              'has-[:disabled]:',
+            ),
+            disableIcon && [
+              textColor(theme.variants[variant].neutral.tokens.color),
+              addPrefix(
+                textColor(
+                  theme.variants[`${variant}Disabled`].neutral.tokens.color,
+                ),
+                'has-[:disabled]:',
+              ),
+            ],
+          ]),
+          '[&:not(:has(:checked))]:',
         ),
-        disableIcon && [
-          addPrefix(
-            colorTokens.neutral[`${variant}Color`],
-            '[&:not(:has(:checked))]:',
-          ),
-          addPrefix(
-            textColor(baseTokens.neutral[`${variant}DisabledColor`]),
-            '[&:not(:has(:checked))]:has-[:disabled]:',
-          ),
-        ],
       ],
     ]),
   );
 }
 
 function radioRadioVariants(
-  props?: BaseVariants & {
+  props?: Pick<BaseVariants, 'color' | 'variant'> & {
     disableIcon?: boolean;
-    overlay?: boolean;
   },
 ) {
   const { color, variant = 'outlined', disableIcon = false } = props ?? {};
@@ -148,72 +177,83 @@ function radioRadioVariants(
         'has-[:checked]:',
       ),
       !disableIcon && [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          'has-[:disabled]:',
-        ),
         color && [
-          colorTokens[color][`${variant}Color`],
-          colorTokens[color][`${variant}Bg`] || colorTokens.background.surface,
-          colorTokens[color][`${variant}Border`],
-          colorTokens[color][`${variant}HoverColor`],
-          colorTokens[color][`${variant}HoverBg`],
-          colorTokens[color][`${variant}ActiveColor`],
-          colorTokens[color][`${variant}ActiveBg`],
+          theme.variants[variant][color].className,
+          !theme.variants[variant][color].tokens.backgroundColor &&
+            colorTokens.background.surface,
+          theme.variants[`${variant}Hover`][color].className,
+          theme.variants[`${variant}Active`][color].className,
           addPrefix(
-            join([
-              textColor(baseTokens[color][`${variant}DisabledColor`]),
-              backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-              borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+            clsx([
+              'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+              textColor(
+                theme.variants[`${variant}Disabled`][color].tokens.color,
+              ),
+              backgroundColor(
+                theme.variants[`${variant}Disabled`][color].tokens
+                  .backgroundColor,
+              ),
+              borderColor(
+                theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+              ),
             ]),
             'has-[:disabled]:',
           ),
         ],
         !color && [
           addPrefix(
-            join([
-              colorTokens.primary[`${variant}Color`],
-              colorTokens.primary[`${variant}Bg`] ||
+            clsx([
+              theme.variants[variant].primary.className,
+              !theme.variants[variant].primary.tokens.backgroundColor &&
                 colorTokens.background.surface,
-              colorTokens.primary[`${variant}Border`],
-              colorTokens.primary[`${variant}HoverColor`],
-              colorTokens.primary[`${variant}HoverBg`],
-              colorTokens.primary[`${variant}ActiveColor`],
-              colorTokens.primary[`${variant}ActiveBg`],
+              theme.variants[`${variant}Hover`].primary.className,
+              theme.variants[`${variant}Active`].primary.className,
+              addPrefix(
+                clsx([
+                  'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+                  textColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens.color,
+                  ),
+                  backgroundColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens
+                      .backgroundColor,
+                  ),
+                  borderColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens
+                      .borderColor,
+                  ),
+                ]),
+                'has-[:disabled]:',
+              ),
             ]),
             'has-[:checked]:',
           ),
           addPrefix(
-            join([
-              textColor(baseTokens.primary[`${variant}DisabledColor`]),
-              backgroundColor(baseTokens.primary[`${variant}DisabledBg`]),
-              borderColor(baseTokens.primary[`${variant}DisabledBorder`]),
-            ]),
-            'has-[:checked]:has-[:disabled]:',
-          ),
-          addPrefix(
-            join([
-              colorTokens.neutral[`${variant}Color`],
-              colorTokens.neutral[`${variant}Bg`] ||
+            clsx([
+              theme.variants[variant].neutral.className,
+              !theme.variants[variant].neutral.tokens.backgroundColor &&
                 colorTokens.background.surface,
-              colorTokens.neutral[`${variant}Border`],
-              colorTokens.neutral[`${variant}HoverColor`],
-              colorTokens.neutral[`${variant}HoverBg`],
-              colorTokens.neutral[`${variant}ActiveColor`],
-              colorTokens.neutral[`${variant}ActiveBg`],
+              theme.variants[`${variant}Hover`].neutral.className,
+              theme.variants[`${variant}Active`].neutral.className,
+              addPrefix(
+                clsx([
+                  'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+                  textColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens.color,
+                  ),
+                  backgroundColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens
+                      .backgroundColor,
+                  ),
+                  borderColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens
+                      .borderColor,
+                  ),
+                ]),
+                'has-[:disabled]:',
+              ),
             ]),
             '[&:not(:has(:checked))]:',
-          ),
-          addPrefix(
-            join([
-              textColor(baseTokens.neutral[`${variant}DisabledColor`]),
-              backgroundColor(baseTokens.neutral[`${variant}DisabledBg`]),
-              borderColor(baseTokens.neutral[`${variant}DisabledBorder`]),
-            ]),
-            '[&:not(:has(:checked))]:has-[:disabled]:',
           ),
         ],
       ],
@@ -222,7 +262,7 @@ function radioRadioVariants(
 }
 
 function radioActionVariants(
-  props?: BaseVariants & {
+  props?: Pick<BaseVariants, 'color' | 'variant'> & {
     disableIcon?: boolean;
     overlay?: boolean;
   },
@@ -245,77 +285,84 @@ function radioActionVariants(
       'inset-[calc(-1*var(--variant-borderWidth,0px))]',
       'z-[1]',
       addPrefix(
-        join([
+        clsx([
           'outline-2 outline outline-offset-2',
           toColorClass(baseTokens.focusVisible, 'outline-'),
         ]),
         'has-[:focus-visible]:',
       ),
       disableIcon && [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        addPrefix(
-          'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
-          'has-[:disabled]:',
-        ),
         color && [
-          colorTokens[color][`${variant}Color`],
-          colorTokens[color][`${variant}Bg`],
-          colorTokens[color][`${variant}Border`],
-          colorTokens[color][`${variant}HoverColor`],
-          colorTokens[color][`${variant}HoverBg`],
-          colorTokens[color][`${variant}ActiveColor`],
-          colorTokens[color][`${variant}ActiveBg`],
+          theme.variants[variant][color].className,
+          theme.variants[`${variant}Hover`][color].className,
+          theme.variants[`${variant}Active`][color].className,
           addPrefix(
-            join([
-              textColor(baseTokens[color][`${variant}DisabledColor`]),
-              backgroundColor(baseTokens[color][`${variant}DisabledBg`]),
-              borderColor(baseTokens[color][`${variant}DisabledBorder`]),
+            clsx([
+              'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+              textColor(
+                theme.variants[`${variant}Disabled`][color].tokens.color,
+              ),
+              backgroundColor(
+                theme.variants[`${variant}Disabled`][color].tokens
+                  .backgroundColor,
+              ),
+              borderColor(
+                theme.variants[`${variant}Disabled`][color].tokens.borderColor,
+              ),
             ]),
             'has-[:disabled]:',
           ),
         ],
         !color && [
           addPrefix(
-            join([
-              colorTokens.primary[`${variant}Color`],
-              colorTokens.primary[`${variant}Bg`],
-              colorTokens.primary[`${variant}Border`],
-              colorTokens.primary[`${variant}HoverColor`],
-              colorTokens.primary[`${variant}HoverBg`],
-              colorTokens.primary[`${variant}ActiveColor`],
-              colorTokens.primary[`${variant}ActiveBg`],
+            clsx([
+              theme.variants[variant].primary.className,
+              theme.variants[`${variant}Hover`].primary.className,
+              theme.variants[`${variant}Active`].primary.className,
+              addPrefix(
+                clsx([
+                  'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+                  textColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens.color,
+                  ),
+                  backgroundColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens
+                      .backgroundColor,
+                  ),
+                  borderColor(
+                    theme.variants[`${variant}Disabled`].primary.tokens
+                      .borderColor,
+                  ),
+                ]),
+                'has-[:disabled]:',
+              ),
             ]),
             'has-[:checked]:',
           ),
           addPrefix(
-            join([
-              textColor(baseTokens.primary[`${variant}DisabledColor`]),
-              backgroundColor(baseTokens.primary[`${variant}DisabledBg`]),
-              borderColor(baseTokens.primary[`${variant}DisabledBorder`]),
-            ]),
-            'has-[:checked]:has-[:disabled]:',
-          ),
-          addPrefix(
-            join([
-              colorTokens.neutral[`${variant}Color`],
-              colorTokens.neutral[`${variant}Bg`],
-              colorTokens.neutral[`${variant}Border`],
-              colorTokens.neutral[`${variant}HoverColor`],
-              colorTokens.neutral[`${variant}HoverBg`],
-              colorTokens.neutral[`${variant}ActiveColor`],
-              colorTokens.neutral[`${variant}ActiveBg`],
+            clsx([
+              theme.variants[variant].neutral.className,
+              theme.variants[`${variant}Hover`].neutral.className,
+              theme.variants[`${variant}Active`].neutral.className,
+              addPrefix(
+                clsx([
+                  'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+                  textColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens.color,
+                  ),
+                  backgroundColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens
+                      .backgroundColor,
+                  ),
+                  borderColor(
+                    theme.variants[`${variant}Disabled`].neutral.tokens
+                      .borderColor,
+                  ),
+                ]),
+                'has-[:disabled]:',
+              ),
             ]),
             '[&:not(:has(:checked))]:',
-          ),
-          addPrefix(
-            join([
-              textColor(baseTokens.neutral[`${variant}DisabledColor`]),
-              backgroundColor(baseTokens.neutral[`${variant}DisabledBg`]),
-              borderColor(baseTokens.neutral[`${variant}DisabledBorder`]),
-            ]),
-            '[&:not(:has(:checked))]:has-[:disabled]:',
           ),
         ],
       ],
@@ -323,7 +370,7 @@ function radioActionVariants(
   );
 }
 
-function radioInputVariants(props?: BaseVariants) {
+function radioInputVariants() {
   return twMerge(
     clsx([
       'tj-radio-input',
@@ -337,11 +384,7 @@ function radioInputVariants(props?: BaseVariants) {
   );
 }
 
-function radioLabelVariants(
-  props?: BaseVariants & {
-    disableIcon?: boolean;
-  },
-) {
+function radioLabelVariants(props?: { disableIcon?: boolean }) {
   const { disableIcon = false } = props ?? {};
 
   return twMerge(
@@ -354,7 +397,7 @@ function radioLabelVariants(
   );
 }
 
-function radioIconVariants(props?: BaseVariants) {
+function radioIconVariants() {
   return twMerge(
     clsx([
       'tj-radio-icon',
@@ -369,112 +412,207 @@ function radioIconVariants(props?: BaseVariants) {
   );
 }
 
-interface RadioRootVariants extends BaseVariants {
+type RadioRootVariants = BaseVariants & {
   disableIcon?: boolean;
   label?: ReactNode;
   overlay?: boolean;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'span'>;
+    radio?: ComponentProps<'span'>;
+    icon?: ComponentProps<'span'>;
+    action?: ComponentProps<'span'>;
+    input?: ComponentProps<'input'>;
+    label?: ComponentProps<'label'>;
+  };
+} & PassingProps;
 
-type RadioRootProps = Omit<ComponentProps<'input'>, keyof RadioRootVariants> &
-  RadioRootVariants;
+type RadioRootProps<T> = GenericComponentPropsWithVariants<
+  'span',
+  RadioRootVariants,
+  T
+>;
 
-export const Radio = forwardRef<HTMLSpanElement, RadioRootProps>(
-  function RadioRoot(
+function RadioRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  {
+    // ---- passing props ----
+    checked,
+    defaultChecked,
+    disabled,
+    id,
+    name,
+    onBlur,
+    onChange,
+    onFocus,
+    readOnly,
+    required,
+    value,
+    // -----------------------
+
+    // ---- non-passing props ----
+    // base variants
+    color,
+    size,
+    variant,
+
+    // non-base variants
+    className,
+    disableIcon,
+    label,
+    overlay,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'span',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: RadioRootProps<T>,
+  ref: ForwardedRef<unknown>,
+) {
+  const radioGroup = useContext(RadioGroupContext);
+  const [instanceId, setInstanceId] = useState(id ?? uuid());
+
+  const slotRootPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  );
+  const slotRadioPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.radio ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotIconPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.icon ?? {}).filter(([key]) => key !== 'className'),
+  );
+  const slotActionPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.action ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotInputPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.input ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+  const slotLabelPropsWithoutClassName = Object.fromEntries(
+    Object.entries(slotProps.label ?? {}).filter(
+      ([key]) => key !== 'className',
+    ),
+  );
+
+  const instanceName = name ?? radioGroup.name;
+  const instanceSize = size ?? radioGroup.size;
+  const instanceChecked =
+    radioGroup.value === undefined ? checked : radioGroup.value === value;
+  const instanceDefaultChecked =
+    radioGroup.value === undefined
+      ? radioGroup.defaultValue === undefined
+        ? defaultChecked
+        : radioGroup.defaultValue === value
+      : undefined;
+  const instanceDisableIcon = disableIcon ?? radioGroup.disableIcon;
+  const instanceOverlay = overlay ?? radioGroup.overlay;
+  const instanceOnChange = radioGroup.onChange ?? onChange;
+
+  return createElement(
+    component,
     {
-      children,
-      className,
-      id,
-      name,
-      value,
-      color,
-      size,
-      variant,
-      checked,
-      defaultChecked,
-      disabled,
-      disableIcon,
-      label,
-      overlay,
-      onChange,
-      ...otherProps
+      ref,
+      className: twMerge(
+        radioRootVariants({
+          color,
+          size: instanceSize,
+          variant,
+          disableIcon: instanceDisableIcon,
+          overlay: instanceOverlay,
+        }),
+        className,
+        slotProps.root?.className ?? '',
+      ),
+      ...otherProps,
+      ...slotRootPropsWithoutClassName,
     },
-    ref,
-  ) {
-    const radioGroup = useContext(RadioGroupContext);
-    const [instanceId, setInstanceId] = useState(id ?? uuid());
-
-    const instanceName = name ?? radioGroup.name;
-    const instanceSize = size ?? radioGroup.size;
-    const instanceChecked =
-      radioGroup.value === undefined ? checked : radioGroup.value === value;
-    const instanceDefaultChecked =
-      radioGroup.value === undefined
-        ? radioGroup.defaultValue === undefined
-          ? defaultChecked
-          : radioGroup.defaultValue === value
-        : undefined;
-    const instanceDisableIcon = disableIcon ?? radioGroup.disableIcon;
-    const instanceOverlay = overlay ?? radioGroup.overlay;
-    const instanceOnChange = radioGroup.onChange ?? onChange;
-
-    return (
+    <>
       <span
-        ref={ref}
         className={twMerge(
-          radioRootVariants({
+          radioRadioVariants({
             color,
-            size: instanceSize,
             variant,
             disableIcon: instanceDisableIcon,
-            overlay: instanceOverlay,
           }),
-          className,
+          slotProps.radio?.className ?? '',
         )}
+        {...slotRadioPropsWithoutClassName}
       >
-        <span
-          className={radioRadioVariants({
-            color,
-            variant,
-            disableIcon: instanceDisableIcon,
-          })}
-        >
-          {instanceDisableIcon ? null : (
-            <span className={radioIconVariants()} />
-          )}
+        {instanceDisableIcon ? null : (
           <span
-            className={radioActionVariants({
+            className={twMerge(
+              radioIconVariants(),
+              slotProps.icon?.className ?? '',
+            )}
+            {...slotIconPropsWithoutClassName}
+          />
+        )}
+        <span
+          className={twMerge(
+            radioActionVariants({
               color,
               variant,
               disableIcon: instanceDisableIcon,
               overlay: instanceOverlay,
-            })}
-          >
-            <input
-              id={instanceId}
-              type="radio"
-              name={instanceName}
-              className={radioInputVariants()}
-              checked={instanceChecked}
-              defaultChecked={instanceDefaultChecked}
-              disabled={disabled}
-              value={value}
-              onChange={instanceOnChange}
-              {...otherProps}
-            />
-          </span>
+            }),
+            slotProps.action?.className ?? '',
+          )}
+          {...slotActionPropsWithoutClassName}
+        >
+          <input
+            type="radio"
+            className={twMerge(
+              radioInputVariants(),
+              slotProps.input?.className ?? '',
+            )}
+            {...{
+              checked: instanceChecked,
+              defaultChecked: instanceDefaultChecked,
+              disabled,
+              id: instanceId,
+              name: instanceName,
+              onBlur,
+              onChange: instanceOnChange,
+              onFocus,
+              readOnly,
+              required,
+              value,
+            }}
+            {...slotInputPropsWithoutClassName}
+          />
         </span>
-        {label && (
-          <label
-            htmlFor={instanceId}
-            className={radioLabelVariants({ disableIcon: instanceDisableIcon })}
-          >
-            {label}
-          </label>
-        )}
       </span>
-    );
-  },
-);
+      {label && (
+        <label
+          htmlFor={instanceId}
+          className={twMerge(
+            radioLabelVariants({ disableIcon: instanceDisableIcon }),
+            slotProps.label?.className ?? '',
+          )}
+          {...slotLabelPropsWithoutClassName}
+        >
+          {label}
+        </label>
+      )}
+    </>,
+  );
+}
+
+export const Radio = forwardRef(RadioRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: RadioRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

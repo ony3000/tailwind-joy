@@ -3,7 +3,21 @@ sidebar_position: 6
 slug: /components/radio
 ---
 
-import { useState } from 'react';
+import {
+  RadioBasics,
+  RadioVariants,
+  RadioSizes,
+  RadioColors,
+  RadioPosition,
+  RadioFocusOutline,
+  RadioClickableContainer,
+} from '@site/src/demos/radio';
+import {
+  RadioGroupControlled,
+  RadioGroupFocusOutline,
+  RadioGroupClickableContainer,
+  RadioGroupNoIcons,
+} from '@site/src/demos/radio-group';
 
 # Radio
 
@@ -13,26 +27,15 @@ Radio buttons enable the user to select one option from a set.
 
 ## Basics
 
-```jsx
+```tsx
 import { Radio } from 'tailwind-joy/components';
 ```
 
 The Tailwind-Joy Radio button behaves similar to the native HTML `<input type="radio">`, so it accepts props like `checked`, `value` and `onChange`.
 
-export function RadioBasics() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Radio name="radio-basics" label="One" value="one" defaultChecked />
-        <Radio name="radio-basics" label="Two" value="two" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <RadioBasics />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioBasics() {
@@ -51,27 +54,9 @@ export function RadioBasics() {
 
 The Radio component supports four variants: `solid`, `soft`, `outlined` (default), and `plain`.
 
-export function RadioVariants() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Radio name="radio-variants" label="Solid" variant="solid" />
-        <Radio name="radio-variants" label="Soft" variant="soft" />
-        <Radio
-          name="radio-variants"
-          label="Outlined"
-          variant="outlined"
-          defaultChecked
-        />
-        <Radio name="radio-variants" label="Plain" variant="plain" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <RadioVariants />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioVariants() {
@@ -95,21 +80,9 @@ export function RadioVariants() {
 
 The Radio component supports three sizes: `sm`, `md` (default), and `lg`.
 
-export function RadioSizes() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-6">
-        <Radio name="radio-sizes" label="Small" size="sm" />
-        <Radio name="radio-sizes" label="Medium" size="md" defaultChecked />
-        <Radio name="radio-sizes" label="Large" size="lg" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <RadioSizes />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioSizes() {
@@ -128,23 +101,9 @@ export function RadioSizes() {
 The Radio component supports five colors: `primary`, `neutral`, `danger`, `success`, and `warning`.
 By default, when unchecked, the Radio is set to `neutral`; when checked, the color changes to `primary`.
 
-export function RadioColors() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Radio name="radio-colors" label="Primary" color="primary" />
-        <Radio name="radio-colors" label="Neutral" color="neutral" />
-        <Radio name="radio-colors" label="Danger" color="danger" />
-        <Radio name="radio-colors" label="Success" color="success" />
-        <Radio name="radio-colors" label="Warning" color="warning" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <RadioColors />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioColors() {
@@ -164,20 +123,9 @@ export function RadioColors() {
 
 To swap the positions of a Radio and its label, use the CSS property `flex-direction: row-reverse`.
 
-export function RadioPosition() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap justify-center gap-6">
-        <Radio name="radio-position" label="One" className="flex-row-reverse" />
-        <Radio name="radio-position" label="Two" className="flex-row-reverse" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <RadioPosition />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioPosition() {
@@ -195,29 +143,9 @@ export function RadioPosition() {
 By default, the focus outline wraps both the Radio button and its label.
 If you need to focus to omit the label, target the `tj-radio-radio` class and add `position: 'relative'`.
 
-export function RadioFocusOutline() {
-  return (
-    <DisplayStand>
-      <div>
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Select an option and use keyboard &uarr;&darr;.
-        </div>
-        <Box className="flex flex-wrap justify-center gap-6">
-          <Radio name="radio-focus-outline" label="Fully wrapped" />
-          <Radio
-            name="radio-focus-outline"
-            label="Input wrapped"
-            className="[&>.tj-radio-radio]:relative"
-          />
-        </Box>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <RadioFocusOutline />
 
-```jsx
+```tsx
 import { Box, Radio } from 'tailwind-joy/components';
 
 export function RadioFocusOutline() {
@@ -244,24 +172,9 @@ export function RadioFocusOutline() {
 To make the Radio button's container clickable, use the `overlay` prop.
 This works with any [positioned](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning) wrapper element:
 
-export function RadioClickableContainer() {
-  return (
-    <DisplayStand>
-      <div>
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Try using keyboard navigation.
-        </div>
-        <Sheet variant="outlined" className="flex rounded-[8px] p-4">
-          <Radio name="radio-clickable-container" label="Focus on me" overlay />
-        </Sheet>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <RadioClickableContainer />
 
-```jsx
+```tsx
 import { Radio, Sheet } from 'tailwind-joy/components';
 
 export function RadioClickableContainer() {
@@ -289,27 +202,9 @@ The Radio Group component is the ideal wrapper for multiple Radio components.
 Use the `value` and `onChange` props to control the actions performed by the Radio buttons.
 For example, the Radio buttons in the demo below update the state to reflect the selected option:
 
-export function RadioGroupControlled() {
-  const [variant, setVariant] = useState('outlined');
-  return (
-    <DisplayStand>
-      <RadioGroup
-        name="radio-group-controlled"
-        value={variant}
-        onChange={(e) => setVariant(e.currentTarget.value)}
-      >
-        <Radio value="solid" label="Solid" variant={variant} />
-        <Radio value="soft" label="Soft" variant={variant} />
-        <Radio value="outlined" label="Outlined" variant={variant} />
-        <Radio value="plain" label="Plain" variant={variant} />
-      </RadioGroup>
-    </DisplayStand>
-  );
-}
-
 <RadioGroupControlled />
 
-```jsx
+```tsx
 import { useState } from 'react';
 import { Radio, RadioGroup } from 'tailwind-joy/components';
 
@@ -336,29 +231,9 @@ export function RadioGroupControlled() {
 By default, the focus outline wraps both the Radio button and its label.
 If you need to focus to omit the label, target the `tj-radio-radio` class and add `position: 'relative'`.
 
-export function RadioGroupFocusOutline() {
-  return (
-    <DisplayStand>
-      <div>
-        <div className="text-joy-neutral-600 dark:text-joy-neutral-400 mb-4 text-sm font-semibold">
-          Select an option and use keyboard &uarr;&darr;.
-        </div>
-        <RadioGroup name="radio-group-focus-outline">
-          <Radio value="fully-wrapped" label="Fully wrapped" />
-          <Radio
-            value="input-wrapped"
-            label="Input wrapped"
-            className="[&>.tj-radio-radio]:relative"
-          />
-        </RadioGroup>
-      </div>
-    </DisplayStand>
-  );
-}
-
 <RadioGroupFocusOutline />
 
-```jsx
+```tsx
 import { Radio, RadioGroup } from 'tailwind-joy/components';
 
 export function RadioGroupFocusOutline() {
@@ -387,58 +262,9 @@ This works with any [positioned](https://developer.mozilla.org/en-US/docs/Web/CS
 
 You can also apply this prop directly to a Radio Group when present, which will pass the prop to each individual Radio button nested within.
 
-export function RadioGroupClickableContainer() {
-  return (
-    <DisplayStand>
-      <RadioGroup
-        name="radio-group-clickable-container"
-        defaultValue="tailwind"
-        orientation="horizontal"
-        overlay
-        className="gap-4"
-      >
-        {[
-          {
-            label: 'Tailwind',
-            avatar: '/img/avatar/tailwind-gravatar.png',
-          },
-          {
-            label: 'Joy',
-            avatar: '/img/avatar/joy-gravatar.png',
-          },
-          {
-            label: 'Octocat',
-            avatar: '/img/avatar/octocat-avatar.png',
-          },
-        ].map(({ label, avatar }) => (
-          <Sheet
-            key={label}
-            variant="outlined"
-            className="flex flex-col items-center rounded-[8px] p-4"
-          >
-            <Radio
-              value={label.toLowerCase()}
-              variant="soft"
-              className="mb-4"
-            />
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src={avatar}
-                className="h-full w-full object-cover"
-                alt={label}
-              />
-            </div>
-            <div className="mt-2">{label}</div>
-          </Sheet>
-        ))}
-      </RadioGroup>
-    </DisplayStand>
-  );
-}
-
 <RadioGroupClickableContainer />
 
-```jsx
+```tsx
 import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupClickableContainer() {
@@ -490,36 +316,9 @@ export function RadioGroupClickableContainer() {
 Use the `disableIcon` prop to remove the Radio button's icon.
 In this case, you'll need to use CSS properties like border and background color to communicate the state of the Radio button, as shown in the demo below:
 
-export function RadioGroupNoIcons() {
-  return (
-    <DisplayStand>
-      <RadioGroup
-        name="radio-group-no-icons"
-        defaultValue="512GB"
-        disableIcon
-        overlay
-      >
-        {['512GB', '1TB', '2TB'].map((value) => (
-          <Sheet
-            key={value}
-            variant="outlined"
-            className="flex rounded-[8px] p-4"
-          >
-            <Radio
-              value={value}
-              label={`${value} SSD storage`}
-              className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
-            />
-          </Sheet>
-        ))}
-      </RadioGroup>
-    </DisplayStand>
-  );
-}
-
 <RadioGroupNoIcons />
 
-```jsx
+```tsx
 import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 
 export function RadioGroupNoIcons() {
@@ -539,7 +338,11 @@ export function RadioGroupNoIcons() {
           <Radio
             value={value}
             label={`${value} SSD storage`}
-            className="[&_.tj-radio-action:has(:checked)]:border-joy-primary-500 font-semibold [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]"
+            className="
+              [&_.tj-radio-action:has(:checked)]:border-joy-primary-500
+              font-semibold
+              [&_.tj-radio-action:has(:checked)]:[--variant-borderWidth:2px]
+            "
           />
         </Sheet>
       ))}
