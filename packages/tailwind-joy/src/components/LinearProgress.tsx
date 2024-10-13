@@ -1,11 +1,16 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
-import { forwardRef } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r } from '../base/alias';
-import { join, addPrefix, backgroundColor, textColor } from '../base/modifier';
-import { baseTokens, colorTokens } from '../base/tokens';
+import { addPrefix, backgroundColor, textColor } from '../base/modifier';
+import { theme } from '../base/theme';
+import { excludeClassName } from '../base/utils';
 
 function linearProgressRootVariants(
   props?: BaseVariants & {
@@ -43,15 +48,10 @@ function linearProgressRootVariants(
       'flex-1',
       r`p-[var(--\_LinearProgress-padding)]`,
       'relative',
-      variant === 'outlined'
-        ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-        : '[--variant-borderWidth:0px]',
-      colorTokens[color][`${variant}Color`],
-      colorTokens[color][`${variant}Bg`],
-      colorTokens[color][`${variant}Border`],
+      theme.variants[variant][color].className,
       '[--_LinearProgress-padding:max((var(--LinearProgress-thickness)-2*var(--variant-borderWidth,0px)-var(--LinearProgress-progressThickness))/2,0px)]',
       addPrefix(
-        join([
+        clsx([
           'content-[""]',
           'block',
           '[box-sizing:inherit]',
@@ -64,16 +64,16 @@ function linearProgressRootVariants(
         'before:',
       ),
       variant === 'soft' && [
-        colorTokens.neutral.softBg,
-        textColor(baseTokens[color].solidBg),
+        backgroundColor(theme.variants.soft.neutral.tokens.backgroundColor),
+        textColor(theme.variants.solid[color].tokens.backgroundColor),
       ],
       variant === 'solid' && [
-        backgroundColor(baseTokens[color].softHoverBg),
-        textColor(baseTokens[color].solidBg),
+        backgroundColor(theme.variants.softHover[color].tokens.backgroundColor),
+        textColor(theme.variants.solid[color].tokens.backgroundColor),
       ],
       determinate
         ? addPrefix(
-            join([
+            clsx([
               r`left-[var(--\_LinearProgress-padding)]`,
               r`[inline-size:calc(var(--LinearProgress-percent)*1%-2*var(--\_LinearProgress-padding))]`,
             ]),
@@ -84,41 +84,61 @@ function linearProgressRootVariants(
   );
 }
 
-interface LinearProgressRootVariants extends BaseVariants {
+type LinearProgressRootVariants = BaseVariants & {
   determinate?: boolean;
   thickness?: number;
   value?: number;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'div'>;
+  };
+};
 
-type LinearProgressRootProps = Omit<
-  ComponentProps<'div'>,
-  keyof LinearProgressRootVariants
-> &
-  LinearProgressRootVariants;
+type LinearProgressRootProps<T> = GenericComponentPropsWithVariants<
+  'div',
+  LinearProgressRootVariants,
+  T
+>;
 
-export const LinearProgress = forwardRef<
-  HTMLDivElement,
-  LinearProgressRootProps
->(function LinearProgressRoot(
+function LinearProgressRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
-    children,
-    className,
-    style,
+    // ---- non-passing props ----
+    // base variants
     color = 'primary',
     size = 'md',
     variant = 'soft',
-    thickness,
+
+    // non-base variants
+    className,
     determinate,
+    style,
+    thickness,
     value,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'div',
+    children,
     ...otherProps
-  },
-  ref,
+    // ---------------------------
+  }: LinearProgressRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
-  return (
-    <div
-      ref={ref}
-      role="progressbar"
-      className={twMerge(
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
+
+  return createElement(
+    component,
+    {
+      ref,
+      role: 'progressbar',
+      className: twMerge(
         linearProgressRootVariants({
           color,
           size,
@@ -126,24 +146,29 @@ export const LinearProgress = forwardRef<
           determinate,
         }),
         className,
-      )}
-      {...otherProps}
-      // @ts-ignore
-      style={{
+        slotProps.root?.className ?? '',
+      ),
+      style: {
         ...style,
         ...(thickness === undefined
           ? {}
           : {
               '--LinearProgress-thickness': `${thickness}px`,
             }),
-        // @ts-ignore
         '--LinearProgress-percent': value ?? (determinate ? 0 : 25),
-      }}
-    >
-      {children}
-    </div>
+      },
+      ...otherProps,
+      ...(slotPropsWithoutClassName.root ?? {}),
+    },
+    children,
   );
-});
+}
+
+export const LinearProgress = forwardRef(LinearProgressRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: LinearProgressRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {
