@@ -3,15 +3,12 @@ sidebar_position: 5
 slug: /components/divider
 ---
 
-import { useState } from 'react';
 import {
-  MdFormatAlignCenter,
-  MdFormatAlignLeft,
-  MdFormatAlignRight,
-  MdFormatBold,
-  MdFormatItalic,
-} from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/utils';
+  DividerRenderedWithContent,
+  DividerVerticalDivider,
+  DividerVerticalWithText,
+  DividerChildPosition,
+} from '@site/src/demos/divider';
 
 # Divider
 
@@ -21,7 +18,7 @@ A divider is a thin line that groups content in lists and layouts.
 
 ## Basics
 
-```jsx
+```tsx
 import { Divider } from 'tailwind-joy/components';
 ```
 
@@ -31,38 +28,9 @@ import { Divider } from 'tailwind-joy/components';
 
 Use the `Divider` to wrap elements that will be added to it.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function DividerRenderedWithContent() {
-  const content = (
-    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
-      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
-      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </Box>
-  );
-  return (
-    <DisplayStand>
-      <Box className="space-y-2">
-        {content}
-        <Divider>Visual indicator</Divider>
-        {content}
-        <Divider>
-          <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
-            <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
-              Visual indicator
-            </span>
-          </div>
-        </Divider>
-        {content}
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <DividerRenderedWithContent />
 
-```jsx
+```tsx
 import { Box, Divider } from 'tailwind-joy/components';
 
 export function DividerRenderedWithContent() {
@@ -96,24 +64,9 @@ export function DividerRenderedWithContent() {
 
 Use the `orientation` prop to render a vertical divider.
 
-export function DividerVerticalDivider() {
-  return (
-    <DisplayStand>
-      <Box className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
-        <MdFormatAlignLeft className={iconClass()} />
-        <MdFormatAlignCenter className={iconClass()} />
-        <MdFormatAlignRight className={iconClass()} />
-        <Divider orientation="vertical" />
-        <MdFormatBold className={iconClass()} />
-        <MdFormatItalic className={iconClass()} />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <DividerVerticalDivider />
 
-```jsx
+```tsx
 import {
   MdFormatAlignCenter,
   MdFormatAlignLeft,
@@ -148,30 +101,9 @@ export function DividerVerticalDivider() {
 
 You can also render a vertical divider with content.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function DividerVerticalWithText() {
-  const content = (
-    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
-      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
-      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </Box>
-  );
-  return (
-    <DisplayStand>
-      <Box className="flex flex-row gap-4">
-        {content}
-        <Divider orientation="vertical">Visual indicator</Divider>
-        {content}
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <DividerVerticalWithText />
 
-```jsx
+```tsx
 import { Box, Divider } from 'tailwind-joy/components';
 
 export function DividerVerticalWithText() {
@@ -197,51 +129,9 @@ export function DividerVerticalWithText() {
 
 To control the position of the content, override the CSS variable `--Divider-childPosition`.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function DividerChildPosition() {
-  const [position, setPosition] = useState(50);
-  const content = (
-    <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et
-      nibh fermentum facilisis at quis metus. Ut tempor tellus odio, vitae
-      imperdiet arcu finibus posuere. Quisque sollicitudin faucibus rutrum.
-    </Box>
-  );
-  return (
-    <DisplayStand>
-      <Box className="space-y-2">
-        <Box className="space-y-2">
-          {content}
-          <Divider style={{ '--Divider-childPosition': `${position}%` }}>
-            <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
-              <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
-                Visual indicator
-              </span>
-            </div>
-          </Divider>
-          {content}
-        </Box>
-        <Box className="flex items-center justify-center gap-2">
-          <span className="w-20 text-right">Position:</span>
-          <input
-            type="range"
-            name="position-range"
-            min="0"
-            max="100"
-            defaultValue="50"
-            onChange={(e) => setPosition(e.currentTarget.value)}
-          />
-          <span className="w-20 text-left">{position}%</span>
-        </Box>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <DividerChildPosition />
 
-```jsx
+```tsx
 import { useState } from 'react';
 import { Box, Divider } from 'tailwind-joy/components';
 

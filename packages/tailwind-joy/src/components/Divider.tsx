@@ -1,11 +1,15 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
-import { forwardRef } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { GeneratorInput } from '@/base/types';
+import type {
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r } from '../base/alias';
-import { join, addPrefix } from '../base/modifier';
+import { addPrefix } from '../base/modifier';
 import { colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 
 function dividerRootVariants(props?: {
   hasChildren?: boolean;
@@ -44,67 +48,57 @@ function dividerRootVariants(props?: {
             'whitespace-nowrap',
             'text-center',
             'border-0',
-            'text-[0.875rem]',
-            'leading-normal',
-            colorTokens.text.tertiary,
+            ['text-[0.875rem]', 'leading-normal', colorTokens.text.tertiary],
             addPrefix(
-              join([
+              clsx([
                 'relative',
-                join(
-                  orientation === 'vertical'
-                    ? [
-                        '[inline-size:var(--Divider-thickness)]',
-                        '[block-size:initial]',
-                      ]
-                    : [
-                        '[inline-size:initial]',
-                        '[block-size:var(--Divider-thickness)]',
-                      ],
-                ),
+                orientation === 'vertical'
+                  ? [
+                      '[inline-size:var(--Divider-thickness)]',
+                      '[block-size:initial]',
+                    ]
+                  : [
+                      '[inline-size:initial]',
+                      '[block-size:var(--Divider-thickness)]',
+                    ],
                 'bg-[var(--Divider-lineColor)]',
                 'content-[""]',
-                join(
-                  orientation === 'vertical'
-                    ? [
-                        '[margin-inline-end:initial]',
-                        '[margin-block-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
-                      ]
-                    : [
-                        '[margin-inline-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
-                        '[margin-block-end:initial]',
-                      ],
-                ),
+                orientation === 'vertical'
+                  ? [
+                      '[margin-inline-end:initial]',
+                      '[margin-block-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
+                    ]
+                  : [
+                      '[margin-inline-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
+                      '[margin-block-end:initial]',
+                    ],
                 'basis-[var(--Divider-childPosition)]',
               ]),
               'before:',
             ),
             addPrefix(
-              join([
+              clsx([
                 'relative',
-                join(
-                  orientation === 'vertical'
-                    ? [
-                        '[inline-size:var(--Divider-thickness)]',
-                        '[block-size:initial]',
-                      ]
-                    : [
-                        '[inline-size:initial]',
-                        '[block-size:var(--Divider-thickness)]',
-                      ],
-                ),
+                orientation === 'vertical'
+                  ? [
+                      '[inline-size:var(--Divider-thickness)]',
+                      '[block-size:initial]',
+                    ]
+                  : [
+                      '[inline-size:initial]',
+                      '[block-size:var(--Divider-thickness)]',
+                    ],
                 'bg-[var(--Divider-lineColor)]',
                 'content-[""]',
-                join(
-                  orientation === 'vertical'
-                    ? [
-                        '[margin-inline-start:initial]',
-                        '[margin-block-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
-                      ]
-                    : [
-                        '[margin-inline-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
-                        '[margin-block-start:initial]',
-                      ],
-                ),
+                orientation === 'vertical'
+                  ? [
+                      '[margin-inline-start:initial]',
+                      '[margin-block-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
+                    ]
+                  : [
+                      '[margin-inline-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
+                      '[margin-block-start:initial]',
+                    ],
                 'basis-[calc(100%-var(--Divider-childPosition))]',
               ]),
               'after:',
@@ -128,62 +122,74 @@ function dividerRootVariants(props?: {
   );
 }
 
-interface DividerRootVariants {
+type DividerRootVariants = {
   inset?: 'none' | 'context';
   orientation?: 'horizontal' | 'vertical';
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'hr'>;
+  };
+};
 
-type DividerRootProps = Omit<ComponentProps<'hr'>, keyof DividerRootVariants> &
-  DividerRootVariants;
+type DividerRootProps<T> = GenericComponentPropsWithVariants<
+  'hr',
+  DividerRootVariants,
+  T
+>;
 
-export const Divider = forwardRef<
-  HTMLDivElement | HTMLHRElement,
-  DividerRootProps
->(function DividerRoot(
+function DividerRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
-    children,
+    // ---- non-passing props ----
+    // non-base variants
     className,
     inset = 'none',
     orientation = 'horizontal',
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component,
+    children,
     ...otherProps
-  },
-  ref,
+    // ---------------------------
+  }: DividerRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
+
   const hasChildren = children !== undefined && children !== null;
 
-  return hasChildren ? (
-    <div
-      ref={ref}
-      className={twMerge(
+  return createElement(
+    component ?? (hasChildren ? 'div' : 'hr'),
+    {
+      ref,
+      className: twMerge(
         dividerRootVariants({
           hasChildren,
           inset,
           orientation,
         }),
         className,
-      )}
-      {...otherProps}
-    >
-      {children}
-    </div>
-  ) : (
-    <hr
-      // @ts-expect-error
-      ref={ref}
-      className={twMerge(
-        dividerRootVariants({
-          hasChildren,
-          inset,
-          orientation,
-        }),
-        className,
-      )}
-      {...otherProps}
-    >
-      {children}
-    </hr>
+        slotProps.root?.className ?? '',
+      ),
+      ...otherProps,
+      ...(slotPropsWithoutClassName.root ?? {}),
+    },
+    children,
   );
-});
+}
+
+export const Divider = forwardRef(DividerRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: DividerRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {

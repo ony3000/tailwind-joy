@@ -22,7 +22,7 @@ For examples and details on the usage of this React component, visit the compone
 
 ## Import
 
-```jsx
+```tsx
 import { Divider } from 'tailwind-joy/components';
 ```
 
@@ -34,14 +34,26 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<hr>` are also available for Divider component.
-Other props are as follows:
-
 ### `children`
 
 The content of the component.
 
 - Type: `ReactNode`
+
+### `className`
+
+Class name applied to the root element.
+
+- Type: `string`
+
+### `component`
+
+<AvailableFrom version="0.4.0" />
+
+The component used for the root node.
+
+- Type: `keyof JSX.IntrinsicElements`
+- Default: `'hr'`
 
 ### `inset`
 
@@ -56,3 +68,17 @@ The component orientation.
 
 - Type: `'horizontal' | 'vertical'`
 - Default: `'horizontal'`
+
+### `slotProps`
+
+<AvailableFrom version="0.4.0" />
+
+The props used for each slot inside.
+
+- Type:
+  ```tsx
+  {
+    root?: ComponentProps<'hr'>;
+  }
+  ```
+- Default: `{}`
