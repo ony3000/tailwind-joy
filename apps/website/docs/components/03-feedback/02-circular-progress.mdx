@@ -3,8 +3,15 @@ sidebar_position: 2
 slug: /components/circular-progress
 ---
 
-import { MdReport, MdWarning } from 'react-icons/md';
-import { iconClass } from 'tailwind-joy/utils';
+import {
+  CircularProgressVariants,
+  CircularProgressSizes,
+  CircularProgressColors,
+  CircularProgressThickness,
+  CircularProgressDeterminate,
+  CircularProgressChildren,
+  CircularProgressWithButton,
+} from '@site/src/demos/circular-progress';
 
 # Circular Progress
 
@@ -12,7 +19,7 @@ The Circular Progress component showcases the duration of a process or an indefi
 
 ## Basics
 
-```jsx
+```tsx
 import { CircularProgress } from 'tailwind-joy/components';
 ```
 
@@ -24,22 +31,9 @@ The Circular Progress component provides users with updates on the status of ong
 
 The Circular Progress component supports four variants: `solid`, `soft` (default), `outlined`, and `plain`.
 
-export function CircularProgressVariants() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <CircularProgress variant="solid" />
-        <CircularProgress variant="soft" />
-        <CircularProgress variant="outlined" />
-        <CircularProgress variant="plain" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressVariants />
 
-```jsx
+```tsx
 import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressVariants() {
@@ -58,21 +52,9 @@ export function CircularProgressVariants() {
 
 The Circular Progress component supports three sizes: `sm`, `md` (default), and `lg`.
 
-export function CircularProgressSizes() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <CircularProgress size="sm" />
-        <CircularProgress size="md" />
-        <CircularProgress size="lg" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressSizes />
 
-```jsx
+```tsx
 import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressSizes() {
@@ -90,23 +72,9 @@ export function CircularProgressSizes() {
 
 The Circular Progress component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
 
-export function CircularProgressColors() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <CircularProgress color="primary" />
-        <CircularProgress color="neutral" />
-        <CircularProgress color="danger" />
-        <CircularProgress color="success" />
-        <CircularProgress color="warning" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressColors />
 
-```jsx
+```tsx
 import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressColors() {
@@ -126,17 +94,9 @@ export function CircularProgressColors() {
 
 You can use the `thickness` prop to control the circle's stroke width.
 
-export function CircularProgressThickness() {
-  return (
-    <DisplayStand>
-      <CircularProgress thickness={1} />
-    </DisplayStand>
-  );
-}
-
 <CircularProgressThickness />
 
-```jsx
+```tsx
 import { CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressThickness() {
@@ -148,22 +108,9 @@ export function CircularProgressThickness() {
 
 The `determinate` prop lets you indicate a specified wait time.
 
-export function CircularProgressDeterminate() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <CircularProgress determinate value={25} />
-        <CircularProgress determinate value={50} />
-        <CircularProgress determinate value={75} />
-        <CircularProgress determinate value={100} />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressDeterminate />
 
-```jsx
+```tsx
 import { Box, CircularProgress } from 'tailwind-joy/components';
 
 export function CircularProgressDeterminate() {
@@ -182,31 +129,10 @@ export function CircularProgressDeterminate() {
 
 By default, any children nested inside the Circular Progress will be centered.
 
-export function CircularProgressChildren() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <CircularProgress color="warning">
-          <MdWarning className={iconClass({ color: 'warning' })} />
-        </CircularProgress>
-        <CircularProgress size="lg" determinate value={66.67}>
-          2 / 3
-        </CircularProgress>
-        <CircularProgress
-          color="danger"
-          className="[--CircularProgress-size:80px]"
-        >
-          <MdReport className={iconClass({ color: 'danger' })} />
-        </CircularProgress>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressChildren />
 
-```jsx
-import { MdWarning, MdReport } from 'react-icons/md';
+```tsx
+import { MdReport, MdWarning } from 'react-icons/md';
 import { Box, CircularProgress } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
@@ -248,24 +174,9 @@ The Circular Progress component can be used as a decorator to show loading on a 
 
 The size of the Circular Progress is controlled by a button, or an icon button unless the `size` prop is explicitly specified on the progress.
 
-export function CircularProgressWithButton() {
-  return (
-    <DisplayStand>
-      <Box className="flex flex-wrap items-center justify-center gap-4">
-        <Button startDecorator={<CircularProgress variant="solid" />}>
-          Loading...
-        </Button>
-        <IconButton>
-          <CircularProgress />
-        </IconButton>
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <CircularProgressWithButton />
 
-```jsx
+```tsx
 import {
   Box,
   Button,
