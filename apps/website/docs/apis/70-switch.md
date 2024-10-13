@@ -22,7 +22,7 @@ For examples and details on the usage of this React component, visit the compone
 
 ## Import
 
-```jsx
+```tsx
 import { Switch } from 'tailwind-joy/components';
 ```
 
@@ -34,8 +34,11 @@ The `ref` is forwarded to the root element.
 
 :::
 
-By default, props available for HTML `<input>` are also available for Switch component.
-Other props are as follows:
+### `className`
+
+Class name applied to the root element.
+
+- Type: `string`
 
 ### `color`
 
@@ -43,6 +46,15 @@ The color of the component.
 
 - Type: `'primary' | 'neutral' | 'danger' | 'success' | 'warning'`
 - Default: `'neutral'` when the component is unchecked, `'primary'` when the component is checked.
+
+### `component`
+
+<AvailableFrom version="0.4.0" />
+
+The component used for the root node.
+
+- Type: `keyof JSX.IntrinsicElements`
+- Default: `'div'`
 
 ### `endDecorator`
 
@@ -56,6 +68,26 @@ The size of the component.
 
 - Type: `'sm' | 'md' | 'lg'`
 - Default: `'md'`
+
+### `slotProps`
+
+<AvailableFrom version="0.4.0" />
+
+The props used for each slot inside.
+
+- Type:
+  ```tsx
+  {
+    root?: ComponentProps<'div'>;
+    action?: ComponentProps<'div'>;
+    input?: ComponentProps<'input'>;
+    track?: ComponentProps<'span'>;
+    thumb?: ComponentProps<'span'>;
+    startDecorator?: ComponentProps<'span'>;
+    endDecorator?: ComponentProps<'span'>;
+  }
+  ```
+- Default: `{}`
 
 ### `startDecorator`
 
