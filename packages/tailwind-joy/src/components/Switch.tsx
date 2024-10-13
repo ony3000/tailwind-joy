@@ -1,17 +1,70 @@
 import { clsx } from 'clsx';
-import type { ComponentProps, ReactNode } from 'react';
-import { forwardRef, useState } from 'react';
+import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
+import { forwardRef, createElement, useState, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r, uuid } from '../base/alias';
 import {
-  join,
   addPrefix,
   hover,
   toColorClass,
   toVariableClass,
 } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
+
+type PassingProps = Pick<
+  ComponentProps<'input'>,
+  | 'checked'
+  | 'defaultChecked'
+  | 'disabled'
+  | 'id'
+  | 'onBlur'
+  | 'onChange'
+  | 'onFocus'
+  | 'readOnly'
+  | 'required'
+>;
+
+function getSwitchColorClassName(
+  props: Required<Pick<BaseVariants, 'color' | 'variant'>> & {
+    state?: 'Hover' | 'Disabled';
+  },
+): string[] {
+  const { color, variant, state = '' } = props ?? {};
+
+  return [
+    toVariableClass(
+      theme.variants[`${variant}${state}`][color].tokens.backgroundColor ||
+        baseTokens.background.surface,
+      'Switch-trackBackground',
+    ),
+    toVariableClass(
+      theme.variants[`${variant}${state}`][color].tokens.color,
+      'Switch-trackColor',
+    ),
+    variant === 'outlined'
+      ? toVariableClass(
+          theme.variants[`${variant}${state}`][color].tokens.borderColor,
+          'Switch-trackBorderColor',
+        )
+      : '[--Switch-trackBorderColor:currentColor]',
+    toVariableClass(
+      theme.variants[`${variant}${state}`][color].tokens.color,
+      'Switch-thumbBackground',
+    ),
+    toVariableClass(
+      theme.variants[`${variant}${state}`][color].tokens.backgroundColor ||
+        baseTokens.background.surface,
+      'Switch-thumbColor',
+    ),
+  ];
+}
 
 function switchRootVariants(props?: BaseVariants) {
   const { color = 'neutral', size = 'md', variant = 'solid' } = props ?? {};
@@ -51,86 +104,16 @@ function switchRootVariants(props?: BaseVariants) {
       r`[--Switch-thumbRadius:max(var(--Switch-trackRadius)-var(--unstable\_paddingBlock),min(var(--unstable\_paddingBlock)/2,var(--Switch-trackRadius)/2))]`,
       '[--Switch-thumbWidth:var(--Switch-thumbSize)]',
       '[--Switch-thumbOffset:max((var(--Switch-trackHeight)-var(--Switch-thumbSize))/2,0px)]',
-      [
-        toVariableClass(
-          baseTokens[color][`${variant}Bg`],
-          'Switch-trackBackground',
-        ),
-        toVariableClass(
-          baseTokens[color][`${variant}Color`],
-          'Switch-trackColor',
-        ),
-        variant === 'outlined'
-          ? toVariableClass(
-              baseTokens[color][`${variant}Border`],
-              'Switch-trackBorderColor',
-            )
-          : '[--Switch-trackBorderColor:currentColor]',
-        toVariableClass(
-          baseTokens[color][`${variant}Color`],
-          'Switch-thumbBackground',
-        ),
-        toVariableClass(baseTokens[color][`${variant}Bg`], 'Switch-thumbColor'),
-      ],
-      [
-        hover(
-          join([
-            toVariableClass(
-              baseTokens[color][`${variant}HoverBg`],
-              'Switch-trackBackground',
-            ),
-            toVariableClass(
-              baseTokens[color][`${variant}HoverColor`],
-              'Switch-trackColor',
-            ),
-            variant === 'outlined'
-              ? toVariableClass(
-                  baseTokens[color][`${variant}HoverBorder`],
-                  'Switch-trackBorderColor',
-                )
-              : '[--Switch-trackBorderColor:currentColor]',
-            toVariableClass(
-              baseTokens[color][`${variant}HoverColor`],
-              'Switch-thumbBackground',
-            ),
-            toVariableClass(
-              baseTokens[color][`${variant}HoverBg`],
-              'Switch-thumbColor',
-            ),
-          ]),
-        ),
-      ],
-      [
-        addPrefix(
-          join([
-            'pointer-events-none',
-            colorTokens.text.tertiary,
-            toVariableClass(
-              baseTokens[color][`${variant}DisabledBg`],
-              'Switch-trackBackground',
-            ),
-            toVariableClass(
-              baseTokens[color][`${variant}DisabledColor`],
-              'Switch-trackColor',
-            ),
-            variant === 'outlined'
-              ? toVariableClass(
-                  baseTokens[color][`${variant}DisabledBorder`],
-                  'Switch-trackBorderColor',
-                )
-              : '[--Switch-trackBorderColor:currentColor]',
-            toVariableClass(
-              baseTokens[color][`${variant}DisabledColor`],
-              'Switch-thumbBackground',
-            ),
-            toVariableClass(
-              baseTokens[color][`${variant}DisabledBg`],
-              'Switch-thumbColor',
-            ),
-          ]),
-          '[&]:has-[:disabled]:',
-        ),
-      ],
+      getSwitchColorClassName({ color, variant }),
+      hover(clsx(getSwitchColorClassName({ color, variant, state: 'Hover' }))),
+      addPrefix(
+        clsx([
+          'pointer-events-none',
+          colorTokens.text.tertiary,
+          getSwitchColorClassName({ color, variant, state: 'Disabled' }),
+        ]),
+        '[&]:has-[:disabled]:',
+      ),
       'inline-flex',
       'items-center',
       'self-center',
@@ -143,15 +126,39 @@ function switchRootVariants(props?: BaseVariants) {
   );
 }
 
-function switchStartDecoratorVariants(props?: BaseVariants) {
-  return twMerge(clsx(['tj-switch-start-decorator', 'inline-flex']));
+function switchActionVariants() {
+  return twMerge(
+    clsx([
+      'tj-switch-action',
+      'rounded-[var(--Switch-trackRadius)]',
+      'absolute',
+      'inset-0',
+      addPrefix(
+        clsx([
+          'outline-2 outline outline-offset-2',
+          toColorClass(baseTokens.focusVisible, 'outline-'),
+        ]),
+        'has-[:focus-visible]:',
+      ),
+    ]),
+  );
 }
 
-function switchEndDecoratorVariants(props?: BaseVariants) {
-  return twMerge(clsx(['tj-switch-end-decorator', 'inline-flex']));
+function switchInputVariants() {
+  return twMerge(
+    clsx([
+      'tj-switch-input',
+      'm-0',
+      'h-full',
+      'w-full',
+      'opacity-0',
+      'absolute',
+      'cursor-pointer',
+    ]),
+  );
 }
 
-function switchTrackVariants(props?: BaseVariants) {
+function switchTrackVariants(props?: Pick<BaseVariants, 'size'>) {
   const { size = 'md' } = props ?? {};
 
   return twMerge(
@@ -177,7 +184,7 @@ function switchTrackVariants(props?: BaseVariants) {
   );
 }
 
-function switchThumbVariants(props?: BaseVariants) {
+function switchThumbVariants() {
   return twMerge(
     clsx([
       'tj-switch-thumb',
@@ -200,121 +207,186 @@ function switchThumbVariants(props?: BaseVariants) {
   );
 }
 
-function switchActionVariants(props?: BaseVariants) {
-  return twMerge(
-    clsx([
-      'tj-switch-action',
-      'rounded-[var(--Switch-trackRadius)]',
-      'absolute',
-      'inset-0',
-      addPrefix(
-        join([
-          'outline-2 outline outline-offset-2',
-          toColorClass(baseTokens.focusVisible, 'outline-'),
-        ]),
-        'has-[:focus-visible]:',
-      ),
-    ]),
-  );
+function switchStartDecoratorVariants() {
+  return twMerge(clsx(['tj-switch-start-decorator', 'inline-flex']));
 }
 
-function switchInputVariants(props?: BaseVariants) {
-  return twMerge(
-    clsx([
-      'tj-switch-input',
-      'm-0',
-      'h-full',
-      'w-full',
-      'opacity-0',
-      'absolute',
-      'cursor-pointer',
-    ]),
-  );
+function switchEndDecoratorVariants() {
+  return twMerge(clsx(['tj-switch-end-decorator', 'inline-flex']));
 }
 
-interface SwitchRootVariants extends BaseVariants {
+type SwitchRootVariants = BaseVariants & {
   endDecorator?: ReactNode;
   startDecorator?: ReactNode;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'div'>;
+    action?: ComponentProps<'div'>;
+    input?: ComponentProps<'input'>;
+    track?: ComponentProps<'span'>;
+    thumb?: ComponentProps<'span'>;
+    startDecorator?: ComponentProps<'span'>;
+    endDecorator?: ComponentProps<'span'>;
+  };
+} & PassingProps;
 
-type SwitchRootProps = Omit<ComponentProps<'input'>, keyof SwitchRootVariants> &
-  SwitchRootVariants;
+type SwitchRootProps<T> = GenericComponentPropsWithVariants<
+  'div',
+  SwitchRootVariants,
+  T
+>;
 
-export const Switch = forwardRef<HTMLDivElement, SwitchRootProps>(
-  function SwitchRoot(
+function SwitchRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  {
+    // ---- passing props ----
+    checked,
+    defaultChecked,
+    disabled,
+    id,
+    onBlur,
+    onChange,
+    onFocus,
+    readOnly,
+    required,
+    // -----------------------
+
+    // ---- non-passing props ----
+    // base variants
+    color,
+    size,
+    variant,
+
+    // non-base variants
+    className,
+    endDecorator,
+    startDecorator,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'div',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: SwitchRootProps<T>,
+  ref: ForwardedRef<unknown>,
+) {
+  const [instanceId, setInstanceId] = useState(id ?? uuid());
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(
+    defaultChecked ?? false,
+  );
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
+
+  const instanceChecked = checked ?? uncontrolledChecked;
+
+  const activeColor = color || 'primary';
+  const inactiveColor = color || 'neutral';
+  const instanceColor = instanceChecked ? activeColor : inactiveColor;
+
+  return createElement(
+    component,
     {
-      children,
-      className,
-      id,
-      color,
-      size,
-      variant,
-      checked,
-      defaultChecked,
-      endDecorator,
-      onChange,
-      startDecorator,
-      ...otherProps
+      ref,
+      className: twMerge(
+        switchRootVariants({
+          color: instanceColor,
+          size,
+          variant,
+        }),
+        className,
+        slotProps.root?.className ?? '',
+      ),
+      ...otherProps,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
-    ref,
-  ) {
-    const [instanceId, setInstanceId] = useState(id ?? uuid());
-    const [uncontrolledChecked, setUncontrolledChecked] = useState(
-      defaultChecked ?? false,
-    );
-
-    const instanceChecked = checked ?? uncontrolledChecked;
-
-    const activeColor = color || 'primary';
-    const inactiveColor = color || 'neutral';
-    const instanceColor = instanceChecked ? activeColor : inactiveColor;
-
-    return (
-      <div
-        ref={ref}
-        className={twMerge(
-          switchRootVariants({
-            color: instanceColor,
-            size,
-            variant,
-          }),
-          className,
-        )}
-      >
-        {startDecorator && (
-          <span className={switchStartDecoratorVariants()}>
-            {startDecorator}
-          </span>
-        )}
-        <span className={switchTrackVariants({ size })}>
-          <span className={switchThumbVariants()} />
+    <>
+      {startDecorator && (
+        <span
+          className={twMerge(
+            switchStartDecoratorVariants(),
+            slotProps.startDecorator?.className ?? '',
+          )}
+          {...(slotPropsWithoutClassName.startDecorator ?? {})}
+        >
+          {startDecorator}
         </span>
-        <div className={switchActionVariants()}>
-          <input
-            id={instanceId}
-            role="switch"
-            type="checkbox"
-            className={switchInputVariants()}
-            checked={checked}
-            defaultChecked={defaultChecked}
-            onChange={(e) => {
+      )}
+      <span
+        className={twMerge(
+          switchTrackVariants({ size }),
+          slotProps.track?.className ?? '',
+        )}
+        {...(slotPropsWithoutClassName.track ?? {})}
+      >
+        <span
+          className={twMerge(
+            switchThumbVariants(),
+            slotProps.thumb?.className ?? '',
+          )}
+          {...(slotPropsWithoutClassName.thumb ?? {})}
+        />
+      </span>
+      <div
+        className={twMerge(
+          switchActionVariants(),
+          slotProps.action?.className ?? '',
+        )}
+        {...(slotPropsWithoutClassName.action ?? {})}
+      >
+        <input
+          role="switch"
+          type="checkbox"
+          className={twMerge(
+            switchInputVariants(),
+            slotProps.input?.className ?? '',
+          )}
+          {...{
+            checked,
+            defaultChecked,
+            disabled,
+            id: instanceId,
+            onBlur,
+            onChange: (e) => {
               if (checked === undefined) {
                 setUncontrolledChecked(e.currentTarget.checked);
               }
               if (onChange) {
                 onChange(e);
               }
-            }}
-            {...otherProps}
-          />
-        </div>
-        {endDecorator && (
-          <span className={switchEndDecoratorVariants()}>{endDecorator}</span>
-        )}
+            },
+            onFocus,
+            readOnly,
+            required,
+          }}
+          {...(slotPropsWithoutClassName.input ?? {})}
+        />
       </div>
-    );
-  },
-);
+      {endDecorator && (
+        <span
+          className={twMerge(
+            switchEndDecoratorVariants(),
+            slotProps.endDecorator?.className ?? '',
+          )}
+          {...(slotPropsWithoutClassName.endDecorator ?? {})}
+        >
+          {endDecorator}
+        </span>
+      )}
+    </>,
+  );
+}
+
+export const Switch = forwardRef(SwitchRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: SwitchRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {
@@ -326,11 +398,11 @@ export const generatorInputs: GeneratorInput[] = [
     },
   },
   {
-    generatorFn: switchStartDecoratorVariants,
+    generatorFn: switchActionVariants,
     variants: {},
   },
   {
-    generatorFn: switchEndDecoratorVariants,
+    generatorFn: switchInputVariants,
     variants: {},
   },
   {
@@ -344,11 +416,11 @@ export const generatorInputs: GeneratorInput[] = [
     variants: {},
   },
   {
-    generatorFn: switchActionVariants,
+    generatorFn: switchStartDecoratorVariants,
     variants: {},
   },
   {
-    generatorFn: switchInputVariants,
+    generatorFn: switchEndDecoratorVariants,
     variants: {},
   },
 ];
