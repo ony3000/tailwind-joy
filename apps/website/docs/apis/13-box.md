@@ -22,7 +22,7 @@ For examples and details on the usage of this React component, visit the compone
 
 ## Import
 
-```jsx
+```tsx
 import { Box } from 'tailwind-joy/components';
 ```
 
