@@ -1,68 +1,21 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
-import { forwardRef } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { r } from '../base/alias';
-import { join, addPrefix, toVariableClass } from '../base/modifier';
-import { baseTokens, colorTokens } from '../base/tokens';
-
-function circularProgressSvgVariants(props?: BaseVariants) {
-  return twMerge(
-    clsx([
-      'tj-circular-progress-svg',
-      'w-[inherit]',
-      'h-[inherit]',
-      '[display:inherit]',
-      '[box-sizing:inherit]',
-      'absolute',
-      'top-[calc(-1*var(--variant-borderWidth,0px))]',
-      'left-[calc(-1*var(--variant-borderWidth,0px))]',
-    ]),
-  );
-}
-
-function circularProgressTrackVariants(props?: BaseVariants) {
-  return twMerge(
-    clsx([
-      'tj-circular-progress-track',
-      '[cx:50%]',
-      '[cy:50%]',
-      r`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))]`,
-      'fill-transparent',
-      r`[stroke-width:var(--\_track-thickness)]`,
-      'stroke-[var(--CircularProgress-trackColor)]',
-    ]),
-  );
-}
-
-function circularProgressProgressVariants(
-  props?: BaseVariants & {
-    determinate?: boolean;
-  },
-) {
-  const { determinate = false } = props ?? {};
-
-  return twMerge(
-    clsx([
-      'tj-circular-progress-progress',
-      r`[--_progress-radius:calc(var(--\_inner-size)/2-var(--\_progress-thickness)/2-max(0px,var(--\_thickness-diff)/2))]`,
-      r`[--_progress-length:calc(2*var(--pi)*var(--\_progress-radius))]`,
-      '[cx:50%]',
-      '[cy:50%]',
-      r`[r:var(--\_progress-radius)]`,
-      'fill-transparent',
-      r`[stroke-width:var(--\_progress-thickness)]`,
-      'stroke-[var(--CircularProgress-progressColor)]',
-      '[stroke-linecap:var(--CircularProgress-linecap,round)]',
-      r`[stroke-dasharray:var(--\_progress-length)]`,
-      r`[stroke-dashoffset:calc(var(--\_progress-length)*(1-var(--CircularProgress-percent)/100))]`,
-      'origin-center',
-      '-rotate-90',
-      !determinate && 'animate-joy-circulate',
-    ]),
-  );
-}
+import {
+  addPrefix,
+  borderColor,
+  textColor,
+  toVariableClass,
+} from '../base/modifier';
+import { theme } from '../base/theme';
+import { excludeClassName } from '../base/utils';
 
 function circularProgressRootVariants(
   props?: BaseVariants & {
@@ -84,11 +37,11 @@ function circularProgressRootVariants(
       'tj-circular-progress-root group/tj-circular-progress',
       r`[--Icon-fontSize:calc(0.4*var(--\_root-size))]`,
       toVariableClass(
-        baseTokens[color][`${variant}Bg`],
+        theme.variants[variant][color].tokens.backgroundColor,
         'CircularProgress-trackColor',
       ),
       toVariableClass(
-        baseTokens[color][`${variant}Color`],
+        theme.variants[variant][color].tokens.color,
         'CircularProgress-progressColor',
       ),
       '[--CircularProgress-linecap:round]',
@@ -123,50 +76,49 @@ function circularProgressRootVariants(
       'items-center',
       'shrink-0',
       'relative',
-      colorTokens[color][`${variant}Color`],
-      'font-medium',
-      r`text-[calc(0.2*var(--\_root-size))]`,
+      textColor(theme.variants[variant][color].tokens.color),
+      ['font-medium', r`text-[calc(0.2*var(--\_root-size))]`],
       [
         variant === 'outlined'
           ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
-        colorTokens[color][`${variant}Border`],
+        borderColor(theme.variants[variant][color].tokens.borderColor),
       ],
       variant === 'outlined' && [
         addPrefix(
-          join([
+          clsx([
             'content-[""]',
             'block',
             'absolute',
             'rounded-[inherit]',
             r`inset-[var(--\_outlined-inset)]`,
-            join([
+            [
               variant === 'outlined'
                 ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
                 : '[--variant-borderWidth:0px]',
-              colorTokens[color][`${variant}Border`],
-            ]),
+              borderColor(theme.variants[variant][color].tokens.borderColor),
+            ],
           ]),
           'before:',
         ),
       ],
       variant === 'soft' && [
         toVariableClass(
-          baseTokens.neutral.softBg,
+          theme.variants.soft.neutral.tokens.backgroundColor,
           'CircularProgress-trackColor',
         ),
         toVariableClass(
-          baseTokens[color].solidBg,
+          theme.variants.solid[color].tokens.backgroundColor,
           'CircularProgress-progressColor',
         ),
       ],
       variant === 'solid' && [
         toVariableClass(
-          baseTokens[color].softHoverBg,
+          theme.variants.softHover[color].tokens.backgroundColor,
           'CircularProgress-trackColor',
         ),
         toVariableClass(
-          baseTokens[color].solidBg,
+          theme.variants.solid[color].tokens.backgroundColor,
           'CircularProgress-progressColor',
         ),
       ],
@@ -174,51 +126,127 @@ function circularProgressRootVariants(
   );
 }
 
-interface CircularProgressRootVariants extends BaseVariants {
+function circularProgressSvgVariants() {
+  return twMerge(
+    clsx([
+      'tj-circular-progress-svg',
+      'w-[inherit]',
+      'h-[inherit]',
+      '[display:inherit]',
+      '[box-sizing:inherit]',
+      'absolute',
+      'top-[calc(-1*var(--variant-borderWidth,0px))]',
+      'left-[calc(-1*var(--variant-borderWidth,0px))]',
+    ]),
+  );
+}
+
+function circularProgressTrackVariants() {
+  return twMerge(
+    clsx([
+      'tj-circular-progress-track',
+      '[cx:50%]',
+      '[cy:50%]',
+      r`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))]`,
+      'fill-transparent',
+      r`[stroke-width:var(--\_track-thickness)]`,
+      'stroke-[var(--CircularProgress-trackColor)]',
+    ]),
+  );
+}
+
+function circularProgressProgressVariants(props?: { determinate?: boolean }) {
+  const { determinate = false } = props ?? {};
+
+  return twMerge(
+    clsx([
+      'tj-circular-progress-progress',
+      r`[--_progress-radius:calc(var(--\_inner-size)/2-var(--\_progress-thickness)/2-max(0px,var(--\_thickness-diff)/2))]`,
+      r`[--_progress-length:calc(2*var(--pi)*var(--\_progress-radius))]`,
+      '[cx:50%]',
+      '[cy:50%]',
+      r`[r:var(--\_progress-radius)]`,
+      'fill-transparent',
+      r`[stroke-width:var(--\_progress-thickness)]`,
+      'stroke-[var(--CircularProgress-progressColor)]',
+      '[stroke-linecap:var(--CircularProgress-linecap,round)]',
+      r`[stroke-dasharray:var(--\_progress-length)]`,
+      r`[stroke-dashoffset:calc(var(--\_progress-length)*(1-var(--CircularProgress-percent)/100))]`,
+      'origin-center',
+      '-rotate-90',
+      !determinate && 'animate-joy-circulate',
+    ]),
+  );
+}
+
+type CircularProgressRootVariants = BaseVariants & {
   determinate?: boolean;
   thickness?: number;
   value?: number;
-}
+} & {
+  slotProps?: {
+    root?: ComponentProps<'span'>;
+    svg?: ComponentProps<'svg'>;
+    track?: ComponentProps<'circle'>;
+    progress?: ComponentProps<'circle'>;
+  };
+};
 
-type CircularProgressRootProps = Omit<
-  ComponentProps<'span'>,
-  keyof CircularProgressRootVariants
-> &
-  CircularProgressRootVariants;
+type CircularProgressRootProps<T> = GenericComponentPropsWithVariants<
+  'span',
+  CircularProgressRootVariants,
+  T
+>;
 
-export const CircularProgress = forwardRef<
-  HTMLSpanElement,
-  CircularProgressRootProps
->(function CircularProgressRoot(
+function CircularProgressRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
   {
-    children,
-    className,
-    style,
+    // ---- non-passing props ----
+    // base variants
     color = 'primary',
     size,
     variant = 'soft',
-    thickness,
+
+    // non-base variants
+    className,
     determinate,
+    style,
+    thickness,
     value = determinate ? 0 : 25,
+
+    // slot props
+    slotProps = {},
+
+    // others
+    component = 'span',
+    children,
     ...otherProps
-  },
-  ref,
+    // ---------------------------
+  }: CircularProgressRootProps<T>,
+  ref: ForwardedRef<unknown>,
 ) {
-  return (
-    <span
-      ref={ref}
-      role="progressbar"
-      className={twMerge(
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
+
+  return createElement(
+    component,
+    {
+      ref,
+      role: 'progressbar',
+      className: twMerge(
         circularProgressRootVariants({
           color,
           size,
-          instanceSize: size,
           variant,
+          instanceSize: size,
         }),
         className,
-      )}
-      {...otherProps}
-      style={{
+        slotProps.root?.className ?? '',
+      ),
+      style: {
         ...style,
         ...(thickness === undefined
           ? {}
@@ -226,20 +254,55 @@ export const CircularProgress = forwardRef<
               '--_track-thickness': `${thickness}px`,
               '--_progress-thickness': `${thickness}px`,
             }),
-        // @ts-expect-error
         '--CircularProgress-percent': value,
-      }}
-    >
-      <svg className={circularProgressSvgVariants()}>
-        <circle className={circularProgressTrackVariants()} />
-        <circle className={circularProgressProgressVariants({ determinate })} />
+      },
+      ...otherProps,
+      ...(slotPropsWithoutClassName.root ?? {}),
+    },
+    <>
+      <svg
+        className={twMerge(
+          circularProgressSvgVariants(),
+          slotProps.svg?.className ?? '',
+        )}
+        {...(slotPropsWithoutClassName.svg ?? {})}
+      >
+        <circle
+          className={twMerge(
+            circularProgressTrackVariants(),
+            slotProps.track?.className ?? '',
+          )}
+          {...(slotPropsWithoutClassName.track ?? {})}
+        />
+        <circle
+          className={twMerge(
+            circularProgressProgressVariants({ determinate }),
+            slotProps.progress?.className ?? '',
+          )}
+          {...(slotPropsWithoutClassName.progress ?? {})}
+        />
       </svg>
       {children}
-    </span>
+    </>,
   );
-});
+}
+
+export const CircularProgress = forwardRef(CircularProgressRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: CircularProgressRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
+  {
+    generatorFn: circularProgressRootVariants,
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      size: ['sm', 'md', 'lg'],
+      variant: ['solid', 'soft', 'outlined', 'plain'],
+      instanceSize: [undefined, 'sm', 'md', 'lg'],
+    },
+  },
   {
     generatorFn: circularProgressSvgVariants,
     variants: {},
@@ -252,15 +315,6 @@ export const generatorInputs: GeneratorInput[] = [
     generatorFn: circularProgressProgressVariants,
     variants: {
       determinate: [false, true],
-    },
-  },
-  {
-    generatorFn: circularProgressRootVariants,
-    variants: {
-      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
-      size: ['sm', 'md', 'lg'],
-      instanceSize: [undefined, 'sm', 'md', 'lg'],
-      variant: ['solid', 'soft', 'outlined', 'plain'],
     },
   },
 ];
