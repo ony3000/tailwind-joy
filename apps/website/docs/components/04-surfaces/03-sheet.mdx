@@ -3,6 +3,8 @@ sidebar_position: 3
 slug: /components/sheet
 ---
 
+import { SheetBasics } from '@site/src/demos/sheet';
+
 # Sheet
 
 <AvailableFrom version="0.3.0" />
@@ -11,25 +13,15 @@ Sheet is a generic container that supports Tailwind-Joy's variants.
 
 ## Basics
 
-```jsx
+```tsx
 import { Sheet } from 'tailwind-joy/components';
 ```
 
 The `Sheet` component, in addition to the variants, also has access to the `color` prop, allowing you to use every palette of the theme.
 
-export function SheetBasics() {
-  return (
-    <DisplayStand>
-      <Sheet variant="outlined" color="neutral" className="p-8">
-        Hello world!
-      </Sheet>
-    </DisplayStand>
-  );
-}
-
 <SheetBasics />
 
-```jsx
+```tsx
 import { Sheet } from 'tailwind-joy/components';
 
 export function SheetBasics() {
