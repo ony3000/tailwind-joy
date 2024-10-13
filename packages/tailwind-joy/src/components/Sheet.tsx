@@ -1,10 +1,16 @@
 import { clsx } from 'clsx';
-import type { ComponentProps } from 'react';
-import { forwardRef, useMemo } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '@/base/types';
 import { toVariableClass } from '../base/modifier';
+import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 
 function sheetRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
@@ -13,7 +19,8 @@ function sheetRootVariants(
 ) {
   const { color = 'neutral', variant = 'plain', childRadius } = props ?? {};
   const resolvedBgToken =
-    baseTokens[color][`${variant}Bg`] || baseTokens.background.surface;
+    theme.variants[variant][color].tokens.backgroundColor ||
+    baseTokens.background.surface;
 
   return twMerge(
     clsx([
@@ -29,76 +36,106 @@ function sheetRootVariants(
       ],
       colorTokens.background.surface,
       'relative',
-      'text-[1rem]',
-      'leading-normal',
-      colorTokens.text.secondary,
-      [
-        variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
-          : '[--variant-borderWidth:0px]',
-        colorTokens[color][`${variant}Color`],
-        colorTokens[color][`${variant}Bg`],
-        colorTokens[color][`${variant}Border`],
-      ],
+      ['text-[1rem]', 'leading-normal', colorTokens.text.secondary],
+      theme.variants[variant][color].className,
     ]),
   );
 }
 
-interface SheetRootVariants extends Pick<BaseVariants, 'color' | 'variant'> {}
+type SheetRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
+  // NOTE: There are no non-base variants yet.
+} & {
+  slotProps?: {
+    root?: ComponentProps<'div'>;
+  };
+};
 
-type SheetRootProps = Omit<ComponentProps<'div'>, keyof SheetRootVariants> &
-  SheetRootVariants;
+type SheetRootProps<T> = GenericComponentPropsWithVariants<
+  'div',
+  SheetRootVariants,
+  T
+>;
 
-export const Sheet = forwardRef<HTMLDivElement, SheetRootProps>(
-  function SheetRoot(
-    { children, className, style, color, variant, ...otherProps },
-    ref,
-  ) {
-    const resolvedClassNames = twMerge(className).split(' ');
-    const resolvedBorderRadiusWithArbitraryValue = useMemo(() => {
-      const regExp = /^rounded-\[([^\]]+)\]$/;
+function SheetRoot<
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  {
+    // ---- non-passing props ----
+    // base variants
+    color,
+    variant,
 
-      return resolvedClassNames
-        .filter((text) => regExp.test(text))
-        .at(0)
-        ?.replace(regExp, '$1');
-    }, [resolvedClassNames]);
-    const resolvedBorderRadiusWithArbitraryProperty = useMemo(() => {
-      const regExp = /^\[border-radius:([^\]]+)\]$/;
+    // non-base variants
+    className,
+    style,
 
-      return resolvedClassNames
-        .filter((text) => regExp.test(text))
-        .at(0)
-        ?.replace(regExp, '$1');
-    }, [resolvedClassNames]);
+    // slot props
+    slotProps = {},
 
-    const instanceChildRadius =
-      resolvedBorderRadiusWithArbitraryProperty ||
-      resolvedBorderRadiusWithArbitraryValue;
+    // others
+    component = 'div',
+    children,
+    ...otherProps
+    // ---------------------------
+  }: SheetRootProps<T>,
+  ref: ForwardedRef<unknown>,
+) {
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
 
-    return (
-      <div
-        ref={ref}
-        className={twMerge(
-          sheetRootVariants({
-            color,
-            variant,
-            childRadius: instanceChildRadius !== undefined,
-          }),
-          className,
-        )}
-        {...otherProps}
-        style={{
-          ...style,
-          // @ts-expect-error
-          '--tj-Sheet-childRadius': instanceChildRadius,
-        }}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+  const resolvedClassNames = twMerge(className).split(' ');
+  const resolvedBorderRadiusWithArbitraryValue = useMemo(() => {
+    const regExp = /^rounded-\[([^\]]+)\]$/;
+
+    return resolvedClassNames
+      .filter((text) => regExp.test(text))
+      .at(0)
+      ?.replace(regExp, '$1');
+  }, [resolvedClassNames]);
+  const resolvedBorderRadiusWithArbitraryProperty = useMemo(() => {
+    const regExp = /^\[border-radius:([^\]]+)\]$/;
+
+    return resolvedClassNames
+      .filter((text) => regExp.test(text))
+      .at(0)
+      ?.replace(regExp, '$1');
+  }, [resolvedClassNames]);
+
+  const instanceChildRadius =
+    resolvedBorderRadiusWithArbitraryProperty ||
+    resolvedBorderRadiusWithArbitraryValue;
+
+  return createElement(
+    component,
+    {
+      ref,
+      className: twMerge(
+        sheetRootVariants({
+          color,
+          variant,
+          childRadius: instanceChildRadius !== undefined,
+        }),
+        className,
+        slotProps.root?.className ?? '',
+      ),
+      style: {
+        ...style,
+        '--tj-Sheet-childRadius': instanceChildRadius,
+      },
+      ...otherProps,
+      ...(slotPropsWithoutClassName.root ?? {}),
+    },
+    children,
+  );
+}
+
+export const Sheet = forwardRef(SheetRoot) as <
+  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+>(
+  props: SheetRootProps<T> & { ref?: ForwardedRef<unknown> },
+) => JSX.Element;
 
 export const generatorInputs: GeneratorInput[] = [
   {
