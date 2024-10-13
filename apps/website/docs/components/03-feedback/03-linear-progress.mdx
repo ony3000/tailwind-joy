@@ -3,6 +3,14 @@ sidebar_position: 3
 slug: /components/linear-progress
 ---
 
+import {
+  LinearProgressVariants,
+  LinearProgressSizes,
+  LinearProgressColors,
+  LinearProgressThickness,
+  LinearProgressDeterminate,
+} from '@site/src/demos/linear-progress';
+
 # Linear Progress
 
 <AvailableFrom version="0.2.0" />
@@ -11,7 +19,7 @@ Linear Progress indicators, commonly known as loaders, express an unspecified wa
 
 ## Basics
 
-```jsx
+```tsx
 import { LinearProgress } from 'tailwind-joy/components';
 ```
 
@@ -21,24 +29,9 @@ import { LinearProgress } from 'tailwind-joy/components';
 
 The Linear Progress component supports four variants: `solid`, `soft` (default), `outlined`, and `plain`.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function LinearProgressVariants() {
-  return (
-    <DisplayStand>
-      <Box className="w-full space-y-4">
-        <LinearProgress variant="solid" />
-        <LinearProgress variant="soft" />
-        <LinearProgress variant="outlined" />
-        <LinearProgress variant="plain" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <LinearProgressVariants />
 
-```jsx
+```tsx
 import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressVariants() {
@@ -57,23 +50,9 @@ export function LinearProgressVariants() {
 
 The Linear Progress component supports three sizes: `sm`, `md` (default), and `lg`.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function LinearProgressSizes() {
-  return (
-    <DisplayStand>
-      <Box className="w-full space-y-4">
-        <LinearProgress size="sm" />
-        <LinearProgress size="md" />
-        <LinearProgress size="lg" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <LinearProgressSizes />
 
-```jsx
+```tsx
 import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressSizes() {
@@ -91,25 +70,9 @@ export function LinearProgressSizes() {
 
 The Linear Progress component supports five colors: `primary` (default), `neutral`, `danger`, `success`, and `warning`.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function LinearProgressColors() {
-  return (
-    <DisplayStand>
-      <Box className="w-full space-y-4">
-        <LinearProgress color="primary" />
-        <LinearProgress color="neutral" />
-        <LinearProgress color="danger" />
-        <LinearProgress color="success" />
-        <LinearProgress color="warning" />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <LinearProgressColors />
 
-```jsx
+```tsx
 import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressColors() {
@@ -129,17 +92,9 @@ export function LinearProgressColors() {
 
 Provides a number to `thickness` prop to control the bar's stroke width.
 
-export function LinearProgressThickness() {
-  return (
-    <DisplayStand>
-      <LinearProgress thickness={1} />
-    </DisplayStand>
-  );
-}
-
 <LinearProgressThickness />
 
-```jsx
+```tsx
 import { LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressThickness() {
@@ -151,24 +106,9 @@ export function LinearProgressThickness() {
 
 You can use the `determinate` prop if you want to indicate a specified wait time.
 
-<!-- TODO: Replace Box with Stack. -->
-
-export function LinearProgressDeterminate() {
-  return (
-    <DisplayStand>
-      <Box className="w-full space-y-4">
-        <LinearProgress determinate value={25} />
-        <LinearProgress determinate value={50} />
-        <LinearProgress determinate value={75} />
-        <LinearProgress determinate value={100} />
-      </Box>
-    </DisplayStand>
-  );
-}
-
 <LinearProgressDeterminate />
 
-```jsx
+```tsx
 import { Box, LinearProgress } from 'tailwind-joy/components';
 
 export function LinearProgressDeterminate() {
