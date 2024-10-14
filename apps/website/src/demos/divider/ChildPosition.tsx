@@ -2,8 +2,14 @@ import { useState } from 'react';
 import { Box, Divider } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
+declare module 'react' {
+  interface CSSProperties {
+    '--Divider-childPosition'?: string;
+  }
+}
+
 export function DividerChildPosition() {
-  const [position, setPosition] = useState(50);
+  const [position, setPosition] = useState('50');
   const content = (
     <Box className="text-joy-neutral-600 dark:text-joy-neutral-400 text-[0.875rem]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac erat et

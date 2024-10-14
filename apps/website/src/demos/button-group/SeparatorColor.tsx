@@ -2,8 +2,14 @@ import { useState } from 'react';
 import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
+declare module 'react' {
+  interface CSSProperties {
+    '--ButtonGroup-separatorColor'?: string;
+  }
+}
+
 export function ButtonGroupSeparatorColor() {
-  const [hue, setHue] = useState(0);
+  const [hue, setHue] = useState('0');
 
   return (
     <DisplayStand>

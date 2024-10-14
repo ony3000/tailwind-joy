@@ -334,8 +334,14 @@ To control the color of the separator, override the CSS variable `--ButtonGroup-
 import { useState } from 'react';
 import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
 
+declare module 'react' {
+  interface CSSProperties {
+    '--ButtonGroup-separatorColor'?: string;
+  }
+}
+
 export function ButtonGroupSeparatorColor() {
-  const [hue, setHue] = useState(0);
+  const [hue, setHue] = useState('0');
 
   return (
     <Box className="flex flex-col items-center justify-center gap-4">
