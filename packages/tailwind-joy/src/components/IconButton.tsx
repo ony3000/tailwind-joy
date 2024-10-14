@@ -34,7 +34,7 @@ function iconButtonLoadingIndicatorVariants(
       '-translate-x-1/2',
 
       // NOTE: It is disabled by default because the indicator is only activated when `loading: true`. So I didn't specify a color class name for the enabled state.
-      textColor(baseTokens[color][`${variant}DisabledColor`]),
+      textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
     ]),
   );
 }
