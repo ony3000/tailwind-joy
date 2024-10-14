@@ -18,7 +18,14 @@ export function DividerRenderedWithContent() {
         <Divider>Visual indicator</Divider>
         {content}
         <Divider>
-          <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+          {/* TODO: Replace div with Chip. */}
+          <div
+            className="
+              bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
+              relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
+              rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
+            "
+          >
             <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
               Visual indicator
             </span>

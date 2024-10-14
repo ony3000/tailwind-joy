@@ -48,7 +48,13 @@ export function DividerRenderedWithContent() {
       <Divider>Visual indicator</Divider>
       {content}
       <Divider>
-        <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+        <div
+          className="
+            bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
+            relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
+            rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
+          "
+        >
           <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
             Visual indicator
           </span>
@@ -79,7 +85,13 @@ import { iconClass } from 'tailwind-joy/utils';
 
 export function DividerVerticalDivider() {
   return (
-    <Box className="bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300 border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3">
+    <Box
+      className="
+        bg-joy-neutral-50 dark:bg-joy-neutral-900 text-joy-neutral-700 dark:text-joy-neutral-300
+        border-joy-neutral-500/20 dark:border-joy-neutral-400/20 flex w-fit items-center
+        rounded-md border border-solid [&_hr]:mx-1 [&_svg]:m-3
+      "
+    >
       <MdFormatAlignLeft className={iconClass()} />
       <MdFormatAlignCenter className={iconClass()} />
       <MdFormatAlignRight className={iconClass()} />
@@ -156,7 +168,13 @@ export function DividerChildPosition() {
       <Box className="space-y-2">
         {content}
         <Divider style={{ '--Divider-childPosition': `${position}%` }}>
-          <div className="bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200 relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline">
+          <div
+            className="
+              bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
+              relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
+              rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
+            "
+          >
             <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
               Visual indicator
             </span>
