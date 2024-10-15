@@ -14,7 +14,7 @@ import type {
   GenericComponentPropsWithVariants,
 } from '@/base/types';
 import { r } from '../base/alias';
-import { join, addPrefix, toVariableClass } from '../base/modifier';
+import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 
 function buttonGroupRootVariants(
@@ -53,8 +53,8 @@ function buttonGroupRootVariants(
       'rounded-[var(--ButtonGroup-radius)]',
       orientation === 'vertical' ? 'flex-col' : 'flex-row',
       addPrefix(
-        join([
-          ...(orientation === 'vertical'
+        clsx([
+          orientation === 'vertical'
             ? [
                 r`[--Button-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
                 r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
@@ -64,16 +64,16 @@ function buttonGroupRootVariants(
                 r`[--Button-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
                 r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
                 '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-              ]),
+              ],
         ]),
         '[&>[data-first-child]]:',
       ),
       addPrefix(
-        join([
+        clsx([
           r`[--Button-radius:var(--unstable\_childRadius)]`,
           r`[--IconButton-radius:var(--unstable\_childRadius)]`,
           r`rounded-[var(--unstable\_childRadius)]`,
-          ...(orientation === 'vertical'
+          orientation === 'vertical'
             ? [
                 '[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
                 '[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
@@ -81,13 +81,13 @@ function buttonGroupRootVariants(
             : [
                 '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
                 '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-              ]),
+              ],
         ]),
         '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:',
       ),
       addPrefix(
-        join([
-          ...(orientation === 'vertical'
+        clsx([
+          orientation === 'vertical'
             ? [
                 r`[--Button-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
                 r`[--IconButton-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
@@ -97,20 +97,20 @@ function buttonGroupRootVariants(
                 r`[--Button-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
                 r`[--IconButton-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
                 '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-              ]),
+              ],
         ]),
         '[&>[data-last-child]]:',
       ),
       addPrefix(
-        join([
+        clsx([
           '[--Button-radius:var(--ButtonGroup-radius)]',
           '[--IconButton-radius:var(--ButtonGroup-radius)]',
         ]),
         '[&>:only-child]:',
       ),
       addPrefix(
-        join([
-          ...(orientation === 'vertical'
+        clsx([
+          orientation === 'vertical'
             ? [
                 '[--Button-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
                 '[--IconButton-margin:calc(var(--ButtonGroup-separatorSize)*-1)_0_0_0]',
@@ -118,7 +118,7 @@ function buttonGroupRootVariants(
             : [
                 '[--Button-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
                 '[--IconButton-margin:0_0_0_calc(var(--ButtonGroup-separatorSize)*-1)]',
-              ]),
+              ],
         ]),
         '[&>:not([data-first-child]):not(:only-child)]:',
       ),

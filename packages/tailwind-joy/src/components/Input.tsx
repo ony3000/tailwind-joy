@@ -9,7 +9,6 @@ import type {
 } from '@/base/types';
 import { r } from '../base/alias';
 import {
-  join,
   addPrefix,
   backgroundColor,
   borderColor,
@@ -96,46 +95,44 @@ function inputInputVariants(props?: {
       'leading-[inherit]',
       'text-ellipsis',
       addPrefix(
-        join([
+        clsx([
           '[padding-inline:var(--Input-paddingInline)]',
-          !hasStartDecorator &&
-            join([
-              'ms-[calc(-1*var(--Input-paddingInline))]',
-              'ps-[var(--Input-paddingInline)]',
-              'rounded-l-[calc(var(--Input-radius)-var(--variant-borderWidth,0px))]',
-            ]),
-          !hasEndDecorator &&
-            join([
-              'me-[calc(-1*var(--Input-paddingInline))]',
-              'pe-[var(--Input-paddingInline)]',
-              'rounded-r-[calc(var(--Input-radius)-var(--variant-borderWidth,0px))]',
-            ]),
+          !hasStartDecorator && [
+            'ms-[calc(-1*var(--Input-paddingInline))]',
+            'ps-[var(--Input-paddingInline)]',
+            'rounded-l-[calc(var(--Input-radius)-var(--variant-borderWidth,0px))]',
+          ],
+          !hasEndDecorator && [
+            'me-[calc(-1*var(--Input-paddingInline))]',
+            'pe-[var(--Input-paddingInline)]',
+            'rounded-r-[calc(var(--Input-radius)-var(--variant-borderWidth,0px))]',
+          ],
         ]),
         '[&:-webkit-autofill]:',
       ),
       addPrefix(
-        join([
+        clsx([
           '[color:var(--Input-placeholderColor)]',
           '[opacity:var(--Input-placeholderOpacity)]',
         ]),
         '[&::-webkit-input-placeholder]:',
       ),
       addPrefix(
-        join([
+        clsx([
           '[color:var(--Input-placeholderColor)]',
           '[opacity:var(--Input-placeholderOpacity)]',
         ]),
         '[&::-moz-placeholder]:',
       ),
       addPrefix(
-        join([
+        clsx([
           '[color:var(--Input-placeholderColor)]',
           '[opacity:var(--Input-placeholderOpacity)]',
         ]),
         '[&:-ms-input-placeholder]:',
       ),
       addPrefix(
-        join([
+        clsx([
           '[color:var(--Input-placeholderColor)]',
           '[opacity:var(--Input-placeholderOpacity)]',
         ]),
@@ -173,7 +170,7 @@ function inputRootVariants(
         ? '[--Input-focusedHighlight:var(--joy-primary-500)]'
         : `[--Input-focusedHighlight:var(--joy-${color}-500)]`,
       addPrefix(
-        join([
+        clsx([
           instanceColor &&
             (instanceColor === 'neutral'
               ? '[--_Input-focusedHighlight:var(--joy-primary-500)]'
@@ -242,7 +239,7 @@ function inputRootVariants(
       colorTokens[color][`${variant}Bg`] || colorTokens.background.surface,
       colorTokens[color][`${variant}Border`],
       addPrefix(
-        join([
+        clsx([
           'box-border',
           'content-[""]',
           'block',
@@ -258,7 +255,7 @@ function inputRootVariants(
       ),
       colorTokens[color][`${variant}HoverColor`],
       addPrefix(
-        join([
+        clsx([
           'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
           textColor(baseTokens[color][`${variant}DisabledColor`]),
           backgroundColor(baseTokens[color][`${variant}DisabledBg`]),

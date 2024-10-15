@@ -10,7 +10,6 @@ import type {
 } from '@/base/types';
 import { r, uuid } from '../base/alias';
 import {
-  join,
   addPrefix,
   toColorClass,
   backgroundColor,
@@ -127,7 +126,7 @@ function checkboxCheckboxVariants(
         theme.variants[`${variant}Hover`][color].className,
         theme.variants[`${variant}Active`][color].className,
         addPrefix(
-          join([
+          clsx([
             'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
             textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
             backgroundColor(
@@ -169,7 +168,7 @@ function checkboxActionVariants(
       'inset-[calc(-1*var(--variant-borderWidth,0px))]',
       'z-[1]',
       addPrefix(
-        join([
+        clsx([
           'outline-2 outline outline-offset-2',
           toColorClass(baseTokens.focusVisible, 'outline-'),
         ]),
@@ -180,7 +179,7 @@ function checkboxActionVariants(
         theme.variants[`${variant}Hover`][color].className,
         theme.variants[`${variant}Active`][color].className,
         addPrefix(
-          join([
+          clsx([
             'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
             textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
             backgroundColor(

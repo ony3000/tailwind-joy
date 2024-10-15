@@ -3,15 +3,6 @@ type BaseToken = '' | `joy-${string}` | `joy-${string} dark:joy-${string}`;
 const SPACE = ' ';
 
 /**
- * A shortcut for the `Array.join` function.
- *
- * @deprecated Use `clsx` instead.
- */
-export function join(elements: unknown[]): string {
-  return elements.join(SPACE);
-}
-
-/**
  * Adds a prefix to each piece of a space-separated string.
  *
  * This is useful when you need to write multiple class names with prefix.
