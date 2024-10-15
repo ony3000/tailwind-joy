@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement, useState } from 'react';
+import { forwardRef, createElement, useState, useMemo } from 'react';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -19,6 +19,7 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 import { iconClassVariants } from './internal/class-adapter';
 
 type PassingProps = Pick<
@@ -295,29 +296,9 @@ function CheckboxRoot<
   const [uncontrolledChecked, setUncontrolledChecked] = useState(
     defaultChecked ?? false,
   );
-
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
-  );
-  const slotCheckboxPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.checkbox ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotActionPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.action ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotInputPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.input ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotLabelPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.label ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
 
   const instanceChecked = checked ?? uncontrolledChecked;
@@ -348,7 +329,7 @@ function CheckboxRoot<
         slotProps.root?.className ?? '',
       ),
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       <span
@@ -361,7 +342,7 @@ function CheckboxRoot<
           }),
           slotProps.checkbox?.className ?? '',
         )}
-        {...slotCheckboxPropsWithoutClassName}
+        {...(slotPropsWithoutClassName.checkbox ?? {})}
       >
         <span
           className={twMerge(
@@ -373,7 +354,7 @@ function CheckboxRoot<
             }),
             slotProps.action?.className ?? '',
           )}
-          {...slotActionPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.action ?? {})}
         >
           <input
             type="checkbox"
@@ -399,7 +380,7 @@ function CheckboxRoot<
               readOnly,
               required,
             }}
-            {...slotInputPropsWithoutClassName}
+            {...(slotPropsWithoutClassName.input ?? {})}
           />
         </span>
         {disableIcon
@@ -431,7 +412,7 @@ function CheckboxRoot<
             checkboxLabelVariants({ disableIcon }),
             slotProps.label?.className ?? '',
           )}
-          {...slotLabelPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.label ?? {})}
         >
           {label}
         </label>

@@ -6,6 +6,7 @@ import {
   cloneElement,
   isValidElement,
   Children,
+  useMemo,
 } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
@@ -16,6 +17,7 @@ import type {
 import { r } from '../base/alias';
 import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
+import { excludeClassName } from '../base/utils';
 
 function buttonGroupRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
@@ -204,8 +206,9 @@ function ButtonGroupRoot<
   }: ButtonGroupRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
 
   return createElement(
@@ -234,7 +237,7 @@ function ButtonGroupRoot<
         '--tj-ButtonGroup-spacing': spacing,
       },
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       {Children.map(children, (child, index) => {

@@ -1,6 +1,12 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
-import { createContext, forwardRef, createElement, useState } from 'react';
+import {
+  createContext,
+  forwardRef,
+  createElement,
+  useState,
+  useMemo,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
@@ -9,6 +15,7 @@ import type {
 } from '@/base/types';
 import { r, uuid } from '../base/alias';
 import { theme } from '../base/theme';
+import { excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<
   ComponentProps<'input'>,
@@ -107,9 +114,9 @@ function RadioGroupRoot<
   ref: ForwardedRef<unknown>,
 ) {
   const [instanceName, setInstanceName] = useState(name ?? uuid());
-
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
 
   return (
@@ -140,7 +147,7 @@ function RadioGroupRoot<
             slotProps.root?.className ?? '',
           ),
           ...otherProps,
-          ...slotRootPropsWithoutClassName,
+          ...(slotPropsWithoutClassName.root ?? {}),
         },
         children,
       )}

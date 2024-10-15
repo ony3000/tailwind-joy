@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
@@ -19,6 +19,7 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 import { CircularProgress } from './CircularProgress';
 
 function buttonStartDecoratorVariants() {
@@ -213,24 +214,11 @@ function ButtonRoot<
   }: ButtonRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
-  const slotStartDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.startDecorator ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotEndDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.endDecorator ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotLoadingIndicatorCenterPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.loadingIndicatorCenter ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
+
   const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
   const instanceLoadingIndicator = loadingIndicator ?? (
     <CircularProgress color={color} thickness={thickness} />
@@ -256,7 +244,7 @@ function ButtonRoot<
       disabled: visuallyDisabled,
       tabIndex: visuallyDisabled ? -1 : undefined,
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       {(startDecorator || (loading && loadingPosition === 'start')) && (
@@ -265,7 +253,7 @@ function ButtonRoot<
             buttonStartDecoratorVariants(),
             slotProps.startDecorator?.className ?? '',
           )}
-          {...slotStartDecoratorPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.startDecorator ?? {})}
         >
           {loading ? instanceLoadingIndicator : startDecorator}
         </span>
@@ -280,7 +268,7 @@ function ButtonRoot<
             }),
             slotProps.loadingIndicatorCenter?.className ?? '',
           )}
-          {...slotLoadingIndicatorCenterPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.loadingIndicatorCenter ?? {})}
         >
           {instanceLoadingIndicator}
         </span>
@@ -291,7 +279,7 @@ function ButtonRoot<
             buttonEndDecoratorVariants(),
             slotProps.endDecorator?.className ?? '',
           )}
-          {...slotEndDecoratorPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.endDecorator ?? {})}
         >
           {loading ? instanceLoadingIndicator : endDecorator}
         </span>

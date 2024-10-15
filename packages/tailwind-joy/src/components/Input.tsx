@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
@@ -16,6 +16,7 @@ import {
   toVariableClass,
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<
   ComponentProps<'input'>,
@@ -337,23 +338,9 @@ function InputRoot<
   }: InputRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
-  );
-  const slotInputPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.input ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotStartDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.startDecorator ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotEndDecoratorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.endDecorator ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
 
   return createElement(
@@ -372,7 +359,7 @@ function InputRoot<
         slotProps.root?.className ?? '',
       ),
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       {startDecorator && (
@@ -381,7 +368,7 @@ function InputRoot<
             inputStartDecoratorVariants(),
             slotProps.startDecorator?.className ?? '',
           )}
-          {...slotStartDecoratorPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.startDecorator ?? {})}
         >
           {startDecorator}
         </div>
@@ -413,7 +400,7 @@ function InputRoot<
           type,
           value,
         }}
-        {...slotInputPropsWithoutClassName}
+        {...(slotPropsWithoutClassName.input ?? {})}
       />
       {endDecorator && (
         <div
@@ -421,7 +408,7 @@ function InputRoot<
             inputEndDecoratorVariants(),
             slotProps.endDecorator?.className ?? '',
           )}
-          {...slotEndDecoratorPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.endDecorator ?? {})}
         >
           {endDecorator}
         </div>

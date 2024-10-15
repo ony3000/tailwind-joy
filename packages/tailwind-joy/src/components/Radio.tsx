@@ -1,6 +1,12 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement, useContext, useState } from 'react';
+import {
+  forwardRef,
+  createElement,
+  useContext,
+  useState,
+  useMemo,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
@@ -18,6 +24,7 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 import { RadioGroupContext } from './RadioGroup';
 
 type PassingProps = Pick<
@@ -476,32 +483,9 @@ function RadioRoot<
 ) {
   const radioGroup = useContext(RadioGroupContext);
   const [instanceId, setInstanceId] = useState(id ?? uuid());
-
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
-  );
-  const slotRadioPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.radio ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotIconPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.icon ?? {}).filter(([key]) => key !== 'className'),
-  );
-  const slotActionPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.action ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotInputPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.input ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
-  const slotLabelPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.label ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
 
   const instanceName = name ?? radioGroup.name;
@@ -534,7 +518,7 @@ function RadioRoot<
         slotProps.root?.className ?? '',
       ),
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       <span
@@ -546,7 +530,7 @@ function RadioRoot<
           }),
           slotProps.radio?.className ?? '',
         )}
-        {...slotRadioPropsWithoutClassName}
+        {...(slotPropsWithoutClassName.radio ?? {})}
       >
         {instanceDisableIcon ? null : (
           <span
@@ -554,7 +538,7 @@ function RadioRoot<
               radioIconVariants(),
               slotProps.icon?.className ?? '',
             )}
-            {...slotIconPropsWithoutClassName}
+            {...(slotPropsWithoutClassName.icon ?? {})}
           />
         )}
         <span
@@ -567,7 +551,7 @@ function RadioRoot<
             }),
             slotProps.action?.className ?? '',
           )}
-          {...slotActionPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.action ?? {})}
         >
           <input
             type="radio"
@@ -588,7 +572,7 @@ function RadioRoot<
               required,
               value,
             }}
-            {...slotInputPropsWithoutClassName}
+            {...(slotPropsWithoutClassName.input ?? {})}
           />
         </span>
       </span>
@@ -599,7 +583,7 @@ function RadioRoot<
             radioLabelVariants({ disableIcon: instanceDisableIcon }),
             slotProps.label?.className ?? '',
           )}
-          {...slotLabelPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.label ?? {})}
         >
           {label}
         </label>

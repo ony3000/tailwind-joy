@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement } from 'react';
+import { forwardRef, createElement, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
@@ -18,6 +18,7 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import { excludeClassName } from '../base/utils';
 import { CircularProgress } from './CircularProgress';
 
 function iconButtonLoadingIndicatorVariants(
@@ -185,14 +186,11 @@ function IconButtonRoot<
   }: IconButtonRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const slotRootPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.root ?? {}).filter(([key]) => key !== 'className'),
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
   );
-  const slotLoadingIndicatorPropsWithoutClassName = Object.fromEntries(
-    Object.entries(slotProps.loadingIndicator ?? {}).filter(
-      ([key]) => key !== 'className',
-    ),
-  );
+
   const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
   const visuallyDisabled = disabled || loading;
 
@@ -214,7 +212,7 @@ function IconButtonRoot<
       disabled: visuallyDisabled,
       tabIndex: visuallyDisabled ? -1 : undefined,
       ...otherProps,
-      ...slotRootPropsWithoutClassName,
+      ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
       {loading ? (
@@ -226,7 +224,7 @@ function IconButtonRoot<
             }),
             slotProps.loadingIndicator?.className ?? '',
           )}
-          {...slotLoadingIndicatorPropsWithoutClassName}
+          {...(slotPropsWithoutClassName.loadingIndicator ?? {})}
         >
           {loadingIndicator ?? (
             <CircularProgress color={color} thickness={thickness} />
