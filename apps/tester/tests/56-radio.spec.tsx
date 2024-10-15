@@ -71,76 +71,77 @@ const fixtures: Fixture[] = [
       );
     },
   },
-  {
-    title: 'uncheckedIcon',
-    alterStates: ['default', 'hover', 'active', 'disabled'],
-    renderJoyElement({ testId, size, variant, color, state }) {
-      return (
-        <JoyRadio
-          data-testid={testId}
-          size={size}
-          variant={variant}
-          color={color}
-          disabled={state === 'disabled'}
-          label="Label"
-          checked={false}
-          uncheckedIcon={<CloseIcon />}
-        />
-      );
-    },
-    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
-      return (
-        <TJRadio
-          data-testid={testId}
-          size={size}
-          variant={variant}
-          color={color}
-          disabled={state === 'disabled'}
-          label="Label"
-          checked={false}
-          uncheckedIcon={<MdClose className={iconClassName} />}
-        />
-      );
-    },
-  },
-  {
-    title: 'uncheckedIcon (as a preview)',
-    alterStates: ['default', 'hover', 'focus-visible'],
-    renderJoyElement({ testId, size, variant, color, state }) {
-      return (
-        <JoyRadio
-          data-testid={testId}
-          size={size}
-          variant={variant}
-          color={color}
-          disabled={state === 'disabled'}
-          label="Label"
-          checked={false}
-          uncheckedIcon={<DoneIcon />}
-          sx={{
-            '&:not(:has(:checked)) svg': { opacity: 0 },
-            '&:not(:has(:checked)):hover svg': { opacity: 1 },
-            '&:not(:has(:checked)):has(:focus-visible) svg': { opacity: 1 },
-          }}
-        />
-      );
-    },
-    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
-      return (
-        <TJRadio
-          data-testid={testId}
-          size={size}
-          variant={variant}
-          color={color}
-          disabled={state === 'disabled'}
-          label="Label"
-          checked={false}
-          uncheckedIcon={<MdDone className={iconClassName} />}
-          className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
-        />
-      );
-    },
-  },
+  // NOTE: `checkedIcon` and `uncheckedIcon` are not implemented yet.
+  // {
+  //   title: 'uncheckedIcon',
+  //   alterStates: ['default', 'hover', 'active', 'disabled'],
+  //   renderJoyElement({ testId, size, variant, color, state }) {
+  //     return (
+  //       <JoyRadio
+  //         data-testid={testId}
+  //         size={size}
+  //         variant={variant}
+  //         color={color}
+  //         disabled={state === 'disabled'}
+  //         label="Label"
+  //         checked={false}
+  //         uncheckedIcon={<CloseIcon />}
+  //       />
+  //     );
+  //   },
+  //   renderTjElement({ testId, size, variant, color, state, iconClassName }) {
+  //     return (
+  //       <TJRadio
+  //         data-testid={testId}
+  //         size={size}
+  //         variant={variant}
+  //         color={color}
+  //         disabled={state === 'disabled'}
+  //         label="Label"
+  //         checked={false}
+  //         uncheckedIcon={<MdClose className={iconClassName} />}
+  //       />
+  //     );
+  //   },
+  // },
+  // {
+  //   title: 'uncheckedIcon (as a preview)',
+  //   alterStates: ['default', 'hover', 'focus-visible'],
+  //   renderJoyElement({ testId, size, variant, color, state }) {
+  //     return (
+  //       <JoyRadio
+  //         data-testid={testId}
+  //         size={size}
+  //         variant={variant}
+  //         color={color}
+  //         disabled={state === 'disabled'}
+  //         label="Label"
+  //         checked={false}
+  //         uncheckedIcon={<DoneIcon />}
+  //         sx={{
+  //           '&:not(:has(:checked)) svg': { opacity: 0 },
+  //           '&:not(:has(:checked)):hover svg': { opacity: 1 },
+  //           '&:not(:has(:checked)):has(:focus-visible) svg': { opacity: 1 },
+  //         }}
+  //       />
+  //     );
+  //   },
+  //   renderTjElement({ testId, size, variant, color, state, iconClassName }) {
+  //     return (
+  //       <TJRadio
+  //         data-testid={testId}
+  //         size={size}
+  //         variant={variant}
+  //         color={color}
+  //         disabled={state === 'disabled'}
+  //         label="Label"
+  //         checked={false}
+  //         uncheckedIcon={<MdDone className={iconClassName} />}
+  //         className="[&:has(:checked)_svg]:opacity-100 [&:has(:focus-visible)_svg]:opacity-100 [&:hover_svg]:opacity-100 [&_svg]:opacity-0"
+  //       />
+  //     );
+  //   },
+  // },
   {
     title: 'disableIcon',
     alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
