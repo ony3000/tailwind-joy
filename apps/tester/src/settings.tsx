@@ -52,7 +52,10 @@ export function testEach(
 ) {
   const { containerClassName, viewport } = options;
 
-  test.use({ viewport });
+  test.use({
+    viewport,
+    deviceScaleFactor: 1,
+  });
 
   for (const {
     title,
