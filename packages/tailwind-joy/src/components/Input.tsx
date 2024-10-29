@@ -84,7 +84,7 @@ function inputInputVariants(props?: {
       'tj-input-input',
       'border-none',
       'min-w-0',
-      'outline-0',
+      'outline-none',
       'p-0',
       'flex-1',
       '[color:inherit]',
