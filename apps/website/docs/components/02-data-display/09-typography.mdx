@@ -1,0 +1,347 @@
+---
+sidebar_position: 9
+slug: /components/typography
+---
+
+import {
+  TypographyBasics,
+  TypographyHeading,
+  TypographyTitleAndBody,
+  TypographyNestedTypography,
+  TypographyLevels,
+  TypographySemanticElements,
+  TypographyDecorators,
+} from '@site/src/demos/typography';
+
+# Typography
+
+<AvailableFrom version="0.5.0" />
+
+The Typography component helps present design and content clearly and efficiently.
+
+## Basics
+
+```tsx
+import { Typography } from 'tailwind-joy/components';
+```
+
+The Typography component wraps around its content, and displays text with specific typographic styles and properties.
+
+<TypographyBasics />
+
+```tsx
+import { Sheet } from 'tailwind-joy/components';
+import { Typography as JoyTypography } from '@mui/joy';
+
+export function TypographyBasics() {
+  return (
+    <Sheet
+      variant="outlined"
+      className="flex w-full max-w-[400px] flex-col gap-y-3 rounded-lg p-4"
+    >
+      <JoyTypography level="h1">National Parks</JoyTypography>
+      <JoyTypography level="h2" sx={{ fontSize: 'xl', mb: 0.5 }}>
+        Yosemite National Park
+      </JoyTypography>
+      <JoyTypography>
+        Yosemite National Park is a national park spanning 747,956 acres
+        (1,169.4 sq mi; 3,025.2 km2) in the western Sierra Nevada of Central
+        California.
+      </JoyTypography>
+    </Sheet>
+  );
+}
+```
+
+### Heading
+
+Use `h1` through `h4` to render a headline.
+The produced HTML element will match the semantic [headings](https://www.w3.org/WAI/tutorials/page-structure/headings/) of the page structure.
+
+<TypographyHeading />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+import { Box } from 'tailwind-joy/components';
+
+export function TypographyHeading() {
+  return (
+    <Box className="flex flex-col gap-3">
+      <JoyTypography level="h1">h1: Lorem ipsum</JoyTypography>
+      <JoyTypography level="h2">h2: What is Lorem Ipsum?</JoyTypography>
+      <JoyTypography level="h3">
+        h3: The standard Lorem Ipsum passage.
+      </JoyTypography>
+      <JoyTypography level="h4">
+        h4: The smallest headline of the page
+      </JoyTypography>
+    </Box>
+  );
+}
+```
+
+### Title and body
+
+Aside from the heading typographic levels, the Typography component also provides the `title-*` and `body-*` type levels.
+
+To ensure proper information hierarchy, we recommend combining them using either the same size or a lower one.
+For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
+
+<TypographyTitleAndBody />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+import { Box, Sheet } from 'tailwind-joy/components';
+
+export function TypographyTitleAndBody() {
+  return (
+    <Box className="flex w-full max-w-prose flex-col gap-4">
+      <Sheet
+        variant="outlined"
+        className="flex w-full flex-col gap-y-3 rounded-lg p-4"
+      >
+        <JoyTypography level="title-lg">
+          Title of the component{' '}
+          <JoyTypography
+            level="title-lg"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            title-lg
+          </JoyTypography>
+        </JoyTypography>
+        <JoyTypography level="body-md">
+          This is the description of the component that contain some information
+          of it.{' '}
+          <JoyTypography
+            level="body-md"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            body-md
+          </JoyTypography>
+        </JoyTypography>
+      </Sheet>
+      <Sheet
+        variant="outlined"
+        className="flex w-full flex-col gap-y-3 rounded-lg p-4"
+      >
+        <JoyTypography level="title-md">
+          Title of the component{' '}
+          <JoyTypography
+            level="title-md"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            title-md
+          </JoyTypography>
+        </JoyTypography>
+        <JoyTypography level="body-md">
+          This is the description of the component that contain some information
+          of it.{' '}
+          <JoyTypography
+            level="body-md"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            body-md
+          </JoyTypography>
+        </JoyTypography>
+        <JoyTypography level="body-sm">
+          Metadata, for example a date.{' '}
+          <JoyTypography
+            level="body-sm"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            body-sm
+          </JoyTypography>
+        </JoyTypography>
+      </Sheet>
+      <Sheet
+        variant="outlined"
+        className="flex w-full flex-col gap-y-3 rounded-lg p-4"
+      >
+        <JoyTypography level="title-sm">
+          Title of the component{' '}
+          <JoyTypography
+            level="title-sm"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            title-sm
+          </JoyTypography>
+        </JoyTypography>
+        <JoyTypography level="body-sm">
+          This is the description of the component that contain some information
+          of it.{' '}
+          <JoyTypography
+            level="body-sm"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            body-sm
+          </JoyTypography>
+        </JoyTypography>
+        <JoyTypography level="body-xs">
+          Metadata, for example a date.{' '}
+          <JoyTypography
+            level="body-xs"
+            textColor="var(--joy-success-500)"
+            className="font-mono opacity-50"
+          >
+            body-xs
+          </JoyTypography>
+        </JoyTypography>
+      </Sheet>
+    </Box>
+  );
+}
+```
+
+### Nested Typography
+
+The Typography component renders as a `<p>` by default.
+Nested Typography components are rendered as `<span>` elements (unless customized by [the `component` prop](#semantic-elements)).
+
+<TypographyNestedTypography />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+
+export function TypographyNestedTypography() {
+  return (
+    <JoyTypography sx={{ maxWidth: 400 }}>
+      Typography lets you create{' '}
+      <JoyTypography variant="soft">nested</JoyTypography> typography. Use your{' '}
+      <JoyTypography variant="outlined" color="success">
+        imagination
+      </JoyTypography>{' '}
+      to build wonderful{' '}
+      <JoyTypography variant="solid" color="primary" noWrap>
+        user interface
+      </JoyTypography>
+      .
+    </JoyTypography>
+  );
+}
+```
+
+## Customization
+
+### Levels
+
+The `level` prop gives access to a pre-defined scale of typographic values defined in the theme.
+These values include various heading levels (h1, h2, h3, etc.) as well as body text levels (body-md, body-sm, etc) and can be used to apply consistent typography throughout your application.
+Additionally, you can also use the level prop to control the font size, weight, line height, and other typographic properties.
+
+<TypographyLevels />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+
+export function TypographyLevels() {
+  return (
+    <div>
+      <JoyTypography level="h1">h1</JoyTypography>
+      <JoyTypography level="h2">h2</JoyTypography>
+      <JoyTypography level="h3">h3</JoyTypography>
+      <JoyTypography level="h4">h4</JoyTypography>
+      <JoyTypography level="title-lg">title-lg</JoyTypography>
+      <JoyTypography level="title-md">title-md</JoyTypography>
+      <JoyTypography level="title-sm">title-sm</JoyTypography>
+      <JoyTypography level="body-lg">body-lg</JoyTypography>
+      <JoyTypography level="body-md">body-md</JoyTypography>
+      <JoyTypography level="body-sm">body-sm</JoyTypography>
+      <JoyTypography level="body-xs">body-xs</JoyTypography>
+    </div>
+  );
+}
+```
+
+### Semantic elements
+
+To customize the semantic element used, you can use the `component` prop.
+This can be useful in situations where you want to use a different semantic element than the one assigned by the `level` prop.
+The component will render as the HTML element defined by `component`, but with the styles assigned to its respective `level`.
+
+<TypographySemanticElements />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+
+export function TypographySemanticElements() {
+  return (
+    <JoyTypography level="h1" component="h2">
+      I render as an h2, but I have h1 styles
+    </JoyTypography>
+  );
+}
+```
+
+### Decorators
+
+Use the `startDecorator` and `endDecorator` props to add supporting icons or elements to the Typography.
+
+<TypographyDecorators />
+
+```tsx
+import { Typography as JoyTypography } from '@mui/joy';
+import { MdInfoOutline } from 'react-icons/md';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function TypographyDecorators() {
+  return (
+    <div>
+      <JoyTypography
+        startDecorator={<MdInfoOutline className={iconClass()} />}
+        className="mb-4"
+      >
+        The icon automatically adjusts to the scale
+      </JoyTypography>
+      <JoyTypography
+        level="body-lg"
+        endDecorator={
+          <span
+            className="
+              bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
+              relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
+              rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
+            "
+          >
+            <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
+              123
+            </span>
+          </span>
+        }
+        className="justify-center"
+      >
+        The display also changes to flexbox
+      </JoyTypography>
+    </div>
+  );
+}
+```
+
+## Anatomy
+
+The Typography component is composed of a single root `<p>` that's assigned the `body-md` class, unless these defaults are overridden by the [`level`](#levels) and/or [`component`](#semantic-elements) props.
+
+When one Typography component is nested within another, the nested component renders as a `<span>` (unless customized as described above).
+
+```html
+<p class="tj-typography-root ...">
+  <!-- Typography content -->
+  <span class="tj-typography-root ...">
+    <!-- Nested Typography content -->
+  </span>
+</p>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Box />`](../apis/box)
+- [`<Sheet />`](../apis/sheet)
+- `<Typography />`
