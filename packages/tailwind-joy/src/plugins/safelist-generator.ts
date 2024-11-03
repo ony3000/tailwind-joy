@@ -13,6 +13,7 @@ import { generatorInputs as radioClassNameGeneratorInputs } from '../components/
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
 import { generatorInputs as sheetClassNameGeneratorInputs } from '../components/Sheet';
 import { generatorInputs as switchClassNameGeneratorInputs } from '../components/Switch';
+import { generatorInputs as typographyClassNameGeneratorInputs } from '../components/Typography';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
 const SPACE = ' ';
@@ -32,6 +33,7 @@ const inputs: GeneratorInput[] = [
   ...radioGroupClassNameGeneratorInputs,
   ...sheetClassNameGeneratorInputs,
   ...switchClassNameGeneratorInputs,
+  ...typographyClassNameGeneratorInputs,
   ...adaptedIconClassNameGeneratorInputs,
 ];
 

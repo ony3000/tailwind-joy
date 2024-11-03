@@ -1081,4 +1081,194 @@ export const theme = {
       },
     },
   },
+  typography: {
+    h1: {
+      className: [
+        'font-[var(--joy-fontWeight-xl,700)]',
+        '[font-size:var(--joy-fontSize-xl4,2.25rem)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'tracking-[-0.025em]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-xl,700)',
+        fontSize: 'var(--joy-fontSize-xl4,2.25rem)',
+        lineHeight: 'var(--joy-lineHeight-xs,1.33334)',
+        letterSpacing: '-0.025em',
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    h2: {
+      className: [
+        'font-[var(--joy-fontWeight-xl,700)]',
+        '[font-size:var(--joy-fontSize-xl3,1.875rem)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'tracking-[-0.025em]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-xl,700)',
+        fontSize: 'var(--joy-fontSize-xl3,1.875rem)',
+        lineHeight: 'var(--joy-lineHeight-xs,1.33334)',
+        letterSpacing: '-0.025em',
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    h3: {
+      className: [
+        'font-[var(--joy-fontWeight-lg,600)]',
+        '[font-size:var(--joy-fontSize-xl2,1.5rem)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'tracking-[-0.025em]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-lg,600)',
+        fontSize: 'var(--joy-fontSize-xl2,1.5rem)',
+        lineHeight: 'var(--joy-lineHeight-xs,1.33334)',
+        letterSpacing: '-0.025em',
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    h4: {
+      className: [
+        'font-[var(--joy-fontWeight-lg,600)]',
+        '[font-size:var(--joy-fontSize-xl,1.25rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'tracking-[-0.025em]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-lg,600)',
+        fontSize: 'var(--joy-fontSize-xl,1.25rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: '-0.025em',
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    'title-lg': {
+      className: [
+        'font-[var(--joy-fontWeight-lg,600)]',
+        '[font-size:var(--joy-fontSize-lg,1.125rem)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-lg,600)',
+        fontSize: 'var(--joy-fontSize-lg,1.125rem)',
+        lineHeight: 'var(--joy-lineHeight-xs,1.33334)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    'title-md': {
+      className: [
+        'font-[var(--joy-fontWeight-md,500)]',
+        '[font-size:var(--joy-fontSize-md,1rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-md,500)',
+        fontSize: 'var(--joy-fontSize-md,1rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    'title-sm': {
+      className: [
+        'font-[var(--joy-fontWeight-md,500)]',
+        '[font-size:var(--joy-fontSize-sm,0.875rem)]',
+        'leading-[var(--joy-lineHeight-sm,1.42858)]',
+        colorTokens.text.primary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-md,500)',
+        fontSize: 'var(--joy-fontSize-sm,0.875rem)',
+        lineHeight: 'var(--joy-lineHeight-sm,1.42858)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.primary,
+      },
+    },
+    'body-lg': {
+      className: [
+        '[font-size:var(--joy-fontSize-lg,1.125rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        colorTokens.text.secondary,
+      ],
+      values: {
+        fontWeight: undefined,
+        fontSize: 'var(--joy-fontSize-lg,1.125rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.secondary,
+      },
+    },
+    'body-md': {
+      className: [
+        '[font-size:var(--joy-fontSize-md,1rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        colorTokens.text.secondary,
+      ],
+      values: {
+        fontWeight: undefined,
+        fontSize: 'var(--joy-fontSize-md,1rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.secondary,
+      },
+    },
+    'body-sm': {
+      className: [
+        '[font-size:var(--joy-fontSize-sm,0.875rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        colorTokens.text.tertiary,
+      ],
+      values: {
+        fontWeight: undefined,
+        fontSize: 'var(--joy-fontSize-sm,0.875rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.tertiary,
+      },
+    },
+    'body-xs': {
+      className: [
+        'font-[var(--joy-fontWeight-md,500)]',
+        '[font-size:var(--joy-fontSize-xs,0.75rem)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
+        colorTokens.text.tertiary,
+      ],
+      values: {
+        fontWeight: 'var(--joy-fontWeight-md,500)',
+        fontSize: 'var(--joy-fontSize-xs,0.75rem)',
+        lineHeight: 'var(--joy-lineHeight-md,1.5)',
+        letterSpacing: undefined,
+      },
+      tokens: {
+        color: baseTokens.text.tertiary,
+      },
+    },
+  },
 };
