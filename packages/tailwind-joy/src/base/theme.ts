@@ -1085,8 +1085,8 @@ export const theme = {
     h1: {
       className: [
         'font-[var(--joy-fontWeight-xl,700)]',
-        '[font-size:var(--joy-fontSize-xl4,2.25rem)]',
-        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'text-[length:var(--joy-fontSize-xl4,2.25rem)]',
+        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1103,8 +1103,8 @@ export const theme = {
     h2: {
       className: [
         'font-[var(--joy-fontWeight-xl,700)]',
-        '[font-size:var(--joy-fontSize-xl3,1.875rem)]',
-        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'text-[length:var(--joy-fontSize-xl3,1.875rem)]',
+        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1121,8 +1121,8 @@ export const theme = {
     h3: {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
-        '[font-size:var(--joy-fontSize-xl2,1.5rem)]',
-        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'text-[length:var(--joy-fontSize-xl2,1.5rem)]',
+        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1139,8 +1139,8 @@ export const theme = {
     h4: {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
-        '[font-size:var(--joy-fontSize-xl,1.25rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-xl,1.25rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1157,8 +1157,8 @@ export const theme = {
     'title-lg': {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
-        '[font-size:var(--joy-fontSize-lg,1.125rem)]',
-        'leading-[var(--joy-lineHeight-xs,1.33334)]',
+        'text-[length:var(--joy-fontSize-lg,1.125rem)]',
+        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1174,8 +1174,8 @@ export const theme = {
     'title-md': {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
-        '[font-size:var(--joy-fontSize-md,1rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-md,1rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1191,8 +1191,8 @@ export const theme = {
     'title-sm': {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
-        '[font-size:var(--joy-fontSize-sm,0.875rem)]',
-        'leading-[var(--joy-lineHeight-sm,1.42858)]',
+        'text-[length:var(--joy-fontSize-sm,0.875rem)]',
+        '[line-height:var(--joy-lineHeight-sm,1.42858)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1207,8 +1207,8 @@ export const theme = {
     },
     'body-lg': {
       className: [
-        '[font-size:var(--joy-fontSize-lg,1.125rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-lg,1.125rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.secondary,
       ],
       values: {
@@ -1223,8 +1223,8 @@ export const theme = {
     },
     'body-md': {
       className: [
-        '[font-size:var(--joy-fontSize-md,1rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-md,1rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.secondary,
       ],
       values: {
@@ -1239,8 +1239,8 @@ export const theme = {
     },
     'body-sm': {
       className: [
-        '[font-size:var(--joy-fontSize-sm,0.875rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-sm,0.875rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.tertiary,
       ],
       values: {
@@ -1256,8 +1256,8 @@ export const theme = {
     'body-xs': {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
-        '[font-size:var(--joy-fontSize-xs,0.75rem)]',
-        'leading-[var(--joy-lineHeight-md,1.5)]',
+        'text-[length:var(--joy-fontSize-xs,0.75rem)]',
+        '[line-height:var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.tertiary,
       ],
       values: {

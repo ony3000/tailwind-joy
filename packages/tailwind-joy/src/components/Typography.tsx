@@ -111,8 +111,8 @@ function typographyRootVariants(
       ],
       level !== 'inherit' && theme.typography[level].className,
       level !== 'inherit'
-        ? `[font-size:var(--Typography-fontSize,${theme.typography[level].values.fontSize})]`
-        : '[font-size:var(--Typography-fontSize,inherit)]',
+        ? `text-[length:var(--Typography-fontSize,${theme.typography[level].values.fontSize})]`
+        : 'text-[length:var(--Typography-fontSize,inherit)]',
       noWrap && 'truncate',
       gutterBottom && 'mb-[0.35em]',
       color &&
