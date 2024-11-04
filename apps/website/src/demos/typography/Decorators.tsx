@@ -1,5 +1,5 @@
-import { Typography as JoyTypography } from '@mui/joy';
 import { MdInfoOutline } from 'react-icons/md';
+import { Typography } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
@@ -7,13 +7,13 @@ export function TypographyDecorators() {
   return (
     <DisplayStand>
       <div>
-        <JoyTypography
+        <Typography
           startDecorator={<MdInfoOutline className={iconClass()} />}
           className="mb-4"
         >
           The icon automatically adjusts to the scale
-        </JoyTypography>
-        <JoyTypography
+        </Typography>
+        <Typography
           level="body-lg"
           endDecorator={
             // TODO: Replace span with Chip.
@@ -32,7 +32,7 @@ export function TypographyDecorators() {
           className="justify-center"
         >
           The display also changes to flexbox
-        </JoyTypography>
+        </Typography>
       </div>
     </DisplayStand>
   );

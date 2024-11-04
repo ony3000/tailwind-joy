@@ -1,5 +1,4 @@
-import { Typography as JoyTypography } from '@mui/joy';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Typography } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function TypographyTitleAndBody() {
@@ -12,101 +11,101 @@ export function TypographyTitleAndBody() {
           variant="outlined"
           className="flex w-full flex-col gap-y-3 rounded-lg p-4"
         >
-          <JoyTypography level="title-lg">
+          <Typography level="title-lg">
             Title of the component{' '}
-            <JoyTypography
+            <Typography
               level="title-lg"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               title-lg
-            </JoyTypography>
-          </JoyTypography>
-          <JoyTypography level="body-md">
+            </Typography>
+          </Typography>
+          <Typography level="body-md">
             This is the description of the component that contain some
             information of it.{' '}
-            <JoyTypography
+            <Typography
               level="body-md"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               body-md
-            </JoyTypography>
-          </JoyTypography>
+            </Typography>
+          </Typography>
         </Sheet>
         {/* TODO: Replace Sheet with Card. */}
         <Sheet
           variant="outlined"
           className="flex w-full flex-col gap-y-3 rounded-lg p-4"
         >
-          <JoyTypography level="title-md">
+          <Typography level="title-md">
             Title of the component{' '}
-            <JoyTypography
+            <Typography
               level="title-md"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               title-md
-            </JoyTypography>
-          </JoyTypography>
-          <JoyTypography level="body-md">
+            </Typography>
+          </Typography>
+          <Typography level="body-md">
             This is the description of the component that contain some
             information of it.{' '}
-            <JoyTypography
+            <Typography
               level="body-md"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               body-md
-            </JoyTypography>
-          </JoyTypography>
-          <JoyTypography level="body-sm">
+            </Typography>
+          </Typography>
+          <Typography level="body-sm">
             Metadata, for example a date.{' '}
-            <JoyTypography
+            <Typography
               level="body-sm"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               body-sm
-            </JoyTypography>
-          </JoyTypography>
+            </Typography>
+          </Typography>
         </Sheet>
         {/* TODO: Replace Sheet with Card. */}
         <Sheet
           variant="outlined"
           className="flex w-full flex-col gap-y-3 rounded-lg p-4"
         >
-          <JoyTypography level="title-sm">
+          <Typography level="title-sm">
             Title of the component{' '}
-            <JoyTypography
+            <Typography
               level="title-sm"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               title-sm
-            </JoyTypography>
-          </JoyTypography>
-          <JoyTypography level="body-sm">
+            </Typography>
+          </Typography>
+          <Typography level="body-sm">
             This is the description of the component that contain some
             information of it.{' '}
-            <JoyTypography
+            <Typography
               level="body-sm"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               body-sm
-            </JoyTypography>
-          </JoyTypography>
-          <JoyTypography level="body-xs">
+            </Typography>
+          </Typography>
+          <Typography level="body-xs">
             Metadata, for example a date.{' '}
-            <JoyTypography
+            <Typography
               level="body-xs"
               textColor="var(--joy-success-500)"
               className="font-mono opacity-50"
             >
               body-xs
-            </JoyTypography>
-          </JoyTypography>
+            </Typography>
+          </Typography>
         </Sheet>
       </Box>
     </DisplayStand>

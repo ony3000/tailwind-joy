@@ -30,8 +30,7 @@ The Typography component wraps around its content, and displays text with specif
 <TypographyBasics />
 
 ```tsx
-import { Sheet } from 'tailwind-joy/components';
-import { Typography as JoyTypography } from '@mui/joy';
+import { Sheet, Typography } from 'tailwind-joy/components';
 
 export function TypographyBasics() {
   return (
@@ -39,15 +38,15 @@ export function TypographyBasics() {
       variant="outlined"
       className="flex w-full max-w-[400px] flex-col gap-y-3 rounded-lg p-4"
     >
-      <JoyTypography level="h1">National Parks</JoyTypography>
-      <JoyTypography level="h2" sx={{ fontSize: 'xl', mb: 0.5 }}>
+      <Typography level="h1">National Parks</Typography>
+      <Typography level="h2" className="mb-1 text-[1.25rem]">
         Yosemite National Park
-      </JoyTypography>
-      <JoyTypography>
+      </Typography>
+      <Typography>
         Yosemite National Park is a national park spanning 747,956 acres
         (1,169.4 sq mi; 3,025.2 km2) in the western Sierra Nevada of Central
         California.
-      </JoyTypography>
+      </Typography>
     </Sheet>
   );
 }
@@ -61,20 +60,15 @@ The produced HTML element will match the semantic [headings](https://www.w3.org/
 <TypographyHeading />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Box, Typography } from 'tailwind-joy/components';
 
 export function TypographyHeading() {
   return (
     <Box className="flex flex-col gap-3">
-      <JoyTypography level="h1">h1: Lorem ipsum</JoyTypography>
-      <JoyTypography level="h2">h2: What is Lorem Ipsum?</JoyTypography>
-      <JoyTypography level="h3">
-        h3: The standard Lorem Ipsum passage.
-      </JoyTypography>
-      <JoyTypography level="h4">
-        h4: The smallest headline of the page
-      </JoyTypography>
+      <Typography level="h1">h1: Lorem ipsum</Typography>
+      <Typography level="h2">h2: What is Lorem Ipsum?</Typography>
+      <Typography level="h3">h3: The standard Lorem Ipsum passage.</Typography>
+      <Typography level="h4">h4: The smallest headline of the page</Typography>
     </Box>
   );
 }
@@ -90,8 +84,7 @@ For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
 <TypographyTitleAndBody />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Typography } from 'tailwind-joy/components';
 
 export function TypographyTitleAndBody() {
   return (
@@ -100,99 +93,99 @@ export function TypographyTitleAndBody() {
         variant="outlined"
         className="flex w-full flex-col gap-y-3 rounded-lg p-4"
       >
-        <JoyTypography level="title-lg">
+        <Typography level="title-lg">
           Title of the component{' '}
-          <JoyTypography
+          <Typography
             level="title-lg"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             title-lg
-          </JoyTypography>
-        </JoyTypography>
-        <JoyTypography level="body-md">
+          </Typography>
+        </Typography>
+        <Typography level="body-md">
           This is the description of the component that contain some information
           of it.{' '}
-          <JoyTypography
+          <Typography
             level="body-md"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             body-md
-          </JoyTypography>
-        </JoyTypography>
+          </Typography>
+        </Typography>
       </Sheet>
       <Sheet
         variant="outlined"
         className="flex w-full flex-col gap-y-3 rounded-lg p-4"
       >
-        <JoyTypography level="title-md">
+        <Typography level="title-md">
           Title of the component{' '}
-          <JoyTypography
+          <Typography
             level="title-md"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             title-md
-          </JoyTypography>
-        </JoyTypography>
-        <JoyTypography level="body-md">
+          </Typography>
+        </Typography>
+        <Typography level="body-md">
           This is the description of the component that contain some information
           of it.{' '}
-          <JoyTypography
+          <Typography
             level="body-md"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             body-md
-          </JoyTypography>
-        </JoyTypography>
-        <JoyTypography level="body-sm">
+          </Typography>
+        </Typography>
+        <Typography level="body-sm">
           Metadata, for example a date.{' '}
-          <JoyTypography
+          <Typography
             level="body-sm"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             body-sm
-          </JoyTypography>
-        </JoyTypography>
+          </Typography>
+        </Typography>
       </Sheet>
       <Sheet
         variant="outlined"
         className="flex w-full flex-col gap-y-3 rounded-lg p-4"
       >
-        <JoyTypography level="title-sm">
+        <Typography level="title-sm">
           Title of the component{' '}
-          <JoyTypography
+          <Typography
             level="title-sm"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             title-sm
-          </JoyTypography>
-        </JoyTypography>
-        <JoyTypography level="body-sm">
+          </Typography>
+        </Typography>
+        <Typography level="body-sm">
           This is the description of the component that contain some information
           of it.{' '}
-          <JoyTypography
+          <Typography
             level="body-sm"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             body-sm
-          </JoyTypography>
-        </JoyTypography>
-        <JoyTypography level="body-xs">
+          </Typography>
+        </Typography>
+        <Typography level="body-xs">
           Metadata, for example a date.{' '}
-          <JoyTypography
+          <Typography
             level="body-xs"
             textColor="var(--joy-success-500)"
             className="font-mono opacity-50"
           >
             body-xs
-          </JoyTypography>
-        </JoyTypography>
+          </Typography>
+        </Typography>
       </Sheet>
     </Box>
   );
@@ -207,22 +200,22 @@ Nested Typography components are rendered as `<span>` elements (unless customize
 <TypographyNestedTypography />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
+import { Typography } from 'tailwind-joy/components';
 
 export function TypographyNestedTypography() {
   return (
-    <JoyTypography sx={{ maxWidth: 400 }}>
-      Typography lets you create{' '}
-      <JoyTypography variant="soft">nested</JoyTypography> typography. Use your{' '}
-      <JoyTypography variant="outlined" color="success">
+    <Typography className="max-w-[400px]">
+      Typography lets you create <Typography variant="soft">nested</Typography>{' '}
+      typography. Use your{' '}
+      <Typography variant="outlined" color="success">
         imagination
-      </JoyTypography>{' '}
+      </Typography>{' '}
       to build wonderful{' '}
-      <JoyTypography variant="solid" color="primary" noWrap>
+      <Typography variant="solid" color="primary" noWrap>
         user interface
-      </JoyTypography>
+      </Typography>
       .
-    </JoyTypography>
+    </Typography>
   );
 }
 ```
@@ -238,22 +231,22 @@ Additionally, you can also use the level prop to control the font size, weight, 
 <TypographyLevels />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
+import { Typography } from 'tailwind-joy/components';
 
 export function TypographyLevels() {
   return (
     <div>
-      <JoyTypography level="h1">h1</JoyTypography>
-      <JoyTypography level="h2">h2</JoyTypography>
-      <JoyTypography level="h3">h3</JoyTypography>
-      <JoyTypography level="h4">h4</JoyTypography>
-      <JoyTypography level="title-lg">title-lg</JoyTypography>
-      <JoyTypography level="title-md">title-md</JoyTypography>
-      <JoyTypography level="title-sm">title-sm</JoyTypography>
-      <JoyTypography level="body-lg">body-lg</JoyTypography>
-      <JoyTypography level="body-md">body-md</JoyTypography>
-      <JoyTypography level="body-sm">body-sm</JoyTypography>
-      <JoyTypography level="body-xs">body-xs</JoyTypography>
+      <Typography level="h1">h1</Typography>
+      <Typography level="h2">h2</Typography>
+      <Typography level="h3">h3</Typography>
+      <Typography level="h4">h4</Typography>
+      <Typography level="title-lg">title-lg</Typography>
+      <Typography level="title-md">title-md</Typography>
+      <Typography level="title-sm">title-sm</Typography>
+      <Typography level="body-lg">body-lg</Typography>
+      <Typography level="body-md">body-md</Typography>
+      <Typography level="body-sm">body-sm</Typography>
+      <Typography level="body-xs">body-xs</Typography>
     </div>
   );
 }
@@ -268,13 +261,13 @@ The component will render as the HTML element defined by `component`, but with t
 <TypographySemanticElements />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
+import { Typography } from 'tailwind-joy/components';
 
 export function TypographySemanticElements() {
   return (
-    <JoyTypography level="h1" component="h2">
+    <Typography level="h1" component="h2">
       I render as an h2, but I have h1 styles
-    </JoyTypography>
+    </Typography>
   );
 }
 ```
@@ -286,20 +279,20 @@ Use the `startDecorator` and `endDecorator` props to add supporting icons or ele
 <TypographyDecorators />
 
 ```tsx
-import { Typography as JoyTypography } from '@mui/joy';
 import { MdInfoOutline } from 'react-icons/md';
+import { Typography } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function TypographyDecorators() {
   return (
     <div>
-      <JoyTypography
+      <Typography
         startDecorator={<MdInfoOutline className={iconClass()} />}
         className="mb-4"
       >
         The icon automatically adjusts to the scale
-      </JoyTypography>
-      <JoyTypography
+      </Typography>
+      <Typography
         level="body-lg"
         endDecorator={
           <span
@@ -317,7 +310,7 @@ export function TypographyDecorators() {
         className="justify-center"
       >
         The display also changes to flexbox
-      </JoyTypography>
+      </Typography>
     </div>
   );
 }
