@@ -22,6 +22,7 @@ https://tailwind-joy.vercel.app
 ### Data display
 
 - Divider
+- Typography
 
 ### Feedback
 

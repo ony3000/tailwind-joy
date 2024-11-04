@@ -12,3 +12,4 @@ export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';
 export { Switch } from './components/Switch';
+export { Typography } from './components/Typography';
