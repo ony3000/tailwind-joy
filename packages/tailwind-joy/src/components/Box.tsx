@@ -11,6 +11,7 @@ function boxRootVariants() {
   return twMerge(clsx(['tj-box-root group/tj-box']));
 }
 
+// biome-ignore lint/complexity/noBannedTypes:
 type BoxRootVariants = {};
 
 type BoxRootProps<T> = GenericComponentPropsWithVariants<

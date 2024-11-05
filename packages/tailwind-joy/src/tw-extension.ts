@@ -59,25 +59,19 @@ export const tjTheme: Pick<
 
 type ColorDict = Record<string, string>;
 
-function reduceColors(
+function convertColorsToEntries(
   dict: Record<string, string | ColorDict>,
   prefix: string,
-): ColorDict {
+): Array<[string, string]> {
   const refinedPrefix = prefix ? `${prefix}-` : '';
 
-  return Object.entries(dict).reduce<ColorDict>((prevResult, [key, value]) => {
+  return Object.entries(dict).flatMap(([key, value]) => {
     if (typeof value === 'object') {
-      return {
-        ...prevResult,
-        ...reduceColors(value ?? {}, `${refinedPrefix}${key}`),
-      };
+      return convertColorsToEntries(value ?? {}, `${refinedPrefix}${key}`);
     }
 
-    return {
-      ...prevResult,
-      [`${refinedPrefix}${key}`]: value,
-    };
-  }, {});
+    return [[`${refinedPrefix}${key}`, value]];
+  });
 }
 
 export const tjPlugin = plugin(
@@ -85,7 +79,7 @@ export const tjPlugin = plugin(
     addBase({
       ':root': {
         '--pi': '3.1415926535',
-        ...reduceColors(joyColors, '--joy'),
+        ...Object.fromEntries(convertColorsToEntries(joyColors, '--joy')),
       },
     });
 

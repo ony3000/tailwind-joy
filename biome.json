@@ -18,7 +18,9 @@
       "build/**",
       "dist/**",
       "playwright-report/**",
-      "test-results/**"
+      "test-results/**",
+      "apps/tester/**",
+      "apps/website/src/demos/**"
     ]
   }
 }

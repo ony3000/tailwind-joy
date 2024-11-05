@@ -260,6 +260,7 @@ function CircularProgressRoot<
       ...(slotPropsWithoutClassName.root ?? {}),
     },
     <>
+      {/* biome-ignore lint/a11y/noSvgWithoutTitle: */}
       <svg
         className={twMerge(
           circularProgressSvgVariants(),

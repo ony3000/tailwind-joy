@@ -45,8 +45,8 @@ export default function HomepageFeatures(): JSX.Element {
       <div className="container">
         <div className="row">
           <div className={clsx('col col--2')} />
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {FeatureList.map((props) => (
+            <Feature key={props.title} {...props} />
           ))}
           <div className={clsx('col col--2')} />
         </div>

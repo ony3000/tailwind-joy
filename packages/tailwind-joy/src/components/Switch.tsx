@@ -341,6 +341,7 @@ function SwitchRoot<
       >
         <input
           role="switch"
+          aria-checked={instanceChecked}
           type="checkbox"
           className={twMerge(
             switchInputVariants(),

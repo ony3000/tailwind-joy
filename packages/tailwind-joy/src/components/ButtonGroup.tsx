@@ -222,7 +222,7 @@ function ButtonGroupRoot<
           variant,
           orientation,
           flexibleButton: buttonFlex !== undefined,
-          connectedButton: parseFloat(spacing) === 0,
+          connectedButton: Number.parseFloat(spacing) === 0,
         }),
         className,
         slotProps.root?.className ?? '',

@@ -24,6 +24,6 @@ export type BaseVariants = {
 };
 
 export type GeneratorInput = {
-  generatorFn: (props?: Record<string, any>) => string;
+  generatorFn: (props?: Record<string, unknown>) => string;
   variants: Record<string, (string | boolean | undefined)[]>;
 };
