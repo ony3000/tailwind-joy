@@ -1086,7 +1086,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-xl,700)]',
         'text-[length:var(--joy-fontSize-xl4,2.25rem)]',
-        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1104,7 +1104,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-xl,700)]',
         'text-[length:var(--joy-fontSize-xl3,1.875rem)]',
-        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1122,7 +1122,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
         'text-[length:var(--joy-fontSize-xl2,1.5rem)]',
-        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1140,7 +1140,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
         'text-[length:var(--joy-fontSize-xl,1.25rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         'tracking-[-0.025em]',
         colorTokens.text.primary,
       ],
@@ -1158,7 +1158,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-lg,600)]',
         'text-[length:var(--joy-fontSize-lg,1.125rem)]',
-        '[line-height:var(--joy-lineHeight-xs,1.33334)]',
+        'leading-[var(--joy-lineHeight-xs,1.33334)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1175,7 +1175,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
         'text-[length:var(--joy-fontSize-md,1rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1192,7 +1192,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
         'text-[length:var(--joy-fontSize-sm,0.875rem)]',
-        '[line-height:var(--joy-lineHeight-sm,1.42858)]',
+        'leading-[var(--joy-lineHeight-sm,1.42858)]',
         colorTokens.text.primary,
       ],
       values: {
@@ -1208,7 +1208,7 @@ export const theme = {
     'body-lg': {
       className: [
         'text-[length:var(--joy-fontSize-lg,1.125rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.secondary,
       ],
       values: {
@@ -1224,7 +1224,7 @@ export const theme = {
     'body-md': {
       className: [
         'text-[length:var(--joy-fontSize-md,1rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.secondary,
       ],
       values: {
@@ -1240,7 +1240,7 @@ export const theme = {
     'body-sm': {
       className: [
         'text-[length:var(--joy-fontSize-sm,0.875rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.tertiary,
       ],
       values: {
@@ -1257,7 +1257,7 @@ export const theme = {
       className: [
         'font-[var(--joy-fontWeight-md,500)]',
         'text-[length:var(--joy-fontSize-xs,0.75rem)]',
-        '[line-height:var(--joy-lineHeight-md,1.5)]',
+        'leading-[var(--joy-lineHeight-md,1.5)]',
         colorTokens.text.tertiary,
       ],
       values: {

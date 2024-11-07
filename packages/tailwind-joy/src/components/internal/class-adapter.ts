@@ -33,9 +33,9 @@ export function iconClassVariants(
       'h-[1em]',
       'inline-block',
       'shrink-0',
-      size === 'sm' && '[font-size:var(--Icon-fontSize,1.25rem)]',
-      size === 'md' && '[font-size:var(--Icon-fontSize,1.5rem)]',
-      size === 'lg' && '[font-size:var(--Icon-fontSize,1.875rem)]',
+      size === 'sm' && 'text-[length:var(--Icon-fontSize,1.25rem)]',
+      size === 'md' && 'text-[length:var(--Icon-fontSize,1.5rem)]',
+      size === 'lg' && 'text-[length:var(--Icon-fontSize,1.875rem)]',
       baseTokens[color].mainChannel.replace(
         /(joy-[a-z0-9]+-[a-z0-9]+)/g,
         '[color:var(--Icon-color,var(--$1))]',

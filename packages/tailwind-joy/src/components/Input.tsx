@@ -90,7 +90,7 @@ function inputInputVariants(props?: {
       '[color:inherit]',
       'bg-transparent',
       '[font-family:inherit]',
-      '[font-size:inherit]',
+      'text-[length:inherit]',
       '[font-style:inherit]',
       '[font-weight:inherit]',
       'leading-[inherit]',
