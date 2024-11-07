@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import { cloneElement, isValidElement } from 'react';
-import { twMerge } from 'tailwind-merge';
 import type { BaseVariants, GeneratorInput } from '@/base/types';
+import { twMerge } from '../../base/alias';
 import { baseTokens } from '../../base/tokens';
 
 export function adaptClassName(node: ReactNode, className: string): ReactNode {

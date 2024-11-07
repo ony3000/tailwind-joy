@@ -8,12 +8,12 @@ import {
   useContext,
   useMemo,
 } from 'react';
-import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
+import { twMerge } from '../base/alias';
 import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
 import { excludeClassName } from '../base/utils';
