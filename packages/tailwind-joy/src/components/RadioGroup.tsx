@@ -7,13 +7,12 @@ import {
   useState,
   useMemo,
 } from 'react';
-import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
-import { r, uuid } from '../base/alias';
+import { r, uuid, twMerge } from '../base/alias';
 import { theme } from '../base/theme';
 import { excludeClassName } from '../base/utils';
 

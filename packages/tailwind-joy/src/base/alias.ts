@@ -1,3 +1,4 @@
+import { extendTailwindMerge } from 'tailwind-merge';
 import { v4 } from 'uuid';
 
 export const r = String.raw;
@@ -11,3 +12,11 @@ export function uuid() {
     rng: naiveRng,
   });
 }
+
+export const twMerge = extendTailwindMerge({
+  override: {
+    conflictingClassGroups: {
+      'font-size': [],
+    },
+  },
+});

@@ -1,13 +1,12 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
-import { r } from '../base/alias';
+import { r, twMerge } from '../base/alias';
 import {
   addPrefix,
   backgroundColor,
@@ -90,7 +89,7 @@ function inputInputVariants(props?: {
       '[color:inherit]',
       'bg-transparent',
       '[font-family:inherit]',
-      '[font-size:inherit]',
+      'text-[length:inherit]',
       '[font-style:inherit]',
       '[font-weight:inherit]',
       'leading-[inherit]',

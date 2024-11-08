@@ -1,12 +1,12 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
 } from '@/base/types';
+import { twMerge } from '../base/alias';
 import {
   hover,
   focus,
