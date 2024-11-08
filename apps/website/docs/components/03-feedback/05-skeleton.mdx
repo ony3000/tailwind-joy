@@ -1,0 +1,267 @@
+---
+sidebar_position: 5
+slug: /components/skeleton
+---
+
+import {
+  SkeletonLoading,
+  SkeletonAnimation,
+  SkeletonInlineWithTypography,
+  SkeletonGeometry,
+  SkeletonTextBlock,
+} from '@site/src/demos/skeleton';
+
+# Skeleton
+
+<AvailableFrom version="0.5.0" />
+
+Skeletons are preview placeholders for components that haven't loaded yet, reducing load-time frustration.
+
+## Basics
+
+```tsx
+import { Skeleton } from 'tailwind-joy/components';
+```
+
+## Customization
+
+### Loading
+
+The Skeleton has the `loading` prop set to `true` by default.
+
+Set it to `false` to hide the Skeleton component.
+If the Skeleton has children, they will be rendered instead.
+
+<SkeletonLoading />
+
+```tsx
+import { Skeleton as JoySkeleton } from '@mui/joy';
+import { useState } from 'react';
+import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+
+export function SkeletonLoading() {
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <Box className="w-full space-y-4">
+      <Sheet
+        variant="outlined"
+        className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
+      >
+        <Box className="relative aspect-[21/9]">
+          <JoySkeleton loading={loading} variant="overlay">
+            <img
+              alt=""
+              src={
+                loading
+                  ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+                  : 'https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2'
+              }
+            />
+          </JoySkeleton>
+        </Box>
+        <Typography>
+          <JoySkeleton variant="inline" loading={loading}>
+            {loading
+              ? 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'
+              : 'An aerial view of a road in the middle of a forest. This image was uploaded by Dian Yu on Unsplash.'}
+          </JoySkeleton>
+        </Typography>
+        <Button onClick={() => setLoading(!loading)}>
+          {loading ? 'Stop' : 'Start'} loading
+        </Button>
+      </Sheet>
+    </Box>
+  );
+}
+```
+
+### Animation
+
+Use the `animation` prop to control how the Skeleton component animates.
+The `animation` prop value can be one of the following:
+
+- `pulse` (default): The background of the Skeleton fades in and out.
+- `wave`: A wave animation flowing from left to right.
+- `false`: Disable the animation entirely.
+
+The demo below shows the wave animation:
+
+<SkeletonAnimation />
+
+```tsx
+import { Skeleton as JoySkeleton } from '@mui/joy';
+import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+
+export function SkeletonAnimation() {
+  return (
+    <Box className="w-full space-y-4">
+      <Sheet
+        variant="outlined"
+        className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
+      >
+        <Box className="relative aspect-[21/9]">
+          <JoySkeleton animation="wave" variant="overlay">
+            <img
+              alt=""
+              src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            />
+          </JoySkeleton>
+        </Box>
+        <Typography className="overflow-hidden">
+          <JoySkeleton variant="inline" animation="wave">
+            Lorem ipsum is placeholder text commonly used in the graphic, print,
+            and publishing industries.
+          </JoySkeleton>
+        </Typography>
+        <Button>
+          Read more
+          <JoySkeleton animation="wave" />
+        </Button>
+      </Sheet>
+    </Box>
+  );
+}
+```
+
+### Inline with Typography
+
+Insert the Skeleton between the Typography component and the text to display placeholder lines.
+
+<SkeletonInlineWithTypography />
+
+```tsx
+import { Skeleton as JoySkeleton } from '@mui/joy';
+import { useState } from 'react';
+import { Box, Switch, Typography } from 'tailwind-joy/components';
+
+export function SkeletonInlineWithTypography() {
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <Box className="w-full max-w-prose space-y-4">
+      <Box className="m-auto">
+        <Typography
+          level="h1"
+          className="relative overflow-hidden text-[1.25rem]"
+        >
+          <JoySkeleton variant="inline" loading={loading}>
+            A heading
+          </JoySkeleton>
+        </Typography>
+        <Typography
+          level="body-xs"
+          className="relative mb-4 mt-2 overflow-hidden"
+        >
+          <JoySkeleton variant="inline" loading={loading}>
+            HISTORY, PURPOSE AND USAGE
+          </JoySkeleton>
+        </Typography>
+        <Typography className="relative overflow-hidden">
+          <JoySkeleton variant="inline" loading={loading}>
+            <i>Lorem ipsum</i> is placeholder text commonly used in the graphic,
+            print, and publishing industries for previewing layouts and visual
+            mockups.
+          </JoySkeleton>
+        </Typography>
+      </Box>
+      <Box className="flex">
+        <label className="inline-flex items-center gap-2 text-[0.875rem] leading-[1.42858]">
+          <span className="inline-flex">
+            <Switch
+              size="sm"
+              checked={loading}
+              onChange={(event) => setLoading(event.target.checked)}
+            />
+          </span>
+          <span className="text-joy-neutral-800 dark:text-joy-neutral-100 font-medium">
+            Loading
+          </span>
+        </label>
+      </Box>
+    </Box>
+  );
+}
+```
+
+### Geometry
+
+To build a specific Skeleton shape, use the `variant` prop and choose between `circular` or `rectangular`.
+And to have it on a specific dimension, use the `width` and `height` props.
+
+<SkeletonGeometry />
+
+```tsx
+import { Skeleton as JoySkeleton } from '@mui/joy';
+import { Box } from 'tailwind-joy/components';
+
+export function SkeletonGeometry() {
+  return (
+    <div>
+      <Box className="m-auto flex items-center gap-4">
+        <JoySkeleton variant="circular" width={48} height={48} />
+        <div className="space-y-2">
+          <JoySkeleton variant="rectangular" width={200} height="1em" />
+          <JoySkeleton variant="rectangular" width={140} height="1em" />
+        </div>
+      </Box>
+    </div>
+  );
+}
+```
+
+### Text block
+
+Use the `variant="text"` and `level` props to create a block of skeleton text that follows the theme's typography styles.
+
+The `level` prop value can be a theme's typography-related token.
+The result of the skeleton text will have the same height as the text of the `level` prop.
+
+<SkeletonTextBlock />
+
+```tsx
+import { Skeleton as JoySkeleton } from '@mui/joy';
+import { Box, Typography } from 'tailwind-joy/components';
+
+export function SkeletonTextBlock() {
+  return (
+    <Box className="grid max-w-[360px] grid-cols-[100px_1fr] gap-2">
+      <JoySkeleton variant="text" level="h1" />
+      <Typography level="h1">h1 Typeface</Typography>
+
+      <JoySkeleton variant="text" level="h2" />
+      <Typography level="h2">h2 Typeface</Typography>
+
+      <JoySkeleton variant="text" />
+      <Typography>body-md Typeface</Typography>
+
+      <JoySkeleton variant="text" level="body-sm" />
+      <Typography level="body-sm">body-sm Typeface</Typography>
+
+      <JoySkeleton variant="text" level="body-xs" />
+      <Typography level="body-xs">body-xs Typeface</Typography>
+    </Box>
+  );
+}
+```
+
+## Anatomy
+
+The Skeleton component is composed of a single root `<span>` element that wraps around its contents:
+
+```html
+<div class="tj-skeleton-root ...">
+  <!-- Skeleton contents -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Box />`](../apis/box)
+- [`<Button />`](../apis/button)
+- [`<Sheet />`](../apis/sheet)
+- `<Skeleton />`
+- [`<Switch />`](../apis/switch)
+- [`<Typography />`](../apis/typography)
