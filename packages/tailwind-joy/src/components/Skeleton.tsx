@@ -270,9 +270,8 @@ export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: skeletonRootVariants,
     variants: {
-      animation: [undefined, 'pulse', 'wave', false],
+      animation: ['pulse', 'wave', false],
       level: [
-        undefined,
         'h1',
         'h2',
         'h3',
@@ -286,14 +285,7 @@ export const generatorInputs: GeneratorInput[] = [
         'body-xs',
         'inherit',
       ],
-      variant: [
-        undefined,
-        'circular',
-        'inline',
-        'overlay',
-        'rectangular',
-        'text',
-      ],
+      variant: ['circular', 'inline', 'overlay', 'rectangular', 'text'],
     },
   },
 ];
