@@ -5,6 +5,7 @@ import {
   forwardRef,
   createElement,
   cloneElement,
+  isValidElement,
   useContext,
   useMemo,
 } from 'react';
@@ -194,8 +195,10 @@ function TypographyRoot<
 
   const instanceLevel = nesting ? level || 'inherit' : level || 'body-md';
 
-  // TODO: Implement this while implementing the skeleton component.
-  const hasSkeleton = false;
+  const hasSkeleton =
+    isValidElement(children) &&
+    // @ts-expect-error
+    children.type.render.name === 'SkeletonRoot';
 
   const instanceComponent =
     component ||
