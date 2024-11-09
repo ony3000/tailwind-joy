@@ -46,12 +46,37 @@ export const tjTheme: Pick<
         width: 'var(--LinearProgress-progressMinWidth)',
       },
     },
+    'joy-pulse': {
+      '0%': {
+        opacity: '1',
+      },
+      '50%': {
+        opacity: '0.8',
+        background: 'var(--unstable_pulse-bg)',
+      },
+      '100%': {
+        opacity: '1',
+      },
+    },
+    'joy-wave': {
+      '0%': {
+        transform: 'translateX(-100%)',
+      },
+      '50%': {
+        transform: 'translateX(100%)',
+      },
+      '100%': {
+        transform: 'translateX(100%)',
+      },
+    },
   },
   animation: {
     'joy-circulate':
       'joy-circulate 0.8s linear 0s infinite normal none running',
     'joy-linear-circulate':
       'joy-linear-circulate var(--LinearProgress-circulation, 2.5s ease-in-out 0s infinite normal none running)',
+    'joy-pulse': 'joy-pulse 2s ease-in-out 0.5s infinite',
+    'joy-wave': 'joy-wave 1.6s linear 0.5s infinite',
   },
 };
 

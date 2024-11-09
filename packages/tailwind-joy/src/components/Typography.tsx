@@ -18,7 +18,7 @@ import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
 import { excludeClassName } from '../base/utils';
 
-type TypographyLevel =
+export type TypographyLevel =
   | 'h1'
   | 'h2'
   | 'h3'
