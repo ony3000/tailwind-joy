@@ -1,5 +1,10 @@
-import { Skeleton as JoySkeleton } from '@mui/joy';
-import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  Sheet,
+  Skeleton,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function SkeletonAnimation() {
@@ -14,26 +19,22 @@ export function SkeletonAnimation() {
         >
           {/* TODO: Replace Box with AspectRatio. */}
           <Box className="relative aspect-[21/9]">
-            <JoySkeleton animation="wave" variant="overlay">
+            <Skeleton animation="wave" variant="overlay">
               <img
                 alt=""
                 src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
               />
-            </JoySkeleton>
+            </Skeleton>
           </Box>
           <Typography className="overflow-hidden">
-            <JoySkeleton
-              // TODO: Remove variant prop.
-              variant="inline"
-              animation="wave"
-            >
+            <Skeleton animation="wave">
               Lorem ipsum is placeholder text commonly used in the graphic,
               print, and publishing industries.
-            </JoySkeleton>
+            </Skeleton>
           </Typography>
           <Button>
             Read more
-            <JoySkeleton animation="wave" />
+            <Skeleton animation="wave" />
           </Button>
         </Sheet>
       </Box>

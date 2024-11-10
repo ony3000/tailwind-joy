@@ -1,6 +1,11 @@
-import { Skeleton as JoySkeleton } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  Sheet,
+  Skeleton,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function SkeletonLoading() {
@@ -17,7 +22,7 @@ export function SkeletonLoading() {
         >
           {/* TODO: Replace Box with AspectRatio. */}
           <Box className="relative aspect-[21/9]">
-            <JoySkeleton loading={loading} variant="overlay">
+            <Skeleton loading={loading} variant="overlay">
               <img
                 alt=""
                 src={
@@ -26,18 +31,14 @@ export function SkeletonLoading() {
                     : 'https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2'
                 }
               />
-            </JoySkeleton>
+            </Skeleton>
           </Box>
           <Typography>
-            <JoySkeleton
-              // TODO: Remove variant prop.
-              variant="inline"
-              loading={loading}
-            >
+            <Skeleton loading={loading}>
               {loading
                 ? 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'
                 : 'An aerial view of a road in the middle of a forest. This image was uploaded by Dian Yu on Unsplash.'}
-            </JoySkeleton>
+            </Skeleton>
           </Typography>
           <Button onClick={() => setLoading(!loading)}>
             {loading ? 'Stop' : 'Start'} loading

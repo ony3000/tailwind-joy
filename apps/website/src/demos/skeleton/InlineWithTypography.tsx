@@ -1,6 +1,5 @@
-import { Skeleton as JoySkeleton } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Switch, Typography } from 'tailwind-joy/components';
+import { Box, Skeleton, Switch, Typography } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function SkeletonInlineWithTypography() {
@@ -15,36 +14,20 @@ export function SkeletonInlineWithTypography() {
             level="h1"
             className="relative overflow-hidden text-[1.25rem]"
           >
-            <JoySkeleton
-              // TODO: Remove variant prop.
-              variant="inline"
-              loading={loading}
-            >
-              A heading
-            </JoySkeleton>
+            <Skeleton loading={loading}>A heading</Skeleton>
           </Typography>
           <Typography
             level="body-xs"
             className="relative mb-4 mt-2 overflow-hidden"
           >
-            <JoySkeleton
-              // TODO: Remove variant prop.
-              variant="inline"
-              loading={loading}
-            >
-              HISTORY, PURPOSE AND USAGE
-            </JoySkeleton>
+            <Skeleton loading={loading}>HISTORY, PURPOSE AND USAGE</Skeleton>
           </Typography>
           <Typography className="relative overflow-hidden">
-            <JoySkeleton
-              // TODO: Remove variant prop.
-              variant="inline"
-              loading={loading}
-            >
+            <Skeleton loading={loading}>
               <i>Lorem ipsum</i> is placeholder text commonly used in the
               graphic, print, and publishing industries for previewing layouts
               and visual mockups.
-            </JoySkeleton>
+            </Skeleton>
           </Typography>
         </Box>
         {/* TODO: Replace Box with FormControl. */}

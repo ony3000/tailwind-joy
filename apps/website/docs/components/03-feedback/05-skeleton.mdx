@@ -35,9 +35,14 @@ If the Skeleton has children, they will be rendered instead.
 <SkeletonLoading />
 
 ```tsx
-import { Skeleton as JoySkeleton } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  Sheet,
+  Skeleton,
+  Typography,
+} from 'tailwind-joy/components';
 
 export function SkeletonLoading() {
   const [loading, setLoading] = useState(true);
@@ -49,7 +54,7 @@ export function SkeletonLoading() {
         className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
       >
         <Box className="relative aspect-[21/9]">
-          <JoySkeleton loading={loading} variant="overlay">
+          <Skeleton loading={loading} variant="overlay">
             <img
               alt=""
               src={
@@ -58,14 +63,14 @@ export function SkeletonLoading() {
                   : 'https://images.unsplash.com/photo-1686548812883-9d3777f4c137?h=400&fit=crop&auto=format&dpr=2'
               }
             />
-          </JoySkeleton>
+          </Skeleton>
         </Box>
         <Typography>
-          <JoySkeleton variant="inline" loading={loading}>
+          <Skeleton loading={loading}>
             {loading
               ? 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'
               : 'An aerial view of a road in the middle of a forest. This image was uploaded by Dian Yu on Unsplash.'}
-          </JoySkeleton>
+          </Skeleton>
         </Typography>
         <Button onClick={() => setLoading(!loading)}>
           {loading ? 'Stop' : 'Start'} loading
@@ -90,8 +95,13 @@ The demo below shows the wave animation:
 <SkeletonAnimation />
 
 ```tsx
-import { Skeleton as JoySkeleton } from '@mui/joy';
-import { Box, Button, Sheet, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  Sheet,
+  Skeleton,
+  Typography,
+} from 'tailwind-joy/components';
 
 export function SkeletonAnimation() {
   return (
@@ -101,22 +111,22 @@ export function SkeletonAnimation() {
         className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
       >
         <Box className="relative aspect-[21/9]">
-          <JoySkeleton animation="wave" variant="overlay">
+          <Skeleton animation="wave" variant="overlay">
             <img
               alt=""
               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
             />
-          </JoySkeleton>
+          </Skeleton>
         </Box>
         <Typography className="overflow-hidden">
-          <JoySkeleton variant="inline" animation="wave">
+          <Skeleton animation="wave">
             Lorem ipsum is placeholder text commonly used in the graphic, print,
             and publishing industries.
-          </JoySkeleton>
+          </Skeleton>
         </Typography>
         <Button>
           Read more
-          <JoySkeleton animation="wave" />
+          <Skeleton animation="wave" />
         </Button>
       </Sheet>
     </Box>
@@ -131,9 +141,8 @@ Insert the Skeleton between the Typography component and the text to display pla
 <SkeletonInlineWithTypography />
 
 ```tsx
-import { Skeleton as JoySkeleton } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Switch, Typography } from 'tailwind-joy/components';
+import { Box, Skeleton, Switch, Typography } from 'tailwind-joy/components';
 
 export function SkeletonInlineWithTypography() {
   const [loading, setLoading] = useState(true);
@@ -145,24 +154,20 @@ export function SkeletonInlineWithTypography() {
           level="h1"
           className="relative overflow-hidden text-[1.25rem]"
         >
-          <JoySkeleton variant="inline" loading={loading}>
-            A heading
-          </JoySkeleton>
+          <Skeleton loading={loading}>A heading</Skeleton>
         </Typography>
         <Typography
           level="body-xs"
           className="relative mb-4 mt-2 overflow-hidden"
         >
-          <JoySkeleton variant="inline" loading={loading}>
-            HISTORY, PURPOSE AND USAGE
-          </JoySkeleton>
+          <Skeleton loading={loading}>HISTORY, PURPOSE AND USAGE</Skeleton>
         </Typography>
         <Typography className="relative overflow-hidden">
-          <JoySkeleton variant="inline" loading={loading}>
+          <Skeleton loading={loading}>
             <i>Lorem ipsum</i> is placeholder text commonly used in the graphic,
             print, and publishing industries for previewing layouts and visual
             mockups.
-          </JoySkeleton>
+          </Skeleton>
         </Typography>
       </Box>
       <Box className="flex">
@@ -192,17 +197,16 @@ And to have it on a specific dimension, use the `width` and `height` props.
 <SkeletonGeometry />
 
 ```tsx
-import { Skeleton as JoySkeleton } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Box, Skeleton } from 'tailwind-joy/components';
 
 export function SkeletonGeometry() {
   return (
     <div>
       <Box className="m-auto flex items-center gap-4">
-        <JoySkeleton variant="circular" width={48} height={48} />
+        <Skeleton variant="circular" width={48} height={48} />
         <div className="space-y-2">
-          <JoySkeleton variant="rectangular" width={200} height="1em" />
-          <JoySkeleton variant="rectangular" width={140} height="1em" />
+          <Skeleton variant="rectangular" width={200} height="1em" />
+          <Skeleton variant="rectangular" width={140} height="1em" />
         </div>
       </Box>
     </div>
@@ -220,25 +224,24 @@ The result of the skeleton text will have the same height as the text of the `le
 <SkeletonTextBlock />
 
 ```tsx
-import { Skeleton as JoySkeleton } from '@mui/joy';
-import { Box, Typography } from 'tailwind-joy/components';
+import { Box, Skeleton, Typography } from 'tailwind-joy/components';
 
 export function SkeletonTextBlock() {
   return (
     <Box className="grid max-w-[360px] grid-cols-[100px_1fr] gap-2">
-      <JoySkeleton variant="text" level="h1" />
+      <Skeleton variant="text" level="h1" />
       <Typography level="h1">h1 Typeface</Typography>
 
-      <JoySkeleton variant="text" level="h2" />
+      <Skeleton variant="text" level="h2" />
       <Typography level="h2">h2 Typeface</Typography>
 
-      <JoySkeleton variant="text" />
+      <Skeleton variant="text" />
       <Typography>body-md Typeface</Typography>
 
-      <JoySkeleton variant="text" level="body-sm" />
+      <Skeleton variant="text" level="body-sm" />
       <Typography level="body-sm">body-sm Typeface</Typography>
 
-      <JoySkeleton variant="text" level="body-xs" />
+      <Skeleton variant="text" level="body-xs" />
       <Typography level="body-xs">body-xs Typeface</Typography>
     </Box>
   );
