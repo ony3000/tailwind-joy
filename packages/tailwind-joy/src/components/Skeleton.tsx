@@ -21,11 +21,15 @@ import type { TypographyLevel } from './Typography';
 
 function skeletonRootVariants(props?: {
   animation?: 'pulse' | 'wave' | false;
+  hasHeight?: boolean;
+  hasWidth?: boolean;
   level?: TypographyLevel;
   variant?: 'circular' | 'inline' | 'overlay' | 'rectangular' | 'text';
 }) {
   const {
     animation = 'pulse',
+    hasHeight = false,
+    hasWidth = false,
     level = props?.variant === 'text' ? 'body-md' : 'inherit',
     variant = 'overlay',
   } = props ?? {};
@@ -168,18 +172,20 @@ function skeletonRootVariants(props?: {
         level !== 'inherit' && theme.typography[level].className,
         'before:absolute',
       ],
+      hasWidth && 'w-[var(--tj-Skeleton-width)]',
+      hasHeight && 'h-[var(--tj-Skeleton-height)]',
     ]),
   );
 }
 
 type SkeletonRootVariants = {
   animation?: 'pulse' | 'wave' | false;
-  height?: string;
+  height?: number | string;
   level?: TypographyLevel;
   loading?: boolean;
   overlay?: boolean;
   variant?: 'circular' | 'inline' | 'overlay' | 'rectangular' | 'text';
-  width?: string;
+  width?: number | string;
 } & {
   slotProps?: {
     root?: ComponentProps<'span'>;
@@ -204,6 +210,7 @@ function SkeletonRoot<
     level,
     loading = true,
     overlay = false,
+    style,
     variant = 'overlay',
     width,
 
@@ -233,12 +240,29 @@ function SkeletonRoot<
         className: twMerge(
           skeletonRootVariants({
             animation,
+            hasHeight: height !== undefined,
+            hasWidth: width !== undefined,
             level: instanceLevel,
             variant,
           }),
           className,
           slotProps.root?.className ?? '',
         ),
+        style: {
+          ...style,
+          ...(height === undefined
+            ? {}
+            : {
+                '--tj-Skeleton-height':
+                  typeof height === 'number' ? `${height}px` : height,
+              }),
+          ...(width === undefined
+            ? {}
+            : {
+                '--tj-Skeleton-width':
+                  typeof width === 'number' ? `${width}px` : width,
+              }),
+        },
         ...otherProps,
         ...(slotPropsWithoutClassName.root ?? {}),
       },
@@ -271,6 +295,8 @@ export const generatorInputs: GeneratorInput[] = [
     generatorFn: skeletonRootVariants,
     variants: {
       animation: ['pulse', 'wave', false],
+      hasHeight: [false, true],
+      hasWidth: [false, true],
       level: [
         'h1',
         'h2',
