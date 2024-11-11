@@ -198,7 +198,7 @@ function TypographyRoot<
   const hasSkeleton =
     isValidElement(children) &&
     // @ts-expect-error
-    children.type.render.name === 'SkeletonRoot';
+    children.type.internalName === 'TJSkeleton';
 
   const instanceComponent =
     component ||

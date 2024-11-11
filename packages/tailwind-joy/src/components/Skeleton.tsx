@@ -288,6 +288,9 @@ export const Skeleton = forwardRef(SkeletonRoot) as <
   props: SkeletonRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 
+// @ts-expect-error
+Skeleton.internalName = 'TJSkeleton';
+
 export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: skeletonRootVariants,
