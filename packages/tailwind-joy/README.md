@@ -28,6 +28,7 @@ https://tailwind-joy.vercel.app
 
 - Circular Progress
 - Linear Progress
+- Skeleton
 
 ### Surfaces
 
