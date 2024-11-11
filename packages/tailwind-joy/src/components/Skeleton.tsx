@@ -183,7 +183,6 @@ type SkeletonRootVariants = {
   height?: number | string;
   level?: TypographyLevel;
   loading?: boolean;
-  overlay?: boolean;
   variant?: 'circular' | 'inline' | 'overlay' | 'rectangular' | 'text';
   width?: number | string;
 } & {
@@ -209,7 +208,6 @@ function SkeletonRoot<
     height,
     level,
     loading = true,
-    overlay = false,
     style,
     variant = 'overlay',
     width,

@@ -76,14 +76,6 @@ If `true`, the skeleton appears.
 - Type: `boolean`
 - Default: `true`
 
-### `overlay`
-
-If `true`, the skeleton's position will change to `absolute` to fill the available space of the nearest parent.
-This prop is useful to create a placeholder that has the element's dimensions.
-
-- Type: `boolean`
-- Default: `false`
-
 ### `slotProps`
 
 The props used for each slot inside.
