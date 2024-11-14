@@ -42,7 +42,7 @@ function aspectRatioRootVariants(
   return twMerge(
     clsx([
       'tj-aspect-ratio-root group/tj-aspect-ratio',
-      '[--AspectRatio-paddingBottom:clamp(var(--AspectRatio-minHeight),calc(100%/var(--tj-AspectRatio-ratio)),var(--AspectRatio-maxHeight))]',
+      '[--AspectRatio-paddingBottom:clamp(var(--AspectRatio-minHeight),calc(100%/(var(--tj-AspectRatio-ratio))),var(--AspectRatio-maxHeight))]',
       '[--AspectRatio-maxHeight:var(--tj-AspectRatio-maxHeight)]',
       '[--AspectRatio-minHeight:var(--tj-AspectRatio-minHeight)]',
       color !== 'neutral' || variant === 'solid'
