@@ -50,6 +50,7 @@ const fixtures: Fixture[] = [
     title: 'objectFit',
     alterSizes: ['md'],
     alterColors: ['primary'],
+    waitTime: 3000,
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyAspectRatio
