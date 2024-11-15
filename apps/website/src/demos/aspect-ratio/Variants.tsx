@@ -1,5 +1,4 @@
-import { AspectRatio as JoyAspectRatio } from '@mui/joy';
-import { Box, Typography } from 'tailwind-joy/components';
+import { AspectRatio, Box, Typography } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function AspectRatioVariants() {
@@ -9,35 +8,35 @@ export function AspectRatioVariants() {
       <Box className="flex w-full gap-4">
         {/* TODO: Replace Box with Grid. */}
         <Box className="flex-1">
-          <JoyAspectRatio variant="solid">
+          <AspectRatio variant="solid">
             <Typography level="inherit" className="font-semibold">
               Solid
             </Typography>
-          </JoyAspectRatio>
+          </AspectRatio>
         </Box>
         {/* TODO: Replace Box with Grid. */}
         <Box className="flex-1">
-          <JoyAspectRatio variant="soft">
+          <AspectRatio variant="soft">
             <Typography level="inherit" className="font-semibold">
               Soft
             </Typography>
-          </JoyAspectRatio>
+          </AspectRatio>
         </Box>
         {/* TODO: Replace Box with Grid. */}
         <Box className="flex-1">
-          <JoyAspectRatio variant="outlined">
+          <AspectRatio variant="outlined">
             <Typography level="inherit" className="font-semibold">
               Outlined
             </Typography>
-          </JoyAspectRatio>
+          </AspectRatio>
         </Box>
         {/* TODO: Replace Box with Grid. */}
         <Box className="flex-1">
-          <JoyAspectRatio variant="plain">
+          <AspectRatio variant="plain">
             <Typography level="inherit" className="font-semibold">
               Plain
             </Typography>
-          </JoyAspectRatio>
+          </AspectRatio>
         </Box>
       </Box>
     </DisplayStand>

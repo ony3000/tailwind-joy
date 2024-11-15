@@ -1,6 +1,7 @@
-import { AspectRatio as JoyAspectRatio } from '@mui/joy';
-import ImageIcon from '@mui/icons-material/Image';
-import { Sheet, Typography } from 'tailwind-joy/components';
+import { MdImage } from 'react-icons/md';
+import { AspectRatio, Sheet, Typography } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+import { twMerge } from 'tailwind-merge';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function AspectRatioMediaPlaceholder() {
@@ -11,11 +12,16 @@ export function AspectRatioMediaPlaceholder() {
         variant="outlined"
         className="mx-auto flex w-full max-w-[300px] flex-col gap-y-3 rounded-lg p-4"
       >
-        <JoyAspectRatio>
+        <AspectRatio>
           <div>
-            <ImageIcon sx={{ fontSize: '3rem', opacity: 0.2 }} />
+            <MdImage
+              className={twMerge(
+                iconClass(),
+                'text-[3rem] text-[color:inherit] opacity-20',
+              )}
+            />
           </div>
-        </JoyAspectRatio>
+        </AspectRatio>
         <div>
           <Typography level="title-md">Title</Typography>
           <Typography level="body-sm">Description of the card.</Typography>
