@@ -29,6 +29,7 @@ async function main({ name }: OptionValues) {
     throw new Error('Component name is required.');
   }
 
+  // biome-ignore lint/style/noNonNullAssertion:
   const words = name.match(/[A-Z]?[a-z]*/g)!.filter(Boolean);
 
   const kebabCaseName = words.map((word) => word.toLowerCase()).join('-');
