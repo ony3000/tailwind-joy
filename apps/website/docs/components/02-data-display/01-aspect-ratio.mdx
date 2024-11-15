@@ -1,0 +1,226 @@
+---
+sidebar_position: 1
+slug: /components/aspect-ratio
+---
+
+import {
+  AspectRatioBasics,
+  AspectRatioVariants,
+  AspectRatioRatio,
+  AspectRatioObjectFit,
+  AspectRatioMediaPlaceholder,
+  AspectRatioMinimumAndMaximumHeight,
+} from '@site/src/demos/aspect-ratio';
+
+# AspectRatio
+
+<AvailableFrom version="0.5.0" />
+
+The Aspect Ratio component resizes its contents to match the desired ratio.
+
+## Basics
+
+```tsx
+import { AspectRatio } from 'tailwind-joy/components';
+```
+
+The Aspect Ratio component wraps around the content that it resizes.
+The element to be resized must be the first direct child.
+The default ratio is `16/9`.
+
+<AspectRatioBasics />
+
+```tsx
+import { AspectRatio, Typography } from 'tailwind-joy/components';
+
+export function AspectRatioBasics() {
+  return (
+    <AspectRatio className="w-[300px]">
+      <Typography level="h2" component="div">
+        16/9
+      </Typography>
+    </AspectRatio>
+  );
+}
+```
+
+## Customization
+
+### Variants
+
+The Aspect Ratio component supports four variants: `solid`, `soft` (default), `outlined`, and `plain`.
+
+<AspectRatioVariants />
+
+```tsx
+import { AspectRatio, Box, Typography } from 'tailwind-joy/components';
+
+export function AspectRatioVariants() {
+  return (
+    <Box className="flex w-full gap-4">
+      <Box className="flex-1">
+        <AspectRatio variant="solid">
+          <Typography level="inherit" className="font-semibold">
+            Solid
+          </Typography>
+        </AspectRatio>
+      </Box>
+      <Box className="flex-1">
+        <AspectRatio variant="soft">
+          <Typography level="inherit" className="font-semibold">
+            Soft
+          </Typography>
+        </AspectRatio>
+      </Box>
+      <Box className="flex-1">
+        <AspectRatio variant="outlined">
+          <Typography level="inherit" className="font-semibold">
+            Outlined
+          </Typography>
+        </AspectRatio>
+      </Box>
+      <Box className="flex-1">
+        <AspectRatio variant="plain">
+          <Typography level="inherit" className="font-semibold">
+            Plain
+          </Typography>
+        </AspectRatio>
+      </Box>
+    </Box>
+  );
+}
+```
+
+### Ratio
+
+Use the `ratio` prop to change the aspect ratio, following the pattern `width/height`.
+For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
+
+<AspectRatioRatio />
+
+```tsx
+import { AspectRatio, Typography } from 'tailwind-joy/components';
+
+export function AspectRatioRatio() {
+  return (
+    <AspectRatio
+      variant="outlined"
+      ratio="4/3"
+      className="bg-joy-neutral-200 dark:bg-joy-neutral-700 w-[300px] rounded-lg"
+    >
+      <Typography level="h2" component="div">
+        4/3
+      </Typography>
+    </AspectRatio>
+  );
+}
+```
+
+### Object fit
+
+When the content inside the Aspect Ratio component is an image or a video, you can use the `objectFit` prop to control how it's resized.
+
+This prop gives you access to all of the values associated with the CSS `object-fit` property: `cover` (default), `contain`, `fill`, `scaleDown`, `initial`, `inherit`, and `none`.
+
+<AspectRatioObjectFit />
+
+```tsx
+import { AspectRatio, Box } from 'tailwind-joy/components';
+
+export function AspectRatioObjectFit() {
+  return (
+    <Box className="w-[300px] rounded-md p-2">
+      <AspectRatio objectFit="contain">
+        <img
+          src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
+          srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800&dpr=2 2x"
+          alt="A beautiful landscape."
+        />
+      </AspectRatio>
+    </Box>
+  );
+}
+```
+
+### Media placeholder
+
+Use a `<div>`, or a [Box](./box) component paired with an icon, as a fallback when there is no media content provided:
+
+<AspectRatioMediaPlaceholder />
+
+```tsx
+import { MdImage } from 'react-icons/md';
+import { AspectRatio, Sheet, Typography } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+import { twMerge } from 'tailwind-merge';
+
+export function AspectRatioMediaPlaceholder() {
+  return (
+    <Sheet
+      variant="outlined"
+      className="mx-auto flex w-full max-w-[300px] flex-col gap-y-3 rounded-lg p-4"
+    >
+      <AspectRatio>
+        <div>
+          <MdImage
+            className={twMerge(
+              iconClass(),
+              'text-[3rem] text-[color:inherit] opacity-20',
+            )}
+          />
+        </div>
+      </AspectRatio>
+      <div>
+        <Typography level="title-md">Title</Typography>
+        <Typography level="body-sm">Description of the card.</Typography>
+      </div>
+    </Sheet>
+  );
+}
+```
+
+### Minimum and maximum height
+
+Use the `minHeight` and `maxHeight` props to set the lower and upper bound for the height of the content.
+This is useful when the Aspect Ratio component wraps dynamic-width content, as shown in the demo below:
+
+<AspectRatioMinimumAndMaximumHeight />
+
+```tsx
+import { AspectRatio, Box } from 'tailwind-joy/components';
+
+export function AspectRatioMinimumAndMaximumHeight() {
+  return (
+    <Box className="w-[300px] resize-x overflow-auto p-2">
+      <AspectRatio minHeight={120} maxHeight={200}>
+        <img
+          src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
+          srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800&dpr=2 2x"
+          alt=""
+        />
+      </AspectRatio>
+    </Box>
+  );
+}
+```
+
+## Anatomy
+
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
+
+```html
+<div class="tj-aspect-ratio-root ...">
+  <div class="tj-aspect-ratio-content ...">
+    <some-element data-first-child>
+      <!-- Aspect Ratio contents -->
+    </some-element>
+  </div>
+</div>
+```
+
+## API
+
+- [`<AspectRatio />`](../apis/aspect-ratio)
+- [`<Box />`](../apis/box)
+- [`<Sheet />`](../apis/sheet)
+- [`<Typography />`](../apis/typography)

@@ -1,4 +1,5 @@
 import type { GeneratorInput } from '../base/types';
+import { generatorInputs as aspectRatioClassNameGeneratorInputs } from '../components/AspectRatio';
 import { generatorInputs as boxClassNameGeneratorInputs } from '../components/Box';
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
@@ -20,6 +21,7 @@ import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../compo
 const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
+  ...aspectRatioClassNameGeneratorInputs,
   ...boxClassNameGeneratorInputs,
   ...buttonClassNameGeneratorInputs,
   ...buttonGroupClassNameGeneratorInputs,

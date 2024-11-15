@@ -25,6 +25,7 @@ export type Fixture = {
   alterVariants?: UIVariant[];
   alterColors?: UIColor[];
   alterStates?: UIState[];
+  waitTime?: number;
   renderJoyElement: ElementRenderer;
   renderTjElement: ElementRenderer;
 };
@@ -63,6 +64,7 @@ export function testEach(
     alterVariants,
     alterColors,
     alterStates,
+    waitTime,
     renderJoyElement,
     renderTjElement,
   } of fixtures) {
@@ -112,6 +114,9 @@ export function testEach(
                     </div>
                   </App>,
                 );
+                if (waitTime) {
+                  await sleep(waitTime);
+                }
                 if (state === 'hover') {
                   await page.getByTestId(elementTestId).hover();
                 } else if (state === 'focus-visible') {
@@ -153,6 +158,9 @@ export function testEach(
                     </div>
                   </App>,
                 );
+                if (waitTime) {
+                  await sleep(waitTime);
+                }
                 if (state === 'hover') {
                   await page.getByTestId(elementTestId).hover();
                 } else if (state === 'focus-visible') {
