@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  AspectRatio,
   Box,
   Button,
   Sheet,
@@ -20,15 +21,7 @@ export function SkeletonLoading() {
           variant="outlined"
           className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
         >
-          {/* TODO: Replace Box with AspectRatio. */}
-          <Box
-            className="
-              relative aspect-[21/9] overflow-hidden rounded-[2px] [&_[data-first-child]]:absolute
-              [&_[data-first-child]]:m-0 [&_[data-first-child]]:box-border [&_[data-first-child]]:flex
-              [&_[data-first-child]]:h-full [&_[data-first-child]]:w-full [&_[data-first-child]]:items-center
-              [&_[data-first-child]]:justify-center [&_[data-first-child]]:object-cover [&_[data-first-child]]:p-0
-            "
-          >
+          <AspectRatio ratio="21/9">
             <Skeleton loading={loading} variant="overlay">
               <img
                 alt=""
@@ -39,7 +32,7 @@ export function SkeletonLoading() {
                 }
               />
             </Skeleton>
-          </Box>
+          </AspectRatio>
           <Typography>
             <Skeleton loading={loading}>
               {loading

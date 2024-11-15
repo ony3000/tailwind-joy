@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Box,
   Button,
   Sheet,
@@ -17,15 +18,14 @@ export function SkeletonAnimation() {
           variant="outlined"
           className="mx-auto flex w-full max-w-[343px] flex-col gap-y-3 rounded-lg p-4"
         >
-          {/* TODO: Replace Box with AspectRatio. */}
-          <Box className="relative aspect-[21/9]">
+          <AspectRatio ratio="21/9">
             <Skeleton animation="wave" variant="overlay">
               <img
                 alt=""
                 src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
               />
             </Skeleton>
-          </Box>
+          </AspectRatio>
           <Typography className="overflow-hidden">
             <Skeleton animation="wave">
               Lorem ipsum is placeholder text commonly used in the graphic,
