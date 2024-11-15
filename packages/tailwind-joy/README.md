@@ -21,6 +21,7 @@ https://tailwind-joy.vercel.app
 
 ### Data display
 
+- Aspect Ratio
 - Divider
 - Typography
 
