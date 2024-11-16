@@ -1,13 +1,13 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
 import { forwardRef, createElement, useMemo } from 'react';
-import type {
-  GeneratorInput,
-  GenericComponentPropsWithVariants,
-} from '@/base/types';
 import { r, twMerge } from '../base/alias';
 import { addPrefix } from '../base/modifier';
 import { colorTokens } from '../base/tokens';
+import type {
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 function dividerRootVariants(props?: {

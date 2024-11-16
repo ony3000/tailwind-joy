@@ -7,13 +7,13 @@ import {
   useState,
   useMemo,
 } from 'react';
+import { r, uuid, twMerge } from '../base/alias';
+import { theme } from '../base/theme';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
-} from '@/base/types';
-import { r, uuid, twMerge } from '../base/alias';
-import { theme } from '../base/theme';
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<

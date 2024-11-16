@@ -1,11 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useState, useMemo } from 'react';
-import type {
-  BaseVariants,
-  GeneratorInput,
-  GenericComponentPropsWithVariants,
-} from '@/base/types';
 import { r, uuid, twMerge } from '../base/alias';
 import {
   addPrefix,
@@ -15,6 +10,11 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<

@@ -8,15 +8,15 @@ import {
   Children,
   useMemo,
 } from 'react';
-import type {
-  BaseVariants,
-  GeneratorInput,
-  GenericComponentPropsWithVariants,
-} from '@/base/types';
 import { twMerge } from '../base/alias';
 import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 type AspectRatioObjectFit =

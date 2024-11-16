@@ -9,14 +9,14 @@ import {
   useContext,
   useMemo,
 } from 'react';
+import { twMerge } from '../base/alias';
+import { theme } from '../base/theme';
+import { baseTokens } from '../base/tokens';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
-} from '@/base/types';
-import { twMerge } from '../base/alias';
-import { theme } from '../base/theme';
-import { baseTokens } from '../base/tokens';
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 export type TypographyLevel =
