@@ -41,10 +41,11 @@
     }
   },
   "scripts": {
-    "build": "vite build",
-    "dev": "vite build --watch --minify=false",
+    "build": "vite build && pnpm dts",
+    "clean": "rm -rf dist/ && rm -rf .cache/",
+    "dts": "tsc -p tsconfig.build.json && node scripts/copyDeclaration.mjs && cp -r .cache/types/* dist/",
     "make": "node --loader ts-node/esm commands/makeComponent.mts",
-    "preview": "vite build --minify=false"
+    "preview": "vite build --minify=false && pnpm dts"
   },
   "dependencies": {
     "clsx": "2.1.1",
