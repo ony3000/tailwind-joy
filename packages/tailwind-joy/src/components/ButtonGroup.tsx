@@ -8,14 +8,14 @@ import {
   Children,
   useMemo,
 } from 'react';
+import { r, twMerge } from '../base/alias';
+import { addPrefix, toVariableClass } from '../base/modifier';
+import { theme } from '../base/theme';
 import type {
   BaseVariants,
   GeneratorInput,
   GenericComponentPropsWithVariants,
-} from '@/base/types';
-import { r, twMerge } from '../base/alias';
-import { addPrefix, toVariableClass } from '../base/modifier';
-import { theme } from '../base/theme';
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 function buttonGroupRootVariants(

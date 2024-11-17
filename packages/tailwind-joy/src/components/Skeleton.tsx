@@ -8,14 +8,14 @@ import {
   Children,
   useMemo,
 } from 'react';
-import type {
-  GeneratorInput,
-  GenericComponentPropsWithVariants,
-} from '@/base/types';
 import { r, twMerge } from '../base/alias';
 import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
+import type {
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 import type { TypographyLevel } from './Typography';
 

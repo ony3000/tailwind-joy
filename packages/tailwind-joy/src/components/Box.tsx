@@ -1,11 +1,11 @@
 import { clsx } from 'clsx';
 import type { ForwardedRef } from 'react';
 import { forwardRef, createElement } from 'react';
+import { twMerge } from '../base/alias';
 import type {
   GeneratorInput,
   GenericComponentPropsWithVariants,
-} from '@/base/types';
-import { twMerge } from '../base/alias';
+} from '../base/types';
 
 function boxRootVariants() {
   return twMerge(clsx(['tj-box-root group/tj-box']));

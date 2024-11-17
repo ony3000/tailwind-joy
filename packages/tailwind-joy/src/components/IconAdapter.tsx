@@ -2,8 +2,8 @@ import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 import { isValidElement } from 'react';
 import { twMerge } from 'tailwind-merge';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { baseTokens } from '../base/tokens';
+import type { BaseVariants, GeneratorInput } from '../base/types';
 
 function childrenPlaceholderVariants(props?: BaseVariants) {
   return 'contents';

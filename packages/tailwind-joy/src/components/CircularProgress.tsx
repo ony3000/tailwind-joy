@@ -1,11 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
 import { forwardRef, createElement, useMemo } from 'react';
-import type {
-  BaseVariants,
-  GeneratorInput,
-  GenericComponentPropsWithVariants,
-} from '@/base/types';
 import { r, twMerge } from '../base/alias';
 import {
   addPrefix,
@@ -14,6 +9,11 @@ import {
   toVariableClass,
 } from '../base/modifier';
 import { theme } from '../base/theme';
+import type {
+  BaseVariants,
+  GeneratorInput,
+  GenericComponentPropsWithVariants,
+} from '../base/types';
 import { excludeClassName } from '../base/utils';
 
 function circularProgressRootVariants(

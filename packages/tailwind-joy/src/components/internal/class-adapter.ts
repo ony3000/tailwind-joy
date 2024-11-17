@@ -1,9 +1,9 @@
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import { cloneElement, isValidElement } from 'react';
-import type { BaseVariants, GeneratorInput } from '@/base/types';
 import { twMerge } from '../../base/alias';
 import { baseTokens } from '../../base/tokens';
+import type { BaseVariants, GeneratorInput } from '../../base/types';
 
 export function adaptClassName(node: ReactNode, className: string): ReactNode {
   if (!isValidElement(node) || 'children' in node) {
