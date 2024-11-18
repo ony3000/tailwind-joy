@@ -1,10 +1,7 @@
+// @ts-check
 import { Command } from 'commander';
 import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-
-type OptionValues = {
-  name?: string;
-};
 
 const program = new Command();
 
@@ -18,19 +15,33 @@ program
 
 program.parse();
 
-const options = program.opts<OptionValues>();
+/**
+ * @type {{ name?: string }}
+ */
+const options = program.opts();
 
-function capitalize(input: string): string {
+/**
+ * @param {string} input
+ */
+function capitalize(input) {
   return `${input[0].toUpperCase()}${input.slice(1)}`;
 }
 
-async function main({ name }: OptionValues) {
+/**
+ * @param {{ name?: string }} arg
+ */
+async function main({ name }) {
   if (!name) {
     throw new Error('Component name is required.');
   }
 
-  // biome-ignore lint/style/noNonNullAssertion:
-  const words = name.match(/[A-Z]?[a-z]*/g)!.filter(Boolean);
+  const matchResult = name.match(/[A-Z]?[a-z]*/g);
+
+  if (!matchResult) {
+    throw new Error('Unexpected error.');
+  }
+
+  const words = matchResult.filter(Boolean);
 
   const kebabCaseName = words.map((word) => word.toLowerCase()).join('-');
   const pascalCaseName = words.map(capitalize).join('');
