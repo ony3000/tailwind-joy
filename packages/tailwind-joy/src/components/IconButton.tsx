@@ -76,7 +76,7 @@ function iconButtonRootVariants(
         'min-w-[var(--IconButton-size,2rem)]',
         'min-h-[var(--IconButton-size,2rem)]',
         'text-[0.875rem]',
-        '[padding-inline:2px]',
+        'ps-[2px] pe-[2px]',
       ],
       size === 'md' && [
         '[--Icon-fontSize:calc(var(--IconButton-size,2.25rem)/1.5)]',
@@ -85,7 +85,7 @@ function iconButtonRootVariants(
         'min-w-[var(--IconButton-size,2.25rem)]',
         'min-h-[var(--IconButton-size,2.25rem)]',
         'text-[1rem]',
-        '[padding-inline:0.25rem]',
+        'ps-[0.25rem] pe-[0.25rem]',
       ],
       size === 'lg' && [
         '[--Icon-fontSize:calc(var(--IconButton-size,2.75rem)/1.571)]',
@@ -94,7 +94,7 @@ function iconButtonRootVariants(
         'min-w-[var(--IconButton-size,2.75rem)]',
         'min-h-[var(--IconButton-size,2.75rem)]',
         'text-[1.125rem]',
-        '[padding-inline:0.375rem]',
+        'ps-[0.375rem] pe-[0.375rem]',
       ],
       '[-webkit-tap-highlight-color:transparent]',
       '[padding-block:0]',

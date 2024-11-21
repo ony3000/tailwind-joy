@@ -38,7 +38,7 @@ export function iconClassVariants(
       size === 'lg' && 'text-[length:var(--Icon-fontSize,1.875rem)]',
       baseTokens[color].mainChannel.replace(
         /(joy-[a-z0-9]+-[a-z0-9]+)/g,
-        '[color:var(--Icon-color,var(--$1))]',
+        'text-[color:var(--Icon-color,var(--$1))]',
       ),
     ]),
   );

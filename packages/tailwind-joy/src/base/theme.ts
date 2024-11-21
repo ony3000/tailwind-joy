@@ -275,7 +275,7 @@ export const theme = {
       primary: {
         className: [
           '[--variant-borderWidth:1px]',
-          '[border-width:var(--variant-borderWidth)] border-solid',
+          'border-[length:var(--variant-borderWidth)] border-solid',
           colorTokens.primary.outlinedColor,
           colorTokens.primary.outlinedBg,
           colorTokens.primary.outlinedBorder,
@@ -289,7 +289,7 @@ export const theme = {
       neutral: {
         className: [
           '[--variant-borderWidth:1px]',
-          '[border-width:var(--variant-borderWidth)] border-solid',
+          'border-[length:var(--variant-borderWidth)] border-solid',
           colorTokens.neutral.outlinedColor,
           colorTokens.neutral.outlinedBg,
           colorTokens.neutral.outlinedBorder,
@@ -303,7 +303,7 @@ export const theme = {
       danger: {
         className: [
           '[--variant-borderWidth:1px]',
-          '[border-width:var(--variant-borderWidth)] border-solid',
+          'border-[length:var(--variant-borderWidth)] border-solid',
           colorTokens.danger.outlinedColor,
           colorTokens.danger.outlinedBg,
           colorTokens.danger.outlinedBorder,
@@ -317,7 +317,7 @@ export const theme = {
       success: {
         className: [
           '[--variant-borderWidth:1px]',
-          '[border-width:var(--variant-borderWidth)] border-solid',
+          'border-[length:var(--variant-borderWidth)] border-solid',
           colorTokens.success.outlinedColor,
           colorTokens.success.outlinedBg,
           colorTokens.success.outlinedBorder,
@@ -331,7 +331,7 @@ export const theme = {
       warning: {
         className: [
           '[--variant-borderWidth:1px]',
-          '[border-width:var(--variant-borderWidth)] border-solid',
+          'border-[length:var(--variant-borderWidth)] border-solid',
           colorTokens.warning.outlinedColor,
           colorTokens.warning.outlinedBg,
           colorTokens.warning.outlinedBorder,

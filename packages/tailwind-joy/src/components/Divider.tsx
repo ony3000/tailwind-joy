@@ -30,10 +30,16 @@ function dividerRootVariants(props?: {
       inset === 'none'
         ? '[--_Divider-inset:0px]'
         : '[--_Divider-inset:var(--Divider-inset,0px)]',
-      '[margin:initial]',
+      'm-[initial]',
       orientation === 'vertical'
-        ? ['[margin-inline:initial]', r`[margin-block:var(--\_Divider-inset)]`]
-        : [r`[margin-inline:var(--\_Divider-inset)]`, '[margin-block:initial]'],
+        ? [
+            'ms-[initial] me-[initial]',
+            r`[margin-block:var(--\_Divider-inset)]`,
+          ]
+        : [
+            r`ms-[var(--\_Divider-inset)] me-[var(--\_Divider-inset)]`,
+            '[margin-block:initial]',
+          ],
       'relative',
       'self-stretch',
       'shrink-0',
@@ -64,11 +70,11 @@ function dividerRootVariants(props?: {
                 'content-[""]',
                 orientation === 'vertical'
                   ? [
-                      '[margin-inline-end:initial]',
+                      'me-[initial]',
                       '[margin-block-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
                     ]
                   : [
-                      '[margin-inline-end:min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
+                      'me-[min(var(--Divider-childPosition)*999,var(--Divider-gap))]',
                       '[margin-block-end:initial]',
                     ],
                 'basis-[var(--Divider-childPosition)]',
@@ -91,11 +97,11 @@ function dividerRootVariants(props?: {
                 'content-[""]',
                 orientation === 'vertical'
                   ? [
-                      '[margin-inline-start:initial]',
+                      'ms-[initial]',
                       '[margin-block-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
                     ]
                   : [
-                      '[margin-inline-start:min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
+                      'ms-[min((100%-var(--Divider-childPosition))*999,var(--Divider-gap))]',
                       '[margin-block-start:initial]',
                     ],
                 'basis-[calc(100%-var(--Divider-childPosition))]',

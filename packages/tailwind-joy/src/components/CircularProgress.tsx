@@ -79,7 +79,7 @@ function circularProgressRootVariants(
       ['font-medium', r`text-[calc(0.2*var(--\_root-size))]`],
       [
         variant === 'outlined'
-          ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
+          ? '[--variant-borderWidth:1px] border-[length:var(--variant-borderWidth)] border-solid'
           : '[--variant-borderWidth:0px]',
         borderColor(theme.variants[variant][color].tokens.borderColor),
       ],
@@ -93,7 +93,7 @@ function circularProgressRootVariants(
             r`inset-[var(--\_outlined-inset)]`,
             [
               variant === 'outlined'
-                ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
+                ? '[--variant-borderWidth:1px] border-[length:var(--variant-borderWidth)] border-solid'
                 : '[--variant-borderWidth:0px]',
               borderColor(theme.variants[variant][color].tokens.borderColor),
             ],
@@ -148,7 +148,7 @@ function circularProgressTrackVariants() {
       '[cy:50%]',
       r`[r:calc(var(--\_inner-size)/2-var(--\_track-thickness)/2+min(0px,var(--\_thickness-diff)/2))]`,
       'fill-transparent',
-      r`[stroke-width:var(--\_track-thickness)]`,
+      r`stroke-[length:var(--\_track-thickness)]`,
       'stroke-[var(--CircularProgress-trackColor)]',
     ]),
   );
@@ -166,7 +166,7 @@ function circularProgressProgressVariants(props?: { determinate?: boolean }) {
       '[cy:50%]',
       r`[r:var(--\_progress-radius)]`,
       'fill-transparent',
-      r`[stroke-width:var(--\_progress-thickness)]`,
+      r`stroke-[length:var(--\_progress-thickness)]`,
       'stroke-[var(--CircularProgress-progressColor)]',
       '[stroke-linecap:var(--CircularProgress-linecap,round)]',
       r`[stroke-dasharray:var(--\_progress-length)]`,
