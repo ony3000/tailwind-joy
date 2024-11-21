@@ -50,7 +50,7 @@ function inputStartDecoratorVariants() {
       r`[padding-block:var(--unstable\_InputPaddingBlock)]`,
       'flex-wrap',
       'me-[var(--Input-gap)]',
-      '[color:var(--Input-decoratorColor)]',
+      'text-[color:var(--Input-decoratorColor)]',
       '[cursor:initial]',
     ]),
   );
@@ -66,7 +66,7 @@ function inputEndDecoratorVariants() {
       '[display:inherit]',
       'items-center',
       'ms-[var(--Input-gap)]',
-      '[color:var(--Input-decoratorColor)]',
+      'text-[color:var(--Input-decoratorColor)]',
       '[cursor:initial]',
     ]),
   );
@@ -86,17 +86,17 @@ function inputInputVariants(props?: {
       'outline-none',
       'p-0',
       'flex-1',
-      '[color:inherit]',
+      'text-inherit',
       'bg-transparent',
-      '[font-family:inherit]',
+      'font-[family-name:inherit]',
       'text-[length:inherit]',
       '[font-style:inherit]',
-      '[font-weight:inherit]',
+      'font-[number:inherit]',
       'leading-[inherit]',
       'text-ellipsis',
       addPrefix(
         clsx([
-          '[padding-inline:var(--Input-paddingInline)]',
+          'ps-[var(--Input-paddingInline)] pe-[var(--Input-paddingInline)]',
           !hasStartDecorator && [
             'ms-[calc(-1*var(--Input-paddingInline))]',
             'ps-[var(--Input-paddingInline)]',
@@ -112,29 +112,29 @@ function inputInputVariants(props?: {
       ),
       addPrefix(
         clsx([
-          '[color:var(--Input-placeholderColor)]',
-          '[opacity:var(--Input-placeholderOpacity)]',
+          'text-[color:var(--Input-placeholderColor)]',
+          'opacity-[var(--Input-placeholderOpacity)]',
         ]),
         '[&::-webkit-input-placeholder]:',
       ),
       addPrefix(
         clsx([
-          '[color:var(--Input-placeholderColor)]',
-          '[opacity:var(--Input-placeholderOpacity)]',
+          'text-[color:var(--Input-placeholderColor)]',
+          'opacity-[var(--Input-placeholderOpacity)]',
         ]),
         '[&::-moz-placeholder]:',
       ),
       addPrefix(
         clsx([
-          '[color:var(--Input-placeholderColor)]',
-          '[opacity:var(--Input-placeholderOpacity)]',
+          'text-[color:var(--Input-placeholderColor)]',
+          'opacity-[var(--Input-placeholderOpacity)]',
         ]),
         '[&:-ms-input-placeholder]:',
       ),
       addPrefix(
         clsx([
-          '[color:var(--Input-placeholderColor)]',
-          '[opacity:var(--Input-placeholderOpacity)]',
+          'text-[color:var(--Input-placeholderColor)]',
+          'opacity-[var(--Input-placeholderOpacity)]',
         ]),
         '[&::-ms-input-placeholder]:',
       ),
@@ -215,7 +215,7 @@ function inputRootVariants(
       'cursor-text',
       'relative',
       'flex',
-      '[padding-inline:var(--Input-paddingInline)]',
+      'ps-[var(--Input-paddingInline)] pe-[var(--Input-paddingInline)]',
       'rounded-[var(--Input-radius)]',
       size === 'sm' && [
         'text-[0.875rem]',
@@ -233,7 +233,7 @@ function inputRootVariants(
         colorTokens.text.secondary,
       ],
       variant === 'outlined'
-        ? '[--variant-borderWidth:1px] [border-width:var(--variant-borderWidth)] border-solid'
+        ? '[--variant-borderWidth:1px] border-[length:var(--variant-borderWidth)] border-solid'
         : '[--variant-borderWidth:0px]',
       colorTokens[color][`${variant}Color`],
       colorTokens[color][`${variant}Bg`] || colorTokens.background.surface,

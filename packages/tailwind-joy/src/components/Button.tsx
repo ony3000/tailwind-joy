@@ -96,7 +96,7 @@ function buttonRootVariants(
         'min-h-[var(--Button-minHeight,2rem)]',
         'text-[0.875rem]',
         '[padding-block:var(--Button-paddingBlock,0.25rem)]',
-        '[padding-inline:0.75rem]',
+        'ps-[0.75rem] pe-[0.75rem]',
       ],
       size === 'md' && [
         '[--Icon-fontSize:1.25rem]',
@@ -106,7 +106,7 @@ function buttonRootVariants(
         'min-h-[var(--Button-minHeight,2.25rem)]',
         'text-[0.875rem]',
         '[padding-block:var(--Button-paddingBlock,0.375rem)]',
-        '[padding-inline:1rem]',
+        'ps-[1rem] pe-[1rem]',
       ],
       size === 'lg' && [
         '[--Icon-fontSize:1.5rem]',
@@ -116,7 +116,7 @@ function buttonRootVariants(
         'min-h-[var(--Button-minHeight,2.75rem)]',
         'text-[1rem]',
         '[padding-block:var(--Button-paddingBlock,0.5rem)]',
-        '[padding-inline:1.5rem]',
+        'ps-[1.5rem] pe-[1.5rem]',
       ],
       '[-webkit-tap-highlight-color:transparent]',
       'box-border',

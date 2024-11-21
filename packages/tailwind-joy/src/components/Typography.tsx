@@ -124,8 +124,8 @@ function typographyRootVariants(
       variant && [
         'rounded-[2px]',
         '[padding-block:min(0.1em,4px)]',
-        '[padding-inline:0.25em]',
-        !nesting && '[margin-inline:-0.25em]',
+        'ps-[0.25em] pe-[0.25em]',
+        !nesting && 'ms-[-0.25em] me-[-0.25em]',
         color && theme.variants[variant][color].className,
       ],
     ]),

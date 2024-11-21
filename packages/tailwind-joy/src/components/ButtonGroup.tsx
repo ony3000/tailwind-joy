@@ -59,12 +59,12 @@ function buttonGroupRootVariants(
             ? [
                 r`[--Button-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
                 r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)]`,
-                '[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-b-[length:var(--ButtonGroup-separatorSize)] border-solid border-b-[color:var(--ButtonGroup-separatorColor)]',
               ]
             : [
                 r`[--Button-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
                 r`[--IconButton-radius:var(--ButtonGroup-radius)_var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)]`,
-                '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-r-[length:var(--ButtonGroup-separatorSize)] border-solid border-r-[color:var(--ButtonGroup-separatorColor)]',
               ],
         ]),
         '[&>[data-first-child]]:',
@@ -76,12 +76,12 @@ function buttonGroupRootVariants(
           r`rounded-[var(--unstable\_childRadius)]`,
           orientation === 'vertical'
             ? [
-                '[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-                '[border-bottom:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-t-[length:var(--ButtonGroup-separatorSize)] border-solid border-t-[color:var(--ButtonGroup-separatorColor)]',
+                'border-b-[length:var(--ButtonGroup-separatorSize)] border-solid border-b-[color:var(--ButtonGroup-separatorColor)]',
               ]
             : [
-                '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
-                '[border-right:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-l-[length:var(--ButtonGroup-separatorSize)] border-solid border-l-[color:var(--ButtonGroup-separatorColor)]',
+                'border-r-[length:var(--ButtonGroup-separatorSize)] border-solid border-r-[color:var(--ButtonGroup-separatorColor)]',
               ],
         ]),
         '[&>:not([data-first-child]):not([data-last-child]):not(:only-child)]:',
@@ -92,12 +92,12 @@ function buttonGroupRootVariants(
             ? [
                 r`[--Button-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
                 r`[--IconButton-radius:var(--unstable\_childRadius)_var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)]`,
-                '[border-top:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-t-[length:var(--ButtonGroup-separatorSize)] border-solid border-t-[color:var(--ButtonGroup-separatorColor)]',
               ]
             : [
                 r`[--Button-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
                 r`[--IconButton-radius:var(--unstable\_childRadius)_var(--ButtonGroup-radius)_var(--ButtonGroup-radius)_var(--unstable\_childRadius)]`,
-                '[border-left:var(--ButtonGroup-separatorSize)_solid_var(--ButtonGroup-separatorColor)]',
+                'border-l-[length:var(--ButtonGroup-separatorSize)] border-solid border-l-[color:var(--ButtonGroup-separatorColor)]',
               ],
         ]),
         '[&>[data-last-child]]:',
@@ -148,7 +148,7 @@ function buttonGroupRootVariants(
         '[&_.tj-icon-button-root:focus-visible]:z-[2]',
       ],
       flexibleButton && [
-        '[&>*:not(.tj-icon-button-root)]:[flex:var(--tj-ButtonGroup-buttonFlex)]',
+        '[&>*:not(.tj-icon-button-root)]:flex-[var(--tj-ButtonGroup-buttonFlex)]',
         '[&>:not(button)>.tj-button-root]:w-full',
       ],
     ]),
