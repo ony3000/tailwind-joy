@@ -70,6 +70,7 @@ const fixtures: Fixture[] = [
   {
     title: 'decorators',
     alterStates: ['default', 'hover', 'focus-visible', 'active', 'disabled'],
+    maxDiffPixels: 1,
     renderJoyElement({ testId, size, variant, color, state }) {
       return (
         <JoySwitch

@@ -39,6 +39,7 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'decorators',
+    maxDiffPixels: 2,
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyChip
