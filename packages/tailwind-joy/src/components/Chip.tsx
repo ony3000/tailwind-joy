@@ -90,8 +90,6 @@ function chipRootVariants(
       size === 'md' && theme.typography['body-sm'].className,
       size === 'lg' && theme.typography['body-md'].className,
       'font-medium',
-      visuallyDisabled &&
-        textColor(theme.variants[`${variant}Disabled`][color].tokens.color),
       !clickable
         ? [
             colorTokens.background.surface,
@@ -113,6 +111,10 @@ function chipRootVariants(
         : [
             '[--variant-borderWidth:0px]',
             textColor(theme.variants[variant][color].tokens.color),
+            visuallyDisabled &&
+              textColor(
+                theme.variants[`${variant}Disabled`][color].tokens.color,
+              ),
           ],
       borderRadius && '[--_Chip-radius:var(--tj-Chip-borderRadius)]',
     ]),
