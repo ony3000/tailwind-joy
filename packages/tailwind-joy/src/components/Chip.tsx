@@ -221,15 +221,15 @@ function ChipRoot<
 >(
   {
     // ---- passing props ----
-    disabled,
+    disabled = false,
     onClick,
     // -----------------------
 
     // ---- non-passing props ----
     // base variants
-    color,
-    size,
-    variant,
+    color = 'neutral',
+    size = 'md',
+    variant = 'soft',
 
     // non-base variants
     className,
