@@ -12,6 +12,7 @@ import { excludeClassName } from '../base/utils';
 import { ChipContext } from './Chip';
 import { iconButtonRootVariants } from './IconButton';
 import { iconClassVariants } from './internal/class-adapter';
+import { VariantColorContext } from './internal/contexts';
 
 type PassingProps = Pick<ComponentProps<'button'>, 'onClick' | 'onKeyDown'>;
 
@@ -64,8 +65,8 @@ function ChipDeleteRoot<
 
     // ---- non-passing props ----
     // base variants
-    color = 'neutral',
-    variant = 'plain',
+    color,
+    variant,
 
     // non-base variants
     className,
@@ -83,12 +84,17 @@ function ChipDeleteRoot<
   }: ChipDeleteRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
+  const variantColor = useContext(VariantColorContext);
   const chip = useContext(ChipContext);
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
   );
 
+  const instanceColor = color ?? variantColor.color;
+  const instanceVariant =
+    variant ??
+    (variantColor.variant === 'outlined' ? 'plain' : variantColor.variant);
   const instanceDisabled = disabled ?? chip.disabled;
 
   return createElement(
@@ -96,7 +102,10 @@ function ChipDeleteRoot<
     {
       ref,
       className: twMerge(
-        chipDeleteRootVariants({ color, variant }),
+        chipDeleteRootVariants({
+          color: instanceColor,
+          variant: instanceVariant,
+        }),
         className,
         slotProps.root?.className ?? '',
       ),
@@ -128,7 +137,9 @@ function ChipDeleteRoot<
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
     },
-    children ?? <MdClose className={iconClassVariants({ color })} />,
+    children ?? (
+      <MdClose className={iconClassVariants({ color: instanceColor })} />
+    ),
   );
 }
 

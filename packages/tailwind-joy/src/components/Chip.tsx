@@ -17,6 +17,7 @@ import type {
   GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
+import { VariantColorContext } from './internal/contexts';
 
 type PassingProps = Pick<ComponentProps<'button'>, 'disabled' | 'onClick'>;
 
@@ -278,79 +279,81 @@ function ChipRoot<
 
   return (
     <ChipContext.Provider value={{ disabled }}>
-      {createElement(
-        component,
-        {
-          ref,
-          className: twMerge(
-            chipRootVariants({
-              color,
-              size,
-              variant,
-              borderRadius: instanceBorderRadius !== undefined,
-              clickable: instanceClickable,
-              visuallyDisabled,
-            }),
-            className,
-            slotProps.root?.className ?? '',
-          ),
-          style: {
-            ...style,
-            '--tj-Chip-borderRadius': instanceBorderRadius,
-          },
-          ...otherProps,
-          ...(slotPropsWithoutClassName.root ?? {}),
-        },
-        <>
-          {instanceClickable && (
-            <button
-              type="button"
-              className={twMerge(
-                chipActionVariants({ color, variant }),
-                slotProps.action?.className ?? '',
-              )}
-              {...{
-                disabled,
-                onClick,
-              }}
-              {...(slotPropsWithoutClassName.action ?? {})}
-            />
-          )}
-          <span
-            className={twMerge(
-              chipLabelVariants({
+      <VariantColorContext.Provider value={{ color, variant }}>
+        {createElement(
+          component,
+          {
+            ref,
+            className: twMerge(
+              chipRootVariants({
+                color,
+                size,
+                variant,
+                borderRadius: instanceBorderRadius !== undefined,
                 clickable: instanceClickable,
+                visuallyDisabled,
               }),
-              slotProps.label?.className ?? '',
+              className,
+              slotProps.root?.className ?? '',
+            ),
+            style: {
+              ...style,
+              '--tj-Chip-borderRadius': instanceBorderRadius,
+            },
+            ...otherProps,
+            ...(slotPropsWithoutClassName.root ?? {}),
+          },
+          <>
+            {instanceClickable && (
+              <button
+                type="button"
+                className={twMerge(
+                  chipActionVariants({ color, variant }),
+                  slotProps.action?.className ?? '',
+                )}
+                {...{
+                  disabled,
+                  onClick,
+                }}
+                {...(slotPropsWithoutClassName.action ?? {})}
+              />
             )}
-            {...(slotPropsWithoutClassName.label ?? {})}
-          >
-            {children}
-          </span>
-          {startDecorator && (
             <span
               className={twMerge(
-                chipStartDecoratorVariants(),
-                slotProps.startDecorator?.className ?? '',
+                chipLabelVariants({
+                  clickable: instanceClickable,
+                }),
+                slotProps.label?.className ?? '',
               )}
-              {...(slotPropsWithoutClassName.startDecorator ?? {})}
+              {...(slotPropsWithoutClassName.label ?? {})}
             >
-              {startDecorator}
+              {children}
             </span>
-          )}
-          {endDecorator && (
-            <span
-              className={twMerge(
-                chipEndDecoratorVariants(),
-                slotProps.endDecorator?.className ?? '',
-              )}
-              {...(slotPropsWithoutClassName.endDecorator ?? {})}
-            >
-              {endDecorator}
-            </span>
-          )}
-        </>,
-      )}
+            {startDecorator && (
+              <span
+                className={twMerge(
+                  chipStartDecoratorVariants(),
+                  slotProps.startDecorator?.className ?? '',
+                )}
+                {...(slotPropsWithoutClassName.startDecorator ?? {})}
+              >
+                {startDecorator}
+              </span>
+            )}
+            {endDecorator && (
+              <span
+                className={twMerge(
+                  chipEndDecoratorVariants(),
+                  slotProps.endDecorator?.className ?? '',
+                )}
+                {...(slotPropsWithoutClassName.endDecorator ?? {})}
+              >
+                {endDecorator}
+              </span>
+            )}
+          </>,
+        )}
+      </VariantColorContext.Provider>
     </ChipContext.Provider>
   );
 }
