@@ -1,8 +1,8 @@
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
-import { Box, Checkbox, Typography } from 'tailwind-joy/components';
+import { MdCheck } from 'react-icons/md';
+import { Box, Checkbox, Chip, Typography } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+import { twMerge } from 'tailwind-merge';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ChipWithCheckbox() {
@@ -10,59 +10,62 @@ export function ChipWithCheckbox() {
 
   return (
     <DisplayStand>
-      <CssVarsProvider modeStorageKey="theme">
-        <Box className="flex items-center gap-2">
-          <div>
-            <Typography level="title-lg" className="mb-4">
-              Favorite Movies
-            </Typography>
-            <Box role="group" className="flex flex-wrap gap-2">
-              {[
-                'Star trek',
-                'Batman',
-                'Spider man',
-                'Eternals',
-                'Shang chi',
-                'Jungle cruise',
-                'No time to die',
-                'Thor',
-                'The hulk',
-              ].map((name) => {
-                const checked = selected.includes(name);
+      <Box className="flex items-center gap-2">
+        <div>
+          <Typography level="title-lg" className="mb-4">
+            Favorite Movies
+          </Typography>
+          <Box role="group" className="flex flex-wrap gap-2">
+            {[
+              'Star trek',
+              'Batman',
+              'Spider man',
+              'Eternals',
+              'Shang chi',
+              'Jungle cruise',
+              'No time to die',
+              'Thor',
+              'The hulk',
+            ].map((name) => {
+              const checked = selected.includes(name);
 
-                return (
-                  <JoyChip
-                    key={name}
-                    variant="plain"
+              return (
+                <Chip
+                  key={name}
+                  variant="plain"
+                  color={checked ? 'primary' : 'neutral'}
+                  startDecorator={
+                    checked && (
+                      <MdCheck
+                        className={twMerge(
+                          iconClass(),
+                          'pointer-events-none z-[1]',
+                        )}
+                      />
+                    )
+                  }
+                >
+                  <Checkbox
+                    variant="outlined"
                     color={checked ? 'primary' : 'neutral'}
-                    startDecorator={
-                      checked && (
-                        <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
-                      )
-                    }
-                  >
-                    <Checkbox
-                      variant="outlined"
-                      color={checked ? 'primary' : 'neutral'}
-                      disableIcon
-                      overlay
-                      label={name}
-                      checked={checked}
-                      onChange={(event) => {
-                        setSelected((names) =>
-                          !event.target.checked
-                            ? names.filter((n) => n !== name)
-                            : [...names, name],
-                        );
-                      }}
-                    />
-                  </JoyChip>
-                );
-              })}
-            </Box>
-          </div>
-        </Box>
-      </CssVarsProvider>
+                    disableIcon
+                    overlay
+                    label={name}
+                    checked={checked}
+                    onChange={(event) => {
+                      setSelected((names) =>
+                        !event.target.checked
+                          ? names.filter((n) => n !== name)
+                          : [...names, name],
+                      );
+                    }}
+                  />
+                </Chip>
+              );
+            })}
+          </Box>
+        </div>
+      </Box>
     </DisplayStand>
   );
 }

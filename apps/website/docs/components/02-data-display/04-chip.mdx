@@ -30,16 +30,13 @@ Chips comes with medium size, neutral color, and soft variant set by default.
 <ChipBasics />
 
 ```tsx
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { Chip } from 'tailwind-joy/components';
 
 export function ChipBasics() {
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <div>
-        <JoyChip>This is a chip</JoyChip>
-      </div>
-    </CssVarsProvider>
+    <div>
+      <Chip>This is a chip</Chip>
+    </div>
   );
 }
 ```
@@ -53,20 +50,20 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons to 
 <ChipDecorators />
 
 ```tsx
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CloudIcon from '@mui/icons-material/Cloud';
-import SunIcon from '@mui/icons-material/LightMode';
-import { Box } from 'tailwind-joy/components';
+import { MdCloud, MdLightMode } from 'react-icons/md';
+import { Box, Chip } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 export function ChipDecorators() {
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <JoyChip startDecorator={<SunIcon />}>Today is sunny</JoyChip>
-        <JoyChip startDecorator={<CloudIcon />}>Tomorrow is cloudy</JoyChip>
-      </Box>
-    </CssVarsProvider>
+    <Box className="flex items-center gap-2">
+      <Chip startDecorator={<MdLightMode className={iconClass()} />}>
+        Today is sunny
+      </Chip>
+      <Chip startDecorator={<MdCloud className={iconClass()} />}>
+        Tomorrow is cloudy
+      </Chip>
+    </Box>
   );
 }
 ```
@@ -83,38 +80,34 @@ The `onDelete` callback is fired on `ChipDelete` either when:
 <ChipDeleteButton />
 
 ```tsx
-import { Chip as JoyChip, ChipDelete as JoyChipDelete } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import { Box } from 'tailwind-joy/components';
+import { Box, Chip, ChipDelete } from 'tailwind-joy/components';
 
 export function ChipDeleteButton() {
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <JoyChip
-          size="sm"
-          variant="outlined"
-          color="danger"
-          endDecorator={<JoyChipDelete onDelete={() => alert('Delete')} />}
-        >
-          Delete
-        </JoyChip>
-        <JoyChip
-          color="danger"
-          endDecorator={<JoyChipDelete onDelete={() => alert('Delete')} />}
-        >
-          Delete
-        </JoyChip>
-        <JoyChip
-          size="lg"
-          variant="solid"
-          color="danger"
-          endDecorator={<JoyChipDelete onDelete={() => alert('Delete')} />}
-        >
-          Delete
-        </JoyChip>
-      </Box>
-    </CssVarsProvider>
+    <Box className="flex items-center gap-2">
+      <Chip
+        size="sm"
+        variant="outlined"
+        color="danger"
+        endDecorator={<ChipDelete onDelete={() => alert('Delete')} />}
+      >
+        Delete
+      </Chip>
+      <Chip
+        color="danger"
+        endDecorator={<ChipDelete onDelete={() => alert('Delete')} />}
+      >
+        Delete
+      </Chip>
+      <Chip
+        size="lg"
+        variant="solid"
+        color="danger"
+        endDecorator={<ChipDelete onDelete={() => alert('Delete')} />}
+      >
+        Delete
+      </Chip>
+    </Box>
   );
 }
 ```
@@ -126,34 +119,31 @@ To make chips clickable, pass a function to the `onClick` prop.
 <ChipClickable />
 
 ```tsx
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CheckIcon from '@mui/icons-material/Check';
-import { Box } from 'tailwind-joy/components';
+import { MdCheck } from 'react-icons/md';
+import { Box, Chip } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 export function ChipClickable() {
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <JoyChip
-          size="lg"
-          variant="outlined"
-          startDecorator={
-            <div className="-ml-[9px] flex h-[22px] w-[22px] items-center justify-center overflow-hidden rounded-full">
-              <img
-                src="/img/avatar/octocat-avatar.png"
-                className="h-full w-full object-cover"
-                alt="Octocat"
-              />
-            </div>
-          }
-          endDecorator={<CheckIcon />}
-          onClick={() => alert('You clicked the Tailwind Joy Chip!')}
-        >
-          Octocat
-        </JoyChip>
-      </Box>
-    </CssVarsProvider>
+    <Box className="flex items-center gap-2">
+      <Chip
+        size="lg"
+        variant="outlined"
+        startDecorator={
+          <div className="-ml-[9px] flex h-[22px] w-[22px] items-center justify-center overflow-hidden rounded-full">
+            <img
+              src="/img/avatar/octocat-avatar.png"
+              className="h-full w-full object-cover"
+              alt="Octocat"
+            />
+          </div>
+        }
+        endDecorator={<MdCheck className={iconClass()} />}
+        onClick={() => alert('You clicked the Tailwind Joy Chip!')}
+      >
+        Octocat
+      </Chip>
+    </Box>
   );
 }
 ```
@@ -165,33 +155,30 @@ Use both the `onClick` prop and the complementary `ChipDelete` component to make
 <ChipClickableAndDeletable />
 
 ```tsx
-import { Chip as JoyChip, ChipDelete as JoyChipDelete } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Box } from 'tailwind-joy/components';
+import { MdDeleteForever } from 'react-icons/md';
+import { Box, Chip, ChipDelete } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 
 export function ChipClickableAndDeletable() {
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <JoyChip
-          variant="outlined"
-          color="danger"
-          onClick={() => alert('You clicked the chip!')}
-          endDecorator={
-            <JoyChipDelete
-              variant="plain"
-              color="danger"
-              onClick={() => alert('You clicked the delete button!')}
-            >
-              <DeleteForeverIcon />
-            </JoyChipDelete>
-          }
-        >
-          Clear
-        </JoyChip>
-      </Box>
-    </CssVarsProvider>
+    <Box className="flex items-center gap-2">
+      <Chip
+        variant="outlined"
+        color="danger"
+        onClick={() => alert('You clicked the chip!')}
+        endDecorator={
+          <ChipDelete
+            variant="plain"
+            color="danger"
+            onClick={() => alert('You clicked the delete button!')}
+          >
+            <MdDeleteForever className={iconClass()} />
+          </ChipDelete>
+        }
+      >
+        Clear
+      </Chip>
+    </Box>
   );
 }
 ```
@@ -204,72 +191,81 @@ Use radios when you want to enable single selection.
 <ChipWithRadio />
 
 ```tsx
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
-import { Box, Radio, RadioGroup, Typography } from 'tailwind-joy/components';
+import { MdCheck } from 'react-icons/md';
+import {
+  Box,
+  Chip,
+  Radio,
+  RadioGroup,
+  Typography,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+import { twMerge } from 'tailwind-merge';
 
 export function ChipWithRadio() {
   const [selected, setSelected] = useState('');
 
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <div>
-          <Typography level="title-lg" className="mb-4">
-            Best Movie
-          </Typography>
-          <RadioGroup
-            name="best-movie"
-            orientation="horizontal"
-            className="flex-wrap gap-2"
-          >
-            {[
-              'Star trek',
-              'Batman',
-              'Spider man',
-              'Eternals',
-              'Shang chi',
-              'Jungle cruise',
-              'No time to die',
-              'Thor',
-              'The hulk',
-            ].map((name) => {
-              const checked = selected === name;
+    <Box className="flex items-center gap-2">
+      <div>
+        <Typography level="title-lg" className="mb-4">
+          Best Movie
+        </Typography>
+        <RadioGroup
+          name="best-movie"
+          orientation="horizontal"
+          className="flex-wrap gap-2"
+        >
+          {[
+            'Star trek',
+            'Batman',
+            'Spider man',
+            'Eternals',
+            'Shang chi',
+            'Jungle cruise',
+            'No time to die',
+            'Thor',
+            'The hulk',
+          ].map((name) => {
+            const checked = selected === name;
 
-              return (
-                <JoyChip
-                  key={name}
-                  variant="plain"
+            return (
+              <Chip
+                key={name}
+                variant="plain"
+                color={checked ? 'primary' : 'neutral'}
+                startDecorator={
+                  checked && (
+                    <MdCheck
+                      className={twMerge(
+                        iconClass(),
+                        'pointer-events-none z-[1]',
+                      )}
+                    />
+                  )
+                }
+              >
+                <Radio
+                  variant="outlined"
                   color={checked ? 'primary' : 'neutral'}
-                  startDecorator={
-                    checked && (
-                      <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
-                    )
-                  }
-                >
-                  <Radio
-                    variant="outlined"
-                    color={checked ? 'primary' : 'neutral'}
-                    disableIcon
-                    overlay
-                    label={name}
-                    value={name}
-                    checked={checked}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        setSelected(name);
-                      }
-                    }}
-                  />
-                </JoyChip>
-              );
-            })}
-          </RadioGroup>
-        </div>
-      </Box>
-    </CssVarsProvider>
+                  disableIcon
+                  overlay
+                  label={name}
+                  value={name}
+                  checked={checked}
+                  onChange={(event) => {
+                    if (event.target.checked) {
+                      setSelected(name);
+                    }
+                  }}
+                />
+              </Chip>
+            );
+          })}
+        </RadioGroup>
+      </div>
+    </Box>
   );
 }
 ```
@@ -282,69 +278,72 @@ Use checkboxes when you want to enable multiple selection.
 <ChipWithCheckbox />
 
 ```tsx
-import { Chip as JoyChip } from '@mui/joy';
-import { CssVarsProvider } from '@mui/joy/styles';
-import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
-import { Box, Checkbox, Typography } from 'tailwind-joy/components';
+import { MdCheck } from 'react-icons/md';
+import { Box, Checkbox, Chip, Typography } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+import { twMerge } from 'tailwind-merge';
 
 export function ChipWithCheckbox() {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (
-    <CssVarsProvider modeStorageKey="theme">
-      <Box className="flex items-center gap-2">
-        <div>
-          <Typography level="title-lg" className="mb-4">
-            Favorite Movies
-          </Typography>
-          <Box role="group" className="flex flex-wrap gap-2">
-            {[
-              'Star trek',
-              'Batman',
-              'Spider man',
-              'Eternals',
-              'Shang chi',
-              'Jungle cruise',
-              'No time to die',
-              'Thor',
-              'The hulk',
-            ].map((name) => {
-              const checked = selected.includes(name);
+    <Box className="flex items-center gap-2">
+      <div>
+        <Typography level="title-lg" className="mb-4">
+          Favorite Movies
+        </Typography>
+        <Box role="group" className="flex flex-wrap gap-2">
+          {[
+            'Star trek',
+            'Batman',
+            'Spider man',
+            'Eternals',
+            'Shang chi',
+            'Jungle cruise',
+            'No time to die',
+            'Thor',
+            'The hulk',
+          ].map((name) => {
+            const checked = selected.includes(name);
 
-              return (
-                <JoyChip
-                  key={name}
-                  variant="plain"
+            return (
+              <Chip
+                key={name}
+                variant="plain"
+                color={checked ? 'primary' : 'neutral'}
+                startDecorator={
+                  checked && (
+                    <MdCheck
+                      className={twMerge(
+                        iconClass(),
+                        'pointer-events-none z-[1]',
+                      )}
+                    />
+                  )
+                }
+              >
+                <Checkbox
+                  variant="outlined"
                   color={checked ? 'primary' : 'neutral'}
-                  startDecorator={
-                    checked && (
-                      <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
-                    )
-                  }
-                >
-                  <Checkbox
-                    variant="outlined"
-                    color={checked ? 'primary' : 'neutral'}
-                    disableIcon
-                    overlay
-                    label={name}
-                    checked={checked}
-                    onChange={(event) => {
-                      setSelected((names) =>
-                        !event.target.checked
-                          ? names.filter((n) => n !== name)
-                          : [...names, name],
-                      );
-                    }}
-                  />
-                </JoyChip>
-              );
-            })}
-          </Box>
-        </div>
-      </Box>
-    </CssVarsProvider>
+                  disableIcon
+                  overlay
+                  label={name}
+                  checked={checked}
+                  onChange={(event) => {
+                    setSelected((names) =>
+                      !event.target.checked
+                        ? names.filter((n) => n !== name)
+                        : [...names, name],
+                    );
+                  }}
+                />
+              </Chip>
+            );
+          })}
+        </Box>
+      </div>
+    </Box>
   );
 }
 ```
