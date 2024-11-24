@@ -350,7 +350,18 @@ export function ChipWithCheckbox() {
 
 ## Anatomy
 
-<!-- TODO: Update after implementation. -->
+The Chip component is composed of a single root `<div>` element that wraps around its contents:
+
+```html
+<div class="tj-chip-root ...">
+  <!-- action button is nested here when clickable -->
+  <span class="tj-chip-label ...">
+    <!-- Chip contents -->
+  </span>
+  <!-- start decorator is nested here when present -->
+  <!-- end decorator is nested here when present -->
+</div>
+```
 
 ## API
 
