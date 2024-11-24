@@ -4,6 +4,7 @@ import { generatorInputs as boxClassNameGeneratorInputs } from '../components/Bo
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
 import { generatorInputs as checkboxClassNameGeneratorInputs } from '../components/Checkbox';
+import { generatorInputs as chipClassNameGeneratorInputs } from '../components/Chip';
 import { generatorInputs as circularProgressClassNameGeneratorInputs } from '../components/CircularProgress';
 import { generatorInputs as dividerClassNameGeneratorInputs } from '../components/Divider';
 import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../components/IconAdapter';
@@ -26,6 +27,7 @@ const inputs: GeneratorInput[] = [
   ...buttonClassNameGeneratorInputs,
   ...buttonGroupClassNameGeneratorInputs,
   ...checkboxClassNameGeneratorInputs,
+  ...chipClassNameGeneratorInputs,
   ...circularProgressClassNameGeneratorInputs,
   ...dividerClassNameGeneratorInputs,
   ...iconAdapterClassNameGeneratorInputs,
