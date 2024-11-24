@@ -14,7 +14,18 @@ import { iconButtonRootVariants } from './IconButton';
 import { iconClassVariants } from './internal/class-adapter';
 import { VariantColorContext } from './internal/contexts';
 
-type PassingProps = Pick<ComponentProps<'button'>, 'onClick' | 'onKeyDown'>;
+type ChipDeleteMouseEvent = Parameters<
+  NonNullable<ComponentProps<'button'>['onClick']>
+>[0];
+
+type ChipDeleteKeyboardEvent = Parameters<
+  NonNullable<ComponentProps<'button'>['onKeyDown']>
+>[0];
+
+type PassingProps = Pick<
+  ComponentProps<'button'>,
+  'disabled' | 'onClick' | 'onKeyDown'
+>;
 
 function chipDeleteRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'>,
@@ -40,8 +51,7 @@ function chipDeleteRootVariants(
 }
 
 type ChipDeleteRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
-  disabled?: boolean;
-  onDelete?: Function; // need more specific?
+  onDelete?: (e: ChipDeleteMouseEvent | ChipDeleteKeyboardEvent) => void;
 } & {
   slotProps?: {
     root?: ComponentProps<'button'>;
@@ -59,6 +69,7 @@ function ChipDeleteRoot<
 >(
   {
     // ---- passing props ----
+    disabled,
     onClick,
     onKeyDown,
     // -----------------------
@@ -70,7 +81,6 @@ function ChipDeleteRoot<
 
     // non-base variants
     className,
-    disabled,
     onDelete,
 
     // slot props
@@ -109,30 +119,39 @@ function ChipDeleteRoot<
         className,
         slotProps.root?.className ?? '',
       ),
-      onClick: (e) => {
-        if (!instanceDisabled && onDelete) {
-          onDelete(e);
-        }
-        if (onClick) {
-          onClick(
-            // @ts-expect-error
-            e,
-          );
-        }
-      },
-      onKeyDown: (e) => {
-        if (['Backspace', 'Enter', 'Delete'].includes(e.key)) {
-          e.preventDefault();
+      ...{
+        disabled: instanceDisabled,
+        onClick: (e) => {
           if (!instanceDisabled && onDelete) {
-            onDelete(e);
+            onDelete(
+              // @ts-expect-error
+              e,
+            );
           }
-        }
-        if (onKeyDown) {
-          onKeyDown(
-            // @ts-expect-error
-            e,
-          );
-        }
+          if (onClick) {
+            onClick(
+              // @ts-expect-error
+              e,
+            );
+          }
+        },
+        onKeyDown: (e) => {
+          if (['Backspace', 'Enter', 'Delete'].includes(e.key)) {
+            e.preventDefault();
+            if (!instanceDisabled && onDelete) {
+              onDelete(
+                // @ts-expect-error
+                e,
+              );
+            }
+          }
+          if (onKeyDown) {
+            onKeyDown(
+              // @ts-expect-error
+              e,
+            );
+          }
+        },
       },
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
