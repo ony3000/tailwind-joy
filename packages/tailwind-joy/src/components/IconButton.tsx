@@ -40,7 +40,7 @@ function iconButtonLoadingIndicatorVariants(
   );
 }
 
-function iconButtonRootVariants(
+export function iconButtonRootVariants(
   props?: BaseVariants & {
     /**
      * The explicit `size` provided to the component.
@@ -51,7 +51,7 @@ function iconButtonRootVariants(
 ) {
   const {
     color = 'neutral',
-    size = 'md',
+    size,
     variant = 'plain',
     instanceSize,
     visuallyDisabled = false,
@@ -201,7 +201,7 @@ function IconButtonRoot<
       className: twMerge(
         iconButtonRootVariants({
           color,
-          size,
+          size: size ?? 'md',
           instanceSize: size,
           variant,
           visuallyDisabled,
@@ -255,7 +255,7 @@ export const generatorInputs: GeneratorInput[] = [
     generatorFn: iconButtonRootVariants,
     variants: {
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
-      size: ['sm', 'md', 'lg'],
+      size: [undefined, 'sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
       instanceSize: [undefined, 'sm', 'md', 'lg'],
       visuallyDisabled: [false, true],

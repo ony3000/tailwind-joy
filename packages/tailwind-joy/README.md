@@ -22,6 +22,8 @@ https://tailwind-joy.vercel.app
 ### Data display
 
 - Aspect Ratio
+- Chip
+- Chip Delete
 - Divider
 - Typography
 

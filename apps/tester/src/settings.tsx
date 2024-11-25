@@ -26,6 +26,7 @@ export type Fixture = {
   alterColors?: UIColor[];
   alterStates?: UIState[];
   waitTime?: number;
+  maxDiffPixels?: number;
   renderJoyElement: ElementRenderer;
   renderTjElement: ElementRenderer;
 };
@@ -65,6 +66,7 @@ export function testEach(
     alterColors,
     alterStates,
     waitTime,
+    maxDiffPixels,
     renderJoyElement,
     renderTjElement,
   } of fixtures) {
@@ -174,7 +176,7 @@ export function testEach(
                   await page.getByTestId(containerTestId),
                 ).toHaveScreenshot(screenshotName, {
                   animations: 'disabled',
-                  maxDiffPixels: 1,
+                  maxDiffPixels,
                 });
                 if (state === 'active') {
                   await sleep(100);

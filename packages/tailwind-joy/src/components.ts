@@ -3,6 +3,8 @@ export { Box } from './components/Box';
 export { Button } from './components/Button';
 export { ButtonGroup } from './components/ButtonGroup';
 export { Checkbox } from './components/Checkbox';
+export { Chip } from './components/Chip';
+export { ChipDelete } from './components/ChipDelete';
 export { CircularProgress } from './components/CircularProgress';
 export { Divider } from './components/Divider';
 export { IconAdapter } from './components/IconAdapter';
