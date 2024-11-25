@@ -31,7 +31,7 @@ Use the `Divider` to wrap elements that will be added to it.
 <DividerRenderedWithContent />
 
 ```tsx
-import { Box, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider } from 'tailwind-joy/components';
 
 export function DividerRenderedWithContent() {
   const content = (
@@ -48,17 +48,7 @@ export function DividerRenderedWithContent() {
       <Divider>Visual indicator</Divider>
       {content}
       <Divider>
-        <div
-          className="
-            bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
-            relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
-            rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
-          "
-        >
-          <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
-            Visual indicator
-          </span>
-        </div>
+        <Chip size="sm">Visual indicator</Chip>
       </Divider>
       {content}
     </Box>
@@ -145,7 +135,7 @@ To control the position of the content, override the CSS variable `--Divider-chi
 
 ```tsx
 import { useState } from 'react';
-import { Box, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider } from 'tailwind-joy/components';
 
 declare module 'react' {
   interface CSSProperties {
@@ -168,17 +158,7 @@ export function DividerChildPosition() {
       <Box className="space-y-2">
         {content}
         <Divider style={{ '--Divider-childPosition': `${position}%` }}>
-          <div
-            className="
-              bg-joy-neutral-100 dark:bg-joy-neutral-800 text-joy-neutral-700 dark:text-joy-neutral-200
-              relative inline-flex min-h-[1.25rem] max-w-max items-center justify-center whitespace-nowrap
-              rounded-3xl px-1.5 align-middle text-[0.75rem] font-medium leading-normal no-underline
-            "
-          >
-            <span className="order-1 inline-block grow overflow-hidden text-ellipsis">
-              Visual indicator
-            </span>
-          </div>
+          <Chip size="sm">Visual indicator</Chip>
         </Divider>
         {content}
       </Box>
@@ -220,4 +200,5 @@ Otherwise, the Divider component is composed of a single root `<hr>` element.
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
 - [`<Box />`](../apis/box)
+- [`<Chip />`](../apis/chip)
 - [`<Divider />`](../apis/divider)
