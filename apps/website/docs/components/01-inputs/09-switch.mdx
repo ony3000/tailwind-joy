@@ -123,6 +123,9 @@ export function SwitchDecorators() {
 
 ## Anatomy
 
+The Switch component is composed of a root `<div>` that wraps the input.
+Note that the actual `<input type="checkbox">` is nested within `<div>` element that represent the `action` slot.
+
 ```html
 <div class="tj-switch-root ...">
   <!-- start decorator is nested here when present -->
