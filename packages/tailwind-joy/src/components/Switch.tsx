@@ -119,7 +119,7 @@ function switchRootVariants(props?: BaseVariants) {
       'relative',
       'p-[calc((var(--Switch-thumbSize)/2)-(var(--Switch-trackHeight)/2))_calc(-1*var(--Switch-thumbOffset))]',
       'bg-[color:initial]',
-      'border-none',
+      'border-0',
       r`m-[var(--unstable\_Switch-margin)]`,
     ]),
   );

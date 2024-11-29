@@ -122,7 +122,7 @@ function buttonRootVariants(
       'box-border',
       'rounded-[var(--Button-radius,6px)]',
       'm-[var(--Button-margin)]',
-      'border-none',
+      'border-0',
       'bg-transparent',
       'cursor-pointer',
       'select-none',

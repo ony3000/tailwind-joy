@@ -101,7 +101,7 @@ export function iconButtonRootVariants(
       'font-medium',
       'm-[var(--IconButton-margin)]',
       'rounded-[var(--IconButton-radius,6px)]',
-      'border-none',
+      'border-0',
       'box-border',
       'bg-transparent',
       'cursor-pointer',
