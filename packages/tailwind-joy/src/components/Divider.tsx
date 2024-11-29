@@ -110,7 +110,7 @@ function dividerRootVariants(props?: {
             ),
           ]
         : [
-            'border-none',
+            'border-0',
             'list-none',
             'bg-[var(--Divider-lineColor)]',
             orientation === 'vertical'

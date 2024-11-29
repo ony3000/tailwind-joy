@@ -151,7 +151,7 @@ function chipActionVariants(props?: Pick<BaseVariants, 'color' | 'variant'>) {
       'z-0',
       'inset-0',
       'w-full',
-      'border-none',
+      'border-0',
       'cursor-pointer',
       'p-[initial]',
       'm-[initial]',

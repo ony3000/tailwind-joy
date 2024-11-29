@@ -81,7 +81,7 @@ function inputInputVariants(props?: {
   return twMerge(
     clsx([
       'tj-input-input',
-      'border-none',
+      'border-0',
       'min-w-0',
       'outline-none',
       'p-0',
