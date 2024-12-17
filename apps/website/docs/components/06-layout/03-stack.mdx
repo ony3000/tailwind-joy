@@ -1,0 +1,242 @@
+---
+sidebar_position: 3
+slug: /components/stack
+---
+
+import {
+  StackBasics,
+  StackDirection,
+  StackDividers,
+  StackFlexboxGap,
+} from '@site/src/demos/stack';
+
+# Stack
+
+<AvailableFrom version="0.6.0" />
+
+Stack is a container component for arranging elements vertically or horizontally.
+
+## Basics
+
+```tsx
+import { Stack } from 'tailwind-joy/components';
+```
+
+The Stack component acts as a generic container, wrapping around the elements to be arranged.
+
+Use the `spacing` prop to control the space between children.
+The spacing value can be any number, including decimals, or a string.
+
+<StackBasics />
+
+```tsx
+import { Stack as JoyStack } from '@mui/joy';
+import type { ReactNode } from 'react';
+import { Box, Sheet } from 'tailwind-joy/components';
+
+function Item({ children }: { children?: ReactNode }) {
+  return (
+    <Sheet
+      className="
+        text-joy-neutral-700 border-joy-neutral-500/20 dark:border-joy-neutral-500/[.16]
+        dark:text-joy-neutral-300 rounded-[8px] border border-solid p-2 text-center
+        text-[length:var(--joy-fontSize-sm,0.875rem)] font-medium leading-[var(--joy-lineHeight-md,1.5)]
+      "
+    >
+      {children}
+    </Sheet>
+  );
+}
+
+export function StackBasics() {
+  return (
+    <Box className="w-full">
+      <JoyStack spacing={2}>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </JoyStack>
+    </Box>
+  );
+}
+```
+
+## Customization
+
+### Direction
+
+By default, Stack arranges items vertically in a column.
+Use the `direction` prop to position items horizontally in a row:
+
+<StackDirection />
+
+```tsx
+import { Stack as JoyStack } from '@mui/joy';
+import type { ReactNode } from 'react';
+import { Sheet } from 'tailwind-joy/components';
+
+function Item({ children }: { children?: ReactNode }) {
+  return (
+    <Sheet
+      className="
+        text-joy-neutral-700 border-joy-neutral-500/20 dark:border-joy-neutral-500/[.16]
+        dark:text-joy-neutral-300 rounded-[8px] border border-solid p-2 text-center
+        text-[length:var(--joy-fontSize-sm,0.875rem)] font-medium leading-[var(--joy-lineHeight-md,1.5)]
+      "
+    >
+      {children}
+    </Sheet>
+  );
+}
+
+export function StackDirection() {
+  return (
+    <div>
+      <JoyStack direction="row" spacing={1}>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </JoyStack>
+    </div>
+  );
+}
+```
+
+### Dividers
+
+Use the `divider` prop to insert an element between each child.
+This works particularly well with the [Divider](../components/divider) component, as shown below:
+
+<StackDividers />
+
+```tsx
+import { Stack as JoyStack } from '@mui/joy';
+import type { ReactNode } from 'react';
+import { Box, Divider, Sheet } from 'tailwind-joy/components';
+
+function Item({ children }: { children?: ReactNode }) {
+  return (
+    <Sheet
+      className="
+        text-joy-neutral-700 border-joy-neutral-500/20 dark:border-joy-neutral-500/[.16]
+        dark:text-joy-neutral-300 rounded-[8px] border border-solid p-2 text-center
+        text-[length:var(--joy-fontSize-sm,0.875rem)] font-medium leading-[var(--joy-lineHeight-md,1.5)]
+      "
+    >
+      {children}
+    </Sheet>
+  );
+}
+
+export function StackDividers() {
+  return (
+    <Box className="w-full">
+      <JoyStack
+        direction="row"
+        divider={<Divider orientation="vertical" />}
+        spacing={2}
+        sx={{ justifyContent: 'center' }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </JoyStack>
+    </Box>
+  );
+}
+```
+
+### Flexbox gap
+
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set the `useFlexGap` prop to true.
+It removes the [known limitations](#limitations) of the default implementation that uses a CSS nested selector.
+
+<StackFlexboxGap />
+
+```tsx
+import { Stack as JoyStack } from '@mui/joy';
+import type { ReactNode } from 'react';
+import { Box, Sheet } from 'tailwind-joy/components';
+
+function Item({ children }: { children?: ReactNode }) {
+  return (
+    <Sheet
+      className="
+        text-joy-neutral-700 border-joy-neutral-500/20 dark:border-joy-neutral-500/[.16]
+        dark:text-joy-neutral-300 grow rounded-[8px] border border-solid p-2 text-center
+        text-[length:var(--joy-fontSize-sm,0.875rem)] font-medium leading-[var(--joy-lineHeight-md,1.5)]
+      "
+    >
+      {children}
+    </Sheet>
+  );
+}
+
+export function StackFlexboxGap() {
+  return (
+    <Box className="w-[200px]">
+      <JoyStack
+        direction="row"
+        spacing={1}
+        useFlexGap
+        sx={{ flexWrap: 'wrap' }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Long content</Item>
+      </JoyStack>
+    </Box>
+  );
+}
+```
+
+## Limitations
+
+### Margin on the children
+
+Customizing the margin on the children is not supported by default.
+
+For instance, the top-margin on the `Button` component below will be ignored.
+
+```tsx
+<Stack>
+  <Button className="mt-[30px]">...</Button>
+</Stack>
+```
+
+:::tip
+
+To overcome this limitation, set [`useFlexGap`](#flexbox-gap) prop to true to switch to CSS flexbox gap implementation.
+
+:::
+
+### white-space: nowrap
+
+The initial setting on flex items is `min-width: auto`.
+This causes a positioning conflict when children use `white-space: nowrap`.
+
+In order for the item to stay within the container you need to set `min-width: 0`.
+
+```tsx
+<Stack direction="row" className="min-w-0">
+  <Typography noWrap>
+```
+
+## Anatomy
+
+The Stack component is composed of a single root `<div>` element:
+
+```html
+<div class="tj-stack-root ...">
+  <!-- Stack contents -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Box />`](../apis/box)
+- [`<Divider />`](../apis/divider)
+- [`<Sheet />`](../apis/sheet)
+- `<Stack />`
