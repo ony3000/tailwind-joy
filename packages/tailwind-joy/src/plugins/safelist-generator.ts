@@ -16,6 +16,7 @@ import { generatorInputs as radioClassNameGeneratorInputs } from '../components/
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
 import { generatorInputs as sheetClassNameGeneratorInputs } from '../components/Sheet';
 import { generatorInputs as skeletonClassNameGeneratorInputs } from '../components/Skeleton';
+import { generatorInputs as stackClassNameGeneratorInputs } from '../components/Stack';
 import { generatorInputs as switchClassNameGeneratorInputs } from '../components/Switch';
 import { generatorInputs as typographyClassNameGeneratorInputs } from '../components/Typography';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
@@ -40,6 +41,7 @@ const inputs: GeneratorInput[] = [
   ...radioGroupClassNameGeneratorInputs,
   ...sheetClassNameGeneratorInputs,
   ...skeletonClassNameGeneratorInputs,
+  ...stackClassNameGeneratorInputs,
   ...switchClassNameGeneratorInputs,
   ...typographyClassNameGeneratorInputs,
   ...adaptedIconClassNameGeneratorInputs,
