@@ -1,6 +1,5 @@
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 function Item({ children }: { children?: ReactNode }) {
@@ -21,11 +20,11 @@ export function StackBasics() {
   return (
     <DisplayStand>
       <Box className="w-full">
-        <JoyStack spacing={2}>
+        <Stack spacing="16px">
           <Item>Item 1</Item>
           <Item>Item 2</Item>
           <Item>Item 3</Item>
-        </JoyStack>
+        </Stack>
       </Box>
     </DisplayStand>
   );

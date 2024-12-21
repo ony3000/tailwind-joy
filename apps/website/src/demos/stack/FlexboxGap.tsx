@@ -1,6 +1,5 @@
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 function Item({ children }: { children?: ReactNode }) {
@@ -21,16 +20,11 @@ export function StackFlexboxGap() {
   return (
     <DisplayStand>
       <Box className="w-[200px]">
-        <JoyStack
-          direction="row"
-          spacing={1}
-          useFlexGap
-          sx={{ flexWrap: 'wrap' }}
-        >
+        <Stack direction="row" spacing="8px" useFlexGap className="flex-wrap">
           <Item>Item 1</Item>
           <Item>Item 2</Item>
           <Item>Long content</Item>
-        </JoyStack>
+        </Stack>
       </Box>
     </DisplayStand>
   );

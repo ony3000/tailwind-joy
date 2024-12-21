@@ -30,9 +30,8 @@ The spacing value can be any number, including decimals, or a string.
 <StackBasics />
 
 ```tsx
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Stack } from 'tailwind-joy/components';
 
 function Item({ children }: { children?: ReactNode }) {
   return (
@@ -51,11 +50,11 @@ function Item({ children }: { children?: ReactNode }) {
 export function StackBasics() {
   return (
     <Box className="w-full">
-      <JoyStack spacing={2}>
+      <Stack spacing="16px">
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>
-      </JoyStack>
+      </Stack>
     </Box>
   );
 }
@@ -71,9 +70,8 @@ Use the `direction` prop to position items horizontally in a row:
 <StackDirection />
 
 ```tsx
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Sheet } from 'tailwind-joy/components';
+import { Sheet, Stack } from 'tailwind-joy/components';
 
 function Item({ children }: { children?: ReactNode }) {
   return (
@@ -92,11 +90,11 @@ function Item({ children }: { children?: ReactNode }) {
 export function StackDirection() {
   return (
     <div>
-      <JoyStack direction="row" spacing={1}>
+      <Stack direction="row" spacing="8px">
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>
-      </JoyStack>
+      </Stack>
     </div>
   );
 }
@@ -110,9 +108,8 @@ This works particularly well with the [Divider](../components/divider) component
 <StackDividers />
 
 ```tsx
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Divider, Sheet } from 'tailwind-joy/components';
+import { Box, Divider, Sheet, Stack } from 'tailwind-joy/components';
 
 function Item({ children }: { children?: ReactNode }) {
   return (
@@ -131,16 +128,16 @@ function Item({ children }: { children?: ReactNode }) {
 export function StackDividers() {
   return (
     <Box className="w-full">
-      <JoyStack
+      <Stack
         direction="row"
         divider={<Divider orientation="vertical" />}
-        spacing={2}
-        sx={{ justifyContent: 'center' }}
+        spacing="16px"
+        className="justify-center"
       >
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>
-      </JoyStack>
+      </Stack>
     </Box>
   );
 }
@@ -154,9 +151,8 @@ It removes the [known limitations](#limitations) of the default implementation t
 <StackFlexboxGap />
 
 ```tsx
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Sheet } from 'tailwind-joy/components';
+import { Box, Sheet, Stack } from 'tailwind-joy/components';
 
 function Item({ children }: { children?: ReactNode }) {
   return (
@@ -175,16 +171,11 @@ function Item({ children }: { children?: ReactNode }) {
 export function StackFlexboxGap() {
   return (
     <Box className="w-[200px]">
-      <JoyStack
-        direction="row"
-        spacing={1}
-        useFlexGap
-        sx={{ flexWrap: 'wrap' }}
-      >
+      <Stack direction="row" spacing="8px" useFlexGap className="flex-wrap">
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Long content</Item>
-      </JoyStack>
+      </Stack>
     </Box>
   );
 }

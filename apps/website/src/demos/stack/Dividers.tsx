@@ -1,6 +1,5 @@
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Box, Divider, Sheet } from 'tailwind-joy/components';
+import { Box, Divider, Sheet, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 function Item({ children }: { children?: ReactNode }) {
@@ -21,16 +20,16 @@ export function StackDividers() {
   return (
     <DisplayStand>
       <Box className="w-full">
-        <JoyStack
+        <Stack
           direction="row"
           divider={<Divider orientation="vertical" />}
-          spacing={2}
-          sx={{ justifyContent: 'center' }}
+          spacing="16px"
+          className="justify-center"
         >
           <Item>Item 1</Item>
           <Item>Item 2</Item>
           <Item>Item 3</Item>
-        </JoyStack>
+        </Stack>
       </Box>
     </DisplayStand>
   );

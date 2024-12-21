@@ -1,6 +1,5 @@
-import { Stack as JoyStack } from '@mui/joy';
 import type { ReactNode } from 'react';
-import { Sheet } from 'tailwind-joy/components';
+import { Sheet, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 function Item({ children }: { children?: ReactNode }) {
@@ -21,11 +20,11 @@ export function StackDirection() {
   return (
     <DisplayStand>
       <div>
-        <JoyStack direction="row" spacing={1}>
+        <Stack direction="row" spacing="8px">
           <Item>Item 1</Item>
           <Item>Item 2</Item>
           <Item>Item 3</Item>
-        </JoyStack>
+        </Stack>
       </div>
     </DisplayStand>
   );
