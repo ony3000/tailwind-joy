@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Chip, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 declare module 'react' {
@@ -21,14 +21,13 @@ export function DividerChildPosition() {
   return (
     <DisplayStand>
       <Box className="space-y-2">
-        {/* TODO: Replace Box with Stack. */}
-        <Box className="space-y-2">
+        <Stack spacing="8px">
           {content}
           <Divider style={{ '--Divider-childPosition': `${position}%` }}>
             <Chip size="sm">Visual indicator</Chip>
           </Divider>
           {content}
-        </Box>
+        </Stack>
         <Box className="flex items-center justify-center gap-2">
           <span className="w-20 text-right">Position:</span>
           <input

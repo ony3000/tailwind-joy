@@ -32,16 +32,16 @@ The Linear Progress component supports four variants: `solid`, `soft` (default),
 <LinearProgressVariants />
 
 ```tsx
-import { Box, LinearProgress } from 'tailwind-joy/components';
+import { LinearProgress, Stack } from 'tailwind-joy/components';
 
 export function LinearProgressVariants() {
   return (
-    <Box className="w-full space-y-4">
+    <Stack spacing="16px" className="w-full">
       <LinearProgress variant="solid" />
       <LinearProgress variant="soft" />
       <LinearProgress variant="outlined" />
       <LinearProgress variant="plain" />
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -53,15 +53,15 @@ The Linear Progress component supports three sizes: `sm`, `md` (default), and `l
 <LinearProgressSizes />
 
 ```tsx
-import { Box, LinearProgress } from 'tailwind-joy/components';
+import { LinearProgress, Stack } from 'tailwind-joy/components';
 
 export function LinearProgressSizes() {
   return (
-    <Box className="w-full space-y-4">
+    <Stack spacing="16px" className="w-full">
       <LinearProgress size="sm" />
       <LinearProgress size="md" />
       <LinearProgress size="lg" />
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -73,17 +73,17 @@ The Linear Progress component supports five colors: `primary` (default), `neutra
 <LinearProgressColors />
 
 ```tsx
-import { Box, LinearProgress } from 'tailwind-joy/components';
+import { LinearProgress, Stack } from 'tailwind-joy/components';
 
 export function LinearProgressColors() {
   return (
-    <Box className="w-full space-y-4">
+    <Stack spacing="16px" className="w-full">
       <LinearProgress color="primary" />
       <LinearProgress color="neutral" />
       <LinearProgress color="danger" />
       <LinearProgress color="success" />
       <LinearProgress color="warning" />
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -109,16 +109,16 @@ You can use the `determinate` prop if you want to indicate a specified wait time
 <LinearProgressDeterminate />
 
 ```tsx
-import { Box, LinearProgress } from 'tailwind-joy/components';
+import { LinearProgress, Stack } from 'tailwind-joy/components';
 
 export function LinearProgressDeterminate() {
   return (
-    <Box className="w-full space-y-4">
+    <Stack spacing="16px" className="w-full">
       <LinearProgress determinate value={25} />
       <LinearProgress determinate value={50} />
       <LinearProgress determinate value={75} />
       <LinearProgress determinate value={100} />
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -137,5 +137,5 @@ The Linear Progress component is composed of a single root `<div>` element that 
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
-- [`<Box />`](../apis/box)
 - [`<LinearProgress />`](../apis/linear-progress)
+- [`<Stack />`](../apis/stack)

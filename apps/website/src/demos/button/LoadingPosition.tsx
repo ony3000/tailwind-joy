@@ -1,13 +1,12 @@
 import { MdSend } from 'react-icons/md';
-import { Box, Button } from 'tailwind-joy/components';
+import { Button, Stack } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ButtonLoadingPosition() {
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="flex flex-wrap justify-center gap-4">
+      <Stack spacing="16px" direction="row">
         <Button loading loadingPosition="start">
           Start
         </Button>
@@ -18,7 +17,7 @@ export function ButtonLoadingPosition() {
         >
           End
         </Button>
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

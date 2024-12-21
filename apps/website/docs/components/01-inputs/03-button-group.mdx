@@ -68,11 +68,11 @@ The `variant` prop is passed to the buttons, not the Button Group itself.
 <ButtonGroupVariants />
 
 ```tsx
-import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
+import { Button, ButtonGroup, Stack } from 'tailwind-joy/components';
 
 export function ButtonGroupVariants() {
   return (
-    <Box className="flex flex-col items-center justify-center gap-4">
+    <Stack spacing="16px" className="items-center">
       <ButtonGroup variant="solid">
         <Button>One</Button>
         <Button>Two</Button>
@@ -93,7 +93,7 @@ export function ButtonGroupVariants() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -107,11 +107,11 @@ The `size` prop is passed to the buttons, not the Button Group itself.
 <ButtonGroupSizes />
 
 ```tsx
-import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
+import { Button, ButtonGroup, Stack } from 'tailwind-joy/components';
 
 export function ButtonGroupSizes() {
   return (
-    <Box className="flex flex-col items-center justify-center gap-4">
+    <Stack spacing="16px" className="items-center">
       <ButtonGroup size="sm">
         <Button>One</Button>
         <Button>Two</Button>
@@ -127,7 +127,7 @@ export function ButtonGroupSizes() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -141,11 +141,11 @@ The `color` prop is passed to the buttons, not the Button Group itself.
 <ButtonGroupColors />
 
 ```tsx
-import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
+import { Button, ButtonGroup, Stack } from 'tailwind-joy/components';
 
 export function ButtonGroupColors() {
   return (
-    <Box className="flex flex-col items-center justify-center gap-4">
+    <Stack spacing="16px" className="items-center">
       <ButtonGroup color="primary">
         <Button>One</Button>
         <Button>Two</Button>
@@ -171,7 +171,7 @@ export function ButtonGroupColors() {
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -238,12 +238,17 @@ The Button Group component can be displayed vertically using the `orientation="v
 
 ```tsx
 import { MdSettings } from 'react-icons/md';
-import { Box, Button, ButtonGroup, IconButton } from 'tailwind-joy/components';
+import {
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+} from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonGroupVertical() {
   return (
-    <Box className="flex flex-wrap items-center justify-center gap-4">
+    <Stack spacing="16px" direction="row" className="items-center">
       <ButtonGroup orientation="vertical" variant="solid">
         <Button>One</Button>
         <Button disabled>Two</Button>
@@ -276,7 +281,7 @@ export function ButtonGroupVertical() {
           <MdSettings className={iconClass()} />
         </IconButton>
       </ButtonGroup>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -388,3 +393,4 @@ See the documentation below for a complete reference to all of the props availab
 - [`<Button />`](../apis/button)
 - [`<ButtonGroup />`](../apis/button-group)
 - [`<IconButton />`](../apis/icon-button)
+- [`<Stack />`](../apis/stack)

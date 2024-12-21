@@ -144,13 +144,19 @@ Insert the Skeleton between the Typography component and the text to display pla
 
 ```tsx
 import { useState } from 'react';
-import { Box, Skeleton, Switch, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Skeleton,
+  Stack,
+  Switch,
+  Typography,
+} from 'tailwind-joy/components';
 
 export function SkeletonInlineWithTypography() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <Box className="w-full max-w-prose space-y-4">
+    <Stack spacing="16px" useFlexGap className="max-w-prose">
       <Box className="m-auto">
         <Typography
           level="h1"
@@ -186,7 +192,7 @@ export function SkeletonInlineWithTypography() {
           </span>
         </label>
       </Box>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -269,5 +275,6 @@ See the documentation below for a complete reference to all of the props availab
 - [`<Button />`](../apis/button)
 - [`<Sheet />`](../apis/sheet)
 - [`<Skeleton />`](../apis/skeleton)
+- [`<Stack />`](../apis/stack)
 - [`<Switch />`](../apis/switch)
 - [`<Typography />`](../apis/typography)

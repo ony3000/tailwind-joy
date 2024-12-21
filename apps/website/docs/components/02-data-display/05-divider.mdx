@@ -31,7 +31,7 @@ Use the `Divider` to wrap elements that will be added to it.
 <DividerRenderedWithContent />
 
 ```tsx
-import { Box, Chip, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider, Stack } from 'tailwind-joy/components';
 
 export function DividerRenderedWithContent() {
   const content = (
@@ -43,7 +43,7 @@ export function DividerRenderedWithContent() {
   );
 
   return (
-    <Box className="space-y-2">
+    <Stack spacing="8px">
       {content}
       <Divider>Visual indicator</Divider>
       {content}
@@ -51,7 +51,7 @@ export function DividerRenderedWithContent() {
         <Chip size="sm">Visual indicator</Chip>
       </Divider>
       {content}
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -106,7 +106,7 @@ You can also render a vertical divider with content.
 <DividerVerticalWithText />
 
 ```tsx
-import { Box, Divider } from 'tailwind-joy/components';
+import { Box, Divider, Stack } from 'tailwind-joy/components';
 
 export function DividerVerticalWithText() {
   const content = (
@@ -118,11 +118,11 @@ export function DividerVerticalWithText() {
   );
 
   return (
-    <Box className="flex flex-row gap-4">
+    <Stack spacing="16px" direction="row">
       {content}
       <Divider orientation="vertical">Visual indicator</Divider>
       {content}
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -135,7 +135,7 @@ To control the position of the content, override the CSS variable `--Divider-chi
 
 ```tsx
 import { useState } from 'react';
-import { Box, Chip, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider, Stack } from 'tailwind-joy/components';
 
 declare module 'react' {
   interface CSSProperties {
@@ -155,13 +155,13 @@ export function DividerChildPosition() {
 
   return (
     <Box className="space-y-2">
-      <Box className="space-y-2">
+      <Stack spacing="8px">
         {content}
         <Divider style={{ '--Divider-childPosition': `${position}%` }}>
           <Chip size="sm">Visual indicator</Chip>
         </Divider>
         {content}
-      </Box>
+      </Stack>
       <Box className="flex items-center justify-center gap-2">
         <span className="w-20 text-right">Position:</span>
         <input
@@ -202,3 +202,4 @@ See the documentation below for a complete reference to all of the props availab
 - [`<Box />`](../apis/box)
 - [`<Chip />`](../apis/chip)
 - [`<Divider />`](../apis/divider)
+- [`<Stack />`](../apis/stack)

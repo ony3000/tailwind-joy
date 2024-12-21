@@ -1,11 +1,10 @@
-import { Box, Button, ButtonGroup } from 'tailwind-joy/components';
+import { Button, ButtonGroup, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ButtonGroupColors() {
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="flex flex-col items-center justify-center gap-4">
+      <Stack spacing="16px" className="items-center">
         <ButtonGroup color="primary">
           <Button>One</Button>
           <Button>Two</Button>
@@ -31,7 +30,7 @@ export function ButtonGroupColors() {
           <Button>Two</Button>
           <Button>Three</Button>
         </ButtonGroup>
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

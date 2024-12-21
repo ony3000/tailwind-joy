@@ -1,13 +1,17 @@
 import { MdSettings } from 'react-icons/md';
-import { Box, Button, ButtonGroup, IconButton } from 'tailwind-joy/components';
+import {
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+} from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ButtonGroupVertical() {
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="flex flex-wrap items-center justify-center gap-4">
+      <Stack spacing="16px" direction="row" className="items-center">
         <ButtonGroup orientation="vertical" variant="solid">
           <Button>One</Button>
           <Button disabled>Two</Button>
@@ -40,7 +44,7 @@ export function ButtonGroupVertical() {
             <MdSettings className={iconClass()} />
           </IconButton>
         </ButtonGroup>
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

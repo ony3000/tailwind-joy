@@ -1,11 +1,10 @@
-import { Box, Sheet, Typography } from 'tailwind-joy/components';
+import { Sheet, Stack, Typography } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function TypographyTitleAndBody() {
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="flex w-full max-w-prose flex-col gap-4">
+      <Stack spacing="16px" className="max-w-prose">
         {/* TODO: Replace Sheet with Card. */}
         <Sheet
           variant="outlined"
@@ -107,7 +106,7 @@ export function TypographyTitleAndBody() {
             </Typography>
           </Typography>
         </Sheet>
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

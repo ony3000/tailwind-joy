@@ -1,4 +1,4 @@
-import { Box, Divider } from 'tailwind-joy/components';
+import { Box, Divider, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function DividerVerticalWithText() {
@@ -12,12 +12,11 @@ export function DividerVerticalWithText() {
 
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="flex flex-row gap-4">
+      <Stack spacing="16px" direction="row">
         {content}
         <Divider orientation="vertical">Visual indicator</Divider>
         {content}
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

@@ -60,16 +60,16 @@ The produced HTML element will match the semantic [headings](https://www.w3.org/
 <TypographyHeading />
 
 ```tsx
-import { Box, Typography } from 'tailwind-joy/components';
+import { Stack, Typography } from 'tailwind-joy/components';
 
 export function TypographyHeading() {
   return (
-    <Box className="flex flex-col gap-3">
+    <Stack spacing="12px">
       <Typography level="h1">h1: Lorem ipsum</Typography>
       <Typography level="h2">h2: What is Lorem Ipsum?</Typography>
       <Typography level="h3">h3: The standard Lorem Ipsum passage.</Typography>
       <Typography level="h4">h4: The smallest headline of the page</Typography>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -84,11 +84,11 @@ For example, using `title-lg` with `body-lg` or `title-md` with `body-sm`.
 <TypographyTitleAndBody />
 
 ```tsx
-import { Box, Sheet, Typography } from 'tailwind-joy/components';
+import { Sheet, Stack, Typography } from 'tailwind-joy/components';
 
 export function TypographyTitleAndBody() {
   return (
-    <Box className="flex w-full max-w-prose flex-col gap-4">
+    <Stack spacing="16px" className="max-w-prose">
       <Sheet
         variant="outlined"
         className="flex w-full flex-col gap-y-3 rounded-lg p-4"
@@ -187,7 +187,7 @@ export function TypographyTitleAndBody() {
           </Typography>
         </Typography>
       </Sheet>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -327,7 +327,7 @@ When one Typography component is nested within another, the nested component ren
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
-- [`<Box />`](../apis/box)
 - [`<Chip />`](../apis/chip)
 - [`<Sheet />`](../apis/sheet)
+- [`<Stack />`](../apis/stack)
 - [`<Typography />`](../apis/typography)

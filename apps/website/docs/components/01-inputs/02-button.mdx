@@ -218,16 +218,16 @@ Use the `loadingIndicator` prop to replace it with a custom indicator, as shown 
 <ButtonLoadingIndicator />
 
 ```tsx
-import { Box, Button } from 'tailwind-joy/components';
+import { Button, Stack } from 'tailwind-joy/components';
 
 export function ButtonLoadingIndicator() {
   return (
-    <Box className="flex flex-wrap justify-center gap-4">
+    <Stack spacing="16px" direction="row">
       <Button loading>Default</Button>
       <Button loading loadingIndicator="Loading...">
         Custom
       </Button>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -245,12 +245,12 @@ It supports three values:
 
 ```tsx
 import { MdSend } from 'react-icons/md';
-import { Box, Button } from 'tailwind-joy/components';
+import { Button, Stack } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function ButtonLoadingPosition() {
   return (
-    <Box className="flex flex-wrap justify-center gap-4">
+    <Stack spacing="16px" direction="row">
       <Button loading loadingPosition="start">
         Start
       </Button>
@@ -261,7 +261,7 @@ export function ButtonLoadingPosition() {
       >
         End
       </Button>
-    </Box>
+    </Stack>
   );
 }
 ```
@@ -394,3 +394,4 @@ See the documentation below for a complete reference to all of the props availab
 - [`<Box />`](../apis/box)
 - [`<Button />`](../apis/button)
 - [`<IconButton />`](../apis/icon-button)
+- [`<Stack />`](../apis/stack)

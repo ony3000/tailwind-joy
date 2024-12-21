@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { Box, Skeleton, Switch, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Skeleton,
+  Stack,
+  Switch,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function SkeletonInlineWithTypography() {
@@ -7,8 +13,7 @@ export function SkeletonInlineWithTypography() {
 
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="w-full max-w-prose space-y-4">
+      <Stack spacing="16px" useFlexGap className="max-w-prose">
         <Box className="m-auto">
           <Typography
             level="h1"
@@ -45,7 +50,7 @@ export function SkeletonInlineWithTypography() {
             </span>
           </label>
         </Box>
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }

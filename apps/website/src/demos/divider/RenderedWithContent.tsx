@@ -1,4 +1,4 @@
-import { Box, Chip, Divider } from 'tailwind-joy/components';
+import { Box, Chip, Divider, Stack } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function DividerRenderedWithContent() {
@@ -12,8 +12,7 @@ export function DividerRenderedWithContent() {
 
   return (
     <DisplayStand>
-      {/* TODO: Replace Box with Stack. */}
-      <Box className="space-y-2">
+      <Stack spacing="8px">
         {content}
         <Divider>Visual indicator</Divider>
         {content}
@@ -21,7 +20,7 @@ export function DividerRenderedWithContent() {
           <Chip size="sm">Visual indicator</Chip>
         </Divider>
         {content}
-      </Box>
+      </Stack>
     </DisplayStand>
   );
 }
