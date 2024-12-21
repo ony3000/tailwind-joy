@@ -40,6 +40,7 @@ https://tailwind-joy.vercel.app
 ### Layout
 
 - Box
+- Stack
 
 ### Tailwind-Joy's original
 
