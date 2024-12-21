@@ -15,5 +15,6 @@ export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';
 export { Skeleton } from './components/Skeleton';
+export { Stack } from './components/Stack';
 export { Switch } from './components/Switch';
 export { Typography } from './components/Typography';
