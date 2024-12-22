@@ -197,7 +197,10 @@ function IconButtonRoot<
   const refinedSize = size ?? buttonGroup.size ?? 'md';
   const refinedVariant = variant ?? buttonGroup.variant ?? 'plain';
   const refinedDisabled =
-    (disabled || loading) ?? buttonGroup.disabled ?? false;
+    (disabled || loading) ??
+    (loading || disabled) ??
+    buttonGroup.disabled ??
+    false;
 
   const thickness = { sm: 2, md: 3, lg: 4 }[refinedSize];
 
