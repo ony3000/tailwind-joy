@@ -27,7 +27,7 @@ export const ButtonGroupContext = createContext<
   >
 >({});
 
-function buttonGroupRootVariants(
+export function buttonGroupRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
     orientation?: 'horizontal' | 'vertical';
     flexibleButton?: boolean;
@@ -164,7 +164,7 @@ function buttonGroupRootVariants(
   );
 }
 
-type ButtonGroupRootVariants = BaseVariants & {
+export type ButtonGroupRootVariants = BaseVariants & {
   buttonFlex?: number | string;
   disabled?: boolean;
   orientation?: 'horizontal' | 'vertical';

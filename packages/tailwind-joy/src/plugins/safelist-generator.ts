@@ -18,6 +18,7 @@ import { generatorInputs as sheetClassNameGeneratorInputs } from '../components/
 import { generatorInputs as skeletonClassNameGeneratorInputs } from '../components/Skeleton';
 import { generatorInputs as stackClassNameGeneratorInputs } from '../components/Stack';
 import { generatorInputs as switchClassNameGeneratorInputs } from '../components/Switch';
+import { generatorInputs as toggleButtonGroupClassNameGeneratorInputs } from '../components/ToggleButtonGroup';
 import { generatorInputs as typographyClassNameGeneratorInputs } from '../components/Typography';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
@@ -43,6 +44,7 @@ const inputs: GeneratorInput[] = [
   ...skeletonClassNameGeneratorInputs,
   ...stackClassNameGeneratorInputs,
   ...switchClassNameGeneratorInputs,
+  ...toggleButtonGroupClassNameGeneratorInputs,
   ...typographyClassNameGeneratorInputs,
   ...adaptedIconClassNameGeneratorInputs,
 ];
