@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
 import {
   forwardRef,
+  createContext,
   createElement,
   cloneElement,
   isValidElement,
@@ -17,6 +18,14 @@ import type {
   GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
+
+export const ButtonGroupContext = createContext<
+  Partial<
+    BaseVariants & {
+      disabled?: boolean;
+    }
+  >
+>({});
 
 function buttonGroupRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
@@ -238,18 +247,13 @@ function ButtonGroupRoot<
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
     },
-    <>
+    <ButtonGroupContext.Provider value={{ color, size, variant, disabled }}>
       {Children.map(children, (child, index) => {
         if (!isValidElement(child)) {
           return child;
         }
 
-        return cloneElement(child, {
-          // @ts-expect-error
-          color: child.props?.color ?? color,
-          size: child.props?.size ?? size,
-          variant: child.props?.variant ?? variant,
-          disabled: (child.props?.loading || child.props?.disabled) ?? disabled,
+        const extraProps: Record<string, any> = {
           'data-first-child':
             Children.count(children) > 1 && index === 0 ? '' : undefined,
           'data-last-child':
@@ -257,9 +261,11 @@ function ButtonGroupRoot<
             index === Children.count(children) - 1
               ? ''
               : undefined,
-        });
+        };
+
+        return cloneElement(child, extraProps);
       })}
-    </>,
+    </ButtonGroupContext.Provider>,
   );
 }
 

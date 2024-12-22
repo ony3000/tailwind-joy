@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement, useMemo } from 'react';
+import { forwardRef, createElement, useContext, useMemo } from 'react';
 import { twMerge } from '../base/alias';
 import {
   hover,
@@ -20,6 +20,7 @@ import type {
   GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
+import { ButtonGroupContext } from './ButtonGroup';
 import { CircularProgress } from './CircularProgress';
 
 function buttonStartDecoratorVariants() {
@@ -189,9 +190,9 @@ function ButtonRoot<
   {
     // ---- non-passing props ----
     // base variants
-    color = 'primary',
-    size = 'md',
-    variant = 'solid',
+    color,
+    size,
+    variant,
 
     // non-base variants
     className,
@@ -214,16 +215,22 @@ function ButtonRoot<
   }: ButtonRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
+  const buttonGroup = useContext(ButtonGroupContext);
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
   );
 
-  const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
+  const refinedColor = color ?? buttonGroup.color ?? 'primary';
+  const refinedSize = size ?? buttonGroup.size ?? 'md';
+  const refinedVariant = variant ?? buttonGroup.variant ?? 'solid';
+  const refinedDisabled =
+    (disabled || loading) ?? buttonGroup.disabled ?? false;
+
+  const thickness = { sm: 2, md: 3, lg: 4 }[refinedSize];
   const instanceLoadingIndicator = loadingIndicator ?? (
-    <CircularProgress color={color} thickness={thickness} />
+    <CircularProgress color={refinedColor} thickness={thickness} />
   );
-  const visuallyDisabled = disabled || loading;
 
   return createElement(
     component,
@@ -231,18 +238,18 @@ function ButtonRoot<
       ref,
       className: twMerge(
         buttonRootVariants({
-          color,
+          color: refinedColor,
           fullWidth,
-          size,
-          variant,
+          size: refinedSize,
+          variant: refinedVariant,
           invisibleChildren: loading && loadingPosition === 'center',
-          visuallyDisabled,
+          visuallyDisabled: refinedDisabled,
         }),
         className,
         slotProps.root?.className ?? '',
       ),
-      disabled: visuallyDisabled,
-      tabIndex: visuallyDisabled ? -1 : undefined,
+      disabled: refinedDisabled,
+      tabIndex: refinedDisabled ? -1 : undefined,
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
     },
@@ -263,8 +270,8 @@ function ButtonRoot<
         <span
           className={twMerge(
             buttonLoadingIndicatorCenterVariants({
-              color,
-              variant,
+              color: refinedColor,
+              variant: refinedVariant,
             }),
             slotProps.loadingIndicatorCenter?.className ?? '',
           )}
