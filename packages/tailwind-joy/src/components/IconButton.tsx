@@ -3,6 +3,7 @@ import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useContext, useMemo } from 'react';
 import { twMerge } from '../base/alias';
 import {
+  addPrefix,
   hover,
   focus,
   active,
@@ -21,6 +22,7 @@ import type {
 import { excludeClassName } from '../base/utils';
 import { ButtonGroupContext } from './ButtonGroup';
 import { CircularProgress } from './CircularProgress';
+import { ToggleButtonGroupContext } from './ToggleButtonGroup';
 
 function iconButtonLoadingIndicatorVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'>,
@@ -127,6 +129,21 @@ export function iconButtonRootVariants(
         active('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         theme.variants[`${variant}Active`][color].className,
       ],
+      [
+        addPrefix(
+          clsx([
+            '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+            textColor(theme.variants[`${variant}Active`][color].tokens.color),
+            backgroundColor(
+              theme.variants[`${variant}Active`][color].tokens.backgroundColor,
+            ),
+            borderColor(
+              theme.variants[`${variant}Active`][color].tokens.borderColor,
+            ),
+          ]),
+          '[&]:aria-pressed:',
+        ),
+      ],
       theme.variants[`${variant}Disabled`][color].className,
       visuallyDisabled && [
         'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
@@ -147,6 +164,7 @@ type IconButtonRootVariants = BaseVariants & {
   disabled?: boolean;
   loading?: boolean;
   loadingIndicator?: ReactNode;
+  value?: string;
 } & {
   slotProps?: {
     root?: ComponentProps<'button'>;
@@ -175,6 +193,8 @@ function IconButtonRoot<
     disabled,
     loading,
     loadingIndicator,
+    onClick,
+    value,
 
     // slot props
     slotProps = {},
@@ -188,6 +208,7 @@ function IconButtonRoot<
   ref: ForwardedRef<unknown>,
 ) {
   const buttonGroup = useContext(ButtonGroupContext);
+  const toggleButtonGroup = useContext(ToggleButtonGroupContext);
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
@@ -223,6 +244,36 @@ function IconButtonRoot<
       tabIndex: refinedDisabled ? -1 : undefined,
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
+      onClick: (e) => {
+        if (slotPropsWithoutClassName.root?.onClick) {
+          slotPropsWithoutClassName.root.onClick(
+            // @ts-expect-error
+            e,
+          );
+        } else if (onClick) {
+          onClick(
+            // @ts-expect-error
+            e,
+          );
+        }
+
+        if (toggleButtonGroup?.onClick) {
+          toggleButtonGroup.onClick(
+            // @ts-expect-error
+            e,
+            value,
+          );
+        }
+      },
+      'aria-pressed':
+        toggleButtonGroup.value === undefined
+          ? undefined
+          : Array.isArray(toggleButtonGroup.value)
+            ? toggleButtonGroup.value.includes(
+                // @ts-expect-error
+                value,
+              )
+            : toggleButtonGroup.value === value,
     },
     <>
       {loading ? (
