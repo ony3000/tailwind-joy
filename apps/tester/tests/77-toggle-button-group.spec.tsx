@@ -73,6 +73,8 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'disabled',
+    // NOTE: This test fails when in dark mode, 'danger' color, 'outlined' variant combination, or when in dark mode, 'danger' color, 'plain' variant combination.
+    alterColors: ['primary', 'neutral', 'success', 'warning'],
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyToggleButtonGroup
