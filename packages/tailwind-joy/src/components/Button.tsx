@@ -141,7 +141,7 @@ function buttonRootVariants(
       theme.variants[variant][color].className,
       theme.variants[`${variant}Hover`][color].className,
       theme.variants[`${variant}Active`][color].className,
-      [
+      !visuallyDisabled && [
         addPrefix(
           clsx([
             textColor(theme.variants[`${variant}Active`][color].tokens.color),

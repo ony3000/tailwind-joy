@@ -129,7 +129,7 @@ export function iconButtonRootVariants(
         active('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         theme.variants[`${variant}Active`][color].className,
       ],
-      [
+      !visuallyDisabled && [
         addPrefix(
           clsx([
             '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
