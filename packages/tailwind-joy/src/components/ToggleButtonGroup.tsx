@@ -29,9 +29,9 @@ type ToggleButtonGroupControlProps<
     event: ChildButtonMouseEvent,
     value: V extends undefined
       ? unknown
-      : V extends string[]
-        ? string[]
-        : string | null,
+      : V extends (infer S)[]
+        ? S[]
+        : V | null,
   ) => void;
 };
 
