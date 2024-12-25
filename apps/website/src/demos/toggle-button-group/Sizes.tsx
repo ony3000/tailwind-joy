@@ -1,8 +1,5 @@
-import {
-  Button as JoyButton,
-  ToggleButtonGroup as JoyToggleButtonGroup,
-} from '@mui/joy';
 import { useState } from 'react';
+import { Button, ToggleButtonGroup } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 type Size = 'sm' | 'md' | 'lg';
@@ -12,17 +9,17 @@ export function ToggleButtonGroupSizes() {
 
   return (
     <DisplayStand>
-      <JoyToggleButtonGroup
+      <ToggleButtonGroup
         size={value || undefined}
         value={value}
         onChange={(_, newValue) => {
           setValue(newValue);
         }}
       >
-        <JoyButton value="sm">Small</JoyButton>
-        <JoyButton value="md">Medium</JoyButton>
-        <JoyButton value="lg">Large</JoyButton>
-      </JoyToggleButtonGroup>
+        <Button value="sm">Small</Button>
+        <Button value="md">Medium</Button>
+        <Button value="lg">Large</Button>
+      </ToggleButtonGroup>
     </DisplayStand>
   );
 }

@@ -1,14 +1,10 @@
-import {
-  Button as JoyButton,
-  IconButton as JoyIconButton,
-  ToggleButtonGroup as JoyToggleButtonGroup,
-} from '@mui/joy';
 import { useState } from 'react';
 import {
   MdFormatBold,
   MdFormatItalic,
   MdFormatUnderlined,
 } from 'react-icons/md';
+import { Button, IconButton, ToggleButtonGroup } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
@@ -17,24 +13,24 @@ export function ToggleButtonGroupSpacing() {
 
   return (
     <DisplayStand>
-      <JoyToggleButtonGroup
-        spacing={2}
+      <ToggleButtonGroup
+        spacing="16px"
         value={value}
         onChange={(_, newValue) => {
           setValue(newValue);
         }}
       >
-        <JoyButton value="default">Default</JoyButton>
-        <JoyIconButton value="bold">
+        <Button value="default">Default</Button>
+        <IconButton value="bold">
           <MdFormatBold className={iconClass()} />
-        </JoyIconButton>
-        <JoyIconButton value="italic">
+        </IconButton>
+        <IconButton value="italic">
           <MdFormatItalic className={iconClass()} />
-        </JoyIconButton>
-        <JoyIconButton value="underlined">
+        </IconButton>
+        <IconButton value="underlined">
           <MdFormatUnderlined className={iconClass()} />
-        </JoyIconButton>
-      </JoyToggleButtonGroup>
+        </IconButton>
+      </ToggleButtonGroup>
     </DisplayStand>
   );
 }

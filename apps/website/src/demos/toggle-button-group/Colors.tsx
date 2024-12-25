@@ -1,8 +1,5 @@
-import {
-  Button as JoyButton,
-  ToggleButtonGroup as JoyToggleButtonGroup,
-} from '@mui/joy';
 import { useState } from 'react';
+import { Button, ToggleButtonGroup } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 type Color = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
@@ -12,19 +9,19 @@ export function ToggleButtonGroupColors() {
 
   return (
     <DisplayStand>
-      <JoyToggleButtonGroup
+      <ToggleButtonGroup
         color={value || undefined}
         value={value}
         onChange={(_, newValue) => {
           setValue(newValue);
         }}
       >
-        <JoyButton value="primary">Primary</JoyButton>
-        <JoyButton value="neutral">Neutral</JoyButton>
-        <JoyButton value="danger">Danger</JoyButton>
-        <JoyButton value="success">Success</JoyButton>
-        <JoyButton value="warning">Warning</JoyButton>
-      </JoyToggleButtonGroup>
+        <Button value="primary">Primary</Button>
+        <Button value="neutral">Neutral</Button>
+        <Button value="danger">Danger</Button>
+        <Button value="success">Success</Button>
+        <Button value="warning">Warning</Button>
+      </ToggleButtonGroup>
     </DisplayStand>
   );
 }
