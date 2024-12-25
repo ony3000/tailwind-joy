@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
 import {
   forwardRef,
+  createContext,
   createElement,
   cloneElement,
   isValidElement,
@@ -18,7 +19,15 @@ import type {
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
-function buttonGroupRootVariants(
+export const ButtonGroupContext = createContext<
+  Partial<
+    BaseVariants & {
+      disabled?: boolean;
+    }
+  >
+>({});
+
+export function buttonGroupRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
     orientation?: 'horizontal' | 'vertical';
     flexibleButton?: boolean;
@@ -155,7 +164,7 @@ function buttonGroupRootVariants(
   );
 }
 
-type ButtonGroupRootVariants = BaseVariants & {
+export type ButtonGroupRootVariants = BaseVariants & {
   buttonFlex?: number | string;
   disabled?: boolean;
   orientation?: 'horizontal' | 'vertical';
@@ -238,18 +247,13 @@ function ButtonGroupRoot<
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
     },
-    <>
+    <ButtonGroupContext.Provider value={{ color, size, variant, disabled }}>
       {Children.map(children, (child, index) => {
         if (!isValidElement(child)) {
           return child;
         }
 
-        return cloneElement(child, {
-          // @ts-expect-error
-          color: child.props?.color ?? color,
-          size: child.props?.size ?? size,
-          variant: child.props?.variant ?? variant,
-          disabled: (child.props?.loading || child.props?.disabled) ?? disabled,
+        const extraProps: Record<string, any> = {
           'data-first-child':
             Children.count(children) > 1 && index === 0 ? '' : undefined,
           'data-last-child':
@@ -257,9 +261,11 @@ function ButtonGroupRoot<
             index === Children.count(children) - 1
               ? ''
               : undefined,
-        });
+        };
+
+        return cloneElement(child, extraProps);
       })}
-    </>,
+    </ButtonGroupContext.Provider>,
   );
 }
 

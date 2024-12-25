@@ -1,0 +1,264 @@
+---
+sidebar_position: 12
+slug: /components/toggle-button-group
+---
+
+import {
+  ToggleButtonGroupBasics,
+  ToggleButtonGroupExclusiveSelection,
+  ToggleButtonGroupVariants,
+  ToggleButtonGroupSizes,
+  ToggleButtonGroupColors,
+  ToggleButtonGroupSpacing,
+} from '@site/src/demos/toggle-button-group';
+
+# Toggle Button Group
+
+<AvailableFrom version="0.6.0" />
+
+A group of mutually exclusive buttons.
+
+## Basics
+
+```tsx
+import { ToggleButtonGroup } from 'tailwind-joy/components';
+```
+
+The Toggle Button Group component uses the same styles as the [Button Group](../components/button-group) component to ensure a consistent visual connection between all of the Joy UI buttons.
+
+<ToggleButtonGroupBasics />
+
+```tsx
+import { useState } from 'react';
+import {
+  MdFormatBold,
+  MdFormatItalic,
+  MdFormatUnderlined,
+} from 'react-icons/md';
+import { Button, IconButton, ToggleButtonGroup } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ToggleButtonGroupBasics() {
+  const [value, setValue] = useState(['default']);
+
+  return (
+    <ToggleButtonGroup
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="default">Default</Button>
+      <IconButton value="bold">
+        <MdFormatBold className={iconClass()} />
+      </IconButton>
+      <IconButton value="italic">
+        <MdFormatItalic className={iconClass()} />
+      </IconButton>
+      <IconButton value="underlined">
+        <MdFormatUnderlined className={iconClass()} />
+      </IconButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+### Exclusive selection
+
+When the value provided to the Toggle Button Group component is not an array, it operates in the exclusive selection mode, which means that only one button can be selected at a single time within the group.
+
+<ToggleButtonGroupExclusiveSelection />
+
+```tsx
+import { useState } from 'react';
+import {
+  MdFormatBold,
+  MdFormatItalic,
+  MdFormatUnderlined,
+} from 'react-icons/md';
+import { Button, IconButton, ToggleButtonGroup } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ToggleButtonGroupExclusiveSelection() {
+  const [value, setValue] = useState<string | null>('default');
+
+  return (
+    <ToggleButtonGroup
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="default">Default</Button>
+      <IconButton value="bold">
+        <MdFormatBold className={iconClass()} />
+      </IconButton>
+      <IconButton value="italic">
+        <MdFormatItalic className={iconClass()} />
+      </IconButton>
+      <IconButton value="underlined">
+        <MdFormatUnderlined className={iconClass()} />
+      </IconButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Customization
+
+### Variants
+
+The Toggle Button Group component supports four variants: `solid`, `soft`, `outlined` (default), and `plain`.
+
+<ToggleButtonGroupVariants />
+
+```tsx
+import { useState } from 'react';
+import { Button, ToggleButtonGroup } from 'tailwind-joy/components';
+
+type Variant = 'solid' | 'soft' | 'outlined' | 'plain';
+
+export function ToggleButtonGroupVariants() {
+  const [value, setValue] = useState<Variant | null>('outlined');
+
+  return (
+    <ToggleButtonGroup
+      variant={value || undefined}
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="solid">Solid</Button>
+      <Button value="soft">Soft</Button>
+      <Button value="outlined">Outlined</Button>
+      <Button value="plain">Plain</Button>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+### Sizes
+
+The Toggle Button Group component supports three sizes: `sm`, `md` (default), and `lg`.
+
+<ToggleButtonGroupSizes />
+
+```tsx
+import { useState } from 'react';
+import { Button, ToggleButtonGroup } from 'tailwind-joy/components';
+
+type Size = 'sm' | 'md' | 'lg';
+
+export function ToggleButtonGroupSizes() {
+  const [value, setValue] = useState<Size | null>('md');
+
+  return (
+    <ToggleButtonGroup
+      size={value || undefined}
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="sm">Small</Button>
+      <Button value="md">Medium</Button>
+      <Button value="lg">Large</Button>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+### Colors
+
+The Toggle Button Group component supports five colors: `primary`, `neutral` (default), `danger`, `success`, and `warning`.
+
+<ToggleButtonGroupColors />
+
+```tsx
+import { useState } from 'react';
+import { Button, ToggleButtonGroup } from 'tailwind-joy/components';
+
+type Color = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
+
+export function ToggleButtonGroupColors() {
+  const [value, setValue] = useState<Color | null>('neutral');
+
+  return (
+    <ToggleButtonGroup
+      color={value || undefined}
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="primary">Primary</Button>
+      <Button value="neutral">Neutral</Button>
+      <Button value="danger">Danger</Button>
+      <Button value="success">Success</Button>
+      <Button value="warning">Warning</Button>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+### Spacing
+
+By default, there's no spacing between the buttons within a Toggle Button Group.
+Use the `spacing` prop with a value greater than 0 to separate each button.
+
+<ToggleButtonGroupSpacing />
+
+```tsx
+import { useState } from 'react';
+import {
+  MdFormatBold,
+  MdFormatItalic,
+  MdFormatUnderlined,
+} from 'react-icons/md';
+import { Button, IconButton, ToggleButtonGroup } from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ToggleButtonGroupSpacing() {
+  const [value, setValue] = useState(['default']);
+
+  return (
+    <ToggleButtonGroup
+      spacing="16px"
+      value={value}
+      onChange={(_, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Button value="default">Default</Button>
+      <IconButton value="bold">
+        <MdFormatBold className={iconClass()} />
+      </IconButton>
+      <IconButton value="italic">
+        <MdFormatItalic className={iconClass()} />
+      </IconButton>
+      <IconButton value="underlined">
+        <MdFormatUnderlined className={iconClass()} />
+      </IconButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Anatomy
+
+The Toggle Button Group component is composed of a single root `<div>` element that wraps around its contents:
+
+```html
+<div role="group" class="tj-toggle-button-group-root ...">
+  <!-- Toggle Button Group contents -->
+</div>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Button />`](../apis/button)
+- [`<IconButton />`](../apis/icon-button)
+- [`<ToggleButtonGroup />`](../apis/toggle-button-group)

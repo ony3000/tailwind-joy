@@ -1,8 +1,9 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement, useMemo } from 'react';
+import { forwardRef, createElement, useContext, useMemo } from 'react';
 import { twMerge } from '../base/alias';
 import {
+  addPrefix,
   hover,
   focus,
   active,
@@ -19,7 +20,9 @@ import type {
   GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
+import { ButtonGroupContext } from './ButtonGroup';
 import { CircularProgress } from './CircularProgress';
+import { ToggleButtonGroupContext } from './ToggleButtonGroup';
 
 function iconButtonLoadingIndicatorVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'>,
@@ -126,6 +129,21 @@ export function iconButtonRootVariants(
         active('[--Icon-color:currentColor] dark:[--Icon-color:currentColor]'),
         theme.variants[`${variant}Active`][color].className,
       ],
+      !visuallyDisabled && [
+        addPrefix(
+          clsx([
+            '[--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
+            textColor(theme.variants[`${variant}Active`][color].tokens.color),
+            backgroundColor(
+              theme.variants[`${variant}Active`][color].tokens.backgroundColor,
+            ),
+            borderColor(
+              theme.variants[`${variant}Active`][color].tokens.borderColor,
+            ),
+          ]),
+          '[&]:aria-pressed:',
+        ),
+      ],
       theme.variants[`${variant}Disabled`][color].className,
       visuallyDisabled && [
         'pointer-events-none cursor-default [--Icon-color:currentColor] dark:[--Icon-color:currentColor]',
@@ -146,6 +164,7 @@ type IconButtonRootVariants = BaseVariants & {
   disabled?: boolean;
   loading?: boolean;
   loadingIndicator?: ReactNode;
+  value?: string;
 } & {
   slotProps?: {
     root?: ComponentProps<'button'>;
@@ -165,15 +184,17 @@ function IconButtonRoot<
   {
     // ---- non-passing props ----
     // base variants
-    color = 'neutral',
+    color,
     size,
-    variant = 'plain',
+    variant,
 
     // non-base variants
     className,
     disabled,
     loading,
     loadingIndicator,
+    onClick,
+    value,
 
     // slot props
     slotProps = {},
@@ -186,13 +207,23 @@ function IconButtonRoot<
   }: IconButtonRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
+  const buttonGroup = useContext(ButtonGroupContext);
+  const toggleButtonGroup = useContext(ToggleButtonGroupContext);
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
   );
 
-  const thickness = { sm: 2, md: 3, lg: 4 }[size ?? 'md'];
-  const visuallyDisabled = disabled || loading;
+  const refinedColor = color ?? buttonGroup.color ?? 'neutral';
+  const refinedSize = size ?? buttonGroup.size ?? 'md';
+  const refinedVariant = variant ?? buttonGroup.variant ?? 'plain';
+  const refinedDisabled =
+    (disabled || loading) ??
+    (loading || disabled) ??
+    buttonGroup.disabled ??
+    false;
+
+  const thickness = { sm: 2, md: 3, lg: 4 }[refinedSize];
 
   return createElement(
     component,
@@ -200,34 +231,64 @@ function IconButtonRoot<
       ref,
       className: twMerge(
         iconButtonRootVariants({
-          color,
-          size: size ?? 'md',
+          color: refinedColor,
+          size: refinedSize,
           instanceSize: size,
-          variant,
-          visuallyDisabled,
+          variant: refinedVariant,
+          visuallyDisabled: refinedDisabled,
         }),
         className,
         slotProps.root?.className ?? '',
       ),
-      disabled: visuallyDisabled,
-      tabIndex: visuallyDisabled ? -1 : undefined,
+      disabled: refinedDisabled,
+      tabIndex: refinedDisabled ? -1 : undefined,
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
+      onClick: (e) => {
+        if (slotPropsWithoutClassName.root?.onClick) {
+          slotPropsWithoutClassName.root.onClick(
+            // @ts-expect-error
+            e,
+          );
+        } else if (onClick) {
+          onClick(
+            // @ts-expect-error
+            e,
+          );
+        }
+
+        if (toggleButtonGroup?.onClick) {
+          toggleButtonGroup.onClick(
+            // @ts-expect-error
+            e,
+            value,
+          );
+        }
+      },
+      'aria-pressed':
+        toggleButtonGroup.value === undefined
+          ? undefined
+          : Array.isArray(toggleButtonGroup.value)
+            ? toggleButtonGroup.value.includes(
+                // @ts-expect-error
+                value,
+              )
+            : toggleButtonGroup.value === value,
     },
     <>
       {loading ? (
         <span
           className={twMerge(
             iconButtonLoadingIndicatorVariants({
-              color,
-              variant,
+              color: refinedColor,
+              variant: refinedVariant,
             }),
             slotProps.loadingIndicator?.className ?? '',
           )}
           {...(slotPropsWithoutClassName.loadingIndicator ?? {})}
         >
           {loadingIndicator ?? (
-            <CircularProgress color={color} thickness={thickness} />
+            <CircularProgress color={refinedColor} thickness={thickness} />
           )}
         </span>
       ) : (
