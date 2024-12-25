@@ -2,6 +2,10 @@
 sidebar_position: 1
 ---
 
+import { Button as JoyButton } from '@mui/joy';
+import { CssVarsProvider } from '@mui/joy/styles';
+import { Button as TJButton } from 'tailwind-joy/components';
+
 # Overview
 
 ## Introduction
@@ -32,9 +36,9 @@ export function ComponentComparison() {
       <DisplayStand className="grid items-start justify-start gap-y-0">
         <h3>Tailwind-Joy</h3>
         <div>
-          <Button color="primary" size="md" variant="solid">
+          <TJButton color="primary" size="md" variant="solid">
             Button
-          </Button>
+          </TJButton>
         </div>
       </DisplayStand>
     </DisplayStand>
