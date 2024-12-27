@@ -3,8 +3,10 @@ import type { ForwardedRef } from 'react';
 import { forwardRef, createElement } from 'react';
 import { twMerge } from '../base/alias';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 
 function boxRootVariants() {
@@ -14,13 +16,13 @@ function boxRootVariants() {
 // biome-ignore lint/complexity/noBannedTypes:
 type BoxRootVariants = {};
 
-type BoxRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  BoxRootVariants,
-  T
->;
+type BoxRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  BoxRootVariants
+> &
+  BoxRootVariants;
 
-function BoxRoot<T extends keyof JSX.IntrinsicElements | undefined = undefined>(
+function BoxRoot<T extends ReactTags = 'div'>(
   {
     // ---- non-passing props ----
     // non-base variants
@@ -45,9 +47,7 @@ function BoxRoot<T extends keyof JSX.IntrinsicElements | undefined = undefined>(
   );
 }
 
-export const Box = forwardRef(BoxRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Box = forwardRef(BoxRoot) as <T extends ReactTags = 'div'>(
   props: BoxRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

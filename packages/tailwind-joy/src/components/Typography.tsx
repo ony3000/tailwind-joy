@@ -13,9 +13,11 @@ import { twMerge } from '../base/alias';
 import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -35,10 +37,7 @@ export type TypographyLevel =
 
 export const TypographyNestedContext = createContext(false);
 
-const defaultLevelMapping: Record<
-  TypographyLevel,
-  keyof JSX.IntrinsicElements
-> = {
+const defaultLevelMapping: Record<TypographyLevel, ReactTags> = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -136,7 +135,7 @@ type TypographyRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
   endDecorator?: ReactNode;
   gutterBottom?: boolean;
   level?: TypographyLevel;
-  levelMapping?: Partial<Record<TypographyLevel, keyof JSX.IntrinsicElements>>;
+  levelMapping?: Partial<Record<TypographyLevel, ReactTags>>;
   noWrap?: boolean;
   startDecorator?: ReactNode;
   textColor?: string;
@@ -148,15 +147,13 @@ type TypographyRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
   };
 };
 
-type TypographyRootProps<T> = GenericComponentPropsWithVariants<
-  'span',
-  TypographyRootVariants,
-  T
->;
+type TypographyRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  TypographyRootVariants
+> &
+  TypographyRootVariants;
 
-function TypographyRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function TypographyRoot<T extends ReactTags = 'span'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -275,7 +272,7 @@ function TypographyRoot<
 }
 
 export const Typography = forwardRef(TypographyRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'span',
 >(
   props: TypographyRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

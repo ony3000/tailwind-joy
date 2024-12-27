@@ -10,9 +10,11 @@ import {
 } from '../base/modifier';
 import { theme } from '../base/theme';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -191,15 +193,13 @@ type CircularProgressRootVariants = BaseVariants & {
   };
 };
 
-type CircularProgressRootProps<T> = GenericComponentPropsWithVariants<
-  'span',
-  CircularProgressRootVariants,
-  T
->;
+type CircularProgressRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  CircularProgressRootVariants
+> &
+  CircularProgressRootVariants;
 
-function CircularProgressRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function CircularProgressRoot<T extends ReactTags = 'span'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -288,7 +288,7 @@ function CircularProgressRoot<
 }
 
 export const CircularProgress = forwardRef(CircularProgressRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'span',
 >(
   props: CircularProgressRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

@@ -13,9 +13,11 @@ import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -114,15 +116,13 @@ type AspectRatioRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
   };
 };
 
-type AspectRatioRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  AspectRatioRootVariants,
-  T
->;
+type AspectRatioRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  AspectRatioRootVariants
+> &
+  AspectRatioRootVariants;
 
-function AspectRatioRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function AspectRatioRoot<T extends ReactTags = 'div'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -216,7 +216,7 @@ function AspectRatioRoot<
 }
 
 export const AspectRatio = forwardRef(AspectRatioRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   props: AspectRatioRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

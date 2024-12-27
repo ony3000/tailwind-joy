@@ -5,9 +5,11 @@ import { r, twMerge } from '../base/alias';
 import { addPrefix, backgroundColor, textColor } from '../base/modifier';
 import { theme } from '../base/theme';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -93,15 +95,13 @@ type LinearProgressRootVariants = BaseVariants & {
   };
 };
 
-type LinearProgressRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  LinearProgressRootVariants,
-  T
->;
+type LinearProgressRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  LinearProgressRootVariants
+> &
+  LinearProgressRootVariants;
 
-function LinearProgressRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function LinearProgressRoot<T extends ReactTags = 'div'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -164,7 +164,7 @@ function LinearProgressRoot<
 }
 
 export const LinearProgress = forwardRef(LinearProgressRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   props: LinearProgressRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

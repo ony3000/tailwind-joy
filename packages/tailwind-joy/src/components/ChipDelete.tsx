@@ -4,9 +4,11 @@ import { forwardRef, createElement, useContext, useMemo } from 'react';
 import { MdClose } from 'react-icons/md';
 import { twMerge } from '../base/alias';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { ChipContext } from './Chip';
@@ -58,15 +60,13 @@ type ChipDeleteRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
   };
 } & PassingProps;
 
-type ChipDeleteRootProps<T> = GenericComponentPropsWithVariants<
-  'button',
-  ChipDeleteRootVariants,
-  T
->;
+type ChipDeleteRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  ChipDeleteRootVariants
+> &
+  ChipDeleteRootVariants;
 
-function ChipDeleteRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function ChipDeleteRoot<T extends ReactTags = 'button'>(
   {
     // ---- passing props ----
     disabled,
@@ -163,7 +163,7 @@ function ChipDeleteRoot<
 }
 
 export const ChipDelete = forwardRef(ChipDeleteRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'button',
 >(
   props: ChipDeleteRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

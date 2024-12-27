@@ -13,9 +13,11 @@ import { r, twMerge } from '../base/alias';
 import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -175,15 +177,13 @@ export type ButtonGroupRootVariants = BaseVariants & {
   };
 };
 
-type ButtonGroupRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  ButtonGroupRootVariants,
-  T
->;
+type ButtonGroupRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  ButtonGroupRootVariants
+> &
+  ButtonGroupRootVariants;
 
-function ButtonGroupRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function ButtonGroupRoot<T extends ReactTags = 'div'>(
   {
     // ---- passing props ----
     // base variants
@@ -270,7 +270,7 @@ function ButtonGroupRoot<
 }
 
 export const ButtonGroup = forwardRef(ButtonGroupRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   props: ButtonGroupRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

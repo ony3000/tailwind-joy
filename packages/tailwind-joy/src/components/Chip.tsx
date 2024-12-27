@@ -12,9 +12,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { VariantColorContext } from './internal/contexts';
@@ -212,15 +214,13 @@ type ChipRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type ChipRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  ChipRootVariants,
-  T
->;
+type ChipRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  ChipRootVariants
+> &
+  ChipRootVariants;
 
-function ChipRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function ChipRoot<T extends ReactTags = 'div'>(
   {
     // ---- passing props ----
     disabled = false,
@@ -360,9 +360,7 @@ function ChipRoot<
   );
 }
 
-export const Chip = forwardRef(ChipRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Chip = forwardRef(ChipRoot) as <T extends ReactTags = 'div'>(
   props: ChipRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

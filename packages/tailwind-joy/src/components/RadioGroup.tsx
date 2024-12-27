@@ -10,9 +10,11 @@ import {
 import { r, uuid, twMerge } from '../base/alias';
 import { theme } from '../base/theme';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -69,15 +71,13 @@ type RadioGroupRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type RadioGroupRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  RadioGroupRootVariants,
-  T
->;
+type RadioGroupRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  RadioGroupRootVariants
+> &
+  RadioGroupRootVariants;
 
-function RadioGroupRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function RadioGroupRoot<T extends ReactTags = 'div'>(
   {
     // ---- passing props ----
     // base variants
@@ -155,7 +155,7 @@ function RadioGroupRoot<
 }
 
 export const RadioGroup = forwardRef(RadioGroupRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   props: RadioGroupRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

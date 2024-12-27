@@ -13,8 +13,10 @@ import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import type { TypographyLevel } from './Typography';
@@ -191,15 +193,13 @@ type SkeletonRootVariants = {
   };
 };
 
-type SkeletonRootProps<T> = GenericComponentPropsWithVariants<
-  'span',
-  SkeletonRootVariants,
-  T
->;
+type SkeletonRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  SkeletonRootVariants
+> &
+  SkeletonRootVariants;
 
-function SkeletonRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function SkeletonRoot<T extends ReactTags = 'span'>(
   {
     // ---- non-passing props ----
     // non-base variants
@@ -283,7 +283,7 @@ function SkeletonRoot<
 }
 
 export const Skeleton = forwardRef(SkeletonRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'span',
 >(
   props: SkeletonRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

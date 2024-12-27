@@ -6,9 +6,11 @@ import { toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -50,15 +52,13 @@ type SheetRootVariants = Pick<BaseVariants, 'color' | 'variant'> & {
   };
 };
 
-type SheetRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  SheetRootVariants,
-  T
->;
+type SheetRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  SheetRootVariants
+> &
+  SheetRootVariants;
 
-function SheetRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function SheetRoot<T extends ReactTags = 'div'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -131,9 +131,7 @@ function SheetRoot<
   );
 }
 
-export const Sheet = forwardRef(SheetRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Sheet = forwardRef(SheetRoot) as <T extends ReactTags = 'div'>(
   props: SheetRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

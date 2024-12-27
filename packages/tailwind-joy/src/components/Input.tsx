@@ -11,9 +11,11 @@ import {
 } from '../base/modifier';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -283,15 +285,13 @@ type InputRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type InputRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  InputRootVariants,
-  T
->;
+type InputRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  InputRootVariants
+> &
+  InputRootVariants;
 
-function InputRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function InputRoot<T extends ReactTags = 'div'>(
   {
     // ---- passing props ----
     autoComplete,
@@ -416,9 +416,7 @@ function InputRoot<
   );
 }
 
-export const Input = forwardRef(InputRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Input = forwardRef(InputRoot) as <T extends ReactTags = 'div'>(
   props: InputRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

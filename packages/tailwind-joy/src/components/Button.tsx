@@ -16,9 +16,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { ButtonGroupContext } from './ButtonGroup';
@@ -195,15 +197,13 @@ type ButtonRootVariants = BaseVariants & {
   };
 };
 
-type ButtonRootProps<T> = GenericComponentPropsWithVariants<
-  'button',
-  ButtonRootVariants,
-  T
->;
+type ButtonRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  ButtonRootVariants
+> &
+  ButtonRootVariants;
 
-function ButtonRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function ButtonRoot<T extends ReactTags = 'button'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -349,7 +349,7 @@ function ButtonRoot<
 }
 
 export const Button = forwardRef(ButtonRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'button',
 >(
   props: ButtonRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

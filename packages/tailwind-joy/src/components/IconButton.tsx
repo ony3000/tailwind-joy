@@ -15,9 +15,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { ButtonGroupContext } from './ButtonGroup';
@@ -172,15 +174,13 @@ type IconButtonRootVariants = BaseVariants & {
   };
 };
 
-type IconButtonRootProps<T> = GenericComponentPropsWithVariants<
-  'button',
-  IconButtonRootVariants,
-  T
->;
+type IconButtonRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  IconButtonRootVariants
+> &
+  IconButtonRootVariants;
 
-function IconButtonRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function IconButtonRoot<T extends ReactTags = 'button'>(
   {
     // ---- non-passing props ----
     // base variants
@@ -299,7 +299,7 @@ function IconButtonRoot<
 }
 
 export const IconButton = forwardRef(IconButtonRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'button',
 >(
   props: IconButtonRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

@@ -5,8 +5,10 @@ import { r, twMerge } from '../base/alias';
 import { addPrefix } from '../base/modifier';
 import { colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -136,15 +138,13 @@ type DividerRootVariants = {
   };
 };
 
-type DividerRootProps<T> = GenericComponentPropsWithVariants<
-  'hr',
-  DividerRootVariants,
-  T
->;
+type DividerRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  DividerRootVariants
+> &
+  DividerRootVariants;
 
-function DividerRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function DividerRoot<T extends ReactTags = 'hr'>(
   {
     // ---- non-passing props ----
     // non-base variants
@@ -190,9 +190,7 @@ function DividerRoot<
   );
 }
 
-export const Divider = forwardRef(DividerRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Divider = forwardRef(DividerRoot) as <T extends ReactTags = 'hr'>(
   props: DividerRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

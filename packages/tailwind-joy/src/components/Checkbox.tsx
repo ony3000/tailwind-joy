@@ -14,9 +14,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { iconClassVariants } from './internal/class-adapter';
@@ -242,15 +244,13 @@ type CheckboxRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type CheckboxRootProps<T> = GenericComponentPropsWithVariants<
-  'span',
-  CheckboxRootVariants,
-  T
->;
+type CheckboxRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  CheckboxRootVariants
+> &
+  CheckboxRootVariants;
 
-function CheckboxRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function CheckboxRoot<T extends ReactTags = 'span'>(
   {
     // ---- passing props ----
     checked,
@@ -421,7 +421,7 @@ function CheckboxRoot<
 }
 
 export const Checkbox = forwardRef(CheckboxRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'span',
 >(
   props: CheckboxRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;

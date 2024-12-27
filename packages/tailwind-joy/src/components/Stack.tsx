@@ -3,9 +3,11 @@ import type { ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, cloneElement, Children } from 'react';
 import { twMerge } from '../base/alias';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 
 function stackRootVariants(props?: {
@@ -46,15 +48,13 @@ type StackRootVariants = BaseVariants & {
   useFlexGap?: boolean;
 };
 
-type StackRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  StackRootVariants,
-  T
->;
+type StackRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  StackRootVariants
+> &
+  StackRootVariants;
 
-function StackRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function StackRoot<T extends ReactTags = 'div'>(
   {
     // ---- non-passing props ----
     // non-base variants
@@ -111,9 +111,7 @@ function StackRoot<
   );
 }
 
-export const Stack = forwardRef(StackRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Stack = forwardRef(StackRoot) as <T extends ReactTags = 'div'>(
   props: StackRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

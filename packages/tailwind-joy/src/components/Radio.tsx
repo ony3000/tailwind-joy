@@ -19,9 +19,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import { RadioGroupContext } from './RadioGroup';
@@ -433,15 +435,13 @@ type RadioRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type RadioRootProps<T> = GenericComponentPropsWithVariants<
-  'span',
-  RadioRootVariants,
-  T
->;
+type RadioRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  RadioRootVariants
+> &
+  RadioRootVariants;
 
-function RadioRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function RadioRoot<T extends ReactTags = 'span'>(
   {
     // ---- passing props ----
     checked,
@@ -591,9 +591,7 @@ function RadioRoot<
   );
 }
 
-export const Radio = forwardRef(RadioRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Radio = forwardRef(RadioRoot) as <T extends ReactTags = 'span'>(
   props: RadioRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

@@ -11,9 +11,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -229,15 +231,13 @@ type SwitchRootVariants = BaseVariants & {
   };
 } & PassingProps;
 
-type SwitchRootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  SwitchRootVariants,
-  T
->;
+type SwitchRootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  SwitchRootVariants
+> &
+  SwitchRootVariants;
 
-function SwitchRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+function SwitchRoot<T extends ReactTags = 'div'>(
   {
     // ---- passing props ----
     checked,
@@ -382,9 +382,7 @@ function SwitchRoot<
   );
 }
 
-export const Switch = forwardRef(SwitchRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
->(
+export const Switch = forwardRef(SwitchRoot) as <T extends ReactTags = 'div'>(
   props: SwitchRootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
 

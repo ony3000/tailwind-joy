@@ -1,21 +1,12 @@
 import type { ComponentProps } from 'react';
 
-export type ComponentPropsWithVariants<
-  T extends keyof JSX.IntrinsicElements,
-  V extends {},
-> = Omit<ComponentProps<T>, keyof V> & V;
+export type ReactTags = keyof JSX.IntrinsicElements;
 
-export type GenericComponentPropsWithVariants<
-  D extends keyof JSX.IntrinsicElements,
-  V extends {},
-  T,
-> = {
+export type DynamicComponentProps<T extends ReactTags> = {
   component?: T;
-} & (T extends undefined
-  ? ComponentPropsWithVariants<D, V>
-  : T extends keyof JSX.IntrinsicElements
-    ? ComponentPropsWithVariants<T, V>
-    : ComponentPropsWithVariants<D, V>);
+} & ComponentProps<T>;
+
+export type Difference<T extends {}, U extends {}> = Omit<T, keyof U>;
 
 export type BaseVariants = {
   color?: 'primary' | 'neutral' | 'danger' | 'success' | 'warning';

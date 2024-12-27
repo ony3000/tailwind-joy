@@ -11,9 +11,11 @@ import {
 } from 'react';
 import { twMerge } from '../base/alias';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 import type { ButtonGroupRootVariants } from './ButtonGroup';
@@ -80,16 +82,13 @@ type ToggleButtonGroupRootVariants<
 > = ButtonGroupRootVariants & ToggleButtonGroupControlProps<V>;
 
 type ToggleButtonGroupRootProps<
-  T,
+  T extends ReactTags,
   V extends ToggleButtonGroupValue | undefined,
-> = GenericComponentPropsWithVariants<
-  'div',
-  ToggleButtonGroupRootVariants<V>,
-  T
->;
+> = Difference<DynamicComponentProps<T>, ToggleButtonGroupRootVariants<V>> &
+  ToggleButtonGroupRootVariants<V>;
 
 function ToggleButtonGroupRoot<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
   V extends ToggleButtonGroupValue | undefined = undefined,
 >(
   {
@@ -217,7 +216,7 @@ function ToggleButtonGroupRoot<
 }
 
 export const ToggleButtonGroup = forwardRef(ToggleButtonGroupRoot) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
   V extends ToggleButtonGroupValue | undefined = undefined,
 >(
   props: ToggleButtonGroupRootProps<T, V> & { ref?: ForwardedRef<unknown> },
