@@ -72,9 +72,11 @@ import {
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
 import type {
+  ReactTags,
+  DynamicComponentProps,
+  Difference,
   BaseVariants,
   GeneratorInput,
-  GenericComponentPropsWithVariants,
 } from '../base/types';
 import { excludeClassName } from '../base/utils';
 
@@ -106,14 +108,14 @@ type ${pascalCaseName}RootVariants = BaseVariants & {
   };
 };
 
-type ${pascalCaseName}RootProps<T> = GenericComponentPropsWithVariants<
-  'div',
-  ${pascalCaseName}RootVariants,
-  T
->;
+type ${pascalCaseName}RootProps<T extends ReactTags> = Difference<
+  DynamicComponentProps<T>,
+  ${pascalCaseName}RootVariants
+> &
+  ${pascalCaseName}RootVariants;
 
 function ${pascalCaseName}Root<
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   {
     // ---- passing props ----
@@ -139,7 +141,7 @@ function ${pascalCaseName}Root<
 }
 
 export const ${pascalCaseName} = forwardRef(${pascalCaseName}Root) as <
-  T extends keyof JSX.IntrinsicElements | undefined = undefined,
+  T extends ReactTags = 'div',
 >(
   props: ${pascalCaseName}RootProps<T> & { ref?: ForwardedRef<unknown> },
 ) => JSX.Element;
