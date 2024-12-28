@@ -56,7 +56,7 @@ async function main({ name }) {
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useMemo } from 'react';
-import { r, uuid, twMerge } from '../base/alias';
+import { r, twMerge, useUniqueId } from '../base/alias';
 import {
   addPrefix,
   hover,
