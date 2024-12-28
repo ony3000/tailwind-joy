@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useState, useMemo } from 'react';
 import { MdCheck, MdHorizontalRule } from 'react-icons/md';
-import { r, uuid, twMerge } from '../base/alias';
+import { r, twMerge, useUniqueId } from '../base/alias';
 import {
   addPrefix,
   toColorClass,
@@ -291,7 +291,7 @@ function CheckboxRoot<T extends ReactTags = 'span'>(
   }: CheckboxRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const [instanceId, setInstanceId] = useState(id ?? uuid());
+  const instanceId = useUniqueId();
   const [uncontrolledChecked, setUncontrolledChecked] = useState(
     defaultChecked ?? false,
   );
@@ -365,7 +365,7 @@ function CheckboxRoot<T extends ReactTags = 'span'>(
               checked,
               defaultChecked,
               disabled,
-              id: instanceId,
+              id: id ?? instanceId,
               onBlur,
               onChange: (e) => {
                 if (checked === undefined) {
@@ -406,7 +406,7 @@ function CheckboxRoot<T extends ReactTags = 'span'>(
       </span>
       {label && (
         <label
-          htmlFor={instanceId}
+          htmlFor={id ?? instanceId}
           className={twMerge(
             checkboxLabelVariants({ disableIcon }),
             slotProps.label?.className ?? '',
