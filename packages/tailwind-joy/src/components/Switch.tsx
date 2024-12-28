@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
 import { forwardRef, createElement, useState, useMemo } from 'react';
-import { r, uuid, twMerge } from '../base/alias';
+import { r, twMerge, useUniqueId } from '../base/alias';
 import {
   addPrefix,
   hover,
@@ -273,7 +273,7 @@ function SwitchRoot<T extends ReactTags = 'div'>(
   }: SwitchRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const [instanceId, setInstanceId] = useState(id ?? uuid());
+  const instanceId = useUniqueId();
   const [uncontrolledChecked, setUncontrolledChecked] = useState(
     defaultChecked ?? false,
   );
@@ -350,7 +350,7 @@ function SwitchRoot<T extends ReactTags = 'div'>(
             checked,
             defaultChecked,
             disabled,
-            id: instanceId,
+            id: id ?? instanceId,
             onBlur,
             onChange: (e) => {
               if (checked === undefined) {

@@ -1,13 +1,7 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import {
-  forwardRef,
-  createElement,
-  useContext,
-  useState,
-  useMemo,
-} from 'react';
-import { r, uuid, twMerge } from '../base/alias';
+import { forwardRef, createElement, useContext, useMemo } from 'react';
+import { r, twMerge, useUniqueId } from '../base/alias';
 import {
   addPrefix,
   toColorClass,
@@ -481,7 +475,7 @@ function RadioRoot<T extends ReactTags = 'span'>(
   ref: ForwardedRef<unknown>,
 ) {
   const radioGroup = useContext(RadioGroupContext);
-  const [instanceId, setInstanceId] = useState(id ?? uuid());
+  const instanceId = useUniqueId();
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
@@ -562,7 +556,7 @@ function RadioRoot<T extends ReactTags = 'span'>(
               checked: instanceChecked,
               defaultChecked: instanceDefaultChecked,
               disabled,
-              id: instanceId,
+              id: id ?? instanceId,
               name: instanceName,
               onBlur,
               onChange: instanceOnChange,
@@ -577,7 +571,7 @@ function RadioRoot<T extends ReactTags = 'span'>(
       </span>
       {label && (
         <label
-          htmlFor={instanceId}
+          htmlFor={id ?? instanceId}
           className={twMerge(
             radioLabelVariants({ disableIcon: instanceDisableIcon }),
             slotProps.label?.className ?? '',

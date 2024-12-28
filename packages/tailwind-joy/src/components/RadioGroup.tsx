@@ -1,13 +1,7 @@
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
-import {
-  createContext,
-  forwardRef,
-  createElement,
-  useState,
-  useMemo,
-} from 'react';
-import { r, uuid, twMerge } from '../base/alias';
+import { createContext, forwardRef, createElement, useMemo } from 'react';
+import { r, twMerge, useUniqueId } from '../base/alias';
 import { theme } from '../base/theme';
 import type {
   ReactTags,
@@ -112,7 +106,7 @@ function RadioGroupRoot<T extends ReactTags = 'div'>(
   }: RadioGroupRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const [instanceName, setInstanceName] = useState(name ?? uuid());
+  const instanceName = useUniqueId();
   const slotPropsWithoutClassName = useMemo(
     () => excludeClassName(slotProps),
     [slotProps],
@@ -125,7 +119,7 @@ function RadioGroupRoot<T extends ReactTags = 'div'>(
         defaultValue,
         disableIcon,
         overlay,
-        name: instanceName,
+        name: name ?? instanceName,
         value,
         onChange,
       }}
