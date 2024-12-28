@@ -145,9 +145,9 @@ const fixtures: Fixture[] = [
             useFlexGap
             sx={{ flexWrap: 'wrap' }}
           >
-            <Item>Item 1</Item>
-            <Item>Item 2</Item>
-            <Item>Item 3</Item>
+            <GrowItem>Item 1</GrowItem>
+            <GrowItem>Item 2</GrowItem>
+            <GrowItem>Long content</GrowItem>
           </JoyStack>
         </JoyBox>
       );
@@ -161,9 +161,9 @@ const fixtures: Fixture[] = [
             useFlexGap
             className="flex-wrap"
           >
-            <Item>Item 1</Item>
-            <Item>Item 2</Item>
-            <Item>Item 3</Item>
+            <GrowItem>Item 1</GrowItem>
+            <GrowItem>Item 2</GrowItem>
+            <GrowItem>Long content</GrowItem>
           </TJStack>
         </TJBox>
       );
