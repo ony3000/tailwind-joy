@@ -208,7 +208,7 @@ const fixtures: Fixture[] = [
               <JoyIconButton variant="outlined">👍</JoyIconButton>
               <JoyIconButton variant="outlined">🏖</JoyIconButton>
               <JoyIconButton variant="outlined">😍</JoyIconButton>
-              <JoyButton variant="outlined" color="neutral" className="ml-auto">
+              <JoyButton variant="outlined" color="neutral" sx={{ ml: 'auto' }}>
                 See all
               </JoyButton>
             </JoyBox>
