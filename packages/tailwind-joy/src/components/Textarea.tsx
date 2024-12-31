@@ -303,7 +303,7 @@ function syncTextareaHeight(
     outerHeight = Math.max(minRows * singleRowHeight, outerHeight);
   }
   if (maxRows) {
-    outerHeight = Math.max(maxRows * singleRowHeight, outerHeight);
+    outerHeight = Math.min(maxRows * singleRowHeight, outerHeight);
   }
   outerHeight = Math.max(outerHeight, singleRowHeight);
 
