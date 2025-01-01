@@ -18,6 +18,7 @@ https://tailwind-joy.vercel.app
 - Radio
 - Radio Group
 - Switch
+- Textarea
 - Toggle Button Group
 
 ### Data display
