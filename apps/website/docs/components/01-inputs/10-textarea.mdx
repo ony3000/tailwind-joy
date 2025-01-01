@@ -3,7 +3,6 @@ sidebar_position: 10
 slug: /components/textarea
 ---
 
-import { CssVarsProvider } from '@mui/joy/styles';
 import {
   TextareaVariants,
   TextareaSizes,
@@ -15,8 +14,6 @@ import {
   TextareaDecorators,
   TextareaHTMLTextareaRef,
 } from '@site/src/demos/textarea';
-
-<CssVarsProvider modeStorageKey="theme" />
 
 # Textarea
 
@@ -282,7 +279,16 @@ export function TextareaHTMLTextareaRef() {
 
 ## Anatomy
 
-<!-- TODO: Update after implementation. -->
+The Textarea component is composed of a root `<div>` with two `<textarea>`s nested inside:
+
+```html
+<div class="tj-textarea-root ...">
+  <!-- start decorator is nested here when present -->
+  <textarea class="tj-textarea-input ..." />
+  <textarea class="tj-textarea-input ..." />
+  <!-- end decorator is nested here when present -->
+</div>
+```
 
 ## API
 
