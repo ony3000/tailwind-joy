@@ -413,7 +413,7 @@ function TextareaRoot<T extends ReactTags = 'div'>(
       ref,
       className: twMerge(
         textareaRootVariants({
-          color,
+          color: color ?? (error ? 'danger' : 'neutral'),
           size,
           variant,
           instanceColor: error ? 'danger' : color,
