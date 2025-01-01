@@ -1,5 +1,4 @@
-import { Textarea as JoyTextarea } from '@mui/joy';
-import { Box, Button } from 'tailwind-joy/components';
+import { Box, Button, Textarea } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function TextareaFormSubmission() {
@@ -12,8 +11,8 @@ export function TextareaFormSubmission() {
         }}
       >
         <Box className="grid flex-wrap items-center gap-2">
-          <JoyTextarea placeholder="Try to submit with no text!" required />
-          <JoyTextarea placeholder="It is disabled" disabled />
+          <Textarea placeholder="Try to submit with no text!" required />
+          <Textarea placeholder="It is disabled" disabled />
           <Button type="submit">Submit</Button>
         </Box>
       </form>

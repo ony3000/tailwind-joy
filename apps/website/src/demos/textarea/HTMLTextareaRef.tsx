@@ -1,6 +1,5 @@
-import { Textarea as JoyTextarea } from '@mui/joy';
 import { useRef } from 'react';
-import { Button, Stack } from 'tailwind-joy/components';
+import { Button, Stack, Textarea } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function TextareaHTMLTextareaRef() {
@@ -13,7 +12,7 @@ export function TextareaHTMLTextareaRef() {
   return (
     <DisplayStand>
       <Stack direction="row" className="gap-2">
-        <JoyTextarea
+        <Textarea
           placeholder="Placeholder"
           slotProps={{ textarea: { ref: textareaRef } }}
         />

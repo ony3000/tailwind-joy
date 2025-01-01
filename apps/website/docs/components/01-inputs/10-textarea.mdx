@@ -39,16 +39,15 @@ The Textarea component supports four variants: `solid`, `soft`, `outlined` (defa
 <TextareaVariants />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Box, Textarea } from 'tailwind-joy/components';
 
 export function TextareaVariants() {
   return (
     <Box className="grid flex-wrap items-center gap-4 py-4">
-      <JoyTextarea placeholder="Type in here..." variant="solid" />
-      <JoyTextarea placeholder="Type in here..." variant="soft" />
-      <JoyTextarea placeholder="Type in here..." variant="outlined" />
-      <JoyTextarea placeholder="Type in here..." variant="plain" />
+      <Textarea placeholder="Type in here..." variant="solid" />
+      <Textarea placeholder="Type in here..." variant="soft" />
+      <Textarea placeholder="Type in here..." variant="outlined" />
+      <Textarea placeholder="Type in here..." variant="plain" />
     </Box>
   );
 }
@@ -61,15 +60,14 @@ The Textarea component supports three sizes: `sm`, `md` (default), and `lg`.
 <TextareaSizes />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Box, Textarea } from 'tailwind-joy/components';
 
 export function TextareaSizes() {
   return (
     <Box className="grid flex-wrap items-center gap-4 py-4">
-      <JoyTextarea size="sm" placeholder="Small" />
-      <JoyTextarea size="md" placeholder="Medium" />
-      <JoyTextarea size="lg" placeholder="Large" />
+      <Textarea size="sm" placeholder="Small" />
+      <Textarea size="md" placeholder="Medium" />
+      <Textarea size="lg" placeholder="Large" />
     </Box>
   );
 }
@@ -82,17 +80,16 @@ The Textarea component supports five colors: `primary`, `neutral` (default), `da
 <TextareaColors />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Box, Textarea } from 'tailwind-joy/components';
 
 export function TextareaColors() {
   return (
     <Box className="grid flex-wrap items-center gap-4 py-4">
-      <JoyTextarea placeholder="Type in here..." color="primary" />
-      <JoyTextarea placeholder="Type in here..." color="neutral" />
-      <JoyTextarea placeholder="Type in here..." color="danger" />
-      <JoyTextarea placeholder="Type in here..." color="success" />
-      <JoyTextarea placeholder="Type in here..." color="warning" />
+      <Textarea placeholder="Type in here..." color="primary" />
+      <Textarea placeholder="Type in here..." color="neutral" />
+      <Textarea placeholder="Type in here..." color="danger" />
+      <Textarea placeholder="Type in here..." color="success" />
+      <Textarea placeholder="Type in here..." color="warning" />
     </Box>
   );
 }
@@ -105,8 +102,7 @@ You can add standard form attributes such as `required` and `disabled` to the Te
 <TextareaFormSubmission />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
-import { Box, Button } from 'tailwind-joy/components';
+import { Box, Button, Textarea } from 'tailwind-joy/components';
 
 export function TextareaFormSubmission() {
   return (
@@ -117,8 +113,8 @@ export function TextareaFormSubmission() {
       }}
     >
       <Box className="grid flex-wrap items-center gap-2">
-        <JoyTextarea placeholder="Try to submit with no text!" required />
-        <JoyTextarea placeholder="It is disabled" disabled />
+        <Textarea placeholder="Try to submit with no text!" required />
+        <Textarea placeholder="It is disabled" disabled />
         <Button type="submit">Submit</Button>
       </Box>
     </form>
@@ -137,24 +133,21 @@ Provide these CSS variables as class names to control the focused ring appearanc
 <TextareaFocusedRing />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
+import { Textarea } from 'tailwind-joy/components';
 
 export function TextareaFocusedRing() {
   return (
-    <JoyTextarea
+    <Textarea
       placeholder="Bootstrap"
       minRows={2}
-      sx={{
-        '--Textarea-focusedInset': 'var(--any,)',
-        '--Textarea-focusedThickness': '0.25rem',
-        '--Textarea-focusedHighlight': 'rgba(13,110,253,.25)',
-        '&::before': {
-          transition: 'box-shadow 0.15s ease-in-out',
-        },
-        '&:focus-within': {
-          borderColor: '#86b7fe',
-        },
-      }}
+      className="
+        before:transition-shadow
+        before:ease-[ease-in-out]
+        focus-within:border-[#86b7fe]
+        [&.tj-textarea-root]:[--Textarea-focusedHighlight:rgba(13,110,253,.25)]
+        [&.tj-textarea-root]:[--Textarea-focusedInset:var(--any,)]
+        [&.tj-textarea-root]:[--Textarea-focusedThickness:0.25rem]
+      "
     />
   );
 }
@@ -167,11 +160,11 @@ Use the `error` prop on Textarea to toggle the error state:
 <TextareaValidation />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
+import { Textarea } from 'tailwind-joy/components';
 
 export function TextareaValidation() {
   return (
-    <JoyTextarea
+    <Textarea
       placeholder="Type in here..."
       error
       defaultValue="Oh no! Something is definitely wrong."
@@ -187,11 +180,11 @@ Use the `minRows` to set the minimum number of lines to show and `maxRows` to li
 <TextareaRows />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
+import { Textarea } from 'tailwind-joy/components';
 
 export function TextareaRows() {
   return (
-    <JoyTextarea
+    <Textarea
       placeholder="Type in here..."
       defaultValue="Try to put text longer than 4 lines."
       minRows={2}
@@ -209,9 +202,14 @@ It's usually more common to see textarea components using decorators at the top 
 <TextareaDecorators />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Button, IconButton, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  IconButton,
+  Textarea,
+  Typography,
+} from 'tailwind-joy/components';
 
 export function TextareaDecorators() {
   const [text, setText] = useState('');
@@ -220,7 +218,7 @@ export function TextareaDecorators() {
     setText((prevText) => `${prevText}${emoji}`);
 
   return (
-    <JoyTextarea
+    <Textarea
       placeholder="Type in here..."
       value={text}
       onChange={(event) => setText(event.target.value)}
@@ -247,7 +245,7 @@ export function TextareaDecorators() {
           {text.length} character(s)
         </Typography>
       }
-      sx={{ minWidth: 300 }}
+      className="min-w-[300px]"
     />
   );
 }
@@ -260,9 +258,8 @@ Use the `slotProps.textarea` attribute to pass props to the `ref` and other [sup
 <TextareaHTMLTextareaRef />
 
 ```tsx
-import { Textarea as JoyTextarea } from '@mui/joy';
 import { useRef } from 'react';
-import { Button, Stack } from 'tailwind-joy/components';
+import { Button, Stack, Textarea } from 'tailwind-joy/components';
 
 export function TextareaHTMLTextareaRef() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -273,7 +270,7 @@ export function TextareaHTMLTextareaRef() {
 
   return (
     <Stack direction="row" className="gap-2">
-      <JoyTextarea
+      <Textarea
         placeholder="Placeholder"
         slotProps={{ textarea: { ref: textareaRef } }}
       />

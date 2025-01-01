@@ -1,6 +1,11 @@
-import { Textarea as JoyTextarea } from '@mui/joy';
 import { useState } from 'react';
-import { Box, Button, IconButton, Typography } from 'tailwind-joy/components';
+import {
+  Box,
+  Button,
+  IconButton,
+  Textarea,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function TextareaDecorators() {
@@ -11,7 +16,7 @@ export function TextareaDecorators() {
 
   return (
     <DisplayStand>
-      <JoyTextarea
+      <Textarea
         placeholder="Type in here..."
         value={text}
         onChange={(event) => setText(event.target.value)}
@@ -38,7 +43,7 @@ export function TextareaDecorators() {
             {text.length} character(s)
           </Typography>
         }
-        sx={{ minWidth: 300 }}
+        className="min-w-[300px]"
       />
     </DisplayStand>
   );
