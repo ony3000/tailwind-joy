@@ -258,19 +258,24 @@ function textareaEndDecoratorVariants() {
 }
 
 function syncTextareaHeight(
-  inputRef: RefObject<HTMLTextAreaElement>,
   shadowRef: RefObject<HTMLTextAreaElement>,
   heightRef: MutableRefObject<number | null>,
   placeholder?: string,
   minRows?: number,
   maxRows?: number,
 ) {
-  if (!inputRef.current || !shadowRef.current) {
+  const shadowInput = shadowRef.current;
+
+  if (!shadowInput) {
     return;
   }
 
-  const visibleInput = inputRef.current;
-  const shadowInput = shadowRef.current;
+  const visibleInput =
+    shadowInput.previousElementSibling as HTMLTextAreaElement | null;
+
+  if (!visibleInput) {
+    return;
+  }
 
   const computedStyle = window.getComputedStyle(visibleInput);
 
@@ -386,7 +391,6 @@ function TextareaRoot<T extends ReactTags = 'div'>(
   }: TextareaRootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
   const shadowRef = useRef<HTMLTextAreaElement>(null);
   const heightRef = useRef<number | null>(null);
   const slotPropsWithoutClassName = useMemo(
@@ -397,14 +401,7 @@ function TextareaRoot<T extends ReactTags = 'div'>(
   const isControlled = value !== undefined;
 
   useEffect(() => {
-    syncTextareaHeight(
-      inputRef,
-      shadowRef,
-      heightRef,
-      placeholder,
-      minRows,
-      maxRows,
-    );
+    syncTextareaHeight(shadowRef, heightRef, placeholder, minRows, maxRows);
   });
 
   return createElement(
@@ -437,7 +434,6 @@ function TextareaRoot<T extends ReactTags = 'div'>(
         </div>
       )}
       <textarea
-        ref={inputRef}
         className={twMerge(
           textareaInputVariants(),
           slotProps.textarea?.className ?? '',
@@ -453,7 +449,6 @@ function TextareaRoot<T extends ReactTags = 'div'>(
           onChange: (e) => {
             if (!isControlled) {
               syncTextareaHeight(
-                inputRef,
                 shadowRef,
                 heightRef,
                 placeholder,
