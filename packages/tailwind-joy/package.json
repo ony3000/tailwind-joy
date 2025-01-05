@@ -1,6 +1,6 @@
 {
   "name": "tailwind-joy",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "React component library that styles the components of Joy UI in the Tailwind CSS way.",
   "keywords": [
     "react",
