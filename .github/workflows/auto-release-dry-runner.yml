@@ -28,22 +28,20 @@ jobs:
         run: pnpm run build
         working-directory: ./packages/tailwind-joy
       - name: Bump a package version
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm version ${{ inputs.releaseLevel }}
-          NEXT_VERSION=$(npm pkg get version | awk '{print substr($0, 2, length($0)-2)}')
-          git add package.json
-          echo $NEXT_VERSION | xargs -I {} git commit -m "chore: release {}"
-          echo $NEXT_VERSION | xargs -I {} git tag v{}
-          git log --graph -1
+        run: npm version ${{ inputs.releaseLevel }}
         working-directory: ./packages/tailwind-joy
       - name: Publish package
         run: npm publish --dry-run
         working-directory: ./packages/tailwind-joy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Check the context
+      - name: Publish a release commit and tag
         run: |
-          npm pkg get version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          NEXT_VERSION=$(npm pkg get version | awk '{print substr($0, 2, length($0)-2)}')
+          git add package.json
+          echo $NEXT_VERSION | xargs -I {} git commit -m "chore: release {}"
+          echo $NEXT_VERSION | xargs -I {} git tag v{}
+          git log --graph -1
         working-directory: ./packages/tailwind-joy
