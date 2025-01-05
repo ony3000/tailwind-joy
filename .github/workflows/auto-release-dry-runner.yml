@@ -36,10 +36,14 @@ jobs:
           git add package.json
           echo $NEXT_VERSION | xargs -I {} git commit -m "chore: release {}"
           echo $NEXT_VERSION | xargs -I {} git tag v{}
-          git log -1
+          git log --graph -1
         working-directory: ./packages/tailwind-joy
       - name: Publish package
         run: npm publish --dry-run
         working-directory: ./packages/tailwind-joy
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Check the context
+        run: |
+          npm pkg get version
+        working-directory: ./packages/tailwind-joy
