@@ -20,13 +20,8 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": null,
     "./components": {
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
