@@ -49,6 +49,7 @@ type PassingProps = Pick<
 
 function textareaRootVariants(
   props?: BaseVariants & {
+    isTailwind4?: boolean;
     instanceColor?: BaseVariants['color'];
   },
 ) {
@@ -56,6 +57,7 @@ function textareaRootVariants(
     color = 'neutral',
     size = 'md',
     variant = 'outlined',
+    isTailwind4 = false,
     instanceColor,
   } = props ?? {};
 
@@ -121,7 +123,9 @@ function textareaRootVariants(
       'flex',
       'flex-col',
       'ps-[var(--Textarea-paddingInline)]',
-      '[padding-block:var(--Textarea-paddingBlock)]',
+      isTailwind4
+        ? 'py-[var(--Textarea-paddingBlock)]'
+        : '[padding-block:var(--Textarea-paddingBlock)]',
       'rounded-[var(--Textarea-radius)]',
       size === 'sm' && [
         'text-[0.875rem]',
@@ -415,6 +419,7 @@ function TextareaRoot<T extends ReactTags = 'div'>(
           color: color ?? (error ? 'danger' : 'neutral'),
           size,
           variant,
+          isTailwind4: isTailwindVersion4(),
           instanceColor: error ? 'danger' : color,
         }),
         className,
@@ -528,6 +533,7 @@ export const generatorInputs: GeneratorInput[] = [
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
+      isTailwind4: [false, true],
       instanceColor: [
         undefined,
         'primary',

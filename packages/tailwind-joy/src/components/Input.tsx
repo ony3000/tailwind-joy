@@ -40,7 +40,9 @@ type PassingProps = Pick<
   | 'value'
 >;
 
-function inputStartDecoratorVariants() {
+function inputStartDecoratorVariants(props?: { isTailwind4?: boolean }) {
+  const { isTailwind4 = false } = props ?? {};
+
   return twMerge(
     clsx([
       'tj-input-start-decorator',
@@ -49,7 +51,9 @@ function inputStartDecoratorVariants() {
       '[--Icon-margin:0_0_0_calc(var(--Input-paddingInline)/-4)]',
       '[display:inherit]',
       'items-center',
-      r`[padding-block:var(--unstable\_InputPaddingBlock)]`,
+      isTailwind4
+        ? r`py-[var(--unstable\_InputPaddingBlock)]`
+        : r`[padding-block:var(--unstable\_InputPaddingBlock)]`,
       'flex-wrap',
       'me-[var(--Input-gap)]',
       'text-[color:var(--Input-decoratorColor)]',
@@ -369,7 +373,9 @@ function InputRoot<T extends ReactTags = 'div'>(
       {startDecorator && (
         <div
           className={twMerge(
-            inputStartDecoratorVariants(),
+            inputStartDecoratorVariants({
+              isTailwind4: isTailwindVersion4(),
+            }),
             slotProps.startDecorator?.className ?? '',
           )}
           {...(slotPropsWithoutClassName.startDecorator ?? {})}
@@ -429,7 +435,9 @@ export const Input = forwardRef(InputRoot) as <T extends ReactTags = 'div'>(
 export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: inputStartDecoratorVariants,
-    variants: {},
+    variants: {
+      isTailwind4: [false, true],
+    },
   },
   {
     generatorFn: inputEndDecoratorVariants,

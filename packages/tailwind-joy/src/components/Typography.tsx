@@ -19,7 +19,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
 export type TypographyLevel =
   | 'h1'
@@ -74,6 +74,7 @@ function typographyEndDecoratorVariants() {
 
 function typographyRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
+    isTailwind4?: boolean;
     gutterBottom?: boolean;
     hasEndDecorator?: boolean;
     hasSkeleton?: boolean;
@@ -86,6 +87,7 @@ function typographyRootVariants(
   const {
     color,
     variant,
+    isTailwind4 = false,
     gutterBottom = false,
     hasEndDecorator = false,
     hasSkeleton = false,
@@ -122,7 +124,7 @@ function typographyRootVariants(
         ),
       variant && [
         'rounded-[2px]',
-        '[padding-block:min(0.1em,4px)]',
+        isTailwind4 ? 'py-[min(0.1em,4px)]' : '[padding-block:min(0.1em,4px)]',
         'ps-[0.25em] pe-[0.25em]',
         !nesting && 'ms-[-0.25em] me-[-0.25em]',
         color && theme.variants[variant][color].className,
@@ -215,6 +217,7 @@ function TypographyRoot<T extends ReactTags = 'span'>(
             typographyRootVariants({
               color: instanceColor,
               variant,
+              isTailwind4: isTailwindVersion4(),
               gutterBottom,
               hasEndDecorator: Boolean(endDecorator),
               hasSkeleton,
@@ -291,6 +294,7 @@ export const generatorInputs: GeneratorInput[] = [
     variants: {
       color: [undefined, 'primary', 'neutral', 'danger', 'success', 'warning'],
       variant: [undefined, 'solid', 'soft', 'outlined', 'plain'],
+      isTailwind4: [false, true],
       gutterBottom: [false, true],
       hasEndDecorator: [false, true],
       hasSkeleton: [false, true],

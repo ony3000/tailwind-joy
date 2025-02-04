@@ -10,14 +10,16 @@ import type {
   Difference,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
 function dividerRootVariants(props?: {
+  isTailwind4?: boolean;
   hasChildren?: boolean;
   inset?: 'none' | 'context';
   orientation?: 'horizontal' | 'vertical';
 }) {
   const {
+    isTailwind4 = false,
     hasChildren = false,
     inset = 'none',
     orientation = 'horizontal',
@@ -36,11 +38,13 @@ function dividerRootVariants(props?: {
       orientation === 'vertical'
         ? [
             'ms-[initial] me-[initial]',
-            r`[margin-block:var(--\_Divider-inset)]`,
+            isTailwind4
+              ? r`my-[var(--\_Divider-inset)]`
+              : r`[margin-block:var(--\_Divider-inset)]`,
           ]
         : [
             r`ms-[var(--\_Divider-inset)] me-[var(--\_Divider-inset)]`,
-            '[margin-block:initial]',
+            isTailwind4 ? 'my-[initial]' : '[margin-block:initial]',
           ],
       'relative',
       'self-stretch',
@@ -176,6 +180,7 @@ function DividerRoot<T extends ReactTags = 'hr'>(
       ref,
       className: twMerge(
         dividerRootVariants({
+          isTailwind4: isTailwindVersion4(),
           hasChildren,
           inset,
           orientation,
@@ -198,6 +203,7 @@ export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: dividerRootVariants,
     variants: {
+      isTailwind4: [false, true],
       hasChildren: [false, true],
       inset: ['none', 'context'],
       orientation: ['horizontal', 'vertical'],
