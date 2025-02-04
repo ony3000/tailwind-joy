@@ -25,7 +25,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<
   ComponentProps<'textarea'>,
@@ -178,14 +178,16 @@ function textareaRootVariants(
   );
 }
 
-function textareaInputVariants() {
+function textareaInputVariants(props?: { isTailwind4?: boolean }) {
+  const { isTailwind4 = false } = props ?? {};
+
   return twMerge(
     clsx([
       'tj-textarea-input',
       'resize-none',
       'border-0',
       'min-w-0',
-      'outline-none',
+      isTailwind4 ? 'outline-hidden' : 'outline-none',
       'p-0',
       'pe-[var(--Textarea-paddingInline)]',
       'flex-auto',
@@ -435,7 +437,9 @@ function TextareaRoot<T extends ReactTags = 'div'>(
       )}
       <textarea
         className={twMerge(
-          textareaInputVariants(),
+          textareaInputVariants({
+            isTailwind4: isTailwindVersion4(),
+          }),
           slotProps.textarea?.className ?? '',
         )}
         {...{
@@ -476,7 +480,9 @@ function TextareaRoot<T extends ReactTags = 'div'>(
       <textarea
         ref={shadowRef}
         className={twMerge(
-          textareaInputVariants(),
+          textareaInputVariants({
+            isTailwind4: isTailwindVersion4(),
+          }),
           slotProps.textarea?.className ?? '',
         )}
         aria-hidden
@@ -534,7 +540,9 @@ export const generatorInputs: GeneratorInput[] = [
   },
   {
     generatorFn: textareaInputVariants,
-    variants: {},
+    variants: {
+      isTailwind4: [false, true],
+    },
   },
   {
     generatorFn: textareaStartDecoratorVariants,

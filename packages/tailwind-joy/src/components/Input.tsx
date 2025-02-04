@@ -17,7 +17,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
 type PassingProps = Pick<
   ComponentProps<'input'>,
@@ -75,17 +75,22 @@ function inputEndDecoratorVariants() {
 }
 
 function inputInputVariants(props?: {
+  isTailwind4?: boolean;
   hasStartDecorator?: boolean;
   hasEndDecorator?: boolean;
 }) {
-  const { hasStartDecorator = false, hasEndDecorator = false } = props ?? {};
+  const {
+    isTailwind4 = false,
+    hasStartDecorator = false,
+    hasEndDecorator = false,
+  } = props ?? {};
 
   return twMerge(
     clsx([
       'tj-input-input',
       'border-0',
       'min-w-0',
-      'outline-none',
+      isTailwind4 ? 'outline-hidden' : 'outline-none',
       'p-0',
       'flex-1',
       'text-inherit',
@@ -375,6 +380,7 @@ function InputRoot<T extends ReactTags = 'div'>(
       <input
         className={twMerge(
           inputInputVariants({
+            isTailwind4: isTailwindVersion4(),
             hasStartDecorator: Boolean(startDecorator),
             hasEndDecorator: Boolean(endDecorator),
           }),
@@ -432,6 +438,7 @@ export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: inputInputVariants,
     variants: {
+      isTailwind4: [false, true],
       hasStartDecorator: [false, true],
       hasEndDecorator: [false, true],
     },
