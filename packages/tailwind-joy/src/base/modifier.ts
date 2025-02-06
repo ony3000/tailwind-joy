@@ -89,6 +89,6 @@ export function toVariableClass(
 ): string {
   return token.replace(
     /(joy-[a-z0-9]+-[a-z0-9]+)/g,
-    `[--${variableName}:var(--$1)]`,
+    `[--${variableName}:var(--color-$1)]`,
   );
 }
