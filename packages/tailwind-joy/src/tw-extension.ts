@@ -104,6 +104,8 @@ export const tjPlugin = plugin(
     addBase({
       ':root': {
         '--pi': '3.1415926535',
+        ...Object.fromEntries(convertColorsToEntries(joyColors, '--color-joy')),
+        // deprecated
         ...Object.fromEntries(convertColorsToEntries(joyColors, '--joy')),
       },
     });
