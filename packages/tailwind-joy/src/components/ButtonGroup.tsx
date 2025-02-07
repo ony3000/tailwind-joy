@@ -143,7 +143,7 @@ export function buttonGroupRootVariants(
           ),
           '[&_.tj-button-root:disabled]:',
         ),
-        'non-touchscreen:[&_.tj-button-root:hover]:z-[2]',
+        'non-touchscreen-hover:[&_.tj-button-root]:z-[2]',
         '[&_.tj-button-root:focus-visible]:z-[2]',
       ],
       [
@@ -155,7 +155,7 @@ export function buttonGroupRootVariants(
           ),
           '[&_.tj-icon-button-root:disabled]:',
         ),
-        'non-touchscreen:[&_.tj-icon-button-root:hover]:z-[2]',
+        'non-touchscreen-hover:[&_.tj-icon-button-root]:z-[2]',
         '[&_.tj-icon-button-root:focus-visible]:z-[2]',
       ],
       flexibleButton && [
