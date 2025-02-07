@@ -110,6 +110,11 @@ export const tjPlugin = plugin(
       },
     });
 
+    addVariant(
+      'non-touchscreen-hover',
+      '@media (hover: hover) and (pointer: fine) { &:hover }',
+    );
+    // deprecated
     addVariant('non-touchscreen', '@media (hover: hover) and (pointer: fine)');
   },
 );

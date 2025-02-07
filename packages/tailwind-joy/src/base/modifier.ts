@@ -28,7 +28,7 @@ export function addPrefix(
  * A shortcut for the `addPrefix` function.
  */
 export function hover(classNameOrToken: string): string {
-  return addPrefix(classNameOrToken, 'non-touchscreen:hover:');
+  return addPrefix(classNameOrToken, 'non-touchscreen-hover:');
 }
 
 /**
