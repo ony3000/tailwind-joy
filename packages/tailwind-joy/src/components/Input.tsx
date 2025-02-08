@@ -178,15 +178,15 @@ function inputRootVariants(
       '[--Input-focused:0]',
       '[--Input-focusedThickness:2px]',
       color === 'neutral'
-        ? '[--Input-focusedHighlight:var(--joy-primary-500)]'
-        : `[--Input-focusedHighlight:var(--joy-${color}-500)]`,
+        ? '[--Input-focusedHighlight:var(--color-joy-primary-500)]'
+        : `[--Input-focusedHighlight:var(--color-joy-${color}-500)]`,
       addPrefix(
         clsx([
           instanceColor &&
             (instanceColor === 'neutral'
-              ? '[--_Input-focusedHighlight:var(--joy-primary-500)]'
-              : `[--_Input-focusedHighlight:var(--joy-${instanceColor}-500)]`),
-          r`[--Input-focusedHighlight:var(--\_Input-focusedHighlight,var(--joy-primary-500))]`,
+              ? '[--_Input-focusedHighlight:var(--color-joy-primary-500)]'
+              : `[--_Input-focusedHighlight:var(--color-joy-${instanceColor}-500)]`),
+          r`[--Input-focusedHighlight:var(--\_Input-focusedHighlight,var(--color-joy-primary-500))]`,
         ]),
         '[&:not([data-skip-inverted-colors])]:',
       ),

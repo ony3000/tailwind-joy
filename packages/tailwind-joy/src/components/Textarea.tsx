@@ -72,15 +72,15 @@ function textareaRootVariants(
       '[--Textarea-focused:0]',
       '[--Textarea-focusedThickness:2px]',
       color === 'neutral'
-        ? '[--Textarea-focusedHighlight:var(--joy-primary-500)]'
-        : `[--Textarea-focusedHighlight:var(--joy-${color}-500)]`,
+        ? '[--Textarea-focusedHighlight:var(--color-joy-primary-500)]'
+        : `[--Textarea-focusedHighlight:var(--color-joy-${color}-500)]`,
       addPrefix(
         clsx([
           instanceColor &&
             (instanceColor === 'neutral'
-              ? '[--_Textarea-focusedHighlight:var(--joy-primary-500)]'
-              : `[--_Textarea-focusedHighlight:var(--joy-${instanceColor}-500)]`),
-          r`[--Textarea-focusedHighlight:var(--\_Textarea-focusedHighlight,var(--joy-primary-500))]`,
+              ? '[--_Textarea-focusedHighlight:var(--color-joy-primary-500)]'
+              : `[--_Textarea-focusedHighlight:var(--color-joy-${instanceColor}-500)]`),
+          r`[--Textarea-focusedHighlight:var(--\_Textarea-focusedHighlight,var(--color-joy-primary-500))]`,
         ]),
         '[&:not([data-inverted-colors="false"])]:',
       ),

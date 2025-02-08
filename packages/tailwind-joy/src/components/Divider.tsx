@@ -29,8 +29,8 @@ function dividerRootVariants(props?: {
     clsx([
       'tj-divider-root group/tj-divider',
       '[--Divider-thickness:1px]',
-      '[--Divider-lineColor:color-mix(in_srgb,var(--joy-neutral-500)_20%,transparent)]',
-      'dark:[--Divider-lineColor:color-mix(in_srgb,var(--joy-neutral-500)_16%,transparent)]',
+      '[--Divider-lineColor:color-mix(in_srgb,var(--color-joy-neutral-500)_20%,transparent)]',
+      'dark:[--Divider-lineColor:color-mix(in_srgb,var(--color-joy-neutral-500)_16%,transparent)]',
       inset === 'none'
         ? '[--_Divider-inset:0px]'
         : '[--_Divider-inset:var(--Divider-inset,0px)]',
