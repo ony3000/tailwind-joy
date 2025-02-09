@@ -21,7 +21,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 import { ButtonGroupContext } from './ButtonGroup';
 import { CircularProgress } from './CircularProgress';
 import { ToggleButtonGroupContext } from './ToggleButtonGroup';
@@ -47,6 +47,7 @@ function iconButtonLoadingIndicatorVariants(
 
 export function iconButtonRootVariants(
   props?: BaseVariants & {
+    isTailwind4?: boolean;
     /**
      * The explicit `size` provided to the component.
      */
@@ -58,6 +59,7 @@ export function iconButtonRootVariants(
     color = 'neutral',
     size,
     variant = 'plain',
+    isTailwind4 = false,
     instanceSize,
     visuallyDisabled = false,
   } = props ?? {};
@@ -102,7 +104,7 @@ export function iconButtonRootVariants(
         'ps-[0.375rem] pe-[0.375rem]',
       ],
       '[-webkit-tap-highlight-color:transparent]',
-      '[padding-block:0]',
+      isTailwind4 ? 'py-0' : '[padding-block:0]',
       'font-medium',
       'm-[var(--IconButton-margin)]',
       'rounded-[var(--IconButton-radius,6px)]',
@@ -233,8 +235,9 @@ function IconButtonRoot<T extends ReactTags = 'button'>(
         iconButtonRootVariants({
           color: refinedColor,
           size: refinedSize,
-          instanceSize: size,
           variant: refinedVariant,
+          isTailwind4: isTailwindVersion4(),
+          instanceSize: size,
           visuallyDisabled: refinedDisabled,
         }),
         className,
@@ -318,6 +321,7 @@ export const generatorInputs: GeneratorInput[] = [
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       size: [undefined, 'sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
+      isTailwind4: [false, true],
       instanceSize: [undefined, 'sm', 'md', 'lg'],
       visuallyDisabled: [false, true],
     },
