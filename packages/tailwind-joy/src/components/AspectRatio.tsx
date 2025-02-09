@@ -86,16 +86,16 @@ function aspectRatioContentVariants(
           '[object-fit:var(--tj-AspectRatio-objectFit)]',
           'm-0',
           'p-0',
-          addPrefix(
-            clsx([
-              'w-full',
-              'h-full',
-              '[object-fit:var(--tj-AspectRatio-objectFit)]',
-            ]),
-            '[&>img]:',
-          ),
         ]),
         '[&_[data-first-child]]:',
+      ),
+      addPrefix(
+        clsx([
+          'w-full',
+          'h-full',
+          '[object-fit:var(--tj-AspectRatio-objectFit)]',
+        ]),
+        '[&_[data-first-child]>img]:',
       ),
       theme.typography['body-md'].className,
       theme.variants[variant][color].className,
