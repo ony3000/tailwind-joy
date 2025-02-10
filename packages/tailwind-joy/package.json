@@ -26,6 +26,7 @@
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
     },
+    "./theme-extension.css": "./dist/theme-extension.css",
     "./tw-extension": {
       "import": "./dist/tw-extension.js",
       "require": "./dist/tw-extension.cjs"

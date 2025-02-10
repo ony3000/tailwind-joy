@@ -12,6 +12,7 @@ export default defineConfig({
         resolve(__dirname, 'src/utils.ts'),
       ],
       formats: ['cjs', 'es'],
+      cssFileName: 'theme-extension',
     },
     rollupOptions: {
       external: ['react', 'react/jsx-runtime', 'tailwindcss'],
