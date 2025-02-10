@@ -26,6 +26,10 @@
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
     },
+    "./safelist": {
+      "import": "./dist/safelist.js",
+      "require": "./dist/safelist.cjs"
+    },
     "./theme-extension.css": "./dist/theme-extension.css",
     "./tw-extension": {
       "import": "./dist/tw-extension.js",

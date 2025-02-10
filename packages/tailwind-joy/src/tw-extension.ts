@@ -1,10 +1,16 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { joyColors } from './base/colors';
+import { tjSafelist } from './safelist';
 
 // ----------------------------------------------------------------
 
-export const tjClassNames: string = '__REPLACE_ME__';
+/**
+ * @deprecated
+ *
+ * This export is deprecated. Import `tailwind-joy/safelist` instead.
+ */
+export const tjClassNames = tjSafelist.join(' ');
 
 // ----------------------------------------------------------------
 
