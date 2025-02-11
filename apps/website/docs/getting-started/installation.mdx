@@ -23,7 +23,7 @@ Please note that [react](https://www.npmjs.com/package/react), [react-dom](https
 "peerDependencies": {
   "react": "^18",
   "react-dom": "^18",
-  "tailwindcss": ">=3.4"
+  "tailwindcss": "^3.4 || >=4.0.4"
 },
 ```
 
@@ -43,12 +43,6 @@ Tailwind-Joy's components have the utility class name embedded in their `classNa
 
 Therefore, you need to extend the Tailwind CSS configuration to make the components of Tailwind-Joy as if they were part of your project.
 
-:::info
-
-Integration with Tailwind CSS v4 is coming soon.
-
-:::
-
 ### Tailwind CSS v3
 
 #### Import module
@@ -58,7 +52,7 @@ Integration with Tailwind CSS v4 is coming soon.
 
 <!-- prettier-ignore -->
 ```tsx
-const { tjClassNames, tjTheme, tjPlugin } = require('tailwind-joy/tw-extension');
+const { tjTheme, tjPlugin } = require('tailwind-joy/tw-extension');
 ```
 
 </TabItem>
@@ -66,7 +60,7 @@ const { tjClassNames, tjTheme, tjPlugin } = require('tailwind-joy/tw-extension')
 
 <!-- prettier-ignore -->
 ```tsx
-import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
+import { tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 ```
 
 </TabItem>
@@ -78,7 +72,7 @@ import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 {
   content: [
     // Add this to your `content`
-    { raw: tjClassNames },
+    './node_modules/tailwind-joy/dist/safelist.js',
   ],
 }
 ```
@@ -118,4 +112,15 @@ import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
     tjPlugin,
   ],
 }
+```
+
+### Tailwind CSS v4
+
+#### Extend `index.css`
+
+<!-- prettier-ignore -->
+```css
+@import "tailwind-joy/theme-extension.css";
+
+@source "../node_modules/tailwind-joy/dist/safelist.js";
 ```
