@@ -8,7 +8,7 @@ import { tjSafelist } from './safelist';
 /**
  * @deprecated
  *
- * This export is deprecated. Import `tailwind-joy/safelist` instead.
+ * This export is deprecated. Please refer to the [installation guide](https://tailwind-joy.vercel.app/docs/getting-started/installation).
  */
 export const tjClassNames = tjSafelist.join(' ');
 
