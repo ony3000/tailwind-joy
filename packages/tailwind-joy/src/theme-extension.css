@@ -1,0 +1,128 @@
+@theme {
+  --pi: 3.1415926535;
+
+  --color-joy-common-black: #000;
+  --color-joy-common-white: #fff;
+  --color-joy-primary-50: #edf5fd;
+  --color-joy-primary-100: #e3effb;
+  --color-joy-primary-200: #c7dff7;
+  --color-joy-primary-300: #97c3f0;
+  --color-joy-primary-400: #4393e4;
+  --color-joy-primary-500: #0b6bcb;
+  --color-joy-primary-600: #185ea5;
+  --color-joy-primary-700: #12467b;
+  --color-joy-primary-800: #0a2744;
+  --color-joy-primary-900: #051423;
+  --color-joy-neutral-50: #fbfcfe;
+  --color-joy-neutral-100: #f0f4f8;
+  --color-joy-neutral-200: #dde7ee;
+  --color-joy-neutral-300: #cdd7e1;
+  --color-joy-neutral-400: #9fa6ad;
+  --color-joy-neutral-500: #636b74;
+  --color-joy-neutral-600: #555e68;
+  --color-joy-neutral-700: #32383e;
+  --color-joy-neutral-800: #171a1c;
+  --color-joy-neutral-900: #0b0d0e;
+  --color-joy-danger-50: #fef6f6;
+  --color-joy-danger-100: #fce4e4;
+  --color-joy-danger-200: #f7c5c5;
+  --color-joy-danger-300: #f09898;
+  --color-joy-danger-400: #e47474;
+  --color-joy-danger-500: #c41c1c;
+  --color-joy-danger-600: #a51818;
+  --color-joy-danger-700: #7d1212;
+  --color-joy-danger-800: #430a0a;
+  --color-joy-danger-900: #240505;
+  --color-joy-success-50: #f6fef6;
+  --color-joy-success-100: #e3fbe3;
+  --color-joy-success-200: #c7f7c7;
+  --color-joy-success-300: #a1e8a1;
+  --color-joy-success-400: #51bc51;
+  --color-joy-success-500: #1f7a1f;
+  --color-joy-success-600: #136c13;
+  --color-joy-success-700: #0a470a;
+  --color-joy-success-800: #042f04;
+  --color-joy-success-900: #021d02;
+  --color-joy-warning-50: #fefaf6;
+  --color-joy-warning-100: #fdf0e1;
+  --color-joy-warning-200: #fce1c2;
+  --color-joy-warning-300: #f3c896;
+  --color-joy-warning-400: #ea9a3e;
+  --color-joy-warning-500: #9a5b13;
+  --color-joy-warning-600: #72430d;
+  --color-joy-warning-700: #492b08;
+  --color-joy-warning-800: #2e1b05;
+  --color-joy-warning-900: #1d1002;
+
+  --animate-joy-circulate: joy-circulate 0.8s linear 0s infinite normal none
+    running;
+  @keyframes joy-circulate {
+    0% {
+      transform: rotate(-90deg);
+    }
+    100% {
+      transform: rotate(270deg);
+    }
+  }
+
+  --animate-joy-linear-circulate: joy-linear-circulate
+    var(
+      --LinearProgress-circulation,
+      2.5s ease-in-out 0s infinite normal none running
+    );
+  @keyframes joy-linear-circulate {
+    0% {
+      left: var(--_LinearProgress-progressInset);
+      width: var(--LinearProgress-progressMinWidth);
+    }
+    25% {
+      width: var(--LinearProgress-progressMaxWidth);
+    }
+    50% {
+      left: var(--_LinearProgress-progressLeft);
+      width: var(--LinearProgress-progressMinWidth);
+    }
+    75% {
+      width: var(--LinearProgress-progressMaxWidth);
+    }
+    100% {
+      left: var(--_LinearProgress-progressInset);
+      width: var(--LinearProgress-progressMinWidth);
+    }
+  }
+
+  --animate-joy-pulse: joy-pulse 2s ease-in-out 0.5s infinite;
+  @keyframes joy-pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+      background: var(--unstable_pulse-bg);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  --animate-joy-wave: joy-wave 1.6s linear 0.5s infinite;
+  @keyframes joy-wave {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@custom-variant non-touchscreen-hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}

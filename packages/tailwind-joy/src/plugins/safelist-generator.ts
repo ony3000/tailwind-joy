@@ -23,6 +23,12 @@ import { generatorInputs as toggleButtonGroupClassNameGeneratorInputs } from '..
 import { generatorInputs as typographyClassNameGeneratorInputs } from '../components/Typography';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
+const BACKSLASH = '\\';
+
+const DOUBLE_QUOTE = '"';
+
+const EOL = '\n';
+
 const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
@@ -88,11 +94,23 @@ export function safelistGenerator() {
   return {
     name: 'safelist-generator',
     transform(code: string, id: string) {
-      if (/src\/tw-extension/.test(id)) {
+      if (/src\/safelist/.test(id)) {
         const content = generate();
 
         return {
-          code: code.replace('"__REPLACE_ME__"', `String.raw\`${content}\``),
+          code: code.replace(
+            '"__REPLACE_ME__"',
+            `${EOL}${content
+              .split(SPACE)
+              .sort()
+              .map((className) =>
+                className.includes(BACKSLASH) ||
+                className.includes(DOUBLE_QUOTE)
+                  ? `String.raw\`${className}\``
+                  : `"${className}"`,
+              )
+              .join(',')}`,
+          ),
           map: null,
         };
       }
