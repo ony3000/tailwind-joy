@@ -1,0 +1,47 @@
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+  ListItemContent as JoyListItemContent,
+} from '@mui/joy';
+import { useState } from 'react';
+import { Box, Divider, Radio, RadioGroup } from 'tailwind-joy/components';
+import { DisplayStand } from '@site/src/components/docs/DisplayStand';
+
+type Variant = 'solid' | 'soft' | 'outlined' | 'plain';
+
+export function ListVariants() {
+  const [variant, setVariant] = useState<Variant>('plain');
+
+  return (
+    <DisplayStand>
+      <Box className="flex items-center gap-6">
+        <Box>
+          <JoyList sx={{ width: 180 }}>
+            <JoyListItem>
+              <JoyListItemButton variant={variant}>
+                <JoyListItemContent>Item 1</JoyListItemContent>
+              </JoyListItemButton>
+            </JoyListItem>
+            <JoyListItem>
+              <JoyListItemButton variant={variant}>
+                <JoyListItemContent>Item 2</JoyListItemContent>
+              </JoyListItemButton>
+            </JoyListItem>
+          </JoyList>
+        </Box>
+        <Divider orientation="vertical" />
+        <RadioGroup
+          name="list-variants"
+          value={variant}
+          onChange={(e) => setVariant(e.currentTarget.value as Variant)}
+        >
+          <Radio value="solid" label="Solid" />
+          <Radio value="soft" label="Soft" />
+          <Radio value="outlined" label="Outlined" />
+          <Radio value="plain" label="Plain" />
+        </RadioGroup>
+      </Box>
+    </DisplayStand>
+  );
+}

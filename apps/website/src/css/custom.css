@@ -102,3 +102,7 @@
 .tj-display-stand h1:first-child {
   margin: 0;
 }
+
+.tj-display-stand li + li {
+  margin-top: 0;
+}
