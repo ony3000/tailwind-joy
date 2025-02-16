@@ -15,7 +15,7 @@ export function AvatarGroupConsistentAppearance() {
           color="neutral"
           variant="soft"
           onClick={() => alert('You clicked!')}
-          className="ms-[var(--Avatar-marginInlineStart)] rounded-full [box-shadow:var(--Avatar-ring)]"
+          className="ms-[var(--Avatar-marginInlineStart)] rounded-[50%] [box-shadow:var(--Avatar-ring)]"
         >
           <MdMoreVert className={iconClass()} />
         </IconButton>
