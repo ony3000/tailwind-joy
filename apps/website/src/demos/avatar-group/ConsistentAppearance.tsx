@@ -1,16 +1,15 @@
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
 import { MdMoreVert } from 'react-icons/md';
-import { IconButton } from 'tailwind-joy/components';
+import { Avatar, AvatarGroup, IconButton } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function AvatarGroupConsistentAppearance() {
   return (
     <DisplayStand>
-      <JoyAvatarGroup>
-        <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
-        <JoyAvatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
-        <JoyAvatar alt="Travis Howard" src="/img/avatar/3.jpg" />
+      <AvatarGroup>
+        <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+        <Avatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
+        <Avatar alt="Travis Howard" src="/img/avatar/3.jpg" />
         <IconButton
           color="neutral"
           variant="soft"
@@ -19,7 +18,7 @@ export function AvatarGroupConsistentAppearance() {
         >
           <MdMoreVert className={iconClass()} />
         </IconButton>
-      </JoyAvatarGroup>
+      </AvatarGroup>
     </DisplayStand>
   );
 }

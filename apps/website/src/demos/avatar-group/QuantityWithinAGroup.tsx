@@ -1,4 +1,4 @@
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
+import { Avatar, AvatarGroup } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 const avatars = [
@@ -24,12 +24,12 @@ const surplus = 2;
 export function AvatarGroupQuantityWithinAGroup() {
   return (
     <DisplayStand>
-      <JoyAvatarGroup>
+      <AvatarGroup>
         {avatars.map((avatar) => (
-          <JoyAvatar key={avatar.alt} {...avatar} />
+          <Avatar key={avatar.alt} {...avatar} />
         ))}
-        {surplus && <JoyAvatar>+{surplus}</JoyAvatar>}
-      </JoyAvatarGroup>
+        {surplus && <Avatar>+{surplus}</Avatar>}
+      </AvatarGroup>
     </DisplayStand>
   );
 }

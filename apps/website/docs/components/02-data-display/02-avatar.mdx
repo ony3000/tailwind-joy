@@ -3,7 +3,6 @@ sidebar_position: 2
 slug: /components/avatar
 ---
 
-import { CssVarsProvider } from '@mui/joy/styles';
 import {
   AvatarBasics,
   AvatarTextAvatar,
@@ -19,8 +18,6 @@ import {
   AvatarGroupOverlappingOrder,
   AvatarGroupVerticalStacking,
 } from '@site/src/demos/avatar-group';
-
-<CssVarsProvider modeStorageKey="theme" />
 
 # Avatar
 
@@ -40,15 +37,14 @@ You can replace this icon with a text string or an image.
 <AvatarBasics />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarBasics() {
   return (
     <Box className="flex gap-4">
-      <JoyAvatar />
-      <JoyAvatar>JG</JoyAvatar>
-      <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+      <Avatar />
+      <Avatar>JG</Avatar>
+      <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
     </Box>
   );
 }
@@ -62,10 +58,10 @@ Note that the Avatar is designed to comfortably fit two letters at most - for in
 <AvatarTextAvatar />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
+import { Avatar } from 'tailwind-joy/components';
 
 export function AvatarTextAvatar() {
-  return <JoyAvatar>RE</JoyAvatar>;
+  return <Avatar>RE</Avatar>;
 }
 ```
 
@@ -77,15 +73,14 @@ Make sure to write a meaningful description for the `alt` prop.
 <AvatarImageAvatar />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarImageAvatar() {
   return (
     <Box className="flex gap-4">
-      <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
-      <JoyAvatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
-      <JoyAvatar alt="Travis Howard" src="/img/avatar/3.jpg" />
+      <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+      <Avatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
+      <Avatar alt="Travis Howard" src="/img/avatar/3.jpg" />
     </Box>
   );
 }
@@ -102,17 +97,16 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 <AvatarImageFallbacks />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarImageFallbacks() {
   return (
     <Box className="flex gap-4">
-      <JoyAvatar alt="Remy Sharp" src="/broken-image.jpg">
+      <Avatar alt="Remy Sharp" src="/broken-image.jpg">
         BT
-      </JoyAvatar>
-      <JoyAvatar alt="Remy Sharp" src="/broken-image.jpg" />
-      <JoyAvatar src="/broken-image.jpg" />
+      </Avatar>
+      <Avatar alt="Remy Sharp" src="/broken-image.jpg" />
+      <Avatar src="/broken-image.jpg" />
     </Box>
   );
 }
@@ -127,16 +121,15 @@ The Avatar component supports four variants: `solid`, `soft` (default), `outline
 <AvatarVariants />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarVariants() {
   return (
     <Box className="flex gap-4">
-      <JoyAvatar variant="solid" />
-      <JoyAvatar variant="soft" />
-      <JoyAvatar variant="outlined" />
-      <JoyAvatar variant="plain" />
+      <Avatar variant="solid" />
+      <Avatar variant="soft" />
+      <Avatar variant="outlined" />
+      <Avatar variant="plain" />
     </Box>
   );
 }
@@ -149,15 +142,14 @@ The Avatar component supports three sizes: `sm`, `md` (default), and `lg`.
 <AvatarSizes />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarSizes() {
   return (
     <Box className="flex items-center gap-4">
-      <JoyAvatar size="sm" />
-      <JoyAvatar size="md" />
-      <JoyAvatar size="lg" />
+      <Avatar size="sm" />
+      <Avatar size="md" />
+      <Avatar size="lg" />
     </Box>
   );
 }
@@ -170,17 +162,16 @@ The Avatar component supports five colors: `primary`, `neutral` (default), `dang
 <AvatarColors />
 
 ```tsx
-import { Avatar as JoyAvatar } from '@mui/joy';
-import { Box } from 'tailwind-joy/components';
+import { Avatar, Box } from 'tailwind-joy/components';
 
 export function AvatarColors() {
   return (
     <Box className="flex items-center gap-4">
-      <JoyAvatar color="primary" />
-      <JoyAvatar color="neutral" />
-      <JoyAvatar color="danger" />
-      <JoyAvatar color="success" />
-      <JoyAvatar color="warning" />
+      <Avatar color="primary" />
+      <Avatar color="neutral" />
+      <Avatar color="danger" />
+      <Avatar color="success" />
+      <Avatar color="warning" />
     </Box>
   );
 }
@@ -204,7 +195,7 @@ The demo below shows an example of an Avatar Group that maxes out at five; all A
 <AvatarGroupQuantityWithinAGroup />
 
 ```tsx
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
+import { Avatar, AvatarGroup } from 'tailwind-joy/components';
 
 const avatars = [
   {
@@ -228,12 +219,12 @@ const surplus = 2;
 
 export function AvatarGroupQuantityWithinAGroup() {
   return (
-    <JoyAvatarGroup>
+    <AvatarGroup>
       {avatars.map((avatar) => (
-        <JoyAvatar key={avatar.alt} {...avatar} />
+        <Avatar key={avatar.alt} {...avatar} />
       ))}
-      {surplus && <JoyAvatar>+{surplus}</JoyAvatar>}
-    </JoyAvatarGroup>
+      {surplus && <Avatar>+{surplus}</Avatar>}
+    </AvatarGroup>
   );
 }
 ```
@@ -249,26 +240,25 @@ Here is an example using an Icon Button with its styles defined by the Avatar's 
 <AvatarGroupConsistentAppearance />
 
 ```tsx
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
 import { MdMoreVert } from 'react-icons/md';
-import { IconButton } from 'tailwind-joy/components';
+import { Avatar, AvatarGroup, IconButton } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function AvatarGroupConsistentAppearance() {
   return (
-    <JoyAvatarGroup>
-      <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
-      <JoyAvatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
-      <JoyAvatar alt="Travis Howard" src="/img/avatar/3.jpg" />
+    <AvatarGroup>
+      <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+      <Avatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
+      <Avatar alt="Travis Howard" src="/img/avatar/3.jpg" />
       <IconButton
         color="neutral"
         variant="soft"
         onClick={() => alert('You clicked!')}
-        className="ms-[var(--Avatar-marginInlineStart)] rounded-full [box-shadow:var(--Avatar-ring)]"
+        className="ms-[var(--Avatar-marginInlineStart)] rounded-[50%] [box-shadow:var(--Avatar-ring)]"
       >
         <MdMoreVert className={iconClass()} />
       </IconButton>
-    </JoyAvatarGroup>
+    </AvatarGroup>
   );
 }
 ```
@@ -281,16 +271,16 @@ You can reverse the overlapping order by reversing the order of the Avatars and 
 <AvatarGroupOverlappingOrder />
 
 ```tsx
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
+import { Avatar, AvatarGroup } from 'tailwind-joy/components';
 
 export function AvatarGroupOverlappingOrder() {
   return (
-    <JoyAvatarGroup sx={{ flexDirection: 'row-reverse' }}>
-      <JoyAvatar>+3</JoyAvatar>
-      <JoyAvatar alt="Travis Howard" src="/img/avatar/3.jpg" />
-      <JoyAvatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
-      <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
-    </JoyAvatarGroup>
+    <AvatarGroup className="flex-row-reverse">
+      <Avatar>+3</Avatar>
+      <Avatar alt="Travis Howard" src="/img/avatar/3.jpg" />
+      <Avatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
+      <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+    </AvatarGroup>
   );
 }
 ```
@@ -302,16 +292,16 @@ To render the Avatar Group vertically, add the CSS `writing-mode: vertical-rl` p
 <AvatarGroupVerticalStacking />
 
 ```tsx
-import { Avatar as JoyAvatar, AvatarGroup as JoyAvatarGroup } from '@mui/joy';
+import { Avatar, AvatarGroup } from 'tailwind-joy/components';
 
 export function AvatarGroupVerticalStacking() {
   return (
-    <JoyAvatarGroup sx={{ writingMode: 'vertical-rl' }}>
-      <JoyAvatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
-      <JoyAvatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
-      <JoyAvatar alt="Travis Howard" src="/img/avatar/3.jpg" />
-      <JoyAvatar sx={{ transform: 'rotate(-90deg)' }}>+3</JoyAvatar>
-    </JoyAvatarGroup>
+    <AvatarGroup className="[writing-mode:vertical-rl]">
+      <Avatar alt="Remy Sharp" src="/img/avatar/1.jpg" />
+      <Avatar alt="Cindy Baker" src="/img/avatar/2.jpg" />
+      <Avatar alt="Travis Howard" src="/img/avatar/3.jpg" />
+      <Avatar className="-rotate-90">+3</Avatar>
+    </AvatarGroup>
   );
 }
 ```
