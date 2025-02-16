@@ -23,6 +23,8 @@ https://tailwind-joy.vercel.app
 
 ### Data display
 
+- Avatar
+- AvatarGroup
 - Aspect Ratio
 - Chip
 - Chip Delete
