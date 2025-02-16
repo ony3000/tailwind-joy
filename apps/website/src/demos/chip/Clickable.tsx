@@ -10,13 +10,11 @@ export function ChipClickable() {
         <Chip
           size="lg"
           variant="outlined"
-          startDecorator={
-            <Avatar size="sm" src="/img/avatar/octocat-avatar.png" />
-          }
+          startDecorator={<Avatar size="sm" src="/img/avatar/1.jpg" />}
           endDecorator={<MdCheck className={iconClass()} />}
           onClick={() => alert('You clicked the Tailwind Joy Chip!')}
         >
-          Octocat
+          Mark
         </Chip>
       </Box>
     </DisplayStand>
