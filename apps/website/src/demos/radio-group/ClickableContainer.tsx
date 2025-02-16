@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
+import { Avatar, Radio, RadioGroup, Sheet } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function RadioGroupClickableContainer() {
@@ -35,13 +35,7 @@ export function RadioGroupClickableContainer() {
               variant="soft"
               className="mb-4"
             />
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src={avatar}
-                className="h-full w-full object-cover"
-                alt={label}
-              />
-            </div>
+            <Avatar alt={label} src={avatar} />
             <div className="mt-2">{label}</div>
           </Sheet>
         ))}
