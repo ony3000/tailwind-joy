@@ -36,9 +36,6 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'text avatar',
-    alterSizes: ['md'],
-    alterVariants: ['soft'],
-    alterColors: ['neutral'],
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyAvatar
@@ -66,9 +63,6 @@ const fixtures: Fixture[] = [
   },
   {
     title: 'image avatar',
-    alterSizes: ['md'],
-    alterVariants: ['soft'],
-    alterColors: ['neutral'],
     renderJoyElement({ testId, size, variant, color }) {
       return (
         <JoyAvatar
