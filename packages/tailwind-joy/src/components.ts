@@ -1,6 +1,7 @@
 import './theme-extension.css';
 
 export { AspectRatio } from './components/AspectRatio';
+export { AvatarGroup } from './components/AvatarGroup';
 export { Box } from './components/Box';
 export { Button } from './components/Button';
 export { ButtonGroup } from './components/ButtonGroup';
