@@ -4,7 +4,7 @@ import {
   ListItemContent as JoyListItemContent,
   ListItemDecorator as JoyListItemDecorator,
 } from '@mui/joy';
-import { Box, Typography } from 'tailwind-joy/components';
+import { Avatar, Box, Typography } from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListEllipsisContent() {
@@ -14,17 +14,10 @@ export function ListEllipsisContent() {
         <Typography level="body-xs" className="uppercase tracking-[0.15rem]">
           Inbox
         </Typography>
-        <JoyList>
+        <JoyList sx={{ '--ListItemDecorator-size': '56px' }}>
           <JoyListItem>
             <JoyListItemDecorator>
-              {/* // TODO: Replace div with Avatar. */}
-              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-                <img
-                  src="/img/avatar/octocat-avatar.png"
-                  className="h-full w-full object-cover"
-                  alt="Octocat"
-                />
-              </div>
+              <Avatar src="/img/avatar/1.jpg" />
             </JoyListItemDecorator>
             <JoyListItemContent>
               <Typography level="title-sm">Brunch this weekend?</Typography>
@@ -35,14 +28,7 @@ export function ListEllipsisContent() {
           </JoyListItem>
           <JoyListItem>
             <JoyListItemDecorator>
-              {/* // TODO: Replace div with Avatar. */}
-              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-                <img
-                  src="/img/avatar/octocat-avatar.png"
-                  className="h-full w-full object-cover"
-                  alt="Octocat"
-                />
-              </div>
+              <Avatar src="/img/avatar/2.jpg" />
             </JoyListItemDecorator>
             <JoyListItemContent>
               <Typography level="title-sm">Summer BBQ</Typography>

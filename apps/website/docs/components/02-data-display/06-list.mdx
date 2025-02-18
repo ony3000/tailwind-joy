@@ -13,6 +13,13 @@ import {
   ListSemanticElements,
   ListMarker,
   ListEllipsisContent,
+  ListDivider1,
+  ListDivider2,
+  ListStickyItem,
+  ListNestedList,
+  ListInteractiveListItems1,
+  ListInteractiveListItems2,
+  ListSelected,
 } from '@site/src/demos/list';
 
 <CssVarsProvider modeStorageKey="theme" />
@@ -251,6 +258,12 @@ export function ListDecorators() {
 
 Use the `orientation="horizontal"` prop on the List component to display the List horizontally.
 
+:::warning[overwritten style]
+
+The underline that change when hovering are in the style of docusaurus.
+
+:::
+
 <ListHorizontalList />
 
 ```tsx
@@ -415,7 +428,7 @@ import {
   ListItemContent as JoyListItemContent,
   ListItemDecorator as JoyListItemDecorator,
 } from '@mui/joy';
-import { Box, Typography } from 'tailwind-joy/components';
+import { Avatar, Box, Typography } from 'tailwind-joy/components';
 
 export function ListEllipsisContent() {
   return (
@@ -423,16 +436,10 @@ export function ListEllipsisContent() {
       <Typography level="body-xs" className="uppercase tracking-[0.15rem]">
         Inbox
       </Typography>
-      <JoyList>
+      <JoyList sx={{ '--ListItemDecorator-size': '56px' }}>
         <JoyListItem>
           <JoyListItemDecorator>
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src="/img/avatar/octocat-avatar.png"
-                className="h-full w-full object-cover"
-                alt="Octocat"
-              />
-            </div>
+            <Avatar src="/img/avatar/1.jpg" />
           </JoyListItemDecorator>
           <JoyListItemContent>
             <Typography level="title-sm">Brunch this weekend?</Typography>
@@ -443,13 +450,7 @@ export function ListEllipsisContent() {
         </JoyListItem>
         <JoyListItem>
           <JoyListItemDecorator>
-            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
-              <img
-                src="/img/avatar/octocat-avatar.png"
-                className="h-full w-full object-cover"
-                alt="Octocat"
-              />
-            </div>
+            <Avatar src="/img/avatar/2.jpg" />
           </JoyListItemDecorator>
           <JoyListItemContent>
             <Typography level="title-sm">Summer BBQ</Typography>
@@ -466,13 +467,342 @@ export function ListEllipsisContent() {
 
 ### Divider
 
+The List Divider component comes with four `inset` patterns:
+
+- Default (no `inset` prop provided): stretches form one edge of the List to the other.
+- `inset="gutter"`: from the start of List Item Decorator to the end of the content.
+- `inset="startDecorator"`: from the start of List Item Decorator to the end of the edge of the container.
+- `inset="startContent"`: from the start of the content to the edge of the container.
+
+:::warning[overwritten style]
+
+The top margin of the List Divider component overrides the style of docusaurus.
+
+:::
+
+<ListDivider1 />
+
+```tsx
+import {
+  List as JoyList,
+  ListDivider as JoyListDivider,
+  ListItem as JoyListItem,
+  ListItemDecorator as JoyListItemDecorator,
+} from '@mui/joy';
+import { Avatar, Box, Typography } from 'tailwind-joy/components';
+
+export function ListDivider1() {
+  return (
+    <Box className="flex flex-wrap justify-center gap-8">
+      {([undefined, 'gutter', 'startDecorator', 'startContent'] as const).map(
+        (inset) => (
+          <div key={inset || 'default'}>
+            <Typography level="body-xs" className="mb-4">
+              <code>{inset ? `inset="${inset}"` : '(default)'}</code>
+            </Typography>
+            <JoyList
+              variant="outlined"
+              sx={{ minWidth: 240, borderRadius: 'sm' }}
+            >
+              <JoyListItem>
+                <JoyListItemDecorator>
+                  <Avatar size="sm" src="/img/avatar/1.jpg" />
+                </JoyListItemDecorator>
+                Mabel Boyle
+              </JoyListItem>
+              <JoyListDivider inset={inset} />
+              <JoyListItem>
+                <JoyListItemDecorator>
+                  <Avatar size="sm" src="/img/avatar/3.jpg" />
+                </JoyListItemDecorator>
+                Boyd Burt
+              </JoyListItem>
+            </JoyList>
+          </div>
+        ),
+      )}
+    </Box>
+  );
+}
+```
+
+If you're using a horizontal list, only `inset="gutter"` will work as the list divider.
+
+:::warning[overwritten style]
+
+The top margin of the List Divider component overrides the style of docusaurus.
+
+:::
+
+<ListDivider2 />
+
+```tsx
+import {
+  List as JoyList,
+  ListDivider as JoyListDivider,
+  ListItem as JoyListItem,
+  ListItemDecorator as JoyListItemDecorator,
+} from '@mui/joy';
+import { Avatar } from 'tailwind-joy/components';
+
+export function ListDivider2() {
+  return (
+    <JoyList
+      orientation="horizontal"
+      variant="outlined"
+      sx={{
+        flexGrow: 0,
+        mx: 'auto',
+        '--ListItemDecorator-size': '48px',
+        '--ListItem-paddingY': '1rem',
+        borderRadius: 'sm',
+      }}
+    >
+      <JoyListItem>
+        <JoyListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/1.jpg" />
+        </JoyListItemDecorator>
+        Mabel Boyle
+      </JoyListItem>
+      <JoyListDivider inset="gutter" />
+      <JoyListItem>
+        <JoyListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/2.jpg" />
+        </JoyListItemDecorator>
+        Adam Tris
+      </JoyListItem>
+      <JoyListDivider inset="gutter" />
+      <JoyListItem>
+        <JoyListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/3.jpg" />
+        </JoyListItemDecorator>
+        Boyd Burt
+      </JoyListItem>
+    </JoyList>
+  );
+}
+```
+
 ### Sticky item
+
+Use the List component as a child of the Sheet component to create "sticky" items.
+On the item you wish to stick, you can then add the `sticky` prop.
+
+The Sheet component automatically adjusts the `sticky` list item to have the same background so that content does not overflow when scrolling.
+
+<ListStickyItem />
+
+```tsx
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+  ListSubheader as JoyListSubheader,
+} from '@mui/joy';
+import { Sheet } from 'tailwind-joy/components';
+
+export function ListStickyItem() {
+  return (
+    <Sheet
+      variant="outlined"
+      className="max-h-[300px] w-80 overflow-auto rounded-[6px]"
+    >
+      <JoyList>
+        {[...Array(5)].map((_, categoryIndex) => (
+          <JoyListItem nested key={categoryIndex}>
+            <JoyListSubheader sticky>
+              Category {categoryIndex + 1}
+            </JoyListSubheader>
+            <JoyList>
+              {[...Array(10)].map((_, index) => (
+                <JoyListItem key={index}>
+                  <JoyListItemButton>Subitem {index + 1}</JoyListItemButton>
+                </JoyListItem>
+              ))}
+            </JoyList>
+          </JoyListItem>
+        ))}
+      </JoyList>
+    </Sheet>
+  );
+}
+```
 
 ### Nested list
 
+You can create a nested list using the `nested` prop on a List Item.
+This enables you to add a List Subheader as well as a new List component as children of the List Item.
+The nested List will inherit its `size` as well as other CSS variables like `--List-radius` and `--ListItem-radius` from the root List component to keep the design consistent.
+The layout and spacing of the nested List will remain independent.
+
+<ListNestedList />
+
+```tsx
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+  ListSubheader as JoyListSubheader,
+} from '@mui/joy';
+
+export function ListNestedList() {
+  return (
+    <div>
+      <JoyList variant="outlined" sx={{ width: 200, borderRadius: 'sm' }}>
+        <JoyListItem nested>
+          <JoyListSubheader>Category 1</JoyListSubheader>
+          <JoyList>
+            <JoyListItem>
+              <JoyListItemButton>Subitem 1</JoyListItemButton>
+            </JoyListItem>
+            <JoyListItem>
+              <JoyListItemButton>Subitem 2</JoyListItemButton>
+            </JoyListItem>
+          </JoyList>
+        </JoyListItem>
+        <JoyListItem nested>
+          <JoyListSubheader>Category 2</JoyListSubheader>
+          <JoyList>
+            <JoyListItem>
+              <JoyListItemButton>Subitem 1</JoyListItemButton>
+            </JoyListItem>
+            <JoyListItem>
+              <JoyListItemButton>Subitem 2</JoyListItemButton>
+            </JoyListItem>
+          </JoyList>
+        </JoyListItem>
+      </JoyList>
+    </div>
+  );
+}
+```
+
 ### Interactive list items
 
+To make a List Item interactive, you can use List Item Button inside a List Item.
+
+<ListInteractiveListItems1 />
+
+```tsx
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+  ListItemDecorator as JoyListItemDecorator,
+} from '@mui/joy';
+import Info from '@mui/icons-material/Info';
+import OpenInNew from '@mui/icons-material/OpenInNew';
+
+export function ListInteractiveListItems1() {
+  return (
+    <JoyList sx={{ maxWidth: 320 }}>
+      <JoyListItem>
+        <JoyListItemButton onClick={() => alert('You clicked')}>
+          <JoyListItemDecorator>
+            <Info />
+          </JoyListItemDecorator>
+          Clickable item
+        </JoyListItemButton>
+      </JoyListItem>
+      <JoyListItem>
+        <JoyListItemButton component="a" href="#interactive-list-items">
+          <JoyListItemDecorator>
+            <OpenInNew />
+          </JoyListItemDecorator>
+          Open a new tab
+        </JoyListItemButton>
+      </JoyListItem>
+    </JoyList>
+  );
+}
+```
+
+To add a secondary action to the List Item Button, wrap it in a List Item component and then add the desired start or end action elements to it.
+
+<ListInteractiveListItems2 />
+
+```tsx
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+} from '@mui/joy';
+import Add from '@mui/icons-material/Add';
+import Delete from '@mui/icons-material/Delete';
+import { IconButton } from 'tailwind-joy/components';
+
+export function ListInteractiveListItems2() {
+  return (
+    <JoyList sx={{ maxWidth: 300 }}>
+      <JoyListItem
+        startAction={
+          <IconButton size="sm" color="neutral">
+            <Add />
+          </IconButton>
+        }
+      >
+        <JoyListItemButton>Item 1</JoyListItemButton>
+      </JoyListItem>
+      <JoyListItem
+        endAction={
+          <IconButton size="sm" color="danger">
+            <Delete />
+          </IconButton>
+        }
+      >
+        <JoyListItemButton>Item 2</JoyListItemButton>
+      </JoyListItem>
+    </JoyList>
+  );
+}
+```
+
 ### Selected
+
+Use the `selected` prop on the List Item Button component to indicate whether or not an item is currently selected.
+When the item is selected, it applies `color="primary"` and a few extra styles(like font weight) to visually communicate the selected state.
+
+<ListSelected />
+
+```tsx
+import {
+  List as JoyList,
+  ListItem as JoyListItem,
+  ListItemButton as JoyListItemButton,
+  ListItemDecorator as JoyListItemDecorator,
+} from '@mui/joy';
+import Home from '@mui/icons-material/Home';
+import Apps from '@mui/icons-material/Apps';
+
+export function ListSelected() {
+  return (
+    <JoyList sx={{ maxWidth: 320 }}>
+      <JoyListItem>
+        <JoyListItemButton selected>
+          <JoyListItemDecorator>
+            <Home />
+          </JoyListItemDecorator>
+          Home
+        </JoyListItemButton>
+      </JoyListItem>
+      <JoyListItem>
+        <JoyListItemButton>
+          <JoyListItemDecorator>
+            <Apps />
+          </JoyListItemDecorator>
+          Apps
+        </JoyListItemButton>
+      </JoyListItem>
+      <JoyListItem>
+        <JoyListItemButton>
+          <JoyListItemDecorator />
+          Settings
+        </JoyListItemButton>
+      </JoyListItem>
+    </JoyList>
+  );
+}
+```
 
 ## Anatomy
 
@@ -499,9 +829,11 @@ The List Divider (when present) renders an `<li>` with `role="separator"`, while
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Avatar />`](../apis/avatar)
 - [`<Box />`](../apis/box)
 - [`<Button />`](../apis/button)
 - [`<Divider />`](../apis/divider)
+- [`<IconButton />`](../apis/icon-button)
 - `<List />`
 - `<ListDivider />`
 - `<ListItem />`
@@ -511,6 +843,7 @@ See the documentation below for a complete reference to all of the props availab
 - `<ListSubheader />`
 - [`<Radio />`](../apis/radio)
 - [`<RadioGroup />`](../apis/radio-group)
+- [`<Sheet />`](../apis/sheet)
 - [`<Stack />`](../apis/stack)
 - [`<ToggleButtonGroup />`](../apis/toggle-button-group)
 - [`<Typography />`](../apis/typography)
