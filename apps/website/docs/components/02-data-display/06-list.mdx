@@ -23,6 +23,7 @@ import {
 } from '@site/src/demos/list';
 
 <CssVarsProvider modeStorageKey="theme" />
+<StyleAlternative />
 
 # List
 
@@ -474,12 +475,6 @@ The List Divider component comes with four `inset` patterns:
 - `inset="startDecorator"`: from the start of List Item Decorator to the end of the edge of the container.
 - `inset="startContent"`: from the start of the content to the edge of the container.
 
-:::warning[overwritten style]
-
-The top margin of the List Divider component overrides the style of docusaurus.
-
-:::
-
 <ListDivider1 />
 
 ```tsx
@@ -527,12 +522,6 @@ export function ListDivider1() {
 ```
 
 If you're using a horizontal list, only `inset="gutter"` will work as the list divider.
-
-:::warning[overwritten style]
-
-The top margin of the List Divider component overrides the style of docusaurus.
-
-:::
 
 <ListDivider2 />
 
