@@ -22,7 +22,7 @@ import type {
 import { isTailwindVersion4, excludeClassName } from '../base/utils';
 import { RadioGroupContext } from './RadioGroup';
 
-const RowListContext = createContext(false);
+export const RowListContext = createContext(false);
 
 const WrapListContext = createContext(false);
 
@@ -32,7 +32,9 @@ const GroupListContext = createContext<undefined | 'menu' | 'select'>(
   undefined,
 );
 
-const ComponentListContext = createContext<string | undefined>(undefined);
+export const ComponentListContext = createContext<string | undefined>(
+  undefined,
+);
 
 type ListProviderProps = {
   children?: ReactNode;

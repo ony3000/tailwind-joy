@@ -16,6 +16,7 @@ export { IconButton } from './components/IconButton';
 export { Input } from './components/Input';
 export { LinearProgress } from './components/LinearProgress';
 export { List } from './components/List';
+export { ListDivider } from './components/ListDivider';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';
