@@ -389,6 +389,7 @@ function ListRoot<T extends ReactTags = 'ul'>(
         '--tj-List-borderRadius': refinedBorderRadius,
         '--tj-List-padding': refinedPadding,
       },
+      role: refinedRole,
       ...otherProps,
       ...(slotPropsWithoutClassName.root ?? {}),
     },
