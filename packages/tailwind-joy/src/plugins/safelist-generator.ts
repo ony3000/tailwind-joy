@@ -14,6 +14,7 @@ import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../compo
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as inputClassNameGeneratorInputs } from '../components/Input';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
+import { generatorInputs as listClassNameGeneratorInputs } from '../components/List';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
 import { generatorInputs as sheetClassNameGeneratorInputs } from '../components/Sheet';
@@ -49,6 +50,7 @@ const inputs: GeneratorInput[] = [
   ...iconButtonClassNameGeneratorInputs,
   ...inputClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
+  ...listClassNameGeneratorInputs,
   ...radioClassNameGeneratorInputs,
   ...radioGroupClassNameGeneratorInputs,
   ...sheetClassNameGeneratorInputs,
