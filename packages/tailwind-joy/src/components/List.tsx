@@ -11,6 +11,7 @@ import {
   useMemo,
 } from 'react';
 import { r, twMerge } from '../base/alias';
+import { paddingBlock, paddingInline } from '../base/conditional';
 import { theme } from '../base/theme';
 import type {
   ReactTags,
@@ -221,21 +222,19 @@ function listRootVariants(
                         '[margin-block-start:calc(-1*var(--List-gap))]',
                       ]
                     : [
-                        isTailwind4
-                          ? 'px-[var(--List-padding,var(--ListDivider-gap))]'
-                          : 'ps-[var(--List-padding,var(--ListDivider-gap))] pe-[var(--List-padding,var(--ListDivider-gap))]',
-                        isTailwind4
-                          ? 'py-[var(--List-padding)]'
-                          : '[padding-block:var(--List-padding)]',
+                        paddingInline(
+                          isTailwind4,
+                          'var(--List-padding,var(--ListDivider-gap))',
+                        ),
+                        paddingBlock(isTailwind4, 'var(--List-padding)'),
                       ],
                 ]
               : [
-                  isTailwind4
-                    ? 'py-[var(--List-padding,var(--ListDivider-gap))]'
-                    : '[padding-block:var(--List-padding,var(--ListDivider-gap))]',
-                  isTailwind4
-                    ? 'px-[var(--List-padding)]'
-                    : 'ps-[var(--List-padding)] pe-[var(--List-padding)]',
+                  paddingBlock(
+                    isTailwind4,
+                    'var(--List-padding,var(--ListDivider-gap))',
+                  ),
+                  paddingInline(isTailwind4, 'var(--List-padding)'),
                 ],
             hasMarker && 'ps-[3ch]',
           ],

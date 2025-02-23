@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef } from 'react';
 import { forwardRef, useContext, useMemo } from 'react';
 import { twMerge } from '../base/alias';
+import { marginBlock, marginInline } from '../base/conditional';
 import type {
   ReactTags,
   DynamicComponentProps,
@@ -26,14 +27,9 @@ function listDividerRootVariants(props?: {
       inset === 'context' && '[--Divider-inset:calc(-1*var(--List-padding))]',
       row
         ? [
-            isTailwind4
-              ? 'mx-[var(--ListDivider-gap)]'
-              : 'ms-[var(--ListDivider-gap)] me-[var(--ListDivider-gap)]',
-            inset === 'gutter' && [
-              isTailwind4
-                ? 'my-[var(--ListItem-paddingY)]'
-                : '[margin-block:var(--ListItem-paddingY)]',
-            ],
+            marginInline(isTailwind4, 'var(--ListDivider-gap)'),
+            inset === 'gutter' &&
+              marginBlock(isTailwind4, 'var(--ListItem-paddingY)'),
             '[&:not([data-first-child])]:ms-[calc(var(--List-gap)+var(--ListDivider-gap))]',
           ]
         : [
