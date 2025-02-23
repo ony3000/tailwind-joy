@@ -25,11 +25,11 @@ import { RadioGroupContext } from './RadioGroup';
 
 export const RowListContext = createContext(false);
 
-const WrapListContext = createContext(false);
+export const WrapListContext = createContext(false);
 
-const NestedListContext = createContext<boolean | string>(false);
+export const NestedListContext = createContext<boolean | string>(false);
 
-const GroupListContext = createContext<undefined | 'menu' | 'select'>(
+export const GroupListContext = createContext<undefined | 'menu' | 'select'>(
   undefined,
 );
 

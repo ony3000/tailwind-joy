@@ -17,6 +17,7 @@ export { Input } from './components/Input';
 export { LinearProgress } from './components/LinearProgress';
 export { List } from './components/List';
 export { ListDivider } from './components/ListDivider';
+export { ListItem } from './components/ListItem';
 export { ListSubheader } from './components/ListSubheader';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';

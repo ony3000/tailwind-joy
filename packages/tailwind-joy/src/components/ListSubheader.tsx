@@ -27,7 +27,7 @@ import type {
 } from '../base/types';
 import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
-const ListSubheaderContext = createContext<
+export const ListSubheaderContext = createContext<
   undefined | Dispatch<SetStateAction<string>>
 >(undefined);
 
