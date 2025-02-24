@@ -173,9 +173,6 @@ type ListItemRootProps<T extends ReactTags> = Difference<
 
 function ListItemRoot<T extends ReactTags = 'li'>(
   {
-    // ---- passing props ----
-    // -----------------------
-
     // ---- non-passing props ----
     // base variants
     color = 'neutral',
@@ -188,7 +185,6 @@ function ListItemRoot<T extends ReactTags = 'li'>(
     role,
     startAction,
     sticky = false,
-    // style,
 
     // slot props
     slotProps = {},

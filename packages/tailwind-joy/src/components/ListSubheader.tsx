@@ -108,7 +108,6 @@ function ListSubheaderRoot<T extends ReactTags = 'div'>(
     className,
     id,
     sticky = false,
-    style,
 
     // slot props
     slotProps = {},

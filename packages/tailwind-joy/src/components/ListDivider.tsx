@@ -7,7 +7,6 @@ import type {
   ReactTags,
   DynamicComponentProps,
   Difference,
-  BaseVariants,
   GeneratorInput,
 } from '../base/types';
 import { isTailwindVersion4, excludeClassName } from '../base/utils';
@@ -47,7 +46,7 @@ function listDividerRootVariants(props?: {
   );
 }
 
-type ListDividerRootVariants = BaseVariants & {
+type ListDividerRootVariants = {
   inset?: 'context' | 'gutter' | 'startDecorator' | 'startContent';
   orientation?: 'horizontal' | 'vertical';
 } & {
@@ -65,16 +64,10 @@ type ListDividerRootProps<T extends ReactTags> = Difference<
 function ListDividerRoot<T extends ReactTags = 'li'>(
   {
     // ---- non-passing props ----
-    // base variants
-    color,
-    size,
-    variant,
-
     // non-base variants
     className,
     inset = 'context',
     orientation = 'horizontal',
-    style,
 
     // slot props
     slotProps = {},
