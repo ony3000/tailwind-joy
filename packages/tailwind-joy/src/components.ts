@@ -20,6 +20,7 @@ export { ListDivider } from './components/ListDivider';
 export { ListItem } from './components/ListItem';
 export { ListItemButton } from './components/ListItemButton';
 export { ListItemContent } from './components/ListItemContent';
+export { ListItemDecorator } from './components/ListItemDecorator';
 export { ListSubheader } from './components/ListSubheader';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';

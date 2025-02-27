@@ -29,7 +29,7 @@ import type {
 import { isTailwindVersion4, excludeClassName } from '../base/utils';
 import { RowListContext } from './List';
 
-const ListItemButtonOrientationContext = createContext<
+export const ListItemButtonOrientationContext = createContext<
   'horizontal' | 'vertical'
 >('horizontal');
 
