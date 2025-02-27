@@ -18,6 +18,7 @@ import { generatorInputs as listClassNameGeneratorInputs } from '../components/L
 import { generatorInputs as listDividerClassNameGeneratorInputs } from '../components/ListDivider';
 import { generatorInputs as listItemClassNameGeneratorInputs } from '../components/ListItem';
 import { generatorInputs as listItemButtonClassNameGeneratorInputs } from '../components/ListItemButton';
+import { generatorInputs as listItemContentClassNameGeneratorInputs } from '../components/ListItemContent';
 import { generatorInputs as listSubheaderClassNameGeneratorInputs } from '../components/ListSubheader';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
@@ -58,6 +59,7 @@ const inputs: GeneratorInput[] = [
   ...listDividerClassNameGeneratorInputs,
   ...listItemClassNameGeneratorInputs,
   ...listItemButtonClassNameGeneratorInputs,
+  ...listItemContentClassNameGeneratorInputs,
   ...listSubheaderClassNameGeneratorInputs,
   ...radioClassNameGeneratorInputs,
   ...radioGroupClassNameGeneratorInputs,
