@@ -16,7 +16,12 @@ export default defineConfig({
       cssFileName: 'theme-extension',
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime', 'tailwindcss'],
+      external: [
+        'react',
+        'react/jsx-runtime',
+        'tailwindcss',
+        'tailwindcss/defaultTheme',
+      ],
     },
   },
   plugins: [react(), safelistGenerator()],
