@@ -29,6 +29,13 @@ https://tailwind-joy.vercel.app
 - Chip
 - Chip Delete
 - Divider
+- List
+- ListDivider
+- ListItem
+- ListItemButton
+- ListItemContent
+- ListItemDecorator
+- ListSubheader
 - Typography
 
 ### Feedback
