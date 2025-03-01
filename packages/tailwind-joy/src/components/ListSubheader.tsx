@@ -14,7 +14,7 @@ import {
   useEffect,
 } from 'react';
 import { r, twMerge, useUniqueId } from '../base/alias';
-import { marginInline, paddingBlock } from '../base/conditional';
+import { paddingBlock } from '../base/conditional';
 import { addPrefix, toVariableClass } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens, colorTokens } from '../base/tokens';
@@ -52,7 +52,7 @@ function listSubheaderRootVariants(
       'box-border',
       'flex',
       'items-center',
-      marginInline(isTailwind4, 'var(--ListItem-marginInline)'),
+      '[margin-inline:var(--ListItem-marginInline)]',
       paddingBlock(isTailwind4, 'var(--ListItem-paddingY)'),
       'ps-[var(--ListItem-paddingLeft)]',
       'pe-[var(--ListItem-paddingRight)]',

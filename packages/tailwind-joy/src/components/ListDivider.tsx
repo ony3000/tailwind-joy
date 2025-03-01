@@ -67,7 +67,7 @@ function ListDividerRoot<T extends ReactTags = 'li'>(
     // non-base variants
     className,
     inset = 'context',
-    orientation = 'horizontal',
+    orientation,
 
     // slot props
     slotProps = {},
@@ -116,6 +116,7 @@ function ListDividerRoot<T extends ReactTags = 'li'>(
           ? 'vertical'
           : undefined
       }
+      orientation={refinedOrientation}
       {...otherProps}
       {...(slotPropsWithoutClassName.root ?? {})}
     >

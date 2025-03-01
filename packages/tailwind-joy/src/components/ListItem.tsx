@@ -11,7 +11,6 @@ import {
   useMemo,
 } from 'react';
 import { r, twMerge } from '../base/alias';
-import { marginInline } from '../base/conditional';
 import { addPrefix } from '../base/modifier';
 import { theme } from '../base/theme';
 import { baseTokens } from '../base/tokens';
@@ -22,7 +21,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { isTailwindVersion4, excludeClassName } from '../base/utils';
+import { excludeClassName } from '../base/utils';
 import {
   RowListContext,
   WrapListContext,
@@ -34,7 +33,6 @@ import { ListSubheaderContext } from './ListSubheader';
 
 function listItemRootVariants(
   props?: Pick<BaseVariants, 'color' | 'variant'> & {
-    isTailwind4?: boolean;
     endAction?: boolean;
     nested?: boolean;
     row?: boolean;
@@ -46,7 +44,6 @@ function listItemRootVariants(
   const {
     color = 'neutral',
     variant = 'plain',
-    isTailwind4 = false,
     endAction = false,
     nested = false,
     row = false,
@@ -74,7 +71,7 @@ function listItemRootVariants(
             '[--ListItemButton-marginBlock:calc(-1*var(--ListItem-paddingY))]',
             'items-center',
             'gap-[var(--ListItem-gap)]',
-            marginInline(isTailwind4, 'var(--ListItem-marginInline)'),
+            '[margin-inline:var(--ListItem-marginInline)]',
           ],
       '[--unstable_actionRadius:calc(var(--ListItem-radius)-var(--variant-borderWidth,0px))]',
       startAction && '[--unstable_startActionWidth:2rem]',
@@ -235,7 +232,6 @@ function ListItemRoot<T extends ReactTags = 'li'>(
               listItemRootVariants({
                 color,
                 variant,
-                isTailwind4: isTailwindVersion4(),
                 endAction: Boolean(endAction),
                 nested,
                 row,
@@ -312,7 +308,16 @@ ListItem.internalName = 'TJListItem';
 export const generatorInputs: GeneratorInput[] = [
   {
     generatorFn: listItemRootVariants,
-    variants: {},
+    variants: {
+      color: ['primary', 'neutral', 'danger', 'success', 'warning'],
+      variant: ['solid', 'soft', 'outlined', 'plain'],
+      endAction: [false, true],
+      nested: [false, true],
+      row: [false, true],
+      startAction: [false, true],
+      sticky: [false, true],
+      wrap: [false, true],
+    },
   },
   {
     generatorFn: listItemStartActionVariants,

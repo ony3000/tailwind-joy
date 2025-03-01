@@ -8,7 +8,7 @@ import {
   useMemo,
 } from 'react';
 import { r, twMerge } from '../base/alias';
-import { marginBlock, marginInline, paddingBlock } from '../base/conditional';
+import { marginBlock, paddingBlock } from '../base/conditional';
 import {
   addPrefix,
   focus,
@@ -73,7 +73,7 @@ function listItemButtonRootVariants(
       '[text-decoration:initial]',
       'bg-[color:initial]',
       'cursor-pointer',
-      marginInline(isTailwind4, 'var(--ListItemButton-marginInline)'),
+      '[margin-inline:var(--ListItemButton-marginInline)]',
       marginBlock(isTailwind4, 'var(--ListItemButton-marginBlock)'),
       addPrefix(
         row ? 'ms-[var(--List-gap)]' : '[margin-block-start:var(--List-gap)]',
@@ -202,6 +202,9 @@ function ListItemButtonRoot<T extends ReactTags = 'div'>(
             className,
             slotProps.root?.className ?? '',
           ),
+          role: 'button',
+          tabIndex: disabled ? -1 : 0,
+          'aria-disabled': disabled ? true : undefined,
           ...otherProps,
           ...(slotPropsWithoutClassName.root ?? {}),
         },
