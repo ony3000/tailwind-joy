@@ -25,6 +25,7 @@ const containerClassName =
   'flex h-[300px] w-[300px] items-center justify-center p-2';
 
 const fixtures: Fixture[] = [
+  // NOTE: This test fails when using Tailwind CSS v3.
   {
     title: 'basics',
     // @ts-expect-error
