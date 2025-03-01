@@ -1,0 +1,848 @@
+---
+sidebar_position: 6
+slug: /components/list
+---
+
+import {
+  ListVariants,
+  ListSizes,
+  ListColors,
+  ListDecorators,
+  ListHorizontalList,
+  ListSemanticElements,
+  ListMarker,
+  ListEllipsisContent,
+  ListDivider1,
+  ListDivider2,
+  ListStickyItem,
+  ListNestedList,
+  ListInteractiveListItems1,
+  ListInteractiveListItems2,
+  ListSelected,
+} from '@site/src/demos/list';
+
+# List
+
+<StyleAlternative />
+<AvailableFrom version="0.7.0" />
+
+Lists are organizational tools that enhance the readability and organization of content.
+
+## Basics
+
+```tsx
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+  ListItemContent,
+  ListDivider,
+  ListSubheader,
+} from 'tailwind-joy/components';
+```
+
+Tailwind-Joy Lists are implemented using a collection of related components:
+
+- List - a wrapper for list items.
+  Renders as a `<ul>` by default.
+- List Item - a common list item.
+  Renders as an `<li>` by default.
+- List Item Button - an action element to be used inside a list item.
+- List Item Decorator - a decorator of a list item, usually used to display an icon.
+- List Item Content - a container inside a list item, used to display text content.
+- List Divider - a separator between list items.
+- List Subheader - a label for a nested list.
+
+## Customization
+
+### Variants
+
+The List component supports four variants: `solid`, `soft`, `outlined`, and `plain` (default).
+
+<ListVariants />
+
+```tsx
+import { useState } from 'react';
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemContent,
+  Radio,
+  RadioGroup,
+} from 'tailwind-joy/components';
+
+type Variant = 'solid' | 'soft' | 'outlined' | 'plain';
+
+export function ListVariants() {
+  const [variant, setVariant] = useState<Variant>('plain');
+
+  return (
+    <Box className="flex items-center gap-6">
+      <Box>
+        <List className="w-[180px]">
+          <ListItem>
+            <ListItemButton variant={variant}>
+              <ListItemContent>Item 1</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton variant={variant}>
+              <ListItemContent>Item 2</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+      <Divider orientation="vertical" />
+      <RadioGroup
+        name="list-variants"
+        value={variant}
+        onChange={(e) => setVariant(e.currentTarget.value as Variant)}
+      >
+        <Radio value="solid" label="Solid" />
+        <Radio value="soft" label="Soft" />
+        <Radio value="outlined" label="Outlined" />
+        <Radio value="plain" label="Plain" />
+      </RadioGroup>
+    </Box>
+  );
+}
+```
+
+### Sizes
+
+The List component supports three sizes: `sm`, `md` (default), and `lg`.
+The size of the List determines its font size and density.
+
+<ListSizes />
+
+```tsx
+import { useState } from 'react';
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemContent,
+  Radio,
+  RadioGroup,
+} from 'tailwind-joy/components';
+
+type Size = 'sm' | 'md' | 'lg';
+
+export function ListSizes() {
+  const [size, setSize] = useState<Size>('md');
+
+  return (
+    <Box className="flex items-center gap-6">
+      <Box>
+        <List size={size} className="w-[180px]">
+          <ListItem>
+            <ListItemButton>
+              <ListItemContent>Item 1</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemContent>Item 2</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+      <Divider orientation="vertical" />
+      <RadioGroup
+        name="list-sizes"
+        value={size}
+        onChange={(e) => setSize(e.currentTarget.value as Size)}
+      >
+        <Radio value="sm" label="Small" />
+        <Radio value="md" label="Medium" />
+        <Radio value="lg" label="Large" />
+      </RadioGroup>
+    </Box>
+  );
+}
+```
+
+### Colors
+
+The List component supports five colors: `primary`, `neutral` (default), `danger`, `success`, and `warning`.
+
+<ListColors />
+
+```tsx
+import { useState } from 'react';
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemContent,
+  Radio,
+  RadioGroup,
+} from 'tailwind-joy/components';
+
+type Color = 'primary' | 'neutral' | 'danger' | 'success' | 'warning';
+
+export function ListColors() {
+  const [color, setColor] = useState<Color>('neutral');
+
+  return (
+    <Box className="flex items-center gap-6">
+      <Box>
+        <List className="w-[180px]">
+          <ListItem>
+            <ListItemButton color={color}>
+              <ListItemContent>Item 1</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton color={color}>
+              <ListItemContent>Item 2</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+      <Divider orientation="vertical" />
+      <RadioGroup
+        name="list-colors"
+        value={color}
+        onChange={(e) => setColor(e.currentTarget.value as Color)}
+      >
+        <Radio value="primary" label="Primary" />
+        <Radio value="neutral" label="Neutral" />
+        <Radio value="danger" label="Danger" />
+        <Radio value="success" label="Success" />
+        <Radio value="warning" label="Warning" />
+      </RadioGroup>
+    </Box>
+  );
+}
+```
+
+### Decorators
+
+Use the List Item Decorator component to add supporting icons or elements to the list item.
+
+<ListDecorators />
+
+```tsx
+import {
+  List,
+  ListItem,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
+
+export function ListDecorators() {
+  return (
+    <div>
+      <Typography level="body-xs" className="mb-2 font-semibold uppercase">
+        Ingredients
+      </Typography>
+      <List>
+        <ListItem>
+          <ListItemDecorator>🧅</ListItemDecorator> 1 red onion
+        </ListItem>
+        <ListItem>
+          <ListItemDecorator>🍤</ListItemDecorator> 2 Shrimps
+        </ListItem>
+        <ListItem>
+          <ListItemDecorator>🥓</ListItemDecorator> 120g bacon
+        </ListItem>
+      </List>
+    </div>
+  );
+}
+```
+
+### Horizontal list
+
+Use the `orientation="horizontal"` prop on the List component to display the List horizontally.
+
+:::warning[overwritten style]
+
+The underline that change when hovering are in the style of docusaurus.
+
+:::
+
+<ListHorizontalList />
+
+```tsx
+import { MdHome, MdPerson } from 'react-icons/md';
+import {
+  Box,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemButton,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ListHorizontalList() {
+  return (
+    <Box className="flex w-full justify-center">
+      <Box component="nav" className="grow">
+        <List role="menubar" orientation="horizontal">
+          <ListItem role="none">
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="#horizontal-list"
+              aria-label="Home"
+            >
+              <MdHome className={iconClass()} />
+            </ListItemButton>
+          </ListItem>
+          <ListDivider />
+          <ListItem role="none">
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="#horizontal-list"
+            >
+              Products
+            </ListItemButton>
+          </ListItem>
+          <ListDivider />
+          <ListItem role="none">
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="#horizontal-list"
+            >
+              Blog
+            </ListItemButton>
+          </ListItem>
+          <ListItem role="none" className="!ms-auto">
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="#horizontal-list"
+              aria-label="Profile"
+            >
+              <MdPerson className={iconClass()} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+    </Box>
+  );
+}
+```
+
+### Semantic elements
+
+Use the `component` prop to control which HTML tag is rendered.
+
+```tsx
+<List component="ol">
+```
+
+The example below renders the List component as an HTML `<nav>` element.
+
+<ListSemanticElements />
+
+```tsx
+import { MdImage, MdVideocam } from 'react-icons/md';
+import {
+  List,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ListSemanticElements() {
+  return (
+    <List component="nav" className="max-w-[240px]">
+      <ListItemButton>
+        <ListItemDecorator>
+          <MdImage className={iconClass()} />
+        </ListItemDecorator>
+        Add another image
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemDecorator>
+          <MdVideocam className={iconClass()} />
+        </ListItemDecorator>
+        Add another video
+      </ListItemButton>
+    </List>
+  );
+}
+```
+
+### Marker
+
+Use the `marker` prop with any valid [list-style-type](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type) value to add a marker to the list items.
+
+<ListMarker />
+
+```tsx
+import { useState } from 'react';
+import {
+  Button,
+  List,
+  ListItem,
+  Stack,
+  ToggleButtonGroup,
+} from 'tailwind-joy/components';
+
+export function ListMarker() {
+  const [marker, setMarker] = useState('disc');
+
+  return (
+    <Stack spacing="16px">
+      <ToggleButtonGroup
+        value={marker}
+        onChange={(_, newValue) => {
+          setMarker(newValue);
+        }}
+      >
+        <Button value="disc">disc</Button>
+        <Button value="circle">circle</Button>
+        <Button value="decimal">decimal</Button>
+        <Button value="upper-roman">upper-roman</Button>
+      </ToggleButtonGroup>
+      <List marker={marker}>
+        <ListItem>The Shawshank Redemption</ListItem>
+        <ListItem nested>
+          <ListItem>Star Wars</ListItem>
+          <List marker="circle">
+            <ListItem>Episode I &ndash; The Phantom Menace</ListItem>
+            <ListItem>Episode II &ndash; Attack of the Clones</ListItem>
+            <ListItem>Episode III &ndash; Revenge of the Sith</ListItem>
+          </List>
+        </ListItem>
+        <ListItem>The Lord of the Rings: The Two Towers</ListItem>
+      </List>
+    </Stack>
+  );
+}
+```
+
+### Ellipsis content
+
+When working with longer content in a List, you can use the List Item Content component in combination with `<Typography noWrap />` to display an ellipsis when the content exceeds the available space.
+This can help to keep the List Items visually consistent and prevent text from overflowing outside of the List Item's container.
+
+<ListEllipsisContent />
+
+```tsx
+import {
+  Avatar,
+  Box,
+  List,
+  ListItem,
+  ListItemContent,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
+
+export function ListEllipsisContent() {
+  return (
+    <Box className="w-80">
+      <Typography level="body-xs" className="uppercase tracking-[0.15rem]">
+        Inbox
+      </Typography>
+      <List className="[--ListItemDecorator-size:56px]">
+        <ListItem>
+          <ListItemDecorator>
+            <Avatar src="/img/avatar/1.jpg" />
+          </ListItemDecorator>
+          <ListItemContent>
+            <Typography level="title-sm">Brunch this weekend?</Typography>
+            <Typography level="body-sm" noWrap>
+              I'll be in your neighborhood doing errands this Tuesday.
+            </Typography>
+          </ListItemContent>
+        </ListItem>
+        <ListItem>
+          <ListItemDecorator>
+            <Avatar src="/img/avatar/2.jpg" />
+          </ListItemDecorator>
+          <ListItemContent>
+            <Typography level="title-sm">Summer BBQ</Typography>
+            <Typography level="body-sm" noWrap>
+              Wish I could come, but I'm out of town this Friday.
+            </Typography>
+          </ListItemContent>
+        </ListItem>
+      </List>
+    </Box>
+  );
+}
+```
+
+### Divider
+
+The List Divider component comes with four `inset` patterns:
+
+- Default (no `inset` prop provided): stretches form one edge of the List to the other.
+- `inset="gutter"`: from the start of List Item Decorator to the end of the content.
+- `inset="startDecorator"`: from the start of List Item Decorator to the end of the edge of the container.
+- `inset="startContent"`: from the start of the content to the edge of the container.
+
+:::warning
+
+When used with Tailwind CSS v3, the bottom margin of dividers is not rendered correctly.
+
+:::
+
+<ListDivider1 />
+
+```tsx
+import {
+  Avatar,
+  Box,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
+
+export function ListDivider1() {
+  return (
+    <Box className="flex flex-wrap justify-center gap-8">
+      {([undefined, 'gutter', 'startDecorator', 'startContent'] as const).map(
+        (inset) => (
+          <div key={inset || 'default'}>
+            <Typography level="body-xs" className="mb-4">
+              <code>{inset ? `inset="${inset}"` : '(default)'}</code>
+            </Typography>
+            <List variant="outlined" className="min-w-[240px] rounded-md">
+              <ListItem>
+                <ListItemDecorator>
+                  <Avatar size="sm" src="/img/avatar/1.jpg" />
+                </ListItemDecorator>
+                Mabel Boyle
+              </ListItem>
+              <ListDivider inset={inset} />
+              <ListItem>
+                <ListItemDecorator>
+                  <Avatar size="sm" src="/img/avatar/3.jpg" />
+                </ListItemDecorator>
+                Boyd Burt
+              </ListItem>
+            </List>
+          </div>
+        ),
+      )}
+    </Box>
+  );
+}
+```
+
+If you're using a horizontal list, only `inset="gutter"` will work as the list divider.
+
+<ListDivider2 />
+
+```tsx
+import {
+  Avatar,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+
+export function ListDivider2() {
+  return (
+    <List
+      orientation="horizontal"
+      variant="outlined"
+      className="mx-auto grow-0 rounded-md [--ListItem-paddingY:1rem] [--ListItemDecorator-size:48px]"
+    >
+      <ListItem>
+        <ListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/1.jpg" />
+        </ListItemDecorator>
+        Mabel Boyle
+      </ListItem>
+      <ListDivider inset="gutter" />
+      <ListItem>
+        <ListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/2.jpg" />
+        </ListItemDecorator>
+        Adam Tris
+      </ListItem>
+      <ListDivider inset="gutter" />
+      <ListItem>
+        <ListItemDecorator>
+          <Avatar size="sm" src="/img/avatar/3.jpg" />
+        </ListItemDecorator>
+        Boyd Burt
+      </ListItem>
+    </List>
+  );
+}
+```
+
+### Sticky item
+
+Use the List component as a child of the Sheet component to create "sticky" items.
+On the item you wish to stick, you can then add the `sticky` prop.
+
+The Sheet component automatically adjusts the `sticky` list item to have the same background so that content does not overflow when scrolling.
+
+<ListStickyItem />
+
+```tsx
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListSubheader,
+  Sheet,
+} from 'tailwind-joy/components';
+
+export function ListStickyItem() {
+  return (
+    <Sheet
+      variant="outlined"
+      className="max-h-[300px] w-80 overflow-auto rounded-[6px]"
+    >
+      <List>
+        {[...Array(5)].map((_, categoryIndex) => (
+          <ListItem nested key={categoryIndex}>
+            <ListSubheader sticky>Category {categoryIndex + 1}</ListSubheader>
+            <List>
+              {[...Array(10)].map((_, index) => (
+                <ListItem key={index}>
+                  <ListItemButton>Subitem {index + 1}</ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </ListItem>
+        ))}
+      </List>
+    </Sheet>
+  );
+}
+```
+
+### Nested list
+
+You can create a nested list using the `nested` prop on a List Item.
+This enables you to add a List Subheader as well as a new List component as children of the List Item.
+The nested List will inherit its `size` as well as other CSS variables like `--List-radius` and `--ListItem-radius` from the root List component to keep the design consistent.
+The layout and spacing of the nested List will remain independent.
+
+<ListNestedList />
+
+```tsx
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListSubheader,
+} from 'tailwind-joy/components';
+
+export function ListNestedList() {
+  return (
+    <div>
+      <List variant="outlined" className="w-[200px] rounded-md">
+        <ListItem nested>
+          <ListSubheader>Category 1</ListSubheader>
+          <List>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
+        </ListItem>
+        <ListItem nested>
+          <ListSubheader>Category 2</ListSubheader>
+          <List>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
+        </ListItem>
+      </List>
+    </div>
+  );
+}
+```
+
+### Interactive list items
+
+To make a List Item interactive, you can use List Item Button inside a List Item.
+
+<ListInteractiveListItems1 />
+
+```tsx
+import { MdInfo, MdOpenInNew } from 'react-icons/md';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ListInteractiveListItems1() {
+  return (
+    <List className="max-w-[320px]">
+      <ListItem>
+        <ListItemButton onClick={() => alert('You clicked')}>
+          <ListItemDecorator>
+            <MdInfo className={iconClass()} />
+          </ListItemDecorator>
+          Clickable item
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton component="a" href="#interactive-list-items">
+          <ListItemDecorator>
+            <MdOpenInNew className={iconClass()} />
+          </ListItemDecorator>
+          Open a new tab
+        </ListItemButton>
+      </ListItem>
+    </List>
+  );
+}
+```
+
+To add a secondary action to the List Item Button, wrap it in a List Item component and then add the desired start or end action elements to it.
+
+<ListInteractiveListItems2 />
+
+```tsx
+import { MdAdd, MdDelete } from 'react-icons/md';
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ListInteractiveListItems2() {
+  return (
+    <List className="max-w-[300px]">
+      <ListItem
+        startAction={
+          <IconButton size="sm" color="neutral">
+            <MdAdd className={iconClass({ color: 'neutral' })} />
+          </IconButton>
+        }
+      >
+        <ListItemButton>Item 1</ListItemButton>
+      </ListItem>
+      <ListItem
+        endAction={
+          <IconButton size="sm" color="danger">
+            <MdDelete className={iconClass({ color: 'danger' })} />
+          </IconButton>
+        }
+      >
+        <ListItemButton>Item 2</ListItemButton>
+      </ListItem>
+    </List>
+  );
+}
+```
+
+### Selected
+
+Use the `selected` prop on the List Item Button component to indicate whether or not an item is currently selected.
+When the item is selected, it applies `color="primary"` and a few extra styles(like font weight) to visually communicate the selected state.
+
+<ListSelected />
+
+```tsx
+import { MdHome, MdApps } from 'react-icons/md';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
+
+export function ListSelected() {
+  return (
+    <List className="max-w-[320px]">
+      <ListItem>
+        <ListItemButton selected>
+          <ListItemDecorator>
+            <MdHome className={iconClass()} />
+          </ListItemDecorator>
+          Home
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton>
+          <ListItemDecorator>
+            <MdApps className={iconClass()} />
+          </ListItemDecorator>
+          Apps
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton>
+          <ListItemDecorator />
+          Settings
+        </ListItemButton>
+      </ListItem>
+    </List>
+  );
+}
+```
+
+## Anatomy
+
+The List component is composed of a root `<ul>` element with one or more child `<li>` elements rendered by the List Item component.
+All components nested inside the List Item are optional.
+The List Divider (when present) renders an `<li>` with `role="separator"`, while the List Subheader renders a `<div>`.
+
+```html
+<ul class="tj-list-root">
+  <li class="tj-list-item-root">
+    <div class="tj-list-item-button-root" role="button">
+      <span class="tj-list-item-decorator-root">
+        <!-- Icon for List Item Decorator -->
+      </span>
+      <div class="tj-list-item-content-root">
+        <!-- List Item content -->
+      </div>
+    </div>
+  </li>
+</ul>
+```
+
+## API
+
+See the documentation below for a complete reference to all of the props available to the components mentioned here.
+
+- [`<Avatar />`](../apis/avatar)
+- [`<Box />`](../apis/box)
+- [`<Button />`](../apis/button)
+- [`<Divider />`](../apis/divider)
+- [`<IconButton />`](../apis/icon-button)
+- [`<List />`](../apis/list)
+- [`<ListDivider />`](../apis/list-divider)
+- [`<ListItem />`](../apis/list-item)
+- [`<ListItemButton />`](../apis/list-item-button)
+- [`<ListItemContent />`](../apis/list-item-content)
+- [`<ListItemDecorator />`](../apis/list-item-decorator)
+- [`<ListSubheader />`](../apis/list-subheader)
+- [`<Radio />`](../apis/radio)
+- [`<RadioGroup />`](../apis/radio-group)
+- [`<Sheet />`](../apis/sheet)
+- [`<Stack />`](../apis/stack)
+- [`<ToggleButtonGroup />`](../apis/toggle-button-group)
+- [`<Typography />`](../apis/typography)

@@ -85,6 +85,96 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+.markdown-alt {
+  --ifm-h1-vertical-rhythm-top: 3;
+  --ifm-h2-vertical-rhythm-top: 2;
+  --ifm-h3-vertical-rhythm-top: 1.5;
+  --ifm-heading-vertical-rhythm-top: 1.25;
+
+  --ifm-h1-vertical-rhythm-bottom: 1.25;
+  --ifm-heading-vertical-rhythm-bottom: 1;
+}
+
+.markdown-alt:before {
+  content: '';
+  display: table;
+}
+
+.markdown-alt:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.markdown-alt > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-alt h1:first-child {
+  --ifm-h1-font-size: 3rem;
+
+  margin-bottom: calc(
+    var(--ifm-h1-vertical-rhythm-bottom) * var(--ifm-leading)
+  );
+}
+
+.markdown-alt > h2 {
+  --ifm-h2-font-size: 2rem;
+
+  margin-bottom: calc(
+    var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading)
+  );
+  margin-top: calc(var(--ifm-h2-vertical-rhythm-top) * var(--ifm-leading));
+}
+
+.markdown-alt > h3 {
+  --ifm-h3-font-size: 1.5rem;
+
+  margin-bottom: calc(
+    var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading)
+  );
+  margin-top: calc(var(--ifm-h3-vertical-rhythm-top) * var(--ifm-leading));
+}
+
+.markdown-alt > h4,
+.markdown-alt > h5,
+.markdown-alt > h6 {
+  margin-bottom: calc(
+    var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading)
+  );
+  margin-top: calc(var(--ifm-heading-vertical-rhythm-top) * var(--ifm-leading));
+}
+
+.markdown-alt > pre,
+.markdown-alt > ul,
+.markdown-alt > p {
+  margin-bottom: var(--ifm-leading);
+}
+
+.markdown-alt > :not(.tj-display-stand) li {
+  word-wrap: break-word;
+}
+
+.markdown-alt > :not(.tj-display-stand) li > p {
+  margin-top: var(--ifm-list-paragraph-margin);
+}
+
+.markdown-alt > :not(.tj-display-stand) li + li {
+  margin-top: var(--ifm-list-item-margin);
+}
+
+@media (max-width: 576px) {
+  .markdown-alt h1:first-child {
+    --ifm-h1-font-size: 2rem;
+  }
+  .markdown-alt > h2 {
+    --ifm-h2-font-size: 1.5rem;
+  }
+  .markdown-alt > h3 {
+    --ifm-h3-font-size: 1.25rem;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
