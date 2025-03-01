@@ -1,9 +1,9 @@
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import { Typography } from 'tailwind-joy/components';
+  List,
+  ListItem,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListDecorators() {
@@ -13,17 +13,17 @@ export function ListDecorators() {
         <Typography level="body-xs" className="mb-2 font-semibold uppercase">
           Ingredients
         </Typography>
-        <JoyList>
-          <JoyListItem>
-            <JoyListItemDecorator>🧅</JoyListItemDecorator> 1 red onion
-          </JoyListItem>
-          <JoyListItem>
-            <JoyListItemDecorator>🍤</JoyListItemDecorator> 2 Shrimps
-          </JoyListItem>
-          <JoyListItem>
-            <JoyListItemDecorator>🥓</JoyListItemDecorator> 120g bacon
-          </JoyListItem>
-        </JoyList>
+        <List>
+          <ListItem>
+            <ListItemDecorator>🧅</ListItemDecorator> 1 red onion
+          </ListItem>
+          <ListItem>
+            <ListItemDecorator>🍤</ListItemDecorator> 2 Shrimps
+          </ListItem>
+          <ListItem>
+            <ListItemDecorator>🥓</ListItemDecorator> 120g bacon
+          </ListItem>
+        </List>
       </div>
     </DisplayStand>
   );

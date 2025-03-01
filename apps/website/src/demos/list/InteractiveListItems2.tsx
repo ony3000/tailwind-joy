@@ -1,36 +1,36 @@
+import { MdAdd, MdDelete } from 'react-icons/md';
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-} from '@mui/joy';
-import Add from '@mui/icons-material/Add';
-import Delete from '@mui/icons-material/Delete';
-import { IconButton } from 'tailwind-joy/components';
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListInteractiveListItems2() {
   return (
     <DisplayStand>
-      <JoyList sx={{ maxWidth: 300 }}>
-        <JoyListItem
+      <List className="max-w-[300px]">
+        <ListItem
           startAction={
             <IconButton size="sm" color="neutral">
-              <Add />
+              <MdAdd className={iconClass({ color: 'neutral' })} />
             </IconButton>
           }
         >
-          <JoyListItemButton>Item 1</JoyListItemButton>
-        </JoyListItem>
-        <JoyListItem
+          <ListItemButton>Item 1</ListItemButton>
+        </ListItem>
+        <ListItem
           endAction={
             <IconButton size="sm" color="danger">
-              <Delete />
+              <MdDelete className={iconClass({ color: 'danger' })} />
             </IconButton>
           }
         >
-          <JoyListItemButton>Item 2</JoyListItemButton>
-        </JoyListItem>
-      </JoyList>
+          <ListItemButton>Item 2</ListItemButton>
+        </ListItem>
+      </List>
     </DisplayStand>
   );
 }

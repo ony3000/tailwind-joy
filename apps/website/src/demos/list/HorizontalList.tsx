@@ -1,12 +1,12 @@
+import { MdHome, MdPerson } from 'react-icons/md';
 import {
-  List as JoyList,
-  ListDivider as JoyListDivider,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-} from '@mui/joy';
-import Home from '@mui/icons-material/Home';
-import Person from '@mui/icons-material/Person';
-import { Box } from 'tailwind-joy/components';
+  Box,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemButton,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListHorizontalList() {
@@ -14,48 +14,48 @@ export function ListHorizontalList() {
     <DisplayStand>
       <Box className="flex w-full justify-center">
         <Box component="nav" className="grow">
-          <JoyList role="menubar" orientation="horizontal">
-            <JoyListItem role="none">
-              <JoyListItemButton
+          <List role="menubar" orientation="horizontal">
+            <ListItem role="none">
+              <ListItemButton
                 role="menuitem"
                 component="a"
                 href="#horizontal-list"
                 aria-label="Home"
               >
-                <Home />
-              </JoyListItemButton>
-            </JoyListItem>
-            <JoyListDivider />
-            <JoyListItem role="none">
-              <JoyListItemButton
+                <MdHome className={iconClass()} />
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem role="none">
+              <ListItemButton
                 role="menuitem"
                 component="a"
                 href="#horizontal-list"
               >
                 Products
-              </JoyListItemButton>
-            </JoyListItem>
-            <JoyListDivider />
-            <JoyListItem role="none">
-              <JoyListItemButton
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem role="none">
+              <ListItemButton
                 role="menuitem"
                 component="a"
                 href="#horizontal-list"
               >
                 Blog
-              </JoyListItemButton>
-            </JoyListItem>
-            <JoyListItem role="none" sx={{ marginInlineStart: 'auto' }}>
-              <JoyListItemButton
+              </ListItemButton>
+            </ListItem>
+            <ListItem role="none" className="!ms-auto">
+              <ListItemButton
                 role="menuitem"
                 component="a"
                 href="#horizontal-list"
                 aria-label="Profile"
               >
-                <Person />
-              </JoyListItemButton>
-            </JoyListItem>
-          </JoyList>
+                <MdPerson className={iconClass()} />
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </DisplayStand>

@@ -1,10 +1,12 @@
 import {
-  List as JoyList,
-  ListDivider as JoyListDivider,
-  ListItem as JoyListItem,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import { Avatar, Box, Typography } from 'tailwind-joy/components';
+  Avatar,
+  Box,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListDivider1() {
@@ -17,24 +19,21 @@ export function ListDivider1() {
               <Typography level="body-xs" className="mb-4">
                 <code>{inset ? `inset="${inset}"` : '(default)'}</code>
               </Typography>
-              <JoyList
-                variant="outlined"
-                sx={{ minWidth: 240, borderRadius: 'sm' }}
-              >
-                <JoyListItem>
-                  <JoyListItemDecorator>
+              <List variant="outlined" className="min-w-[240px] rounded-md">
+                <ListItem>
+                  <ListItemDecorator>
                     <Avatar size="sm" src="/img/avatar/1.jpg" />
-                  </JoyListItemDecorator>
+                  </ListItemDecorator>
                   Mabel Boyle
-                </JoyListItem>
-                <JoyListDivider inset={inset} />
-                <JoyListItem>
-                  <JoyListItemDecorator>
+                </ListItem>
+                <ListDivider inset={inset} />
+                <ListItem>
+                  <ListItemDecorator>
                     <Avatar size="sm" src="/img/avatar/3.jpg" />
-                  </JoyListItemDecorator>
+                  </ListItemDecorator>
                   Boyd Burt
-                </JoyListItem>
-              </JoyList>
+                </ListItem>
+              </List>
             </div>
           ),
         )}

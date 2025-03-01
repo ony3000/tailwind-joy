@@ -1,10 +1,12 @@
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemContent as JoyListItemContent,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import { Avatar, Box, Typography } from 'tailwind-joy/components';
+  Avatar,
+  Box,
+  List,
+  ListItem,
+  ListItemContent,
+  ListItemDecorator,
+  Typography,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListEllipsisContent() {
@@ -14,30 +16,30 @@ export function ListEllipsisContent() {
         <Typography level="body-xs" className="uppercase tracking-[0.15rem]">
           Inbox
         </Typography>
-        <JoyList sx={{ '--ListItemDecorator-size': '56px' }}>
-          <JoyListItem>
-            <JoyListItemDecorator>
+        <List className="[--ListItemDecorator-size:56px]">
+          <ListItem>
+            <ListItemDecorator>
               <Avatar src="/img/avatar/1.jpg" />
-            </JoyListItemDecorator>
-            <JoyListItemContent>
+            </ListItemDecorator>
+            <ListItemContent>
               <Typography level="title-sm">Brunch this weekend?</Typography>
               <Typography level="body-sm" noWrap>
                 I'll be in your neighborhood doing errands this Tuesday.
               </Typography>
-            </JoyListItemContent>
-          </JoyListItem>
-          <JoyListItem>
-            <JoyListItemDecorator>
+            </ListItemContent>
+          </ListItem>
+          <ListItem>
+            <ListItemDecorator>
               <Avatar src="/img/avatar/2.jpg" />
-            </JoyListItemDecorator>
-            <JoyListItemContent>
+            </ListItemDecorator>
+            <ListItemContent>
               <Typography level="title-sm">Summer BBQ</Typography>
               <Typography level="body-sm" noWrap>
                 Wish I could come, but I'm out of town this Friday.
               </Typography>
-            </JoyListItemContent>
-          </JoyListItem>
-        </JoyList>
+            </ListItemContent>
+          </ListItem>
+        </List>
       </Box>
     </DisplayStand>
   );

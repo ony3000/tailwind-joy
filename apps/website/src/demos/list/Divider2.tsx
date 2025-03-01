@@ -1,47 +1,41 @@
 import {
-  List as JoyList,
-  ListDivider as JoyListDivider,
-  ListItem as JoyListItem,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import { Avatar } from 'tailwind-joy/components';
+  Avatar,
+  List,
+  ListDivider,
+  ListItem,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListDivider2() {
   return (
     <DisplayStand>
-      <JoyList
+      <List
         orientation="horizontal"
         variant="outlined"
-        sx={{
-          flexGrow: 0,
-          mx: 'auto',
-          '--ListItemDecorator-size': '48px',
-          '--ListItem-paddingY': '1rem',
-          borderRadius: 'sm',
-        }}
+        className="mx-auto grow-0 rounded-md [--ListItem-paddingY:1rem] [--ListItemDecorator-size:48px]"
       >
-        <JoyListItem>
-          <JoyListItemDecorator>
+        <ListItem>
+          <ListItemDecorator>
             <Avatar size="sm" src="/img/avatar/1.jpg" />
-          </JoyListItemDecorator>
+          </ListItemDecorator>
           Mabel Boyle
-        </JoyListItem>
-        <JoyListDivider inset="gutter" />
-        <JoyListItem>
-          <JoyListItemDecorator>
+        </ListItem>
+        <ListDivider inset="gutter" />
+        <ListItem>
+          <ListItemDecorator>
             <Avatar size="sm" src="/img/avatar/2.jpg" />
-          </JoyListItemDecorator>
+          </ListItemDecorator>
           Adam Tris
-        </JoyListItem>
-        <JoyListDivider inset="gutter" />
-        <JoyListItem>
-          <JoyListItemDecorator>
+        </ListItem>
+        <ListDivider inset="gutter" />
+        <ListItem>
+          <ListItemDecorator>
             <Avatar size="sm" src="/img/avatar/3.jpg" />
-          </JoyListItemDecorator>
+          </ListItemDecorator>
           Boyd Burt
-        </JoyListItem>
-      </JoyList>
+        </ListItem>
+      </List>
     </DisplayStand>
   );
 }

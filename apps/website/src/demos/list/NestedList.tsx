@@ -1,39 +1,39 @@
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-  ListSubheader as JoyListSubheader,
-} from '@mui/joy';
+  List,
+  ListItem,
+  ListItemButton,
+  ListSubheader,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListNestedList() {
   return (
     <DisplayStand>
       <div>
-        <JoyList variant="outlined" sx={{ width: 200, borderRadius: 'sm' }}>
-          <JoyListItem nested>
-            <JoyListSubheader>Category 1</JoyListSubheader>
-            <JoyList>
-              <JoyListItem>
-                <JoyListItemButton>Subitem 1</JoyListItemButton>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemButton>Subitem 2</JoyListItemButton>
-              </JoyListItem>
-            </JoyList>
-          </JoyListItem>
-          <JoyListItem nested>
-            <JoyListSubheader>Category 2</JoyListSubheader>
-            <JoyList>
-              <JoyListItem>
-                <JoyListItemButton>Subitem 1</JoyListItemButton>
-              </JoyListItem>
-              <JoyListItem>
-                <JoyListItemButton>Subitem 2</JoyListItemButton>
-              </JoyListItem>
-            </JoyList>
-          </JoyListItem>
-        </JoyList>
+        <List variant="outlined" className="w-[200px] rounded-md">
+          <ListItem nested>
+            <ListSubheader>Category 1</ListSubheader>
+            <List>
+              <ListItem>
+                <ListItemButton>Subitem 1</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>Subitem 2</ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem nested>
+            <ListSubheader>Category 2</ListSubheader>
+            <List>
+              <ListItem>
+                <ListItemButton>Subitem 1</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>Subitem 2</ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+        </List>
       </div>
     </DisplayStand>
   );

@@ -1,40 +1,40 @@
+import { MdHome, MdApps } from 'react-icons/md';
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import Home from '@mui/icons-material/Home';
-import Apps from '@mui/icons-material/Apps';
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListSelected() {
   return (
     <DisplayStand>
-      <JoyList sx={{ maxWidth: 320 }}>
-        <JoyListItem>
-          <JoyListItemButton selected>
-            <JoyListItemDecorator>
-              <Home />
-            </JoyListItemDecorator>
+      <List className="max-w-[320px]">
+        <ListItem>
+          <ListItemButton selected>
+            <ListItemDecorator>
+              <MdHome className={iconClass()} />
+            </ListItemDecorator>
             Home
-          </JoyListItemButton>
-        </JoyListItem>
-        <JoyListItem>
-          <JoyListItemButton>
-            <JoyListItemDecorator>
-              <Apps />
-            </JoyListItemDecorator>
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton>
+            <ListItemDecorator>
+              <MdApps className={iconClass()} />
+            </ListItemDecorator>
             Apps
-          </JoyListItemButton>
-        </JoyListItem>
-        <JoyListItem>
-          <JoyListItemButton>
-            <JoyListItemDecorator />
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton>
+            <ListItemDecorator />
             Settings
-          </JoyListItemButton>
-        </JoyListItem>
-      </JoyList>
+          </ListItemButton>
+        </ListItem>
+      </List>
     </DisplayStand>
   );
 }

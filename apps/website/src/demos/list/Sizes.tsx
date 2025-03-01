@@ -1,11 +1,14 @@
-import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-  ListItemContent as JoyListItemContent,
-} from '@mui/joy';
 import { useState } from 'react';
-import { Box, Divider, Radio, RadioGroup } from 'tailwind-joy/components';
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemContent,
+  Radio,
+  RadioGroup,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 type Size = 'sm' | 'md' | 'lg';
@@ -17,18 +20,18 @@ export function ListSizes() {
     <DisplayStand>
       <Box className="flex items-center gap-6">
         <Box>
-          <JoyList size={size} sx={{ width: 180 }}>
-            <JoyListItem>
-              <JoyListItemButton>
-                <JoyListItemContent>Item 1</JoyListItemContent>
-              </JoyListItemButton>
-            </JoyListItem>
-            <JoyListItem>
-              <JoyListItemButton>
-                <JoyListItemContent>Item 2</JoyListItemContent>
-              </JoyListItemButton>
-            </JoyListItem>
-          </JoyList>
+          <List size={size} className="w-[180px]">
+            <ListItem>
+              <ListItemButton>
+                <ListItemContent>Item 1</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemContent>Item 2</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
         <Divider orientation="vertical" />
         <RadioGroup

@@ -1,29 +1,29 @@
+import { MdImage, MdVideocam } from 'react-icons/md';
 import {
-  List as JoyList,
-  ListItemButton as JoyListItemButton,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import Image from '@mui/icons-material/Image';
-import Videocam from '@mui/icons-material/Videocam';
+  List,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListSemanticElements() {
   return (
     <DisplayStand>
-      <JoyList component="nav" sx={{ maxWidth: 240 }}>
-        <JoyListItemButton>
-          <JoyListItemDecorator>
-            <Image />
-          </JoyListItemDecorator>
+      <List component="nav" className="max-w-[240px]">
+        <ListItemButton>
+          <ListItemDecorator>
+            <MdImage className={iconClass()} />
+          </ListItemDecorator>
           Add another image
-        </JoyListItemButton>
-        <JoyListItemButton>
-          <JoyListItemDecorator>
-            <Videocam />
-          </JoyListItemDecorator>
+        </ListItemButton>
+        <ListItemButton>
+          <ListItemDecorator>
+            <MdVideocam className={iconClass()} />
+          </ListItemDecorator>
           Add another video
-        </JoyListItemButton>
-      </JoyList>
+        </ListItemButton>
+      </List>
     </DisplayStand>
   );
 }

@@ -1,34 +1,34 @@
+import { MdInfo, MdOpenInNew } from 'react-icons/md';
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-  ListItemDecorator as JoyListItemDecorator,
-} from '@mui/joy';
-import Info from '@mui/icons-material/Info';
-import OpenInNew from '@mui/icons-material/OpenInNew';
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+} from 'tailwind-joy/components';
+import { iconClass } from 'tailwind-joy/utils';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListInteractiveListItems1() {
   return (
     <DisplayStand>
-      <JoyList sx={{ maxWidth: 320 }}>
-        <JoyListItem>
-          <JoyListItemButton onClick={() => alert('You clicked')}>
-            <JoyListItemDecorator>
-              <Info />
-            </JoyListItemDecorator>
+      <List className="max-w-[320px]">
+        <ListItem>
+          <ListItemButton onClick={() => alert('You clicked')}>
+            <ListItemDecorator>
+              <MdInfo className={iconClass()} />
+            </ListItemDecorator>
             Clickable item
-          </JoyListItemButton>
-        </JoyListItem>
-        <JoyListItem>
-          <JoyListItemButton component="a" href="#interactive-list-items">
-            <JoyListItemDecorator>
-              <OpenInNew />
-            </JoyListItemDecorator>
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton component="a" href="#interactive-list-items">
+            <ListItemDecorator>
+              <MdOpenInNew className={iconClass()} />
+            </ListItemDecorator>
             Open a new tab
-          </JoyListItemButton>
-        </JoyListItem>
-      </JoyList>
+          </ListItemButton>
+        </ListItem>
+      </List>
     </DisplayStand>
   );
 }

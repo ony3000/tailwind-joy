@@ -1,10 +1,10 @@
 import {
-  List as JoyList,
-  ListItem as JoyListItem,
-  ListItemButton as JoyListItemButton,
-  ListSubheader as JoyListSubheader,
-} from '@mui/joy';
-import { Sheet } from 'tailwind-joy/components';
+  List,
+  ListItem,
+  ListItemButton,
+  ListSubheader,
+  Sheet,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListStickyItem() {
@@ -14,22 +14,20 @@ export function ListStickyItem() {
         variant="outlined"
         className="max-h-[300px] w-80 overflow-auto rounded-[6px]"
       >
-        <JoyList>
+        <List>
           {[...Array(5)].map((_, categoryIndex) => (
-            <JoyListItem nested key={categoryIndex}>
-              <JoyListSubheader sticky>
-                Category {categoryIndex + 1}
-              </JoyListSubheader>
-              <JoyList>
+            <ListItem nested key={categoryIndex}>
+              <ListSubheader sticky>Category {categoryIndex + 1}</ListSubheader>
+              <List>
                 {[...Array(10)].map((_, index) => (
-                  <JoyListItem key={index}>
-                    <JoyListItemButton>Subitem {index + 1}</JoyListItemButton>
-                  </JoyListItem>
+                  <ListItem key={index}>
+                    <ListItemButton>Subitem {index + 1}</ListItemButton>
+                  </ListItem>
                 ))}
-              </JoyList>
-            </JoyListItem>
+              </List>
+            </ListItem>
           ))}
-        </JoyList>
+        </List>
       </Sheet>
     </DisplayStand>
   );

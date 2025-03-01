@@ -1,6 +1,11 @@
-import { List as JoyList, ListItem as JoyListItem } from '@mui/joy';
 import { useState } from 'react';
-import { Button, Stack, ToggleButtonGroup } from 'tailwind-joy/components';
+import {
+  Button,
+  List,
+  ListItem,
+  Stack,
+  ToggleButtonGroup,
+} from 'tailwind-joy/components';
 import { DisplayStand } from '@site/src/components/docs/DisplayStand';
 
 export function ListMarker() {
@@ -20,18 +25,18 @@ export function ListMarker() {
           <Button value="decimal">decimal</Button>
           <Button value="upper-roman">upper-roman</Button>
         </ToggleButtonGroup>
-        <JoyList marker={marker}>
-          <JoyListItem>The Shawshank Redemption</JoyListItem>
-          <JoyListItem nested>
-            <JoyListItem>Star Wars</JoyListItem>
-            <JoyList marker="circle">
-              <JoyListItem>Episode I &ndash; The Phantom Menace</JoyListItem>
-              <JoyListItem>Episode II &ndash; Attack of the Clones</JoyListItem>
-              <JoyListItem>Episode III &ndash; Revenge of the Sith</JoyListItem>
-            </JoyList>
-          </JoyListItem>
-          <JoyListItem>The Lord of the Rings: The Two Towers</JoyListItem>
-        </JoyList>
+        <List marker={marker}>
+          <ListItem>The Shawshank Redemption</ListItem>
+          <ListItem nested>
+            <ListItem>Star Wars</ListItem>
+            <List marker="circle">
+              <ListItem>Episode I &ndash; The Phantom Menace</ListItem>
+              <ListItem>Episode II &ndash; Attack of the Clones</ListItem>
+              <ListItem>Episode III &ndash; Revenge of the Sith</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>The Lord of the Rings: The Two Towers</ListItem>
+        </List>
       </Stack>
     </DisplayStand>
   );
