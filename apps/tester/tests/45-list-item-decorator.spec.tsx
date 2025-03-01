@@ -42,7 +42,7 @@ const fixtures: Fixture[] = [
         </JoyList>
       );
     },
-    renderTjElement({ testId, size, variant, color, state }) {
+    renderTjElement({ testId, size, variant, color, state, iconClassName }) {
       return (
         <TJList>
           <TJListItem>
@@ -51,7 +51,7 @@ const fixtures: Fixture[] = [
           <TJListItem>
             <TJListItemButton>
               <TJListItemDecorator>
-                <MdInfo />
+                <MdInfo className={iconClassName} />
               </TJListItemDecorator>
               Lorem ipsum
             </TJListItemButton>
