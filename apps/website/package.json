@@ -15,9 +15,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "3.4.0",
-    "@docusaurus/preset-classic": "3.4.0",
-    "@docusaurus/remark-plugin-npm2yarn": "3.4.0",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/remark-plugin-npm2yarn": "3.7.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
     "@heroicons/react": "2.1.5",
@@ -33,9 +33,9 @@
     "tailwind-merge": "2.3.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.4.0",
-    "@docusaurus/tsconfig": "3.4.0",
-    "@docusaurus/types": "3.4.0",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "3.7.0",
     "@types/react": "18.2.79",
     "autoprefixer": "10.4.19",
     "postcss": "8.4.38",
