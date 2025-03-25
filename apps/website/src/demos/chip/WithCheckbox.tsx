@@ -39,7 +39,7 @@ export function ChipWithCheckbox() {
                       <MdCheck
                         className={twMerge(
                           iconClass(),
-                          'pointer-events-none z-[1]',
+                          'pointer-events-none z-1',
                         )}
                       />
                     )

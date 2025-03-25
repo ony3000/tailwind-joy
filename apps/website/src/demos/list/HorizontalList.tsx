@@ -45,7 +45,7 @@ export function ListHorizontalList() {
                 Blog
               </ListItemButton>
             </ListItem>
-            <ListItem role="none" className="!ms-auto">
+            <ListItem role="none" className="ms-auto!">
               <ListItemButton
                 role="menuitem"
                 component="a"
