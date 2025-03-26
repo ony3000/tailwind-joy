@@ -175,9 +175,43 @@
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.tj-display-stand h1:first-child {
+  margin: 0;
+}
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+/* @import "tailwindcss/preflight.css" layer(base); */
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "tailwind-joy/theme-extension.css";
+
+@source "../../node_modules/tailwind-joy/dist/safelist.js";
+
+@theme {
+  --breakpoint-*: initial;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   button,
@@ -187,8 +221,4 @@
   textarea {
     font-family: inherit;
   }
-}
-
-.tj-display-stand h1:first-child {
-  margin: 0;
 }
