@@ -1,3 +1,12 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
+export function isTailwindVersion4() {
+  return defaultTheme.transitionProperty.colors.includes(
+    // NOTE: Added in tailwindcss@4.0.0-beta.10.
+    'outline-color',
+  );
+}
+
 export function excludeClassName<T extends Record<string, unknown>>(
   slotProps: T,
 ): {

@@ -8,14 +8,20 @@ export default defineConfig({
     lib: {
       entry: [
         resolve(__dirname, 'src/components.ts'),
-        resolve(__dirname, 'src/index.ts'),
+        resolve(__dirname, 'src/safelist.ts'),
         resolve(__dirname, 'src/tw-extension.ts'),
         resolve(__dirname, 'src/utils.ts'),
       ],
       formats: ['cjs', 'es'],
+      cssFileName: 'theme-extension',
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime', 'tailwindcss'],
+      external: [
+        'react',
+        'react/jsx-runtime',
+        'tailwindcss',
+        'tailwindcss/defaultTheme',
+      ],
     },
   },
   plugins: [react(), safelistGenerator()],

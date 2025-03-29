@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "target": "ES2015",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,

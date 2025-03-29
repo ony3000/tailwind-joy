@@ -1,6 +1,6 @@
 {
   "name": "tailwind-joy",
-  "version": "0.5.1",
+  "version": "0.7.0",
   "description": "React component library that styles the components of Joy UI in the Tailwind CSS way.",
   "keywords": [
     "react",
@@ -20,17 +20,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": null,
     "./components": {
       "import": "./dist/components.js",
       "require": "./dist/components.cjs"
     },
+    "./theme-extension.css": "./dist/theme-extension.css",
     "./tw-extension": {
       "import": "./dist/tw-extension.js",
       "require": "./dist/tw-extension.cjs"
@@ -54,18 +50,18 @@
   },
   "devDependencies": {
     "@types/react": "18.2.79",
-    "@vitejs/plugin-react": "4.3.0",
+    "@vitejs/plugin-react": "4.3.4",
     "commander": "12.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.4.4",
-    "typescript": "4.9.5",
-    "vite": "5.0.11"
+    "typescript": "5.8.2",
+    "vite": "6.1.0"
   },
   "peerDependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "tailwindcss": ">=3.4"
+    "tailwindcss": "^3.4 || >=4.0.4"
   },
-  "packageManager": "pnpm@8.5.1"
+  "packageManager": "pnpm@10.6.3"
 }

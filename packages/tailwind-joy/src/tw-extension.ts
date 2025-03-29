@@ -1,10 +1,16 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { joyColors } from './base/colors';
+import { tjSafelist } from './safelist';
 
 // ----------------------------------------------------------------
 
-export const tjClassNames: string = '__REPLACE_ME__';
+/**
+ * @deprecated
+ *
+ * This export is deprecated. Please refer to the [installation guide](https://tailwind-joy.vercel.app/docs/getting-started/installation).
+ */
+export const tjClassNames = tjSafelist.join(' ');
 
 // ----------------------------------------------------------------
 
@@ -104,10 +110,17 @@ export const tjPlugin = plugin(
     addBase({
       ':root': {
         '--pi': '3.1415926535',
+        ...Object.fromEntries(convertColorsToEntries(joyColors, '--color-joy')),
+        // deprecated
         ...Object.fromEntries(convertColorsToEntries(joyColors, '--joy')),
       },
     });
 
+    addVariant(
+      'non-touchscreen-hover',
+      '@media (hover: hover) and (pointer: fine) { &:hover }',
+    );
+    // deprecated
     addVariant('non-touchscreen', '@media (hover: hover) and (pointer: fine)');
   },
 );

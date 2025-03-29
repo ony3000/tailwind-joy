@@ -80,6 +80,44 @@ const fixtures: Fixture[] = [
       );
     },
   },
+  {
+    title: 'art direction',
+    alterSizes: ['md'],
+    alterColors: ['primary'],
+    waitTime: 3000,
+    renderJoyElement({ testId, size, variant, color }) {
+      return (
+        <JoyAspectRatio data-testid={testId} sx={{ width: 300 }}>
+          <picture>
+            <source
+              srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
+              media="(min-width: 600px)"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=200"
+              alt="A beautiful landscape."
+            />
+          </picture>
+        </JoyAspectRatio>
+      );
+    },
+    renderTjElement({ testId, size, variant, color }) {
+      return (
+        <TJAspectRatio data-testid={testId} className="w-[300px]">
+          <picture>
+            <source
+              srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
+              media="(min-width: 600px)"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=200"
+              alt="A beautiful landscape."
+            />
+          </picture>
+        </TJAspectRatio>
+      );
+    },
+  },
 ];
 
 testEach(fixtures, {

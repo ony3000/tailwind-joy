@@ -22,7 +22,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 import { ButtonGroupContext } from './ButtonGroup';
 import { CircularProgress } from './CircularProgress';
 import { ToggleButtonGroupContext } from './ToggleButtonGroup';
@@ -72,6 +72,7 @@ function buttonLoadingIndicatorCenterVariants(
 
 function buttonRootVariants(
   props?: BaseVariants & {
+    isTailwind4?: boolean;
     fullWidth?: boolean;
     invisibleChildren?: boolean;
     visuallyDisabled?: boolean;
@@ -81,6 +82,7 @@ function buttonRootVariants(
     color = 'primary',
     size = 'md',
     variant = 'solid',
+    isTailwind4 = false,
     fullWidth = false,
     invisibleChildren = false,
     visuallyDisabled = false,
@@ -100,7 +102,9 @@ function buttonRootVariants(
         '[--Button-gap:0.375rem]',
         'min-h-[var(--Button-minHeight,2rem)]',
         'text-[0.875rem]',
-        '[padding-block:var(--Button-paddingBlock,0.25rem)]',
+        isTailwind4
+          ? 'py-[var(--Button-paddingBlock,0.25rem)]'
+          : '[padding-block:var(--Button-paddingBlock,0.25rem)]',
         'ps-[0.75rem] pe-[0.75rem]',
       ],
       size === 'md' && [
@@ -110,7 +114,9 @@ function buttonRootVariants(
         '[--Button-gap:0.5rem]',
         'min-h-[var(--Button-minHeight,2.25rem)]',
         'text-[0.875rem]',
-        '[padding-block:var(--Button-paddingBlock,0.375rem)]',
+        isTailwind4
+          ? 'py-[var(--Button-paddingBlock,0.375rem)]'
+          : '[padding-block:var(--Button-paddingBlock,0.375rem)]',
         'ps-[1rem] pe-[1rem]',
       ],
       size === 'lg' && [
@@ -120,7 +126,9 @@ function buttonRootVariants(
         '[--Button-gap:0.75rem]',
         'min-h-[var(--Button-minHeight,2.75rem)]',
         'text-[1rem]',
-        '[padding-block:var(--Button-paddingBlock,0.5rem)]',
+        isTailwind4
+          ? 'py-[var(--Button-paddingBlock,0.5rem)]'
+          : '[padding-block:var(--Button-paddingBlock,0.5rem)]',
         'ps-[1.5rem] pe-[1.5rem]',
       ],
       '[-webkit-tap-highlight-color:transparent]',
@@ -264,6 +272,7 @@ function ButtonRoot<T extends ReactTags = 'button'>(
           color: refinedColor,
           fullWidth,
           size: refinedSize,
+          isTailwind4: isTailwindVersion4(),
           variant: refinedVariant,
           invisibleChildren: loading && loadingPosition === 'center',
           visuallyDisabled: refinedDisabled,
@@ -376,6 +385,7 @@ export const generatorInputs: GeneratorInput[] = [
       color: ['primary', 'neutral', 'danger', 'success', 'warning'],
       size: ['sm', 'md', 'lg'],
       variant: ['solid', 'soft', 'outlined', 'plain'],
+      isTailwind4: [false, true],
       fullWidth: [false, true],
       invisibleChildren: [false, true],
       visuallyDisabled: [false, true],

@@ -1,5 +1,7 @@
 import type { GeneratorInput } from '../base/types';
 import { generatorInputs as aspectRatioClassNameGeneratorInputs } from '../components/AspectRatio';
+import { generatorInputs as avatarClassNameGeneratorInputs } from '../components/Avatar';
+import { generatorInputs as avatarGroupClassNameGeneratorInputs } from '../components/AvatarGroup';
 import { generatorInputs as boxClassNameGeneratorInputs } from '../components/Box';
 import { generatorInputs as buttonClassNameGeneratorInputs } from '../components/Button';
 import { generatorInputs as buttonGroupClassNameGeneratorInputs } from '../components/ButtonGroup';
@@ -12,6 +14,13 @@ import { generatorInputs as iconAdapterClassNameGeneratorInputs } from '../compo
 import { generatorInputs as iconButtonClassNameGeneratorInputs } from '../components/IconButton';
 import { generatorInputs as inputClassNameGeneratorInputs } from '../components/Input';
 import { generatorInputs as linearProgressClassNameGeneratorInputs } from '../components/LinearProgress';
+import { generatorInputs as listClassNameGeneratorInputs } from '../components/List';
+import { generatorInputs as listDividerClassNameGeneratorInputs } from '../components/ListDivider';
+import { generatorInputs as listItemClassNameGeneratorInputs } from '../components/ListItem';
+import { generatorInputs as listItemButtonClassNameGeneratorInputs } from '../components/ListItemButton';
+import { generatorInputs as listItemContentClassNameGeneratorInputs } from '../components/ListItemContent';
+import { generatorInputs as listItemDecoratorClassNameGeneratorInputs } from '../components/ListItemDecorator';
+import { generatorInputs as listSubheaderClassNameGeneratorInputs } from '../components/ListSubheader';
 import { generatorInputs as radioClassNameGeneratorInputs } from '../components/Radio';
 import { generatorInputs as radioGroupClassNameGeneratorInputs } from '../components/RadioGroup';
 import { generatorInputs as sheetClassNameGeneratorInputs } from '../components/Sheet';
@@ -23,10 +32,18 @@ import { generatorInputs as toggleButtonGroupClassNameGeneratorInputs } from '..
 import { generatorInputs as typographyClassNameGeneratorInputs } from '../components/Typography';
 import { generatorInputs as adaptedIconClassNameGeneratorInputs } from '../components/internal/class-adapter';
 
+const BACKSLASH = '\\';
+
+const DOUBLE_QUOTE = '"';
+
+const EOL = '\n';
+
 const SPACE = ' ';
 
 const inputs: GeneratorInput[] = [
   ...aspectRatioClassNameGeneratorInputs,
+  ...avatarClassNameGeneratorInputs,
+  ...avatarGroupClassNameGeneratorInputs,
   ...boxClassNameGeneratorInputs,
   ...buttonClassNameGeneratorInputs,
   ...buttonGroupClassNameGeneratorInputs,
@@ -39,6 +56,13 @@ const inputs: GeneratorInput[] = [
   ...iconButtonClassNameGeneratorInputs,
   ...inputClassNameGeneratorInputs,
   ...linearProgressClassNameGeneratorInputs,
+  ...listClassNameGeneratorInputs,
+  ...listDividerClassNameGeneratorInputs,
+  ...listItemClassNameGeneratorInputs,
+  ...listItemButtonClassNameGeneratorInputs,
+  ...listItemContentClassNameGeneratorInputs,
+  ...listItemDecoratorClassNameGeneratorInputs,
+  ...listSubheaderClassNameGeneratorInputs,
   ...radioClassNameGeneratorInputs,
   ...radioGroupClassNameGeneratorInputs,
   ...sheetClassNameGeneratorInputs,
@@ -88,11 +112,23 @@ export function safelistGenerator() {
   return {
     name: 'safelist-generator',
     transform(code: string, id: string) {
-      if (/src\/tw-extension/.test(id)) {
+      if (/src\/safelist/.test(id)) {
         const content = generate();
 
         return {
-          code: code.replace('"__REPLACE_ME__"', `String.raw\`${content}\``),
+          code: code.replace(
+            '"__REPLACE_ME__"',
+            `${EOL}${content
+              .split(SPACE)
+              .sort()
+              .map((className) =>
+                className.includes(BACKSLASH) ||
+                className.includes(DOUBLE_QUOTE)
+                  ? `String.raw\`${className}\``
+                  : `"${className}"`,
+              )
+              .join(',')}`,
+          ),
           map: null,
         };
       }

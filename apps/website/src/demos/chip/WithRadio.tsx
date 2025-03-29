@@ -49,7 +49,7 @@ export function ChipWithRadio() {
                       <MdCheck
                         className={twMerge(
                           iconClass(),
-                          'pointer-events-none z-[1]',
+                          'pointer-events-none z-1',
                         )}
                       />
                     )

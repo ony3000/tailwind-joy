@@ -1,4 +1,8 @@
+import './theme-extension.css';
+
 export { AspectRatio } from './components/AspectRatio';
+export { Avatar } from './components/Avatar';
+export { AvatarGroup } from './components/AvatarGroup';
 export { Box } from './components/Box';
 export { Button } from './components/Button';
 export { ButtonGroup } from './components/ButtonGroup';
@@ -11,6 +15,13 @@ export { IconAdapter } from './components/IconAdapter';
 export { IconButton } from './components/IconButton';
 export { Input } from './components/Input';
 export { LinearProgress } from './components/LinearProgress';
+export { List } from './components/List';
+export { ListDivider } from './components/ListDivider';
+export { ListItem } from './components/ListItem';
+export { ListItemButton } from './components/ListItemButton';
+export { ListItemContent } from './components/ListItemContent';
+export { ListItemDecorator } from './components/ListItemDecorator';
+export { ListSubheader } from './components/ListSubheader';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';

@@ -23,7 +23,7 @@ Please note that [react](https://www.npmjs.com/package/react), [react-dom](https
 "peerDependencies": {
   "react": "^18",
   "react-dom": "^18",
-  "tailwindcss": ">=3.4"
+  "tailwindcss": "^3.4 || >=4.0.4"
 },
 ```
 
@@ -37,20 +37,22 @@ If your project uses TypeScript, you should set the `moduleResolution` property 
 },
 ```
 
-## Extend Tailwind CSS configuration
+## Extend configuration
 
-Tailwind-Joy does not export CSS; instead, the class name of the Tailwind CSS syntax is embedded in the component's `className` property.
+Tailwind-Joy's components have the utility class name embedded in their `className` property.
 
 Therefore, you need to extend the Tailwind CSS configuration to make the components of Tailwind-Joy as if they were part of your project.
 
-### Import module
+### Tailwind CSS v3
+
+#### Import module
 
 <Tabs>
 <TabItem value="CJS">
 
 <!-- prettier-ignore -->
 ```tsx
-const { tjClassNames, tjTheme, tjPlugin } = require('tailwind-joy/tw-extension');
+const { tjTheme, tjPlugin } = require('tailwind-joy/tw-extension');
 ```
 
 </TabItem>
@@ -58,24 +60,24 @@ const { tjClassNames, tjTheme, tjPlugin } = require('tailwind-joy/tw-extension')
 
 <!-- prettier-ignore -->
 ```tsx
-import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
+import { tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 ```
 
 </TabItem>
 </Tabs>
 
-### Extend `content`
+#### Extend `content`
 
 ```tsx
 {
   content: [
     // Add this to your `content`
-    { raw: tjClassNames },
+    './node_modules/tailwind-joy/dist/safelist.js',
   ],
 }
 ```
 
-### Extend `theme`
+#### Extend `theme`
 
 ```tsx
 {
@@ -101,7 +103,7 @@ import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
 }
 ```
 
-### Extend `plugins`
+#### Extend `plugins`
 
 ```tsx
 {
@@ -110,4 +112,15 @@ import { tjClassNames, tjTheme, tjPlugin } from 'tailwind-joy/tw-extension';
     tjPlugin,
   ],
 }
+```
+
+### Tailwind CSS v4
+
+#### Extend `index.css`
+
+<!-- prettier-ignore -->
+```css
+@import "tailwind-joy/theme-extension.css";
+
+@source "../node_modules/tailwind-joy/dist/safelist.js";
 ```

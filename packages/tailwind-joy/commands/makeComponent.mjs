@@ -55,8 +55,26 @@ async function main({ name }) {
   const template = `
 import { clsx } from 'clsx';
 import type { ComponentProps, ForwardedRef, ReactNode } from 'react';
-import { forwardRef, createElement, useMemo } from 'react';
+import {
+  forwardRef,
+  createContext,
+  createElement,
+  cloneElement,
+  isValidElement,
+  Children,
+  useRef,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+} from 'react';
 import { r, twMerge, useUniqueId } from '../base/alias';
+import {
+  marginBlock,
+  marginInline,
+  paddingBlock,
+  paddingInline,
+} from '../base/conditional';
 import {
   addPrefix,
   hover,
@@ -78,7 +96,7 @@ import type {
   BaseVariants,
   GeneratorInput,
 } from '../base/types';
-import { excludeClassName } from '../base/utils';
+import { isTailwindVersion4, excludeClassName } from '../base/utils';
 
 function ${camelCaseName}RootVariants(
   props?: BaseVariants & {
@@ -123,8 +141,12 @@ function ${pascalCaseName}Root<
 
     // ---- non-passing props ----
     // base variants
+    color,
+    size,
+    variant,
 
     // non-base variants
+    className,
 
     // slot props
     slotProps = {},
@@ -137,7 +159,18 @@ function ${pascalCaseName}Root<
   }: ${pascalCaseName}RootProps<T>,
   ref: ForwardedRef<unknown>,
 ) {
-  return createElement();
+  const slotPropsWithoutClassName = useMemo(
+    () => excludeClassName(slotProps),
+    [slotProps],
+  );
+
+  return createElement(
+    component,
+    {
+      ref,
+    },
+    children,
+  );
 }
 
 export const ${pascalCaseName} = forwardRef(${pascalCaseName}Root) as <

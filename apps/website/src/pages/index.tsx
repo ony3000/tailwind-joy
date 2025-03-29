@@ -11,7 +11,7 @@ function HomepageHeader() {
   return (
     <header
       className={clsx(
-        'hero hero--primary bg-gradient-to-r from-sky-400 via-[#007fff] to-indigo-600',
+        'hero hero--primary bg-linear-to-r from-sky-400 via-[#007fff] to-indigo-600',
         styles.heroBanner,
       )}
     >

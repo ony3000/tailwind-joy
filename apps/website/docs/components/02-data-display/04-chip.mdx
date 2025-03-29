@@ -68,6 +68,12 @@ export function ChipDecorators() {
 }
 ```
 
+:::info
+
+[`iconClass()`](../utils/icon-class) is an adapter function provided by Tailwind-Joy.
+
+:::
+
 ### Delete button
 
 To add a delete action inside a chip, use the complementary `ChipDelete` component.
@@ -120,7 +126,7 @@ To make chips clickable, pass a function to the `onClick` prop.
 
 ```tsx
 import { MdCheck } from 'react-icons/md';
-import { Box, Chip } from 'tailwind-joy/components';
+import { Avatar, Box, Chip } from 'tailwind-joy/components';
 import { iconClass } from 'tailwind-joy/utils';
 
 export function ChipClickable() {
@@ -129,19 +135,11 @@ export function ChipClickable() {
       <Chip
         size="lg"
         variant="outlined"
-        startDecorator={
-          <div className="-ml-[9px] flex h-[22px] w-[22px] items-center justify-center overflow-hidden rounded-full">
-            <img
-              src="/img/avatar/octocat-avatar.png"
-              className="h-full w-full object-cover"
-              alt="Octocat"
-            />
-          </div>
-        }
+        startDecorator={<Avatar size="sm" src="/img/avatar/1.jpg" />}
         endDecorator={<MdCheck className={iconClass()} />}
         onClick={() => alert('You clicked the Tailwind Joy Chip!')}
       >
-        Octocat
+        Mark
       </Chip>
     </Box>
   );
@@ -240,7 +238,7 @@ export function ChipWithRadio() {
                     <MdCheck
                       className={twMerge(
                         iconClass(),
-                        'pointer-events-none z-[1]',
+                        'pointer-events-none z-1',
                       )}
                     />
                   )
@@ -317,7 +315,7 @@ export function ChipWithCheckbox() {
                     <MdCheck
                       className={twMerge(
                         iconClass(),
-                        'pointer-events-none z-[1]',
+                        'pointer-events-none z-1',
                       )}
                     />
                   )
@@ -367,6 +365,7 @@ The Chip component is composed of a single root `<div>` element that wraps aroun
 
 See the documentation below for a complete reference to all of the props available to the components mentioned here.
 
+- [`<Avatar />`](../apis/avatar)
 - [`<Box />`](../apis/box)
 - [`<Checkbox />`](../apis/checkbox)
 - [`<Chip />`](../apis/chip)
