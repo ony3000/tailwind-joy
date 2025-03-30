@@ -22,6 +22,7 @@ export { ListItemButton } from './components/ListItemButton';
 export { ListItemContent } from './components/ListItemContent';
 export { ListItemDecorator } from './components/ListItemDecorator';
 export { ListSubheader } from './components/ListSubheader';
+export { Option } from './components/Option';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
 export { Sheet } from './components/Sheet';

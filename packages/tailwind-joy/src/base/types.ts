@@ -14,6 +14,7 @@ export type BaseVariants = {
   variant?: 'solid' | 'soft' | 'outlined' | 'plain';
 };
 
+// NOTE: This will be moved to `build/safelist-generator/inputs.ts`.
 export type GeneratorInput = {
   generatorFn: (props?: Record<string, unknown>) => string;
   variants: Record<string, (string | boolean | undefined)[]>;

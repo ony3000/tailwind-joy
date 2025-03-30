@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import { safelistGenerator } from './src/plugins/safelist-generator';
+import { safelistGenerator } from './build/safelist-generator';
 
 export default defineConfig({
   build: {
