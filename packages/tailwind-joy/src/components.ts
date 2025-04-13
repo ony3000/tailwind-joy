@@ -25,6 +25,7 @@ export { ListSubheader } from './components/ListSubheader';
 export { Option } from './components/Option';
 export { Radio } from './components/Radio';
 export { RadioGroup } from './components/RadioGroup';
+export { Select } from './components/Select';
 export { Sheet } from './components/Sheet';
 export { Skeleton } from './components/Skeleton';
 export { Stack } from './components/Stack';
