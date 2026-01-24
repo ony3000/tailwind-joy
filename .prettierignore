@@ -6,3 +6,4 @@ apps/tester/playwright-report
 apps/tester/test-results
 apps/website/.docusaurus
 apps/website/build
+apps/website/static
